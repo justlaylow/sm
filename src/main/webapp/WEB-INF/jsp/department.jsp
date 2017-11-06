@@ -36,6 +36,7 @@
 						<c:forEach var="dep" items="${listDep}">
 							<tr>
 								<!-- 和po类里的属性名一样 -->
+								<td></td>
 								<td>${dep.depId}</td>
 								<td>${dep.depName}</td>
 							</tr>

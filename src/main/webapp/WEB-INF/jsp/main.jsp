@@ -66,7 +66,7 @@
 					<br>
 					<a href="#"><li>员工管理</li></a>
 					<br>
-					<a href="/sm/dep"><li>部门管理</li></a>
+					<a href="/sm/list/dep"><li>部门管理</li></a>
 					<br>
 					<a href="#"><li>Facilisis in pretium nisl aliquet</li></a>
 					<br>
