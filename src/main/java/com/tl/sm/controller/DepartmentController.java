@@ -8,6 +8,8 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.view.RedirectView;
 
 import com.tl.sm.pojo.Department;
 import com.tl.sm.service.DepartmentService;
@@ -18,10 +20,20 @@ public class DepartmentController {
 	@Resource
 	private DepartmentService departmentService;
 
+	// 查询所有员工
+	@RequestMapping("/list/dep")
+	public String listDep(HttpServletRequest request) {
+		List<Department> listDep = departmentService.listAll();
+		request.setAttribute("listDep", listDep);
+		return "department";
+	}
+
 	// 新增员工
 	@RequestMapping("/insert/dep")
 	public String addDep(Department department, HttpServletRequest request) {
 		String insertDep = departmentService.addDep(department);
+		List<Department> listDep = departmentService.listAll();
+		request.setAttribute("listDep", listDep);
 		request.setAttribute("insertDep", insertDep);
 		return "department";
 	}
@@ -30,23 +42,23 @@ public class DepartmentController {
 	@RequestMapping("/update/dep")
 	public String updateDep(Department department, HttpServletRequest request) {
 		String updateDep = departmentService.updateDep(department);
+		List<Department> listDep = departmentService.listAll();
+		request.setAttribute("listDep", listDep);
 		request.setAttribute("updateDep", updateDep);
 		return "department";
 	}
 
 	// 删除员工
 	@RequestMapping("/delete/dep")
-	public String deleteDep(Integer id, HttpServletRequest request) {
+	public ModelAndView deleteDep(Integer id, HttpServletRequest request,ModelAndView mv) {
 		String deleteDep = departmentService.deleteDep(id);
-		request.setAttribute("deleteDep", deleteDep);
-		return "department";
-	}
-
-	// 查询所有员工
-	@RequestMapping("/list/dep")
-	public String listDep(HttpServletRequest request) {
 		List<Department> listDep = departmentService.listAll();
 		request.setAttribute("listDep", listDep);
-		return "department";
+		request.setAttribute("deleteDep", deleteDep);
+		/*// 转发到/list/dep请求
+		mv.setView(new RedirectView("/list/dep"));*/
+		mv.setViewName("department");
+		return mv;
 	}
+
 }

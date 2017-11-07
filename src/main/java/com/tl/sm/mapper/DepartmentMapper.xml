@@ -20,9 +20,9 @@
     where Id = #{id,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="com.tl.sm.pojo.Department">
-    insert into department_ (Id, dep_id, dep_name
+    insert into department_ ( dep_id, dep_name
       )
-    values (#{id,jdbcType=INTEGER}, #{depId,jdbcType=VARCHAR}, #{depName,jdbcType=VARCHAR}
+    values ( #{depId,jdbcType=VARCHAR}, #{depName,jdbcType=VARCHAR}
       )
   </insert>
   <insert id="insertSelective" parameterType="com.tl.sm.pojo.Department">
@@ -73,5 +73,18 @@
   <!-- 查询所有 -->
   <select id="listAll" resultMap="BaseResultMap">
   	select * from department_
+  </select>
+  
+  <!-- 模糊查询 -->
+  <select id="listByDep" resultMap="BaseResultMap">
+  	select * from department_
+        <where>
+            <if test="dep_id!=null">
+                and dep_id like "%"#{dep_id}"%"
+            </if>         
+            <if test="dep_name!=null">
+                and dep_name like "%"#{dep_name}"%"
+            </if> 
+        </where>
   </select>
 </mapper>
