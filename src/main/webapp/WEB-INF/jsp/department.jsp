@@ -20,6 +20,13 @@
             window.location.href="/sm/delete/dep/?id="+userid;
         }
 	}
+	
+	//模糊查询
+	function blurrySeach(depId,depName){
+		depId = document.getElementById("depId").value;
+		depName = document.getElementById("depName").value;
+		window.location.href="/sm/blurryF/dep/?depId="+depId+"&depName="+depName;
+	}
 </script>
 
 </head>
@@ -30,11 +37,11 @@
 				<h3 class="text-center text-info">部门管理</h3>
 				<br /> <br />
 				<div class="input-group">
-					编号：<input type="text" placeholder="Search for..."> <span>
-						<button class="btn btn-default" type="button">搜索</button>
+					编号：<input type="text" placeholder="Search for..." name="depId" id="depId" value="${param.depId}"> <span>
+						<button class="btn btn-default" type="button" onclick="blurrySeach()">搜索</button>
 					</span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 部门名称：<input type="text"
-						placeholder="Search for..."> <span>
-						<button class="btn btn-default" type="button">搜索</button>
+						placeholder="Search for..." name="depName" id="depName" value="${param.depName}"> <span>
+						<button class="btn btn-default" type="button" onclick="blurrySeach()">搜索</button>
 					</span>
 				</div>
 				<br />

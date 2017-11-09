@@ -35,7 +35,7 @@ public class MybatisTest {
 
 	@Test
 	public void testList() {
-		List<Department> cs=departmentMapper.listAll();
+		List<Department> cs=departmentMapper.listByDep("001", null);
 		for (Department c : cs) {
 			System.out.println(c.getDepName());
 		}

@@ -80,7 +80,7 @@
   	select * from department_
         <where>
             <if test="dep_id!=null">
-                and dep_id like "%"#{dep_id}"%"
+                and dep_id like concat("%",#{dep_id},"%")
             </if>         
             <if test="dep_name!=null">
                 and dep_name like "%"#{dep_name}"%"

@@ -50,15 +50,24 @@ public class DepartmentController {
 
 	// 删除员工
 	@RequestMapping("/delete/dep")
-	public ModelAndView deleteDep(Integer id, HttpServletRequest request,ModelAndView mv) {
+	public ModelAndView deleteDep(Integer id, HttpServletRequest request, ModelAndView mv) {
 		String deleteDep = departmentService.deleteDep(id);
 		List<Department> listDep = departmentService.listAll();
 		request.setAttribute("listDep", listDep);
 		request.setAttribute("deleteDep", deleteDep);
-		/*// 转发到/list/dep请求
-		mv.setView(new RedirectView("/list/dep"));*/
+		/*
+		 * // 转发到/list/dep请求 mv.setView(new RedirectView("/list/dep"));
+		 */
 		mv.setViewName("department");
 		return mv;
+	}
+
+	// 模糊查询
+	@RequestMapping("/blurryF/dep")
+	public String listByDep(Department department, HttpServletRequest request,String depId,String depName) {
+		List<Department> listDep = departmentService.listByDep(depId, depName);
+		request.setAttribute("listDep", listDep);
+		return "department";
 	}
 
 }

@@ -56,4 +56,11 @@ public class DepartmentServiceImpl implements DepartmentService {
 		List<Department> uList = departmentMapper.listAll();
 		return uList;
 	}
+
+	//模糊查询
+	@Override
+	public List<Department> listByDep(String depId, String depName) {
+		List<Department> blurryList = departmentMapper.listByDep(depId, depName);
+		return blurryList;
+	}
 }
