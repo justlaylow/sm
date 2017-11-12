@@ -1,90 +1,114 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.tl.sm.mapper.DepartmentMapper">
-  <resultMap id="BaseResultMap" type="com.tl.sm.pojo.Department">
-    <id column="Id" jdbcType="INTEGER" property="id" />
-    <result column="dep_id" jdbcType="VARCHAR" property="depId" />
-    <result column="dep_name" jdbcType="VARCHAR" property="depName" />
-  </resultMap>
-  <sql id="Base_Column_List">
-    Id, dep_id, dep_name
-  </sql>
-  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
-    select 
-    <include refid="Base_Column_List" />
-    from department_
-    where Id = #{id,jdbcType=INTEGER}
-  </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
-    delete from department_
-    where Id = #{id,jdbcType=INTEGER}
-  </delete>
-  <insert id="insert" parameterType="com.tl.sm.pojo.Department">
-    insert into department_ ( dep_id, dep_name
-      )
-    values ( #{depId,jdbcType=VARCHAR}, #{depName,jdbcType=VARCHAR}
-      )
-  </insert>
-  <insert id="insertSelective" parameterType="com.tl.sm.pojo.Department">
-    insert into department_
-    <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="id != null">
-        Id,
-      </if>
-      <if test="depId != null">
-        dep_id,
-      </if>
-      <if test="depName != null">
-        dep_name,
-      </if>
-    </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="id != null">
-        #{id,jdbcType=INTEGER},
-      </if>
-      <if test="depId != null">
-        #{depId,jdbcType=VARCHAR},
-      </if>
-      <if test="depName != null">
-        #{depName,jdbcType=VARCHAR},
-      </if>
-    </trim>
-  </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.tl.sm.pojo.Department">
-    update department_
-    <set>
-      <if test="depId != null">
-        dep_id = #{depId,jdbcType=VARCHAR},
-      </if>
-      <if test="depName != null">
-        dep_name = #{depName,jdbcType=VARCHAR},
-      </if>
-    </set>
-    where Id = #{id,jdbcType=INTEGER}
-  </update>
-  <update id="updateByPrimaryKey" parameterType="com.tl.sm.pojo.Department">
-    update department_
-    set dep_id = #{depId,jdbcType=VARCHAR},
-      dep_name = #{depName,jdbcType=VARCHAR}
-    where Id = #{id,jdbcType=INTEGER}
-  </update>
-  
-  
-  <!-- 查询所有 -->
-  <select id="listAll" resultMap="BaseResultMap">
-  	select * from department_
-  </select>
-  
-  <!-- 模糊查询 -->
-  <select id="listByDep" resultMap="BaseResultMap">
-  	select * from department_
-        <where>
-            <if test="dep_id!=null">
-                and dep_id like concat("%",#{dep_id},"%")
-            </if>         
-            <if test="dep_name!=null">
-                and dep_name like "%"#{dep_name}"%"
-            </if> 
-        </where>
-  </select>
+	<resultMap id="BaseResultMap" type="com.tl.sm.pojo.Department">
+		<id column="Id" jdbcType="INTEGER" property="id" />
+		<result column="dep_id" jdbcType="VARCHAR" property="depId" />
+		<result column="dep_name" jdbcType="VARCHAR" property="depName" />
+		<result column="dep_cost_category" jdbcType="VARCHAR" property="depCostCategory" />
+		<result column="dep_remark" jdbcType="VARCHAR" property="depRemark" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		Id, dep_id, dep_name, dep_cost_category, dep_remark
+	</sql>
+	<select id="selectByPrimaryKey" parameterType="java.lang.Integer"
+		resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from department_
+		where Id = #{id,jdbcType=INTEGER}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+		delete from department_
+		where Id = #{id,jdbcType=INTEGER}
+	</delete>
+	<insert id="insert" parameterType="com.tl.sm.pojo.Department">
+		insert into department_ (Id, dep_id, dep_name,
+		dep_cost_category, dep_remark)
+		values (#{id,jdbcType=INTEGER}, #{depId,jdbcType=VARCHAR},
+		#{depName,jdbcType=VARCHAR},
+		#{depCostCategory,jdbcType=VARCHAR}, #{depRemark,jdbcType=VARCHAR})
+	</insert>
+	<insert id="insertSelective" parameterType="com.tl.sm.pojo.Department">
+		insert into department_
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				Id,
+			</if>
+			<if test="depId != null">
+				dep_id,
+			</if>
+			<if test="depName != null">
+				dep_name,
+			</if>
+			<if test="depCostCategory != null">
+				dep_cost_category,
+			</if>
+			<if test="depRemark != null">
+				dep_remark,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				#{id,jdbcType=INTEGER},
+			</if>
+			<if test="depId != null">
+				#{depId,jdbcType=VARCHAR},
+			</if>
+			<if test="depName != null">
+				#{depName,jdbcType=VARCHAR},
+			</if>
+			<if test="depCostCategory != null">
+				#{depCostCategory,jdbcType=VARCHAR},
+			</if>
+			<if test="depRemark != null">
+				#{depRemark,jdbcType=VARCHAR},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="com.tl.sm.pojo.Department">
+		update department_
+		<set>
+			<if test="depId != null">
+				dep_id = #{depId,jdbcType=VARCHAR},
+			</if>
+			<if test="depName != null">
+				dep_name = #{depName,jdbcType=VARCHAR},
+			</if>
+			<if test="depCostCategory != null">
+				dep_cost_category = #{depCostCategory,jdbcType=VARCHAR},
+			</if>
+			<if test="depRemark != null">
+				dep_remark = #{depRemark,jdbcType=VARCHAR},
+			</if>
+		</set>
+		where Id = #{id,jdbcType=INTEGER}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="com.tl.sm.pojo.Department">
+		update department_
+		set dep_id = #{depId,jdbcType=VARCHAR},
+		dep_name = #{depName,jdbcType=VARCHAR},
+		dep_cost_category = #{depCostCategory,jdbcType=VARCHAR},
+		dep_remark = #{depRemark,jdbcType=VARCHAR}
+		where Id = #{id,jdbcType=INTEGER}
+	</update>
+
+	<!-- 查询所有 -->
+	<select id="listAll" resultMap="BaseResultMap">
+		select * from department_
+	</select>
+
+	<!-- 模糊查询 -->
+	<select id="listByDep" resultMap="BaseResultMap">
+		select * from department_
+		<where>
+			<if test="dep_id!=null">
+				and dep_id like concat("%",#{dep_id},"%")
+			</if>
+			<if test="dep_name!=null">
+				and dep_name like "%"#{dep_name}"%"
+			</if>
+		</where>
+	</select>
+
 </mapper>

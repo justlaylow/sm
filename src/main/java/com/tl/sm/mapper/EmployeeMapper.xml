@@ -1,0 +1,612 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.tl.sm.mapper.EmployeeMapper">
+  <resultMap id="BaseResultMap" type="com.tl.sm.pojo.Employee">
+    <id column="Id" jdbcType="INTEGER" property="id" />
+    <result column="bank_account" jdbcType="VARCHAR" property="bankAccount" />
+    <result column="sal_name" jdbcType="VARCHAR" property="salName" />
+    <result column="post_category" jdbcType="VARCHAR" property="postCategory" />
+    <result column="sal_id" jdbcType="INTEGER" property="salId" />
+    <result column="sal_dep" jdbcType="VARCHAR" property="salDep" />
+    <result column="sal_post" jdbcType="VARCHAR" property="salPost" />
+    <result column="sal_date" jdbcType="DATE" property="salDate" />
+    <result column="sal_oa" jdbcType="VARCHAR" property="salOa" />
+    <result column="sta_category" jdbcType="VARCHAR" property="staCategory" />
+    <result column="sal_remark" jdbcType="VARCHAR" property="salRemark" />
+    <result column="sal_basic" jdbcType="REAL" property="salBasic" />
+    <result column="sal_dues" jdbcType="REAL" property="salDues" />
+    <result column="sal_manhour" jdbcType="REAL" property="salManhour" />
+    <result column="sal_postsal" jdbcType="REAL" property="salPostsal" />
+    <result column="end_insurance" jdbcType="REAL" property="endInsurance" />
+    <result column="labour_cost" jdbcType="REAL" property="labourCost" />
+    <result column="sal_coef" jdbcType="REAL" property="salCoef" />
+    <result column="sal_benefitwage" jdbcType="REAL" property="salBenefitwage" />
+    <result column="sal_bonus" jdbcType="REAL" property="salBonus" />
+    <result column="sal_manhour_bonus" jdbcType="REAL" property="salManhourBonus" />
+    <result column="sal_manhour_salary" jdbcType="REAL" property="salManhourSalary" />
+    <result column="sal_overtime" jdbcType="REAL" property="salOvertime" />
+    <result column="sal_benefit" jdbcType="REAL" property="salBenefit" />
+    <result column="sal_welfare" jdbcType="REAL" property="salWelfare" />
+    <result column="sal_check" jdbcType="REAL" property="salCheck" />
+    <result column="sal_holiday" jdbcType="REAL" property="salHoliday" />
+    <result column="sal_absence" jdbcType="REAL" property="salAbsence" />
+    <result column="sal_other" jdbcType="REAL" property="salOther" />
+    <result column="sal_should" jdbcType="REAL" property="salShould" />
+    <result column="sal_heath_insurance" jdbcType="REAL" property="salHeathInsurance" />
+    <result column="sal_unemp" jdbcType="REAL" property="salUnemp" />
+    <result column="sal_ill" jdbcType="REAL" property="salIll" />
+    <result column="sal_consume" jdbcType="REAL" property="salConsume" />
+    <result column="sal_penalty" jdbcType="REAL" property="salPenalty" />
+    <result column="sal_withhold" jdbcType="REAL" property="salWithhold" />
+    <result column="sal_waste" jdbcType="REAL" property="salWaste" />
+    <result column="sal_waterandele" jdbcType="REAL" property="salWaterandele" />
+    <result column="sal_acc_fund" jdbcType="REAL" property="salAccFund" />
+    <result column="sal_last_withhold" jdbcType="REAL" property="salLastWithhold" />
+    <result column="sal_incometax" jdbcType="REAL" property="salIncometax" />
+    <result column="sal_realization" jdbcType="REAL" property="salRealization" />
+    <result column="sal_allowance" jdbcType="REAL" property="salAllowance" />
+    <result column="sal_years" jdbcType="REAL" property="salYears" />
+    <result column="sal_secrecy" jdbcType="REAL" property="salSecrecy" />
+    <result column="sal_skilllevel" jdbcType="VARCHAR" property="salSkilllevel" />
+    <result column="sal_skillsalary" jdbcType="REAL" property="salSkillsalary" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    Id, bank_account, sal_name, post_category, sal_id, sal_dep, sal_post, sal_date, sal_oa, 
+    sta_category, sal_remark, sal_basic, sal_dues, sal_manhour, sal_postsal, end_insurance, 
+    labour_cost, sal_coef, sal_benefitwage, sal_bonus, sal_manhour_bonus, sal_manhour_salary, 
+    sal_overtime, sal_benefit, sal_welfare, sal_check, sal_holiday, sal_absence, sal_other, 
+    sal_should, sal_heath_insurance, sal_unemp, sal_ill, sal_consume, sal_penalty, sal_withhold, 
+    sal_waste, sal_waterandele, sal_acc_fund, sal_last_withhold, sal_incometax, sal_realization, 
+    sal_allowance, sal_years, sal_secrecy, sal_skilllevel, sal_skillsalary
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from employee_
+    where Id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from employee_
+    where Id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.tl.sm.pojo.Employee">
+    insert into employee_ (Id, bank_account, sal_name, 
+      post_category, sal_id, sal_dep, 
+      sal_post, sal_date, sal_oa, 
+      sta_category, sal_remark, sal_basic, 
+      sal_dues, sal_manhour, sal_postsal, 
+      end_insurance, labour_cost, sal_coef, 
+      sal_benefitwage, sal_bonus, sal_manhour_bonus, 
+      sal_manhour_salary, sal_overtime, sal_benefit, 
+      sal_welfare, sal_check, sal_holiday, 
+      sal_absence, sal_other, sal_should, 
+      sal_heath_insurance, sal_unemp, sal_ill, 
+      sal_consume, sal_penalty, sal_withhold, 
+      sal_waste, sal_waterandele, sal_acc_fund, 
+      sal_last_withhold, sal_incometax, sal_realization, 
+      sal_allowance, sal_years, sal_secrecy, 
+      sal_skilllevel, sal_skillsalary)
+    values (#{id,jdbcType=INTEGER}, #{bankAccount,jdbcType=VARCHAR}, #{salName,jdbcType=VARCHAR}, 
+      #{postCategory,jdbcType=VARCHAR}, #{salId,jdbcType=INTEGER}, #{salDep,jdbcType=VARCHAR}, 
+      #{salPost,jdbcType=VARCHAR}, #{salDate,jdbcType=DATE}, #{salOa,jdbcType=VARCHAR}, 
+      #{staCategory,jdbcType=VARCHAR}, #{salRemark,jdbcType=VARCHAR}, #{salBasic,jdbcType=REAL}, 
+      #{salDues,jdbcType=REAL}, #{salManhour,jdbcType=REAL}, #{salPostsal,jdbcType=REAL}, 
+      #{endInsurance,jdbcType=REAL}, #{labourCost,jdbcType=REAL}, #{salCoef,jdbcType=REAL}, 
+      #{salBenefitwage,jdbcType=REAL}, #{salBonus,jdbcType=REAL}, #{salManhourBonus,jdbcType=REAL}, 
+      #{salManhourSalary,jdbcType=REAL}, #{salOvertime,jdbcType=REAL}, #{salBenefit,jdbcType=REAL}, 
+      #{salWelfare,jdbcType=REAL}, #{salCheck,jdbcType=REAL}, #{salHoliday,jdbcType=REAL}, 
+      #{salAbsence,jdbcType=REAL}, #{salOther,jdbcType=REAL}, #{salShould,jdbcType=REAL}, 
+      #{salHeathInsurance,jdbcType=REAL}, #{salUnemp,jdbcType=REAL}, #{salIll,jdbcType=REAL}, 
+      #{salConsume,jdbcType=REAL}, #{salPenalty,jdbcType=REAL}, #{salWithhold,jdbcType=REAL}, 
+      #{salWaste,jdbcType=REAL}, #{salWaterandele,jdbcType=REAL}, #{salAccFund,jdbcType=REAL}, 
+      #{salLastWithhold,jdbcType=REAL}, #{salIncometax,jdbcType=REAL}, #{salRealization,jdbcType=REAL}, 
+      #{salAllowance,jdbcType=REAL}, #{salYears,jdbcType=REAL}, #{salSecrecy,jdbcType=REAL}, 
+      #{salSkilllevel,jdbcType=VARCHAR}, #{salSkillsalary,jdbcType=REAL})
+  </insert>
+  <insert id="insertSelective" parameterType="com.tl.sm.pojo.Employee">
+    insert into employee_
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        Id,
+      </if>
+      <if test="bankAccount != null">
+        bank_account,
+      </if>
+      <if test="salName != null">
+        sal_name,
+      </if>
+      <if test="postCategory != null">
+        post_category,
+      </if>
+      <if test="salId != null">
+        sal_id,
+      </if>
+      <if test="salDep != null">
+        sal_dep,
+      </if>
+      <if test="salPost != null">
+        sal_post,
+      </if>
+      <if test="salDate != null">
+        sal_date,
+      </if>
+      <if test="salOa != null">
+        sal_oa,
+      </if>
+      <if test="staCategory != null">
+        sta_category,
+      </if>
+      <if test="salRemark != null">
+        sal_remark,
+      </if>
+      <if test="salBasic != null">
+        sal_basic,
+      </if>
+      <if test="salDues != null">
+        sal_dues,
+      </if>
+      <if test="salManhour != null">
+        sal_manhour,
+      </if>
+      <if test="salPostsal != null">
+        sal_postsal,
+      </if>
+      <if test="endInsurance != null">
+        end_insurance,
+      </if>
+      <if test="labourCost != null">
+        labour_cost,
+      </if>
+      <if test="salCoef != null">
+        sal_coef,
+      </if>
+      <if test="salBenefitwage != null">
+        sal_benefitwage,
+      </if>
+      <if test="salBonus != null">
+        sal_bonus,
+      </if>
+      <if test="salManhourBonus != null">
+        sal_manhour_bonus,
+      </if>
+      <if test="salManhourSalary != null">
+        sal_manhour_salary,
+      </if>
+      <if test="salOvertime != null">
+        sal_overtime,
+      </if>
+      <if test="salBenefit != null">
+        sal_benefit,
+      </if>
+      <if test="salWelfare != null">
+        sal_welfare,
+      </if>
+      <if test="salCheck != null">
+        sal_check,
+      </if>
+      <if test="salHoliday != null">
+        sal_holiday,
+      </if>
+      <if test="salAbsence != null">
+        sal_absence,
+      </if>
+      <if test="salOther != null">
+        sal_other,
+      </if>
+      <if test="salShould != null">
+        sal_should,
+      </if>
+      <if test="salHeathInsurance != null">
+        sal_heath_insurance,
+      </if>
+      <if test="salUnemp != null">
+        sal_unemp,
+      </if>
+      <if test="salIll != null">
+        sal_ill,
+      </if>
+      <if test="salConsume != null">
+        sal_consume,
+      </if>
+      <if test="salPenalty != null">
+        sal_penalty,
+      </if>
+      <if test="salWithhold != null">
+        sal_withhold,
+      </if>
+      <if test="salWaste != null">
+        sal_waste,
+      </if>
+      <if test="salWaterandele != null">
+        sal_waterandele,
+      </if>
+      <if test="salAccFund != null">
+        sal_acc_fund,
+      </if>
+      <if test="salLastWithhold != null">
+        sal_last_withhold,
+      </if>
+      <if test="salIncometax != null">
+        sal_incometax,
+      </if>
+      <if test="salRealization != null">
+        sal_realization,
+      </if>
+      <if test="salAllowance != null">
+        sal_allowance,
+      </if>
+      <if test="salYears != null">
+        sal_years,
+      </if>
+      <if test="salSecrecy != null">
+        sal_secrecy,
+      </if>
+      <if test="salSkilllevel != null">
+        sal_skilllevel,
+      </if>
+      <if test="salSkillsalary != null">
+        sal_skillsalary,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="bankAccount != null">
+        #{bankAccount,jdbcType=VARCHAR},
+      </if>
+      <if test="salName != null">
+        #{salName,jdbcType=VARCHAR},
+      </if>
+      <if test="postCategory != null">
+        #{postCategory,jdbcType=VARCHAR},
+      </if>
+      <if test="salId != null">
+        #{salId,jdbcType=INTEGER},
+      </if>
+      <if test="salDep != null">
+        #{salDep,jdbcType=VARCHAR},
+      </if>
+      <if test="salPost != null">
+        #{salPost,jdbcType=VARCHAR},
+      </if>
+      <if test="salDate != null">
+        #{salDate,jdbcType=DATE},
+      </if>
+      <if test="salOa != null">
+        #{salOa,jdbcType=VARCHAR},
+      </if>
+      <if test="staCategory != null">
+        #{staCategory,jdbcType=VARCHAR},
+      </if>
+      <if test="salRemark != null">
+        #{salRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="salBasic != null">
+        #{salBasic,jdbcType=REAL},
+      </if>
+      <if test="salDues != null">
+        #{salDues,jdbcType=REAL},
+      </if>
+      <if test="salManhour != null">
+        #{salManhour,jdbcType=REAL},
+      </if>
+      <if test="salPostsal != null">
+        #{salPostsal,jdbcType=REAL},
+      </if>
+      <if test="endInsurance != null">
+        #{endInsurance,jdbcType=REAL},
+      </if>
+      <if test="labourCost != null">
+        #{labourCost,jdbcType=REAL},
+      </if>
+      <if test="salCoef != null">
+        #{salCoef,jdbcType=REAL},
+      </if>
+      <if test="salBenefitwage != null">
+        #{salBenefitwage,jdbcType=REAL},
+      </if>
+      <if test="salBonus != null">
+        #{salBonus,jdbcType=REAL},
+      </if>
+      <if test="salManhourBonus != null">
+        #{salManhourBonus,jdbcType=REAL},
+      </if>
+      <if test="salManhourSalary != null">
+        #{salManhourSalary,jdbcType=REAL},
+      </if>
+      <if test="salOvertime != null">
+        #{salOvertime,jdbcType=REAL},
+      </if>
+      <if test="salBenefit != null">
+        #{salBenefit,jdbcType=REAL},
+      </if>
+      <if test="salWelfare != null">
+        #{salWelfare,jdbcType=REAL},
+      </if>
+      <if test="salCheck != null">
+        #{salCheck,jdbcType=REAL},
+      </if>
+      <if test="salHoliday != null">
+        #{salHoliday,jdbcType=REAL},
+      </if>
+      <if test="salAbsence != null">
+        #{salAbsence,jdbcType=REAL},
+      </if>
+      <if test="salOther != null">
+        #{salOther,jdbcType=REAL},
+      </if>
+      <if test="salShould != null">
+        #{salShould,jdbcType=REAL},
+      </if>
+      <if test="salHeathInsurance != null">
+        #{salHeathInsurance,jdbcType=REAL},
+      </if>
+      <if test="salUnemp != null">
+        #{salUnemp,jdbcType=REAL},
+      </if>
+      <if test="salIll != null">
+        #{salIll,jdbcType=REAL},
+      </if>
+      <if test="salConsume != null">
+        #{salConsume,jdbcType=REAL},
+      </if>
+      <if test="salPenalty != null">
+        #{salPenalty,jdbcType=REAL},
+      </if>
+      <if test="salWithhold != null">
+        #{salWithhold,jdbcType=REAL},
+      </if>
+      <if test="salWaste != null">
+        #{salWaste,jdbcType=REAL},
+      </if>
+      <if test="salWaterandele != null">
+        #{salWaterandele,jdbcType=REAL},
+      </if>
+      <if test="salAccFund != null">
+        #{salAccFund,jdbcType=REAL},
+      </if>
+      <if test="salLastWithhold != null">
+        #{salLastWithhold,jdbcType=REAL},
+      </if>
+      <if test="salIncometax != null">
+        #{salIncometax,jdbcType=REAL},
+      </if>
+      <if test="salRealization != null">
+        #{salRealization,jdbcType=REAL},
+      </if>
+      <if test="salAllowance != null">
+        #{salAllowance,jdbcType=REAL},
+      </if>
+      <if test="salYears != null">
+        #{salYears,jdbcType=REAL},
+      </if>
+      <if test="salSecrecy != null">
+        #{salSecrecy,jdbcType=REAL},
+      </if>
+      <if test="salSkilllevel != null">
+        #{salSkilllevel,jdbcType=VARCHAR},
+      </if>
+      <if test="salSkillsalary != null">
+        #{salSkillsalary,jdbcType=REAL},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.tl.sm.pojo.Employee">
+    update employee_
+    <set>
+      <if test="bankAccount != null">
+        bank_account = #{bankAccount,jdbcType=VARCHAR},
+      </if>
+      <if test="salName != null">
+        sal_name = #{salName,jdbcType=VARCHAR},
+      </if>
+      <if test="postCategory != null">
+        post_category = #{postCategory,jdbcType=VARCHAR},
+      </if>
+      <if test="salId != null">
+        sal_id = #{salId,jdbcType=INTEGER},
+      </if>
+      <if test="salDep != null">
+        sal_dep = #{salDep,jdbcType=VARCHAR},
+      </if>
+      <if test="salPost != null">
+        sal_post = #{salPost,jdbcType=VARCHAR},
+      </if>
+      <if test="salDate != null">
+        sal_date = #{salDate,jdbcType=DATE},
+      </if>
+      <if test="salOa != null">
+        sal_oa = #{salOa,jdbcType=VARCHAR},
+      </if>
+      <if test="staCategory != null">
+        sta_category = #{staCategory,jdbcType=VARCHAR},
+      </if>
+      <if test="salRemark != null">
+        sal_remark = #{salRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="salBasic != null">
+        sal_basic = #{salBasic,jdbcType=REAL},
+      </if>
+      <if test="salDues != null">
+        sal_dues = #{salDues,jdbcType=REAL},
+      </if>
+      <if test="salManhour != null">
+        sal_manhour = #{salManhour,jdbcType=REAL},
+      </if>
+      <if test="salPostsal != null">
+        sal_postsal = #{salPostsal,jdbcType=REAL},
+      </if>
+      <if test="endInsurance != null">
+        end_insurance = #{endInsurance,jdbcType=REAL},
+      </if>
+      <if test="labourCost != null">
+        labour_cost = #{labourCost,jdbcType=REAL},
+      </if>
+      <if test="salCoef != null">
+        sal_coef = #{salCoef,jdbcType=REAL},
+      </if>
+      <if test="salBenefitwage != null">
+        sal_benefitwage = #{salBenefitwage,jdbcType=REAL},
+      </if>
+      <if test="salBonus != null">
+        sal_bonus = #{salBonus,jdbcType=REAL},
+      </if>
+      <if test="salManhourBonus != null">
+        sal_manhour_bonus = #{salManhourBonus,jdbcType=REAL},
+      </if>
+      <if test="salManhourSalary != null">
+        sal_manhour_salary = #{salManhourSalary,jdbcType=REAL},
+      </if>
+      <if test="salOvertime != null">
+        sal_overtime = #{salOvertime,jdbcType=REAL},
+      </if>
+      <if test="salBenefit != null">
+        sal_benefit = #{salBenefit,jdbcType=REAL},
+      </if>
+      <if test="salWelfare != null">
+        sal_welfare = #{salWelfare,jdbcType=REAL},
+      </if>
+      <if test="salCheck != null">
+        sal_check = #{salCheck,jdbcType=REAL},
+      </if>
+      <if test="salHoliday != null">
+        sal_holiday = #{salHoliday,jdbcType=REAL},
+      </if>
+      <if test="salAbsence != null">
+        sal_absence = #{salAbsence,jdbcType=REAL},
+      </if>
+      <if test="salOther != null">
+        sal_other = #{salOther,jdbcType=REAL},
+      </if>
+      <if test="salShould != null">
+        sal_should = #{salShould,jdbcType=REAL},
+      </if>
+      <if test="salHeathInsurance != null">
+        sal_heath_insurance = #{salHeathInsurance,jdbcType=REAL},
+      </if>
+      <if test="salUnemp != null">
+        sal_unemp = #{salUnemp,jdbcType=REAL},
+      </if>
+      <if test="salIll != null">
+        sal_ill = #{salIll,jdbcType=REAL},
+      </if>
+      <if test="salConsume != null">
+        sal_consume = #{salConsume,jdbcType=REAL},
+      </if>
+      <if test="salPenalty != null">
+        sal_penalty = #{salPenalty,jdbcType=REAL},
+      </if>
+      <if test="salWithhold != null">
+        sal_withhold = #{salWithhold,jdbcType=REAL},
+      </if>
+      <if test="salWaste != null">
+        sal_waste = #{salWaste,jdbcType=REAL},
+      </if>
+      <if test="salWaterandele != null">
+        sal_waterandele = #{salWaterandele,jdbcType=REAL},
+      </if>
+      <if test="salAccFund != null">
+        sal_acc_fund = #{salAccFund,jdbcType=REAL},
+      </if>
+      <if test="salLastWithhold != null">
+        sal_last_withhold = #{salLastWithhold,jdbcType=REAL},
+      </if>
+      <if test="salIncometax != null">
+        sal_incometax = #{salIncometax,jdbcType=REAL},
+      </if>
+      <if test="salRealization != null">
+        sal_realization = #{salRealization,jdbcType=REAL},
+      </if>
+      <if test="salAllowance != null">
+        sal_allowance = #{salAllowance,jdbcType=REAL},
+      </if>
+      <if test="salYears != null">
+        sal_years = #{salYears,jdbcType=REAL},
+      </if>
+      <if test="salSecrecy != null">
+        sal_secrecy = #{salSecrecy,jdbcType=REAL},
+      </if>
+      <if test="salSkilllevel != null">
+        sal_skilllevel = #{salSkilllevel,jdbcType=VARCHAR},
+      </if>
+      <if test="salSkillsalary != null">
+        sal_skillsalary = #{salSkillsalary,jdbcType=REAL},
+      </if>
+    </set>
+    where Id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.tl.sm.pojo.Employee">
+    update employee_
+    set bank_account = #{bankAccount,jdbcType=VARCHAR},
+      sal_name = #{salName,jdbcType=VARCHAR},
+      post_category = #{postCategory,jdbcType=VARCHAR},
+      sal_id = #{salId,jdbcType=INTEGER},
+      sal_dep = #{salDep,jdbcType=VARCHAR},
+      sal_post = #{salPost,jdbcType=VARCHAR},
+      sal_date = #{salDate,jdbcType=DATE},
+      sal_oa = #{salOa,jdbcType=VARCHAR},
+      sta_category = #{staCategory,jdbcType=VARCHAR},
+      sal_remark = #{salRemark,jdbcType=VARCHAR},
+      sal_basic = #{salBasic,jdbcType=REAL},
+      sal_dues = #{salDues,jdbcType=REAL},
+      sal_manhour = #{salManhour,jdbcType=REAL},
+      sal_postsal = #{salPostsal,jdbcType=REAL},
+      end_insurance = #{endInsurance,jdbcType=REAL},
+      labour_cost = #{labourCost,jdbcType=REAL},
+      sal_coef = #{salCoef,jdbcType=REAL},
+      sal_benefitwage = #{salBenefitwage,jdbcType=REAL},
+      sal_bonus = #{salBonus,jdbcType=REAL},
+      sal_manhour_bonus = #{salManhourBonus,jdbcType=REAL},
+      sal_manhour_salary = #{salManhourSalary,jdbcType=REAL},
+      sal_overtime = #{salOvertime,jdbcType=REAL},
+      sal_benefit = #{salBenefit,jdbcType=REAL},
+      sal_welfare = #{salWelfare,jdbcType=REAL},
+      sal_check = #{salCheck,jdbcType=REAL},
+      sal_holiday = #{salHoliday,jdbcType=REAL},
+      sal_absence = #{salAbsence,jdbcType=REAL},
+      sal_other = #{salOther,jdbcType=REAL},
+      sal_should = #{salShould,jdbcType=REAL},
+      sal_heath_insurance = #{salHeathInsurance,jdbcType=REAL},
+      sal_unemp = #{salUnemp,jdbcType=REAL},
+      sal_ill = #{salIll,jdbcType=REAL},
+      sal_consume = #{salConsume,jdbcType=REAL},
+      sal_penalty = #{salPenalty,jdbcType=REAL},
+      sal_withhold = #{salWithhold,jdbcType=REAL},
+      sal_waste = #{salWaste,jdbcType=REAL},
+      sal_waterandele = #{salWaterandele,jdbcType=REAL},
+      sal_acc_fund = #{salAccFund,jdbcType=REAL},
+      sal_last_withhold = #{salLastWithhold,jdbcType=REAL},
+      sal_incometax = #{salIncometax,jdbcType=REAL},
+      sal_realization = #{salRealization,jdbcType=REAL},
+      sal_allowance = #{salAllowance,jdbcType=REAL},
+      sal_years = #{salYears,jdbcType=REAL},
+      sal_secrecy = #{salSecrecy,jdbcType=REAL},
+      sal_skilllevel = #{salSkilllevel,jdbcType=VARCHAR},
+      sal_skillsalary = #{salSkillsalary,jdbcType=REAL}
+    where Id = #{id,jdbcType=INTEGER}
+  </update>
+  
+  <!-- 查询所有 -->
+	<select id="listEmp" resultMap="BaseResultMap">
+		select * from employee_
+	</select>
+
+	<!-- 模糊查询 -->
+	<select id="listEmpBlurry" resultMap="BaseResultMap">
+		select * from employee_
+		<where>
+			<if test="sal_id!=null">
+				and sal_id like concat("%",#{sal_id},"%")
+			</if>
+			<if test="sal_name!=null">
+				and sal_name like "%"#{sal_name}"%"
+			</if>
+			<if test="sal_oa!=null">
+				and sal_oa like "%"#{sal_oa}"%"
+			</if>
+		</where>
+	</select>
+  
+  
+</mapper>

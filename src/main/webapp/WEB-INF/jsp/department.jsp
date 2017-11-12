@@ -25,8 +25,12 @@
 	function blurrySeach(depId,depName){
 		depId = document.getElementById("depId").value;
 		depName = document.getElementById("depName").value;
+		
 		window.location.href="/sm/blurryF/dep/?depId="+depId+"&depName="+depName;
+		
 	}
+	
+	
 </script>
 
 </head>
@@ -37,10 +41,12 @@
 				<h3 class="text-center text-info">部门管理</h3>
 				<br /> <br />
 				<div class="input-group">
-					编号：<input type="text" placeholder="Search for..." name="depId" id="depId" value="${param.depId}"> <span>
+					编号：<input type="text" placeholder="Search for..." name="depId" id="depId" value="${param.depId}">
+					 <span>
 						<button class="btn btn-default" type="button" onclick="blurrySeach()">搜索</button>
 					</span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 部门名称：<input type="text"
-						placeholder="Search for..." name="depName" id="depName" value="${param.depName}"> <span>
+						placeholder="Search for..." name="depName" id="depName" value="${param.depName}"> 
+					<span>
 						<button class="btn btn-default" type="button" onclick="blurrySeach()">搜索</button>
 					</span>
 				</div>
@@ -65,8 +71,14 @@
 							</div>
 							<div class="modal-body">
 								<form action="/sm/insert/dep" method="post" id="fm">
-									<label>部门编号:</label> <input name="depId" required="true"><br><br> 
+									<label>部门代码:</label> <input name="depId" required="true"><br><br> 
 									<label>部门名称:</label> <input name="depName" required="true"><br><br>
+									<label>成本类别:</label> <input name="depCostCategory"><br><br>
+									<label>备&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;注:</label> <input type="text" name="depRemark" list="selectDep"><br><br>
+										<datalist id="selectDep">
+											<option>在用</option>
+											<option>废弃</option>
+                        				</datalist>
 									<div class="modal-footer">
 										<button data-dismiss="modal" class="btn btn-default"
 											type="button">关闭</button>
@@ -90,8 +102,10 @@
 					<thead>
 						<tr>
 							<th></th>
-							<th>编号</th>
-							<th>名称</th>
+							<th>部门代码</th>
+							<th>部门名称</th>
+							<th>成本类别</th>
+							<th>备注</th>
 							<th>删除部门</th>
 							<th>修改部门</th>
 						</tr>
@@ -103,6 +117,8 @@
 								<td></td>
 								<td>${dep.depId}</td>
 								<td>${dep.depName}</td>
+								<td>${dep.depCostCategory}</td>
+								<td>${dep.depRemark}</td>
 								<!-- 删除部门 -->
 								<td><button type="button" id="deleteDep" class="btn btn-primary" onclick="del(${dep.id})">删除</button></td>
 								
@@ -121,8 +137,14 @@
 												<div class="modal-body">
 													<form action="/sm/update/dep" method="post" id="fm">
 															<label style="display: none">id</label> <input style="display: none" name="id" id="Id" value="${dep.id}"> 
-															<label>部门编号:</label> <input name="depId" id="dep_id" value="${dep.depId}"><br><br> 
+															<label>部门代码:</label> <input name="depId" id="dep_id" value="${dep.depId}"><br><br> 
 															<label>部门名称:</label> <input name="depName" id="dep_name" value="${dep.depName}"><br><br>
+															<label>成本类别:</label> <input name="depCostCategory" value="${dep.depCostCategory}"><br><br>
+															<label>备&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;注:</label> <input name="depRemark" value="${dep.depRemark}" list="selectDep2"><br><br>
+																<datalist id="selectDep2">
+																	<option>在用</option>
+																	<option>废弃</option>
+                        										</datalist>
 															<div class="modal-footer">
 															<button data-dismiss="modal" class="btn btn-default"
 																type="button">关闭</button>
@@ -140,6 +162,17 @@
 						</c:forEach>
 					</tbody>
 				</table>
+				
+				<%-- <!-- 分页 -->
+				<div align="center">
+					<ul class="pagination" id="pag">
+						<li><a href="?start=0">首页</a></li>
+						<li><a href="?start=${page.start-page.count>=0?page.start-page.count:0}">上一页</a></li>
+						<li><a href="?start=${page.start+page.count<=page.last?page.start+page.count:page.last}">下一页</a></li>
+    					<li><a href="?start=${page.last}">末页</a></li>
+					</ul>
+				</div> --%>
+				
 			</div>
 		</div>
 	</div>

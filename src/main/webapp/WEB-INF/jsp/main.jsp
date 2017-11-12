@@ -62,21 +62,25 @@
 
 				</nav>
 				<ul>
-					<a href="#"><li>工资管理</li></a>
+					<a href="#"><li>初始化</li></a>
 					<br>
-					<a href="#"><li>员工管理</li></a>
+					<a href="/sm/list/emp"><li>工资维护</li></a>
 					<br>
-					<a href="/sm/list/dep"><li>部门管理</li></a>
+					<a href="/sm/list/dep"><li>部门类别</li></a>
 					<br>
-					<a href="#"><li>Facilisis in pretium nisl aliquet</li></a>
+					<a href="#"><li>工价工种维护</li></a>
 					<br>
-					<a href="#"><li>Nulla volutpat aliquam velit</li></a>
+					<a href="#"><li>保险金维护(单)</li></a>
 					<br>
-					<a href="#"><li>Faucibus porta lacus fringilla vel</li></a>
+					<a href="#"><li>保险金维护(多)</li></a>
 					<br>
-					<a href="#"><li>Aenean sit amet erat nunc</li></a>
+					<a href="#"><li>人员岗位维护</li></a>
 					<br>
-					<a href="#"><li>Eget porttitor lorem</li></a>
+					<a href="#"><li>工资计算</li></a>
+					<br>
+					<a href="#"><li>工资表数据导入</li></a>
+					<br>
+					<a href="#"><li>工资表数据导出</li></a>
 					<br>
 				</ul>
 			</div>

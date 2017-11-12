@@ -11,8 +11,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.RedirectView;
 
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import com.tl.sm.pojo.Department;
 import com.tl.sm.service.DepartmentService;
+import com.tl.sm.util.Page;
 
 @Controller
 @Scope("prototype")
@@ -69,5 +72,22 @@ public class DepartmentController {
 		request.setAttribute("listDep", listDep);
 		return "department";
 	}
+	
+	/*//分页
+	@RequestMapping("/paging/dep")
+	public ModelAndView pagingDep(Page page) {
+		ModelAndView mav = new ModelAndView();
+		PageHelper.offsetPage(page.getStart(), 10);
+		List<Department> pagingList = departmentService.listAll();
+		int total = (int) new PageInfo<>(pagingList).getTotal();
+		
+		page.caculateLast(total);
+		
+		// 放入转发参数
+        mav.addObject("pagingList", pagingList);
+        // 放入jsp路径
+        mav.setViewName("department");
+        return mav;
+	}*/
 
 }

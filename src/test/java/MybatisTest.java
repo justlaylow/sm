@@ -10,8 +10,10 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.tl.sm.mapper.AdminMapper;
 import com.tl.sm.mapper.DepartmentMapper;
+import com.tl.sm.mapper.EmployeeMapper;
 import com.tl.sm.pojo.Admin;
 import com.tl.sm.pojo.Department;
+import com.tl.sm.pojo.Employee;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration("classpath:applicationContext.xml")
@@ -24,7 +26,7 @@ public class MybatisTest {
 	private AdminMapper adminMapper;*/
 	
 	@Autowired
-	private DepartmentMapper departmentMapper;
+	private EmployeeMapper employeeMapper;
 
 	/*@Test
 	public void testAdd() {
@@ -35,9 +37,9 @@ public class MybatisTest {
 
 	@Test
 	public void testList() {
-		List<Department> cs=departmentMapper.listByDep("001", null);
-		for (Department c : cs) {
-			System.out.println(c.getDepName());
+		List<Employee> cs=employeeMapper.listEmpBlurry(null, "3", null);
+		for (Employee c : cs) {
+			System.out.println(c.getSalName());
 		}
 	}
 

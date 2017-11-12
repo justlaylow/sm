@@ -7,6 +7,10 @@ public class Department {
 
     private String depName;
 
+    private String depCostCategory;
+
+    private String depRemark;
+
     public Integer getId() {
         return id;
     }
@@ -29,5 +33,21 @@ public class Department {
 
     public void setDepName(String depName) {
         this.depName = depName == null ? null : depName.trim();
+    }
+
+    public String getDepCostCategory() {
+        return depCostCategory;
+    }
+
+    public void setDepCostCategory(String depCostCategory) {
+        this.depCostCategory = depCostCategory == null ? null : depCostCategory.trim();
+    }
+
+    public String getDepRemark() {
+        return depRemark;
+    }
+
+    public void setDepRemark(String depRemark) {
+        this.depRemark = depRemark == null ? null : depRemark.trim();
     }
 }
