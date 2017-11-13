@@ -17,4 +17,9 @@ public class JumpController {
 	public String list(HttpServletRequest request,HttpServletResponse response) {
 		return "emp";
 	}
+	
+	@RequestMapping("/main")
+	public String main(HttpServletRequest request,HttpServletResponse response) {
+		return "main";
+	}
 }

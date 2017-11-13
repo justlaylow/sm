@@ -21,5 +21,8 @@ public interface EmployeeMapper {
     
     List<Employee> listEmp();
     
-    List<Employee> listEmpBlurry(@Param("sal_id") Integer salId,@Param("sal_name") String salName,@Param("sal_oa") String salOa);
+    List<Employee> listEmpBlurry(@Param("sal_name") String salName,@Param("sal_id") Integer salId,
+    		@Param("sal_oa") String salOa);
+    
+    
 }

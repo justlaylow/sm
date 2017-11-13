@@ -1,0 +1,447 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.tl.sm.mapper.SalaryMapper">
+  <resultMap id="BaseResultMap" type="com.tl.sm.pojo.Salary">
+    <id column="Id" jdbcType="INTEGER" property="id" />
+    <result column="cal_hr" jdbcType="INTEGER" property="calHr" />
+    <result column="cal_id" jdbcType="INTEGER" property="calId" />
+    <result column="cal_name" jdbcType="VARCHAR" property="calName" />
+    <result column="cal_basic" jdbcType="REAL" property="calBasic" />
+    <result column="cal_post" jdbcType="REAL" property="calPost" />
+    <result column="cal_float" jdbcType="REAL" property="calFloat" />
+    <result column="cal_coefficient" jdbcType="REAL" property="calCoefficient" />
+    <result column="cal_secrecy" jdbcType="REAL" property="calSecrecy" />
+    <result column="cal_skill_level" jdbcType="REAL" property="calSkillLevel" />
+    <result column="cal_comage" jdbcType="REAL" property="calComage" />
+    <result column="cal_bonus" jdbcType="REAL" property="calBonus" />
+    <result column="cal_overtime" jdbcType="REAL" property="calOvertime" />
+    <result column="cal_benefit" jdbcType="REAL" property="calBenefit" />
+    <result column="cal_check" jdbcType="REAL" property="calCheck" />
+    <result column="cal_injury" jdbcType="REAL" property="calInjury" />
+    <result column="cal_leave" jdbcType="REAL" property="calLeave" />
+    <result column="cal_other" jdbcType="REAL" property="calOther" />
+    <result column="cal_penalty" jdbcType="REAL" property="calPenalty" />
+    <result column="cal_withhold" jdbcType="REAL" property="calWithhold" />
+    <result column="cal_waterandele" jdbcType="REAL" property="calWaterandele" />
+    <result column="cal_allowance" jdbcType="REAL" property="calAllowance" />
+    <result column="cal_result" jdbcType="REAL" property="calResult" />
+    <result column="cal_date" jdbcType="DATE" property="calDate" />
+    <result column="cal_dues" jdbcType="REAL" property="calDues" />
+    <result column="cal_manhour" jdbcType="REAL" property="calManhour" />
+    <result column="labour_cost" jdbcType="REAL" property="labourCost" />
+    <result column="cal_benefitwage" jdbcType="REAL" property="calBenefitwage" />
+    <result column="cal_manhour_bonus" jdbcType="REAL" property="calManhourBonus" />
+    <result column="cal_manhour_salary" jdbcType="REAL" property="calManhourSalary" />
+    <result column="cal_welfare" jdbcType="REAL" property="calWelfare" />
+    <result column="cal_should" jdbcType="REAL" property="calShould" />
+    <result column="cal_waste" jdbcType="REAL" property="calWaste" />
+    <result column="cal_last_withhold" jdbcType="REAL" property="calLastWithhold" />
+    <result column="cal_incometax" jdbcType="REAL" property="calIncometax" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    Id, cal_hr, cal_id, cal_name, cal_basic, cal_post, cal_float, cal_coefficient, cal_secrecy, 
+    cal_skill_level, cal_comage, cal_bonus, cal_overtime, cal_benefit, cal_check, cal_injury, 
+    cal_leave, cal_other, cal_penalty, cal_withhold, cal_waterandele, cal_allowance, 
+    cal_result, cal_date, cal_dues, cal_manhour, labour_cost, cal_benefitwage, cal_manhour_bonus, 
+    cal_manhour_salary, cal_welfare, cal_should, cal_waste, cal_last_withhold, cal_incometax
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from calculate_
+    where Id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from calculate_
+    where Id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.tl.sm.pojo.Salary">
+    insert into calculate_ (Id, cal_hr, cal_id, 
+      cal_name, cal_basic, cal_post, 
+      cal_float, cal_coefficient, cal_secrecy, 
+      cal_skill_level, cal_comage, cal_bonus, 
+      cal_overtime, cal_benefit, cal_check, 
+      cal_injury, cal_leave, cal_other, 
+      cal_penalty, cal_withhold, cal_waterandele, 
+      cal_allowance, cal_result, cal_date, 
+      cal_dues, cal_manhour, labour_cost, 
+      cal_benefitwage, cal_manhour_bonus, cal_manhour_salary, 
+      cal_welfare, cal_should, cal_waste, 
+      cal_last_withhold, cal_incometax)
+    values (#{id,jdbcType=INTEGER}, #{calHr,jdbcType=INTEGER}, #{calId,jdbcType=INTEGER}, 
+      #{calName,jdbcType=VARCHAR}, #{calBasic,jdbcType=REAL}, #{calPost,jdbcType=REAL}, 
+      #{calFloat,jdbcType=REAL}, #{calCoefficient,jdbcType=REAL}, #{calSecrecy,jdbcType=REAL}, 
+      #{calSkillLevel,jdbcType=REAL}, #{calComage,jdbcType=REAL}, #{calBonus,jdbcType=REAL}, 
+      #{calOvertime,jdbcType=REAL}, #{calBenefit,jdbcType=REAL}, #{calCheck,jdbcType=REAL}, 
+      #{calInjury,jdbcType=REAL}, #{calLeave,jdbcType=REAL}, #{calOther,jdbcType=REAL}, 
+      #{calPenalty,jdbcType=REAL}, #{calWithhold,jdbcType=REAL}, #{calWaterandele,jdbcType=REAL}, 
+      #{calAllowance,jdbcType=REAL}, #{calResult,jdbcType=REAL}, #{calDate,jdbcType=DATE}, 
+      #{calDues,jdbcType=REAL}, #{calManhour,jdbcType=REAL}, #{labourCost,jdbcType=REAL}, 
+      #{calBenefitwage,jdbcType=REAL}, #{calManhourBonus,jdbcType=REAL}, #{calManhourSalary,jdbcType=REAL}, 
+      #{calWelfare,jdbcType=REAL}, #{calShould,jdbcType=REAL}, #{calWaste,jdbcType=REAL}, 
+      #{calLastWithhold,jdbcType=REAL}, #{calIncometax,jdbcType=REAL})
+  </insert>
+  <insert id="insertSelective" parameterType="com.tl.sm.pojo.Salary">
+    insert into calculate_
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        Id,
+      </if>
+      <if test="calHr != null">
+        cal_hr,
+      </if>
+      <if test="calId != null">
+        cal_id,
+      </if>
+      <if test="calName != null">
+        cal_name,
+      </if>
+      <if test="calBasic != null">
+        cal_basic,
+      </if>
+      <if test="calPost != null">
+        cal_post,
+      </if>
+      <if test="calFloat != null">
+        cal_float,
+      </if>
+      <if test="calCoefficient != null">
+        cal_coefficient,
+      </if>
+      <if test="calSecrecy != null">
+        cal_secrecy,
+      </if>
+      <if test="calSkillLevel != null">
+        cal_skill_level,
+      </if>
+      <if test="calComage != null">
+        cal_comage,
+      </if>
+      <if test="calBonus != null">
+        cal_bonus,
+      </if>
+      <if test="calOvertime != null">
+        cal_overtime,
+      </if>
+      <if test="calBenefit != null">
+        cal_benefit,
+      </if>
+      <if test="calCheck != null">
+        cal_check,
+      </if>
+      <if test="calInjury != null">
+        cal_injury,
+      </if>
+      <if test="calLeave != null">
+        cal_leave,
+      </if>
+      <if test="calOther != null">
+        cal_other,
+      </if>
+      <if test="calPenalty != null">
+        cal_penalty,
+      </if>
+      <if test="calWithhold != null">
+        cal_withhold,
+      </if>
+      <if test="calWaterandele != null">
+        cal_waterandele,
+      </if>
+      <if test="calAllowance != null">
+        cal_allowance,
+      </if>
+      <if test="calResult != null">
+        cal_result,
+      </if>
+      <if test="calDate != null">
+        cal_date,
+      </if>
+      <if test="calDues != null">
+        cal_dues,
+      </if>
+      <if test="calManhour != null">
+        cal_manhour,
+      </if>
+      <if test="labourCost != null">
+        labour_cost,
+      </if>
+      <if test="calBenefitwage != null">
+        cal_benefitwage,
+      </if>
+      <if test="calManhourBonus != null">
+        cal_manhour_bonus,
+      </if>
+      <if test="calManhourSalary != null">
+        cal_manhour_salary,
+      </if>
+      <if test="calWelfare != null">
+        cal_welfare,
+      </if>
+      <if test="calShould != null">
+        cal_should,
+      </if>
+      <if test="calWaste != null">
+        cal_waste,
+      </if>
+      <if test="calLastWithhold != null">
+        cal_last_withhold,
+      </if>
+      <if test="calIncometax != null">
+        cal_incometax,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="calHr != null">
+        #{calHr,jdbcType=INTEGER},
+      </if>
+      <if test="calId != null">
+        #{calId,jdbcType=INTEGER},
+      </if>
+      <if test="calName != null">
+        #{calName,jdbcType=VARCHAR},
+      </if>
+      <if test="calBasic != null">
+        #{calBasic,jdbcType=REAL},
+      </if>
+      <if test="calPost != null">
+        #{calPost,jdbcType=REAL},
+      </if>
+      <if test="calFloat != null">
+        #{calFloat,jdbcType=REAL},
+      </if>
+      <if test="calCoefficient != null">
+        #{calCoefficient,jdbcType=REAL},
+      </if>
+      <if test="calSecrecy != null">
+        #{calSecrecy,jdbcType=REAL},
+      </if>
+      <if test="calSkillLevel != null">
+        #{calSkillLevel,jdbcType=REAL},
+      </if>
+      <if test="calComage != null">
+        #{calComage,jdbcType=REAL},
+      </if>
+      <if test="calBonus != null">
+        #{calBonus,jdbcType=REAL},
+      </if>
+      <if test="calOvertime != null">
+        #{calOvertime,jdbcType=REAL},
+      </if>
+      <if test="calBenefit != null">
+        #{calBenefit,jdbcType=REAL},
+      </if>
+      <if test="calCheck != null">
+        #{calCheck,jdbcType=REAL},
+      </if>
+      <if test="calInjury != null">
+        #{calInjury,jdbcType=REAL},
+      </if>
+      <if test="calLeave != null">
+        #{calLeave,jdbcType=REAL},
+      </if>
+      <if test="calOther != null">
+        #{calOther,jdbcType=REAL},
+      </if>
+      <if test="calPenalty != null">
+        #{calPenalty,jdbcType=REAL},
+      </if>
+      <if test="calWithhold != null">
+        #{calWithhold,jdbcType=REAL},
+      </if>
+      <if test="calWaterandele != null">
+        #{calWaterandele,jdbcType=REAL},
+      </if>
+      <if test="calAllowance != null">
+        #{calAllowance,jdbcType=REAL},
+      </if>
+      <if test="calResult != null">
+        #{calResult,jdbcType=REAL},
+      </if>
+      <if test="calDate != null">
+        #{calDate,jdbcType=DATE},
+      </if>
+      <if test="calDues != null">
+        #{calDues,jdbcType=REAL},
+      </if>
+      <if test="calManhour != null">
+        #{calManhour,jdbcType=REAL},
+      </if>
+      <if test="labourCost != null">
+        #{labourCost,jdbcType=REAL},
+      </if>
+      <if test="calBenefitwage != null">
+        #{calBenefitwage,jdbcType=REAL},
+      </if>
+      <if test="calManhourBonus != null">
+        #{calManhourBonus,jdbcType=REAL},
+      </if>
+      <if test="calManhourSalary != null">
+        #{calManhourSalary,jdbcType=REAL},
+      </if>
+      <if test="calWelfare != null">
+        #{calWelfare,jdbcType=REAL},
+      </if>
+      <if test="calShould != null">
+        #{calShould,jdbcType=REAL},
+      </if>
+      <if test="calWaste != null">
+        #{calWaste,jdbcType=REAL},
+      </if>
+      <if test="calLastWithhold != null">
+        #{calLastWithhold,jdbcType=REAL},
+      </if>
+      <if test="calIncometax != null">
+        #{calIncometax,jdbcType=REAL},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.tl.sm.pojo.Salary">
+    update calculate_
+    <set>
+      <if test="calHr != null">
+        cal_hr = #{calHr,jdbcType=INTEGER},
+      </if>
+      <if test="calId != null">
+        cal_id = #{calId,jdbcType=INTEGER},
+      </if>
+      <if test="calName != null">
+        cal_name = #{calName,jdbcType=VARCHAR},
+      </if>
+      <if test="calBasic != null">
+        cal_basic = #{calBasic,jdbcType=REAL},
+      </if>
+      <if test="calPost != null">
+        cal_post = #{calPost,jdbcType=REAL},
+      </if>
+      <if test="calFloat != null">
+        cal_float = #{calFloat,jdbcType=REAL},
+      </if>
+      <if test="calCoefficient != null">
+        cal_coefficient = #{calCoefficient,jdbcType=REAL},
+      </if>
+      <if test="calSecrecy != null">
+        cal_secrecy = #{calSecrecy,jdbcType=REAL},
+      </if>
+      <if test="calSkillLevel != null">
+        cal_skill_level = #{calSkillLevel,jdbcType=REAL},
+      </if>
+      <if test="calComage != null">
+        cal_comage = #{calComage,jdbcType=REAL},
+      </if>
+      <if test="calBonus != null">
+        cal_bonus = #{calBonus,jdbcType=REAL},
+      </if>
+      <if test="calOvertime != null">
+        cal_overtime = #{calOvertime,jdbcType=REAL},
+      </if>
+      <if test="calBenefit != null">
+        cal_benefit = #{calBenefit,jdbcType=REAL},
+      </if>
+      <if test="calCheck != null">
+        cal_check = #{calCheck,jdbcType=REAL},
+      </if>
+      <if test="calInjury != null">
+        cal_injury = #{calInjury,jdbcType=REAL},
+      </if>
+      <if test="calLeave != null">
+        cal_leave = #{calLeave,jdbcType=REAL},
+      </if>
+      <if test="calOther != null">
+        cal_other = #{calOther,jdbcType=REAL},
+      </if>
+      <if test="calPenalty != null">
+        cal_penalty = #{calPenalty,jdbcType=REAL},
+      </if>
+      <if test="calWithhold != null">
+        cal_withhold = #{calWithhold,jdbcType=REAL},
+      </if>
+      <if test="calWaterandele != null">
+        cal_waterandele = #{calWaterandele,jdbcType=REAL},
+      </if>
+      <if test="calAllowance != null">
+        cal_allowance = #{calAllowance,jdbcType=REAL},
+      </if>
+      <if test="calResult != null">
+        cal_result = #{calResult,jdbcType=REAL},
+      </if>
+      <if test="calDate != null">
+        cal_date = #{calDate,jdbcType=DATE},
+      </if>
+      <if test="calDues != null">
+        cal_dues = #{calDues,jdbcType=REAL},
+      </if>
+      <if test="calManhour != null">
+        cal_manhour = #{calManhour,jdbcType=REAL},
+      </if>
+      <if test="labourCost != null">
+        labour_cost = #{labourCost,jdbcType=REAL},
+      </if>
+      <if test="calBenefitwage != null">
+        cal_benefitwage = #{calBenefitwage,jdbcType=REAL},
+      </if>
+      <if test="calManhourBonus != null">
+        cal_manhour_bonus = #{calManhourBonus,jdbcType=REAL},
+      </if>
+      <if test="calManhourSalary != null">
+        cal_manhour_salary = #{calManhourSalary,jdbcType=REAL},
+      </if>
+      <if test="calWelfare != null">
+        cal_welfare = #{calWelfare,jdbcType=REAL},
+      </if>
+      <if test="calShould != null">
+        cal_should = #{calShould,jdbcType=REAL},
+      </if>
+      <if test="calWaste != null">
+        cal_waste = #{calWaste,jdbcType=REAL},
+      </if>
+      <if test="calLastWithhold != null">
+        cal_last_withhold = #{calLastWithhold,jdbcType=REAL},
+      </if>
+      <if test="calIncometax != null">
+        cal_incometax = #{calIncometax,jdbcType=REAL},
+      </if>
+    </set>
+    where Id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.tl.sm.pojo.Salary">
+    update calculate_
+    set cal_hr = #{calHr,jdbcType=INTEGER},
+      cal_id = #{calId,jdbcType=INTEGER},
+      cal_name = #{calName,jdbcType=VARCHAR},
+      cal_basic = #{calBasic,jdbcType=REAL},
+      cal_post = #{calPost,jdbcType=REAL},
+      cal_float = #{calFloat,jdbcType=REAL},
+      cal_coefficient = #{calCoefficient,jdbcType=REAL},
+      cal_secrecy = #{calSecrecy,jdbcType=REAL},
+      cal_skill_level = #{calSkillLevel,jdbcType=REAL},
+      cal_comage = #{calComage,jdbcType=REAL},
+      cal_bonus = #{calBonus,jdbcType=REAL},
+      cal_overtime = #{calOvertime,jdbcType=REAL},
+      cal_benefit = #{calBenefit,jdbcType=REAL},
+      cal_check = #{calCheck,jdbcType=REAL},
+      cal_injury = #{calInjury,jdbcType=REAL},
+      cal_leave = #{calLeave,jdbcType=REAL},
+      cal_other = #{calOther,jdbcType=REAL},
+      cal_penalty = #{calPenalty,jdbcType=REAL},
+      cal_withhold = #{calWithhold,jdbcType=REAL},
+      cal_waterandele = #{calWaterandele,jdbcType=REAL},
+      cal_allowance = #{calAllowance,jdbcType=REAL},
+      cal_result = #{calResult,jdbcType=REAL},
+      cal_date = #{calDate,jdbcType=DATE},
+      cal_dues = #{calDues,jdbcType=REAL},
+      cal_manhour = #{calManhour,jdbcType=REAL},
+      labour_cost = #{labourCost,jdbcType=REAL},
+      cal_benefitwage = #{calBenefitwage,jdbcType=REAL},
+      cal_manhour_bonus = #{calManhourBonus,jdbcType=REAL},
+      cal_manhour_salary = #{calManhourSalary,jdbcType=REAL},
+      cal_welfare = #{calWelfare,jdbcType=REAL},
+      cal_should = #{calShould,jdbcType=REAL},
+      cal_waste = #{calWaste,jdbcType=REAL},
+      cal_last_withhold = #{calLastWithhold,jdbcType=REAL},
+      cal_incometax = #{calIncometax,jdbcType=REAL}
+    where Id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

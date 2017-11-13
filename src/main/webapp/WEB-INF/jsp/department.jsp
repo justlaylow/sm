@@ -52,6 +52,8 @@
 				</div>
 				<br />
 
+				<!-- 首页 -->
+				<%@ include file="/WEB-INF/jsp/include/main.jsp"%>
 				
 				<!-- 刷新 -->
 				<button type="button" class="btn btn-primary" onclick="reload()">刷新</button>

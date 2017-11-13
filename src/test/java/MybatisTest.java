@@ -37,7 +37,7 @@ public class MybatisTest {
 
 	@Test
 	public void testList() {
-		List<Employee> cs=employeeMapper.listEmpBlurry(null, "3", null);
+		List<Employee> cs=employeeMapper.listEmpBlurry("3", null, null);
 		for (Employee c : cs) {
 			System.out.println(c.getSalName());
 		}

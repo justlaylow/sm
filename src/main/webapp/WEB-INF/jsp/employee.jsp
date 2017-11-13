@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>部门管理</title>
+<title>员工管理</title>
 
 <script type="text/javascript">
 	//刷新
@@ -38,7 +38,7 @@
 	<div class="container">
 		<div class="row clearfix">
 			<div class="col-md-12 column">
-				<h3 class="text-center text-info">部门管理</h3>
+				<h3 class="text-center text-info">员工管理</h3>
 				<br /> <br />
 				<div class="input-group">
 					工号：<input type="text" placeholder="Search for..." name="salId"
@@ -59,7 +59,9 @@
 				</div>
 				<br />
 
-
+				<!-- 首页 -->
+				<%@ include file="/WEB-INF/jsp/include/main.jsp"%>
+				
 				<!-- 刷新 -->
 				<button type="button" class="btn btn-primary" onclick="reload()">刷新</button>
 
@@ -95,7 +97,8 @@
 									<label>部门名称:</label> <input type="text" name="salDep"
 										list="selectDep" style="width: 170px">
 									<datalist id="selectDep">
-									<option>技术部-信息化组</option>
+										<option>技术部-信息化组</option>
+										<option>质量部</option>
 									</datalist>
 									<br> <label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Gzsj:</label>
 									<input name="salDate">&emsp;&emsp;&emsp; <label>&nbsp;&nbsp;&nbsp;OA账号:</label>
