@@ -1,11 +1,12 @@
 package com.tl.sm.pojo;
 
 import java.util.Date;
+import java.util.List;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
 public class Employee {
-    private Integer id;
+    private Integer e_id;
 
     private String bankAccount;
 
@@ -29,13 +30,24 @@ public class Employee {
     private String salRemark;
 
     private String salSkilllevel;
+    
+    //员工保险信息
+    private List<Insurance> salInsuranceList;
 
-    public Integer getId() {
-        return id;
+    public List<Insurance> getSalInsuranceList() {
+		return salInsuranceList;
+	}
+
+	public void setSalInsuranceList(List<Insurance> salInsuranceList) {
+		this.salInsuranceList = salInsuranceList;
+	}
+
+	public Integer getId() {
+        return e_id;
     }
 
     public void setId(Integer id) {
-        this.id = id;
+        this.e_id = id;
     }
 
     public String getBankAccount() {

@@ -19,10 +19,10 @@ public class EmployeeController {
 	@Resource
 	private EmployeeService employeeService;
 
-	// 查询所有员工
+	// 查询所有员工和员工保险
 	@RequestMapping("/list/emp")
 	public String listEmp(HttpServletRequest request) {
-		List<Employee> empList = employeeService.listEmp();
+		List<Employee> empList = employeeService.listInner();
 		request.setAttribute("empList", empList);
 		return "employee";
 	}

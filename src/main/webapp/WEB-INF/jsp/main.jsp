@@ -38,7 +38,7 @@
 					<br>
 					<a href="#"><li>工资计算</li></a>
 					<br>
-					<a href="#"><li>工资表数据导入</li></a>
+					<a href="/sm/salary"><li>工资表数据导入</li></a>
 					<br>
 					<a href="#"><li>工资表数据导出</li></a>
 					<br>

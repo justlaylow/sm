@@ -1,19 +1,17 @@
 package com.tl.sm.service;
 
-import java.util.Date;
-import java.util.List;
+import java.beans.IntrospectionException;
+import java.io.InputStream;
+import java.lang.reflect.InvocationTargetException;
+import java.text.ParseException;
 
-import com.tl.sm.pojo.Salary;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import org.springframework.web.multipart.MultipartFile;
+
 
 public interface SalaryService {
 	
-	//模糊查询
-	public List<Salary> listSalBlurry(int calId,int calHr,Date calDate,String calName);
+	public void importExcelInfo(InputStream in, MultipartFile file, String salaryDate,Integer adminId)throws Exception;
 	
-	//工资计算
-	public String SalaryCalculate(Salary salary); 
-	
-	//工资数据导入
-	
-	//工资数据导出
+	//public XSSFWorkbook exportExcelInfo(String salaryDate) throws InvocationTargetException, ClassNotFoundException, IntrospectionException, ParseException, IllegalAccessException ; 
 }

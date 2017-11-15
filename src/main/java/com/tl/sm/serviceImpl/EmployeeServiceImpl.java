@@ -20,6 +20,12 @@ public class EmployeeServiceImpl implements EmployeeService {
 		List<Employee> empList = employeeMapper.listEmp();
 		return empList;
 	}
+	
+	// 查询所有员工和员工保险
+	public List<Employee> listInner() {
+		List<Employee> empList = employeeMapper.listInner();
+		return empList;
+	}
 
 	// 新增员工
 	public String insertEmp(Employee employee) {

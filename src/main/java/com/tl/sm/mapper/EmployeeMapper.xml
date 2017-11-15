@@ -1,186 +1,233 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.tl.sm.mapper.EmployeeMapper">
-  <resultMap id="BaseResultMap" type="com.tl.sm.pojo.Employee">
-    <id column="Id" jdbcType="INTEGER" property="id" />
-    <result column="bank_account" jdbcType="VARCHAR" property="bankAccount" />
-    <result column="sal_name" jdbcType="VARCHAR" property="salName" />
-    <result column="post_category" jdbcType="VARCHAR" property="postCategory" />
-    <result column="sal_id" jdbcType="INTEGER" property="salId" />
-    <result column="sal_dep" jdbcType="VARCHAR" property="salDep" />
-    <result column="sal_post" jdbcType="VARCHAR" property="salPost" />
-    <result column="sal_date" jdbcType="DATE" property="salDate" />
-    <result column="sal_oa" jdbcType="VARCHAR" property="salOa" />
-    <result column="sta_category" jdbcType="VARCHAR" property="staCategory" />
-    <result column="sal_remark" jdbcType="VARCHAR" property="salRemark" />
-    <result column="sal_skilllevel" jdbcType="VARCHAR" property="salSkilllevel" />
-  </resultMap>
-  <sql id="Base_Column_List">
-    Id, bank_account, sal_name, post_category, sal_id, sal_dep, sal_post, sal_date, sal_oa, 
-    sta_category, sal_remark, sal_skilllevel
-  </sql>
-  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
-    select 
-    <include refid="Base_Column_List" />
-    from employee_
-    where Id = #{id,jdbcType=INTEGER}
-  </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
-    delete from employee_
-    where Id = #{id,jdbcType=INTEGER}
-  </delete>
-  <insert id="insert" parameterType="com.tl.sm.pojo.Employee">
-    insert into employee_ (Id, bank_account, sal_name, 
-      post_category, sal_id, sal_dep, 
-      sal_post, sal_date, sal_oa, 
-      sta_category, sal_remark, sal_skilllevel
-      )
-    values (#{id,jdbcType=INTEGER}, #{bankAccount,jdbcType=VARCHAR}, #{salName,jdbcType=VARCHAR}, 
-      #{postCategory,jdbcType=VARCHAR}, #{salId,jdbcType=INTEGER}, #{salDep,jdbcType=VARCHAR}, 
-      #{salPost,jdbcType=VARCHAR}, #{salDate,jdbcType=DATE}, #{salOa,jdbcType=VARCHAR}, 
-      #{staCategory,jdbcType=VARCHAR}, #{salRemark,jdbcType=VARCHAR}, #{salSkilllevel,jdbcType=VARCHAR}
-      )
-  </insert>
-  <insert id="insertSelective" parameterType="com.tl.sm.pojo.Employee">
-    insert into employee_
-    <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="id != null">
-        Id,
-      </if>
-      <if test="bankAccount != null">
-        bank_account,
-      </if>
-      <if test="salName != null">
-        sal_name,
-      </if>
-      <if test="postCategory != null">
-        post_category,
-      </if>
-      <if test="salId != null">
-        sal_id,
-      </if>
-      <if test="salDep != null">
-        sal_dep,
-      </if>
-      <if test="salPost != null">
-        sal_post,
-      </if>
-      <if test="salDate != null">
-        sal_date,
-      </if>
-      <if test="salOa != null">
-        sal_oa,
-      </if>
-      <if test="staCategory != null">
-        sta_category,
-      </if>
-      <if test="salRemark != null">
-        sal_remark,
-      </if>
-      <if test="salSkilllevel != null">
-        sal_skilllevel,
-      </if>
-    </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="id != null">
-        #{id,jdbcType=INTEGER},
-      </if>
-      <if test="bankAccount != null">
-        #{bankAccount,jdbcType=VARCHAR},
-      </if>
-      <if test="salName != null">
-        #{salName,jdbcType=VARCHAR},
-      </if>
-      <if test="postCategory != null">
-        #{postCategory,jdbcType=VARCHAR},
-      </if>
-      <if test="salId != null">
-        #{salId,jdbcType=INTEGER},
-      </if>
-      <if test="salDep != null">
-        #{salDep,jdbcType=VARCHAR},
-      </if>
-      <if test="salPost != null">
-        #{salPost,jdbcType=VARCHAR},
-      </if>
-      <if test="salDate != null">
-        #{salDate,jdbcType=DATE},
-      </if>
-      <if test="salOa != null">
-        #{salOa,jdbcType=VARCHAR},
-      </if>
-      <if test="staCategory != null">
-        #{staCategory,jdbcType=VARCHAR},
-      </if>
-      <if test="salRemark != null">
-        #{salRemark,jdbcType=VARCHAR},
-      </if>
-      <if test="salSkilllevel != null">
-        #{salSkilllevel,jdbcType=VARCHAR},
-      </if>
-    </trim>
-  </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.tl.sm.pojo.Employee">
-    update employee_
-    <set>
-      <if test="bankAccount != null">
-        bank_account = #{bankAccount,jdbcType=VARCHAR},
-      </if>
-      <if test="salName != null">
-        sal_name = #{salName,jdbcType=VARCHAR},
-      </if>
-      <if test="postCategory != null">
-        post_category = #{postCategory,jdbcType=VARCHAR},
-      </if>
-      <if test="salId != null">
-        sal_id = #{salId,jdbcType=INTEGER},
-      </if>
-      <if test="salDep != null">
-        sal_dep = #{salDep,jdbcType=VARCHAR},
-      </if>
-      <if test="salPost != null">
-        sal_post = #{salPost,jdbcType=VARCHAR},
-      </if>
-      <if test="salDate != null">
-        sal_date = #{salDate,jdbcType=DATE},
-      </if>
-      <if test="salOa != null">
-        sal_oa = #{salOa,jdbcType=VARCHAR},
-      </if>
-      <if test="staCategory != null">
-        sta_category = #{staCategory,jdbcType=VARCHAR},
-      </if>
-      <if test="salRemark != null">
-        sal_remark = #{salRemark,jdbcType=VARCHAR},
-      </if>
-      <if test="salSkilllevel != null">
-        sal_skilllevel = #{salSkilllevel,jdbcType=VARCHAR},
-      </if>
-    </set>
-    where Id = #{id,jdbcType=INTEGER}
-  </update>
-  <update id="updateByPrimaryKey" parameterType="com.tl.sm.pojo.Employee">
-    update employee_
-    set bank_account = #{bankAccount,jdbcType=VARCHAR},
-      sal_name = #{salName,jdbcType=VARCHAR},
-      post_category = #{postCategory,jdbcType=VARCHAR},
-      sal_id = #{salId,jdbcType=INTEGER},
-      sal_dep = #{salDep,jdbcType=VARCHAR},
-      sal_post = #{salPost,jdbcType=VARCHAR},
-      sal_date = #{salDate,jdbcType=DATE},
-      sal_oa = #{salOa,jdbcType=VARCHAR},
-      sta_category = #{staCategory,jdbcType=VARCHAR},
-      sal_remark = #{salRemark,jdbcType=VARCHAR},
-      sal_skilllevel = #{salSkilllevel,jdbcType=VARCHAR}
-    where Id = #{id,jdbcType=INTEGER}
-  </update>
-  
-  <!-- 查询所有 -->
+	<resultMap id="BaseResultMap" type="com.tl.sm.pojo.Employee">
+		<id column="e_Id" jdbcType="INTEGER" property="id" />
+		<result column="bank_account" jdbcType="VARCHAR" property="bankAccount" />
+		<result column="sal_name" jdbcType="VARCHAR" property="salName" />
+		<result column="post_category" jdbcType="VARCHAR" property="postCategory" />
+		<result column="sal_id" jdbcType="INTEGER" property="salId" />
+		<result column="sal_dep" jdbcType="VARCHAR" property="salDep" />
+		<result column="sal_post" jdbcType="VARCHAR" property="salPost" />
+		<result column="sal_date" jdbcType="DATE" property="salDate" />
+		<result column="sal_oa" jdbcType="VARCHAR" property="salOa" />
+		<result column="sta_category" jdbcType="VARCHAR" property="staCategory" />
+		<result column="sal_remark" jdbcType="VARCHAR" property="salRemark" />
+		<result column="sal_skilllevel" jdbcType="VARCHAR" property="salSkilllevel" />
+	</resultMap>
+
+
+	<resultMap id="innerMap" type="com.tl.sm.pojo.Employee">
+		<id column="e_Id" jdbcType="INTEGER" property="e_id" />
+		<result column="bank_account" jdbcType="VARCHAR" property="bankAccount" />
+		<result column="sal_name" jdbcType="VARCHAR" property="salName" />
+		<result column="post_category" jdbcType="VARCHAR" property="postCategory" />
+		<result column="sal_id" jdbcType="INTEGER" property="salId" />
+		<result column="sal_dep" jdbcType="VARCHAR" property="salDep" />
+		<result column="sal_post" jdbcType="VARCHAR" property="salPost" />
+		<result column="sal_date" jdbcType="DATE" property="salDate" />
+		<result column="sal_oa" jdbcType="VARCHAR" property="salOa" />
+		<result column="sta_category" jdbcType="VARCHAR" property="staCategory" />
+		<result column="sal_remark" jdbcType="VARCHAR" property="salRemark" />
+		<result column="sal_skilllevel" jdbcType="VARCHAR" property="salSkilllevel" />
+		<collection property="salInsuranceList" ofType="com.tl.sm.pojo.Insurance">
+			<id column="i_Id" jdbcType="INTEGER" property="i_id" />
+			<result column="ins_name" jdbcType="VARCHAR" property="insName" />
+			<result column="ins_id" jdbcType="INTEGER" property="insId" />
+			<result column="ins_sex" jdbcType="VARCHAR" property="insSex" />
+			<result column="ins_both" jdbcType="VARCHAR" property="insBoth" />
+			<result column="ins_iden" jdbcType="CHAR" property="insIden" />
+			<result column="ins_address" jdbcType="VARCHAR" property="insAddress" />
+			<result column="ins_car_number" jdbcType="VARCHAR" property="insCarNumber" />
+			<result column="ins_old_id" jdbcType="VARCHAR" property="insOldId" />
+			<result column="ins_old" jdbcType="VARCHAR" property="insOld" />
+			<result column="ins_treatment_id" jdbcType="VARCHAR" property="insTreatmentId" />
+			<result column="ins_treatments" jdbcType="VARCHAR" property="insTreatments" />
+			<result column="ins_ill_id" jdbcType="VARCHAR" property="insIllId" />
+			<result column="ins_ill" jdbcType="VARCHAR" property="insIll" />
+			<result column="insurance" jdbcType="VARCHAR" property="insurance" />
+			<result column="ins_unemp_id" jdbcType="VARCHAR" property="insUnempId" />
+			<result column="ins_unemp" jdbcType="VARCHAR" property="insUnemp" />
+			<result column="ins_unemp_address" jdbcType="VARCHAR"
+				property="insUnempAddress" />
+			<result column="ins_acc_fund" jdbcType="VARCHAR" property="insAccFund" />
+			<result column="ins_acc_address" jdbcType="VARCHAR" property="insAccAddress" />
+			<result column="ins_sign" jdbcType="VARCHAR" property="insSign" />
+			<result column="ins_remark" jdbcType="VARCHAR" property="insRemark" />
+		</collection>
+	</resultMap>
+
+
+	<sql id="Base_Column_List">
+		Id, bank_account, sal_name, post_category, sal_id, sal_dep, sal_post,
+		sal_date, sal_oa,
+		sta_category, sal_remark, sal_skilllevel
+	</sql>
+	<select id="selectByPrimaryKey" parameterType="java.lang.Integer"
+		resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from employee_
+		where Id = #{id,jdbcType=INTEGER}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+		delete from employee_
+		where Id = #{id,jdbcType=INTEGER}
+	</delete>
+	<insert id="insert" parameterType="com.tl.sm.pojo.Employee">
+		insert into employee_ (Id, bank_account, sal_name,
+		post_category, sal_id, sal_dep,
+		sal_post, sal_date, sal_oa,
+		sta_category, sal_remark, sal_skilllevel
+		)
+		values (#{id,jdbcType=INTEGER}, #{bankAccount,jdbcType=VARCHAR},
+		#{salName,jdbcType=VARCHAR},
+		#{postCategory,jdbcType=VARCHAR}, #{salId,jdbcType=INTEGER}, #{salDep,jdbcType=VARCHAR},
+		#{salPost,jdbcType=VARCHAR}, #{salDate,jdbcType=DATE},
+		#{salOa,jdbcType=VARCHAR},
+		#{staCategory,jdbcType=VARCHAR}, #{salRemark,jdbcType=VARCHAR}, #{salSkilllevel,jdbcType=VARCHAR}
+		)
+	</insert>
+	<insert id="insertSelective" parameterType="com.tl.sm.pojo.Employee">
+		insert into employee_
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				Id,
+			</if>
+			<if test="bankAccount != null">
+				bank_account,
+			</if>
+			<if test="salName != null">
+				sal_name,
+			</if>
+			<if test="postCategory != null">
+				post_category,
+			</if>
+			<if test="salId != null">
+				sal_id,
+			</if>
+			<if test="salDep != null">
+				sal_dep,
+			</if>
+			<if test="salPost != null">
+				sal_post,
+			</if>
+			<if test="salDate != null">
+				sal_date,
+			</if>
+			<if test="salOa != null">
+				sal_oa,
+			</if>
+			<if test="staCategory != null">
+				sta_category,
+			</if>
+			<if test="salRemark != null">
+				sal_remark,
+			</if>
+			<if test="salSkilllevel != null">
+				sal_skilllevel,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				#{id,jdbcType=INTEGER},
+			</if>
+			<if test="bankAccount != null">
+				#{bankAccount,jdbcType=VARCHAR},
+			</if>
+			<if test="salName != null">
+				#{salName,jdbcType=VARCHAR},
+			</if>
+			<if test="postCategory != null">
+				#{postCategory,jdbcType=VARCHAR},
+			</if>
+			<if test="salId != null">
+				#{salId,jdbcType=INTEGER},
+			</if>
+			<if test="salDep != null">
+				#{salDep,jdbcType=VARCHAR},
+			</if>
+			<if test="salPost != null">
+				#{salPost,jdbcType=VARCHAR},
+			</if>
+			<if test="salDate != null">
+				#{salDate,jdbcType=DATE},
+			</if>
+			<if test="salOa != null">
+				#{salOa,jdbcType=VARCHAR},
+			</if>
+			<if test="staCategory != null">
+				#{staCategory,jdbcType=VARCHAR},
+			</if>
+			<if test="salRemark != null">
+				#{salRemark,jdbcType=VARCHAR},
+			</if>
+			<if test="salSkilllevel != null">
+				#{salSkilllevel,jdbcType=VARCHAR},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="com.tl.sm.pojo.Employee">
+		update employee_
+		<set>
+			<if test="bankAccount != null">
+				bank_account = #{bankAccount,jdbcType=VARCHAR},
+			</if>
+			<if test="salName != null">
+				sal_name = #{salName,jdbcType=VARCHAR},
+			</if>
+			<if test="postCategory != null">
+				post_category = #{postCategory,jdbcType=VARCHAR},
+			</if>
+			<if test="salId != null">
+				sal_id = #{salId,jdbcType=INTEGER},
+			</if>
+			<if test="salDep != null">
+				sal_dep = #{salDep,jdbcType=VARCHAR},
+			</if>
+			<if test="salPost != null">
+				sal_post = #{salPost,jdbcType=VARCHAR},
+			</if>
+			<if test="salDate != null">
+				sal_date = #{salDate,jdbcType=DATE},
+			</if>
+			<if test="salOa != null">
+				sal_oa = #{salOa,jdbcType=VARCHAR},
+			</if>
+			<if test="staCategory != null">
+				sta_category = #{staCategory,jdbcType=VARCHAR},
+			</if>
+			<if test="salRemark != null">
+				sal_remark = #{salRemark,jdbcType=VARCHAR},
+			</if>
+			<if test="salSkilllevel != null">
+				sal_skilllevel = #{salSkilllevel,jdbcType=VARCHAR},
+			</if>
+		</set>
+		where Id = #{id,jdbcType=INTEGER}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="com.tl.sm.pojo.Employee">
+		update employee_
+		set bank_account = #{bankAccount,jdbcType=VARCHAR},
+		sal_name = #{salName,jdbcType=VARCHAR},
+		post_category = #{postCategory,jdbcType=VARCHAR},
+		sal_id = #{salId,jdbcType=INTEGER},
+		sal_dep = #{salDep,jdbcType=VARCHAR},
+		sal_post = #{salPost,jdbcType=VARCHAR},
+		sal_date = #{salDate,jdbcType=DATE},
+		sal_oa = #{salOa,jdbcType=VARCHAR},
+		sta_category = #{staCategory,jdbcType=VARCHAR},
+		sal_remark = #{salRemark,jdbcType=VARCHAR},
+		sal_skilllevel = #{salSkilllevel,jdbcType=VARCHAR}
+		where Id = #{id,jdbcType=INTEGER}
+	</update>
+
+	<!-- 查询所有 -->
 	<select id="listEmp" resultMap="BaseResultMap">
 		select * from employee_
 	</select>
 
-	<!-- 模糊查询 -->
+	<!-- 模糊查询/关联查询 -->
 	<select id="listEmpBlurry" resultMap="BaseResultMap">
 		select * from employee_
 		<where>
@@ -195,5 +242,13 @@
 			</if>
 		</where>
 	</select>
-  
+
+
+	<!-- 联合查询所有 -->
+	<select id="listInner" resultMap="innerMap">
+		select e.*,i.* from employee_ e
+		left join insurance_ i on e.sal_id = i.ins_id union select e.*,i.*
+		from employee_ e right join insurance_ i on e.sal_id = i.ins_id
+	</select>
+
 </mapper>

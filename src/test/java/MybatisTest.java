@@ -14,6 +14,7 @@ import com.tl.sm.mapper.EmployeeMapper;
 import com.tl.sm.pojo.Admin;
 import com.tl.sm.pojo.Department;
 import com.tl.sm.pojo.Employee;
+import com.tl.sm.pojo.Insurance;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration("classpath:applicationContext.xml")
@@ -37,9 +38,13 @@ public class MybatisTest {
 
 	@Test
 	public void testList() {
-		List<Employee> cs=employeeMapper.listEmpBlurry("3", null, null);
+		List<Employee> cs=employeeMapper.listInner();
 		for (Employee c : cs) {
-			System.out.println(c.getSalName());
+			System.out.println(c.getSalId());
+			List<Insurance> listIns = c.getSalInsuranceList();
+			for(Insurance i:listIns) {
+				System.out.println(i.getInsName());
+			}
 		}
 	}
 

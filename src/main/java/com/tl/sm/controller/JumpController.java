@@ -22,4 +22,9 @@ public class JumpController {
 	public String main(HttpServletRequest request,HttpServletResponse response) {
 		return "main";
 	}
+	
+	@RequestMapping("/salary")
+	public String importExcel(HttpServletRequest request,HttpServletResponse response) {
+		return "salary";
+	}
 }

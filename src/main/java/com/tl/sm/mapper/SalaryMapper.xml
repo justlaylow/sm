@@ -444,4 +444,38 @@
       cal_incometax = #{calIncometax,jdbcType=REAL}
     where Id = #{id,jdbcType=INTEGER}
   </update>
+  
+  <!-- 批量插入 -->
+  <insert id="insertForeach" parameterType="java.util.List">
+    insert into calculate_ ( cal_hr, cal_id, 
+      cal_name, cal_basic, cal_post, 
+      cal_float, cal_coefficient, cal_secrecy, 
+      cal_skill_level, cal_comage, cal_bonus, 
+      cal_overtime, cal_benefit, cal_check, 
+      cal_injury, cal_leave, cal_other, 
+      cal_penalty, cal_withhold, cal_waterandele, 
+      cal_allowance, 
+      cal_dues, cal_manhour, labour_cost, 
+      cal_benefitwage, cal_manhour_bonus, cal_manhour_salary, 
+      cal_welfare, cal_waste, 
+      cal_last_withhold,cal_date)
+    values 
+    <foreach collection="list" item="item" index="index" separator=",">
+    ( #{item.calHr,jdbcType=INTEGER}, #{item.calId,jdbcType=INTEGER}, 
+      #{item.calName,jdbcType=VARCHAR}, #{item.calBasic,jdbcType=REAL}, #{item.calPost,jdbcType=REAL}, 
+      #{item.calFloat,jdbcType=REAL}, #{item.calCoefficient,jdbcType=REAL}, #{item.calSecrecy,jdbcType=REAL}, 
+      #{item.calSkillLevel,jdbcType=REAL}, #{item.calComage,jdbcType=REAL}, #{item.calBonus,jdbcType=REAL}, 
+      #{item.calOvertime,jdbcType=REAL}, #{item.calBenefit,jdbcType=REAL}, #{item.calCheck,jdbcType=REAL}, 
+      #{item.calInjury,jdbcType=REAL}, #{item.calLeave,jdbcType=REAL}, #{item.calOther,jdbcType=REAL}, 
+      #{item.calPenalty,jdbcType=REAL}, #{item.calWithhold,jdbcType=REAL}, #{item.calWaterandele,jdbcType=REAL}, 
+      #{item.calAllowance,jdbcType=REAL},  
+      #{item.calDues,jdbcType=REAL}, #{item.calManhour,jdbcType=REAL}, #{item.labourCost,jdbcType=REAL}, 
+      #{item.calBenefitwage,jdbcType=REAL}, #{item.calManhourBonus,jdbcType=REAL}, #{item.calManhourSalary,jdbcType=REAL}, 
+      #{item.calWelfare,jdbcType=REAL},  #{item.calWaste,jdbcType=REAL}, 
+      #{item.calLastWithhold,jdbcType=REAL},#{item.calDate,jdbcType=REAL})
+      <!-- (#{item}) -->
+      </foreach>
+  </insert>
+  
+  
 </mapper>

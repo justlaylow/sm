@@ -1,0 +1,294 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.tl.sm.mapper.InsuranceMapper">
+  <resultMap id="BaseResultMap" type="com.tl.sm.pojo.Insurance">
+    <id column="Id" jdbcType="INTEGER" property="id" />
+    <result column="ins_name" jdbcType="VARCHAR" property="insName" />
+    <result column="ins_id" jdbcType="INTEGER" property="insId" />
+    <result column="ins_sex" jdbcType="VARCHAR" property="insSex" />
+    <result column="ins_both" jdbcType="VARCHAR" property="insBoth" />
+    <result column="ins_iden" jdbcType="CHAR" property="insIden" />
+    <result column="ins_address" jdbcType="VARCHAR" property="insAddress" />
+    <result column="ins_car_number" jdbcType="VARCHAR" property="insCarNumber" />
+    <result column="ins_old_id" jdbcType="VARCHAR" property="insOldId" />
+    <result column="ins_old" jdbcType="VARCHAR" property="insOld" />
+    <result column="ins_treatment_id" jdbcType="VARCHAR" property="insTreatmentId" />
+    <result column="ins_treatments" jdbcType="VARCHAR" property="insTreatments" />
+    <result column="ins_ill_id" jdbcType="VARCHAR" property="insIllId" />
+    <result column="ins_ill" jdbcType="VARCHAR" property="insIll" />
+    <result column="insurance" jdbcType="VARCHAR" property="insurance" />
+    <result column="ins_unemp_id" jdbcType="VARCHAR" property="insUnempId" />
+    <result column="ins_unemp" jdbcType="VARCHAR" property="insUnemp" />
+    <result column="ins_unemp_address" jdbcType="VARCHAR" property="insUnempAddress" />
+    <result column="ins_acc_fund" jdbcType="VARCHAR" property="insAccFund" />
+    <result column="ins_acc_address" jdbcType="VARCHAR" property="insAccAddress" />
+    <result column="ins_sign" jdbcType="VARCHAR" property="insSign" />
+    <result column="ins_remark" jdbcType="VARCHAR" property="insRemark" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    Id, ins_name, ins_id, ins_sex, ins_both, ins_iden, ins_address, ins_car_number, ins_old_id, 
+    ins_old, ins_treatment_id, ins_treatments, ins_ill_id, ins_ill, insurance, ins_unemp_id, 
+    ins_unemp, ins_unemp_address, ins_acc_fund, ins_acc_address, ins_sign, ins_remark
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from insurance_
+    where Id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from insurance_
+    where Id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.tl.sm.pojo.Insurance">
+    insert into insurance_ (Id, ins_name, ins_id, 
+      ins_sex, ins_both, ins_iden, 
+      ins_address, ins_car_number, ins_old_id, 
+      ins_old, ins_treatment_id, ins_treatments, 
+      ins_ill_id, ins_ill, insurance, 
+      ins_unemp_id, ins_unemp, ins_unemp_address, 
+      ins_acc_fund, ins_acc_address, ins_sign, 
+      ins_remark)
+    values (#{id,jdbcType=INTEGER}, #{insName,jdbcType=VARCHAR}, #{insId,jdbcType=INTEGER}, 
+      #{insSex,jdbcType=VARCHAR}, #{insBoth,jdbcType=VARCHAR}, #{insIden,jdbcType=CHAR}, 
+      #{insAddress,jdbcType=VARCHAR}, #{insCarNumber,jdbcType=VARCHAR}, #{insOldId,jdbcType=VARCHAR}, 
+      #{insOld,jdbcType=VARCHAR}, #{insTreatmentId,jdbcType=VARCHAR}, #{insTreatments,jdbcType=VARCHAR}, 
+      #{insIllId,jdbcType=VARCHAR}, #{insIll,jdbcType=VARCHAR}, #{insurance,jdbcType=VARCHAR}, 
+      #{insUnempId,jdbcType=VARCHAR}, #{insUnemp,jdbcType=VARCHAR}, #{insUnempAddress,jdbcType=VARCHAR}, 
+      #{insAccFund,jdbcType=VARCHAR}, #{insAccAddress,jdbcType=VARCHAR}, #{insSign,jdbcType=VARCHAR}, 
+      #{insRemark,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.tl.sm.pojo.Insurance">
+    insert into insurance_
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        Id,
+      </if>
+      <if test="insName != null">
+        ins_name,
+      </if>
+      <if test="insId != null">
+        ins_id,
+      </if>
+      <if test="insSex != null">
+        ins_sex,
+      </if>
+      <if test="insBoth != null">
+        ins_both,
+      </if>
+      <if test="insIden != null">
+        ins_iden,
+      </if>
+      <if test="insAddress != null">
+        ins_address,
+      </if>
+      <if test="insCarNumber != null">
+        ins_car_number,
+      </if>
+      <if test="insOldId != null">
+        ins_old_id,
+      </if>
+      <if test="insOld != null">
+        ins_old,
+      </if>
+      <if test="insTreatmentId != null">
+        ins_treatment_id,
+      </if>
+      <if test="insTreatments != null">
+        ins_treatments,
+      </if>
+      <if test="insIllId != null">
+        ins_ill_id,
+      </if>
+      <if test="insIll != null">
+        ins_ill,
+      </if>
+      <if test="insurance != null">
+        insurance,
+      </if>
+      <if test="insUnempId != null">
+        ins_unemp_id,
+      </if>
+      <if test="insUnemp != null">
+        ins_unemp,
+      </if>
+      <if test="insUnempAddress != null">
+        ins_unemp_address,
+      </if>
+      <if test="insAccFund != null">
+        ins_acc_fund,
+      </if>
+      <if test="insAccAddress != null">
+        ins_acc_address,
+      </if>
+      <if test="insSign != null">
+        ins_sign,
+      </if>
+      <if test="insRemark != null">
+        ins_remark,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="insName != null">
+        #{insName,jdbcType=VARCHAR},
+      </if>
+      <if test="insId != null">
+        #{insId,jdbcType=INTEGER},
+      </if>
+      <if test="insSex != null">
+        #{insSex,jdbcType=VARCHAR},
+      </if>
+      <if test="insBoth != null">
+        #{insBoth,jdbcType=VARCHAR},
+      </if>
+      <if test="insIden != null">
+        #{insIden,jdbcType=CHAR},
+      </if>
+      <if test="insAddress != null">
+        #{insAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="insCarNumber != null">
+        #{insCarNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="insOldId != null">
+        #{insOldId,jdbcType=VARCHAR},
+      </if>
+      <if test="insOld != null">
+        #{insOld,jdbcType=VARCHAR},
+      </if>
+      <if test="insTreatmentId != null">
+        #{insTreatmentId,jdbcType=VARCHAR},
+      </if>
+      <if test="insTreatments != null">
+        #{insTreatments,jdbcType=VARCHAR},
+      </if>
+      <if test="insIllId != null">
+        #{insIllId,jdbcType=VARCHAR},
+      </if>
+      <if test="insIll != null">
+        #{insIll,jdbcType=VARCHAR},
+      </if>
+      <if test="insurance != null">
+        #{insurance,jdbcType=VARCHAR},
+      </if>
+      <if test="insUnempId != null">
+        #{insUnempId,jdbcType=VARCHAR},
+      </if>
+      <if test="insUnemp != null">
+        #{insUnemp,jdbcType=VARCHAR},
+      </if>
+      <if test="insUnempAddress != null">
+        #{insUnempAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="insAccFund != null">
+        #{insAccFund,jdbcType=VARCHAR},
+      </if>
+      <if test="insAccAddress != null">
+        #{insAccAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="insSign != null">
+        #{insSign,jdbcType=VARCHAR},
+      </if>
+      <if test="insRemark != null">
+        #{insRemark,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.tl.sm.pojo.Insurance">
+    update insurance_
+    <set>
+      <if test="insName != null">
+        ins_name = #{insName,jdbcType=VARCHAR},
+      </if>
+      <if test="insId != null">
+        ins_id = #{insId,jdbcType=INTEGER},
+      </if>
+      <if test="insSex != null">
+        ins_sex = #{insSex,jdbcType=VARCHAR},
+      </if>
+      <if test="insBoth != null">
+        ins_both = #{insBoth,jdbcType=VARCHAR},
+      </if>
+      <if test="insIden != null">
+        ins_iden = #{insIden,jdbcType=CHAR},
+      </if>
+      <if test="insAddress != null">
+        ins_address = #{insAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="insCarNumber != null">
+        ins_car_number = #{insCarNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="insOldId != null">
+        ins_old_id = #{insOldId,jdbcType=VARCHAR},
+      </if>
+      <if test="insOld != null">
+        ins_old = #{insOld,jdbcType=VARCHAR},
+      </if>
+      <if test="insTreatmentId != null">
+        ins_treatment_id = #{insTreatmentId,jdbcType=VARCHAR},
+      </if>
+      <if test="insTreatments != null">
+        ins_treatments = #{insTreatments,jdbcType=VARCHAR},
+      </if>
+      <if test="insIllId != null">
+        ins_ill_id = #{insIllId,jdbcType=VARCHAR},
+      </if>
+      <if test="insIll != null">
+        ins_ill = #{insIll,jdbcType=VARCHAR},
+      </if>
+      <if test="insurance != null">
+        insurance = #{insurance,jdbcType=VARCHAR},
+      </if>
+      <if test="insUnempId != null">
+        ins_unemp_id = #{insUnempId,jdbcType=VARCHAR},
+      </if>
+      <if test="insUnemp != null">
+        ins_unemp = #{insUnemp,jdbcType=VARCHAR},
+      </if>
+      <if test="insUnempAddress != null">
+        ins_unemp_address = #{insUnempAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="insAccFund != null">
+        ins_acc_fund = #{insAccFund,jdbcType=VARCHAR},
+      </if>
+      <if test="insAccAddress != null">
+        ins_acc_address = #{insAccAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="insSign != null">
+        ins_sign = #{insSign,jdbcType=VARCHAR},
+      </if>
+      <if test="insRemark != null">
+        ins_remark = #{insRemark,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where Id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.tl.sm.pojo.Insurance">
+    update insurance_
+    set ins_name = #{insName,jdbcType=VARCHAR},
+      ins_id = #{insId,jdbcType=INTEGER},
+      ins_sex = #{insSex,jdbcType=VARCHAR},
+      ins_both = #{insBoth,jdbcType=VARCHAR},
+      ins_iden = #{insIden,jdbcType=CHAR},
+      ins_address = #{insAddress,jdbcType=VARCHAR},
+      ins_car_number = #{insCarNumber,jdbcType=VARCHAR},
+      ins_old_id = #{insOldId,jdbcType=VARCHAR},
+      ins_old = #{insOld,jdbcType=VARCHAR},
+      ins_treatment_id = #{insTreatmentId,jdbcType=VARCHAR},
+      ins_treatments = #{insTreatments,jdbcType=VARCHAR},
+      ins_ill_id = #{insIllId,jdbcType=VARCHAR},
+      ins_ill = #{insIll,jdbcType=VARCHAR},
+      insurance = #{insurance,jdbcType=VARCHAR},
+      ins_unemp_id = #{insUnempId,jdbcType=VARCHAR},
+      ins_unemp = #{insUnemp,jdbcType=VARCHAR},
+      ins_unemp_address = #{insUnempAddress,jdbcType=VARCHAR},
+      ins_acc_fund = #{insAccFund,jdbcType=VARCHAR},
+      ins_acc_address = #{insAccAddress,jdbcType=VARCHAR},
+      ins_sign = #{insSign,jdbcType=VARCHAR},
+      ins_remark = #{insRemark,jdbcType=VARCHAR}
+    where Id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

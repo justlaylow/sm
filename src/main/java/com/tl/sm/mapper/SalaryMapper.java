@@ -1,5 +1,7 @@
 package com.tl.sm.mapper;
 
+import java.util.List;
+
 import com.tl.sm.pojo.Salary;
 
 public interface SalaryMapper {
@@ -14,4 +16,7 @@ public interface SalaryMapper {
     int updateByPrimaryKeySelective(Salary record);
 
     int updateByPrimaryKey(Salary record);
+    
+    //批量插入
+    int insertForeach(List<Salary> list);
 }

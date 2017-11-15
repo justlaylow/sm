@@ -41,7 +41,7 @@
 				<h3 class="text-center text-info">部门管理</h3>
 				<br /> <br />
 				<div class="input-group">
-					编号：<input type="text" placeholder="Search for..." name="depId" id="depId" value="${param.depId}">
+					部门代码：<input type="text" placeholder="Search for..." name="depId" id="depId" value="${param.depId}">
 					 <span>
 						<button class="btn btn-default" type="button" onclick="blurrySeach()">搜索</button>
 					</span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 部门名称：<input type="text"

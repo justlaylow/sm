@@ -7,6 +7,10 @@
 <title>Insert title here</title>
 </head>
 <body>
-
+	<form action="/sm/import" method="post"  enctype="multipart/form-data">
+         请选择Excel：<input type="file" name="upfile"><br>
+         请输入月份：    <input type="text" name="calDate">  格式：xxxx-xx-xx<br>
+        <input type="submit" name="提交">
+    </form>
 </body>
 </html>

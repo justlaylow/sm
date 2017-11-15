@@ -9,6 +9,9 @@ public interface EmployeeService {
 	//查询所有员工
 	public List<Employee> listEmp();
 	
+	//查询所有员工和保险
+	public List<Employee> listInner();
+	
 	//增加员工
 	public String insertEmp(Employee employee);
 	
