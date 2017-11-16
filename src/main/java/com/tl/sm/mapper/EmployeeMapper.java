@@ -7,7 +7,7 @@ import org.apache.ibatis.annotations.Param;
 import com.tl.sm.pojo.Employee;
 
 public interface EmployeeMapper {
-    int deleteByPrimaryKey(Integer id);
+    int deleteByPrimaryKey(String id);
 
     int insert(Employee record);
 
@@ -21,7 +21,7 @@ public interface EmployeeMapper {
     
     List<Employee> listEmp();
     
-    List<Employee> listEmpBlurry(@Param("sal_name") String salName,@Param("sal_id") Integer salId,
+    List<Employee> listEmpBlurry(@Param("sal_name") String salName,@Param("sal_id") String salId,
     		@Param("sal_oa") String salOa);
     
     List<Employee> listInner();

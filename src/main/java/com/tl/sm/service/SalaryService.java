@@ -11,7 +11,9 @@ import org.springframework.web.multipart.MultipartFile;
 
 public interface SalaryService {
 	
+	//Excel导入
 	public void importExcelInfo(InputStream in, MultipartFile file, String salaryDate,Integer adminId)throws Exception;
 	
+	//Excel导出
 	//public XSSFWorkbook exportExcelInfo(String salaryDate) throws InvocationTargetException, ClassNotFoundException, IntrospectionException, ParseException, IllegalAccessException ; 
 }

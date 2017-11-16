@@ -17,7 +17,7 @@
  	function del(userid){
  		if(confirm("您确认删除吗？")){   
             //如果确定删除就访问servlet，这里超链接传值传的是方法里的参数           
-            window.location.href="/sm/delete/emp/?id="+userid;
+            window.location.href="/sm/delete/emp/?salId="+userid;
         }
 	}
 	
@@ -83,13 +83,13 @@
 									<input name="id" style="display: none"> <label>姓&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;名:</label>
 									<input name="salName" required="true">&emsp;&emsp;&emsp;
 									<label>工&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;号:</label> <input
-										name="salId" required="true"> <br> <label>岗&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;位:</label>
+										name="salId" required="true"> <br><br> <label>岗&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;位:</label>
 									<input name="salPost" list="post">&emsp;&emsp;&emsp;
 									<datalist id="post">
 									<option>网络工程师</option>
 									</datalist>
 									<label>银行账户:</label> <input name="bankAccount" required="true"
-										style="width: 170px"> <br> <label>岗位类别:</label> <input
+										style="width: 170px"> <br><br> <label>岗位类别:</label> <input
 										name="postCategory" list="postCategory">&emsp;&emsp;&emsp;
 									<datalist id="postCategory">
 									<option>技术人员</option>
@@ -100,14 +100,14 @@
 										<option>技术部-信息化组</option>
 										<option>质量部</option>
 									</datalist>
-									<br> <label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Gzsj:</label>
+									<br><br> <label>入职日期:</label>
 									<input name="salDate">&emsp;&emsp;&emsp; <label>&nbsp;&nbsp;&nbsp;OA账号:</label>
-									<input name="salOa"> <br> <label>统计类别:</label> <input
+									<input name="salOa"> <br><br> <label>统计类别:</label> <input
 										name="staCategory" list="staCategory">&emsp;&emsp;&emsp;
 									<datalist id="staCategory">
 									<option>技术-IT技术</option>
 									</datalist>
-									<label>备&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;注:</label> <input name="salRemark"> <br>
+									<label>备&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;注:</label> <input name="salRemark"> <br><br>
 									<label>技能等级:</label> <input name="salSkilllevel"> 
 
 
@@ -180,98 +180,143 @@
 							<th>餐补</th>
 							<th>司龄工资</th>
 							<th>保密工资</th>
-							<th>技能等级</th>
 							<th>技能工资</th>
 						</tr>
 					</thead>
 					<tbody>
 						<c:forEach var="emp" items="${empList}">
-							<tr>
-								<!-- 删除部门 -->
-								<td><button type="button" id="deleteDep"
-										class="btn btn-primary" onclick="del(${emp.id})">删除</button></td>
-
-								<!-- 修改部门信息 -->
-								<td><button type="button" id="updateDep"
-										class="btn btn-primary" data-toggle="modal"
-										data-target="#upd${emp.id}">修改</button>
-									<div class="modal fade" id="upd${emp.id}"
-										data-backdrop="static" tabindex="-1" role="dialog"
-										aria-labelledby="myModalLabel">
-										<div class="modal-dialog">
-											<div class="modal-content">
-												<div class="modal-header">
-													<button data-dismiss="modal" class="close" type="button">
-														<span aria-hidden="true">×</span><span class="sr-only">Close</span>
-													</button>
-													<h4 class="modal-title" align="center">修改</h4>
+							<c:if test="${emp.salName!=null }">
+								<tr>
+									<!-- 删除部门 -->
+									<td><button type="button" id="deleteDep"
+											class="btn btn-primary" onclick="del(${emp.salId})">删除</button></td>
+	
+									<!-- 修改信息 -->
+									<td><button type="button" id="updateDep"
+											class="btn btn-primary" data-toggle="modal"
+											data-target="#upd${emp.id}">修改</button>
+										<div class="modal fade" id="upd${emp.id}"
+											data-backdrop="static" tabindex="-1" role="dialog"
+											aria-labelledby="myModalLabel">
+											<div class="modal-dialog">
+												<div class="modal-content">
+													<div class="modal-header">
+														<button data-dismiss="modal" class="close" type="button">
+															<span aria-hidden="true">×</span><span class="sr-only">Close</span>
+														</button>
+														<h4 class="modal-title" align="center">修改</h4>
+													</div>
+													<div class="modal-body">
+														<form action="/sm/update/emp" method="post" id="fm">
+															<input name="id" style="display: none" value="${emp.id }">
+															<table align="center" style="border-collapse:separate; border-spacing:15px;">
+																<tr>
+																	<td><label>姓名:</label></td><td> <input name="salName" required="true" value="${emp.salName}"></td>
+																	<td><label>工号:</label></td><td> <input name="salId" required="true" value="${emp.salId}"></td>
+																</tr>
+																<tr>
+																	<td><label>银行账号:</label></td><td> <input name="bankAccount" value="${emp.bankAccount}"></td>
+																	<td><label>岗位类别:</label></td><td> <input type="text" name="postCategory" value="${emp.postCategory}"></td>
+																</tr>
+																<tr>
+																	<td><label>部门代码:</label></td><td> <input name="salDep" value="${emp.salDep}"></td>
+																	<td><label>岗位:</label></td><td> <input type="text" name="salPost" value="${emp.salPost}"></td>
+																</tr>
+																<tr>
+																	<td><label>入职日期:</label></td><td> <input name="salDate" value="<fmt:formatDate value="${emp.salDate}" type="date"/>"></td>
+																	<td><label>OA账号:</label></td><td> <input type="text" name="salOa" value="${emp.salOa}"></td>
+																</tr>
+																<tr>
+																	<td><label>统计类别:</label></td><td> <input type="text" name="staCategory" value="${emp.staCategory}"></td>
+																	<td><label>备注:</label></td><td> <input name="salRemark" value="${emp.salRemark}"></td>
+																</tr>
+																<tr>
+																	<td><label>技能等级:</label></td><td> <input type="text" name="salSkilllevel" value="${emp.salSkilllevel}"></td>
+																</tr>
+															</table>
+															<div class="modal-footer">
+																<button data-dismiss="modal" class="btn btn-default"
+																	type="button">关闭</button>
+																<input class="btn btn-primary" type="submit" value="修改">
+															</div>
+														</form>
+													</div>
 												</div>
-												<div class="modal-body">
-													<form action="/sm/update/emp" method="post" id="fm">
-														<%-- <input name="e_id" style="display: none" value="${emp.e_id }"> --%>
-														<div class="modal-footer">
-															<button data-dismiss="modal" class="btn btn-default"
-																type="button">关闭</button>
-															<input class="btn btn-primary" type="submit" value="修改">
-														</div>
-													</form>
-												</div>
+												<!-- /.modal-content -->
 											</div>
-											<!-- /.modal-content -->
-										</div>
-										<!-- /.modal-dialog -->
-									</div></td>
-
-								<c:forEach var="ins" items="${emp.salInsuranceList}">
-								<td>${ins.insSex}</td>
-								</c:forEach>
-								
-								<td>${emp.salId}</td>
-								<td>${emp.bankAccount}</td>
-								<td>${emp.postCategory}</td>
-								<td>${emp.salDep}</td>
-								<td>${emp.salPost}</td>
-								<td>${emp.salDate}</td>
-								<td>${emp.salOa}</td>
-								<td>${emp.staCategory}</td>
-								<td>${emp.salRemark}</td>
-								<td></td>
-								<td></td>
-								<td></td>
-								<td></td>
-								<td></td>
-								<td></td>
-								<td></td>
-								<td></td>
-								<td></td>
-								<td></td>
-								<td></td>
-								<td></td>
-								<td></td>
-								<td></td>
-								<td></td>
-								<td></td>
-								<td></td>
-								<td></td>
-								<td></td>
-								<td></td>
-								<td></td>
-								<td></td>
-								<td></td>
-								<td></td>
-								<td></td>
-								<td></td>
-								<td></td>
-								<td></td>
-								<td></td>
-								<td></td>
-								<td></td>
-								<td></td>
-								<td></td>
-								<td></td>
-								<td>${emp.salSkilllevel}</td>
-								<td></td>
-							</tr>
+											<!-- /.modal-dialog -->
+										</div></td>
+									
+									<td>${emp.salName}</td>
+									<td>${emp.salId}</td>
+									<td>${emp.bankAccount}</td>
+									<td>${emp.postCategory}</td>
+									<td>${emp.salDep}</td>
+									<td>${emp.salPost}</td>
+									<td><fmt:formatDate value="${emp.salDate}" type="date"/></td>
+									<td>${emp.salOa}</td>
+									<td>${emp.staCategory}</td>
+									<td>${emp.salRemark}</td>
+									<td>${emp.salSkilllevel}</td>
+									<c:forEach var="ins" items="${emp.salInsuranceList}">
+										<td>${ins.insSex}</td>
+										<td><fmt:formatDate value="${ins.insBoth}" type="date"/></td>
+										<td>${ins.insIden}</td>
+										<td>${ins.insAddress}</td>
+										<td>${ins.insCarNumber}</td>
+										<td>${ins.insOldId}</td>
+										<td>${ins.insOld}</td>
+										<td>${ins.insTreatmentId}</td>
+										<td>${ins.insTreatments}</td>
+										<td>${ins.insIllId}</td>
+										<td>${ins.insIll}</td>
+										<td>${ins.insurance}</td>
+										<td>${ins.insUnempId}</td>
+										<td>${ins.insUnemp}</td>
+										<td>${ins.insUnempAddress}</td>
+										<td>${ins.insAccFund}</td>
+										<td>${ins.insAccAddress}</td>
+										<td>${ins.insSign}</td>
+										<td>${ins.insRemark}</td>
+									</c:forEach>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+								</tr>
+							</c:if>
 						</c:forEach>
 					</tbody>
 				</table>

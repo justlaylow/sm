@@ -24,19 +24,17 @@
 				<ul>
 					<a href="#"><li>初始化</li></a>
 					<br>
-					<a href="/sm/list/emp"><li>工资维护</li></a>
+					<a href="/sm/list/emp"><li>员工维护</li></a>
 					<br>
 					<a href="/sm/list/dep"><li>部门类别</li></a>
 					<br>
 					<a href="#"><li>工价工种维护</li></a>
 					<br>
-					<a href="#"><li>保险金维护(单)</li></a>
-					<br>
-					<a href="#"><li>保险金维护(多)</li></a>
+					<a href="/sm/select/ins"><li>保险金维护</li></a>
 					<br>
 					<a href="#"><li>人员岗位维护</li></a>
 					<br>
-					<a href="#"><li>工资计算</li></a>
+					<a href="#"><li>工资维护</li></a>
 					<br>
 					<a href="/sm/salary"><li>工资表数据导入</li></a>
 					<br>

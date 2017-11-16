@@ -29,8 +29,6 @@
 		window.location.href="/sm/blurryF/dep/?depId="+depId+"&depName="+depName;
 		
 	}
-	
-	
 </script>
 
 </head>
@@ -178,7 +176,6 @@
 			</div>
 		</div>
 	</div>
-
 
 
 

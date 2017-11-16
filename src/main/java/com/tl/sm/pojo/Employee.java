@@ -6,7 +6,7 @@ import java.util.List;
 import org.springframework.format.annotation.DateTimeFormat;
 
 public class Employee {
-    private Integer e_id;
+    private Integer id;
 
     private String bankAccount;
 
@@ -14,7 +14,7 @@ public class Employee {
 
     private String postCategory;
 
-    private Integer salId;
+    private String salId;
 
     private String salDep;
 
@@ -43,11 +43,11 @@ public class Employee {
 	}
 
 	public Integer getId() {
-        return e_id;
+        return id;
     }
 
     public void setId(Integer id) {
-        this.e_id = id;
+        this.id = id;
     }
 
     public String getBankAccount() {
@@ -74,11 +74,11 @@ public class Employee {
         this.postCategory = postCategory == null ? null : postCategory.trim();
     }
 
-    public Integer getSalId() {
+    public String getSalId() {
         return salId;
     }
 
-    public void setSalId(Integer salId) {
+    public void setSalId(String salId) {
         this.salId = salId;
     }
 

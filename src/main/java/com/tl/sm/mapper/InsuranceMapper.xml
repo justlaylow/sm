@@ -4,9 +4,9 @@
   <resultMap id="BaseResultMap" type="com.tl.sm.pojo.Insurance">
     <id column="Id" jdbcType="INTEGER" property="id" />
     <result column="ins_name" jdbcType="VARCHAR" property="insName" />
-    <result column="ins_id" jdbcType="INTEGER" property="insId" />
+    <result column="ins_id" jdbcType="VARCHAR" property="insId" />
     <result column="ins_sex" jdbcType="VARCHAR" property="insSex" />
-    <result column="ins_both" jdbcType="VARCHAR" property="insBoth" />
+    <result column="ins_both" jdbcType="DATE" property="insBoth" />
     <result column="ins_iden" jdbcType="CHAR" property="insIden" />
     <result column="ins_address" jdbcType="VARCHAR" property="insAddress" />
     <result column="ins_car_number" jdbcType="VARCHAR" property="insCarNumber" />
@@ -49,8 +49,8 @@
       ins_unemp_id, ins_unemp, ins_unemp_address, 
       ins_acc_fund, ins_acc_address, ins_sign, 
       ins_remark)
-    values (#{id,jdbcType=INTEGER}, #{insName,jdbcType=VARCHAR}, #{insId,jdbcType=INTEGER}, 
-      #{insSex,jdbcType=VARCHAR}, #{insBoth,jdbcType=VARCHAR}, #{insIden,jdbcType=CHAR}, 
+    values (#{id,jdbcType=INTEGER}, #{insName,jdbcType=VARCHAR}, #{insId,jdbcType=VARCHAR}, 
+      #{insSex,jdbcType=VARCHAR}, #{insBoth,jdbcType=DATE}, #{insIden,jdbcType=CHAR}, 
       #{insAddress,jdbcType=VARCHAR}, #{insCarNumber,jdbcType=VARCHAR}, #{insOldId,jdbcType=VARCHAR}, 
       #{insOld,jdbcType=VARCHAR}, #{insTreatmentId,jdbcType=VARCHAR}, #{insTreatments,jdbcType=VARCHAR}, 
       #{insIllId,jdbcType=VARCHAR}, #{insIll,jdbcType=VARCHAR}, #{insurance,jdbcType=VARCHAR}, 
@@ -136,13 +136,13 @@
         #{insName,jdbcType=VARCHAR},
       </if>
       <if test="insId != null">
-        #{insId,jdbcType=INTEGER},
+        #{insId,jdbcType=VARCHAR},
       </if>
       <if test="insSex != null">
         #{insSex,jdbcType=VARCHAR},
       </if>
       <if test="insBoth != null">
-        #{insBoth,jdbcType=VARCHAR},
+        #{insBoth,jdbcType=DATE},
       </if>
       <if test="insIden != null">
         #{insIden,jdbcType=CHAR},
@@ -204,13 +204,13 @@
         ins_name = #{insName,jdbcType=VARCHAR},
       </if>
       <if test="insId != null">
-        ins_id = #{insId,jdbcType=INTEGER},
+        ins_id = #{insId,jdbcType=VARCHAR},
       </if>
       <if test="insSex != null">
         ins_sex = #{insSex,jdbcType=VARCHAR},
       </if>
       <if test="insBoth != null">
-        ins_both = #{insBoth,jdbcType=VARCHAR},
+        ins_both = #{insBoth,jdbcType=DATE},
       </if>
       <if test="insIden != null">
         ins_iden = #{insIden,jdbcType=CHAR},
@@ -264,14 +264,14 @@
         ins_remark = #{insRemark,jdbcType=VARCHAR},
       </if>
     </set>
-    where Id = #{id,jdbcType=INTEGER}
+    where Id = #{i_id,jdbcType=INTEGER}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.tl.sm.pojo.Insurance">
     update insurance_
     set ins_name = #{insName,jdbcType=VARCHAR},
-      ins_id = #{insId,jdbcType=INTEGER},
+      ins_id = #{insId,jdbcType=VARCHAR},
       ins_sex = #{insSex,jdbcType=VARCHAR},
-      ins_both = #{insBoth,jdbcType=VARCHAR},
+      ins_both = #{insBoth,jdbcType=DATE},
       ins_iden = #{insIden,jdbcType=CHAR},
       ins_address = #{insAddress,jdbcType=VARCHAR},
       ins_car_number = #{insCarNumber,jdbcType=VARCHAR},
@@ -291,4 +291,23 @@
       ins_remark = #{insRemark,jdbcType=VARCHAR}
     where Id = #{id,jdbcType=INTEGER}
   </update>
+  
+  <!-- 查询所有 -->
+	<select id="listIns" resultMap="BaseResultMap">
+		select * from insurance_
+	</select>
+
+	<!-- 模糊查询 -->
+	<select id="listInsBlurry" resultMap="BaseResultMap">
+		select * from insurance_
+		<where>
+			<if test="ins_id!=null">
+				and ins_id like concat("%",#{ins_id},"%")
+			</if>
+			<if test="ins_name!=null">
+				and ins_name like "%"#{ins_name}"%"
+			</if>
+		</where>
+	</select>
+  
 </mapper>

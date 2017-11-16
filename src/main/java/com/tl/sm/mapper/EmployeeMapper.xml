@@ -6,7 +6,7 @@
 		<result column="bank_account" jdbcType="VARCHAR" property="bankAccount" />
 		<result column="sal_name" jdbcType="VARCHAR" property="salName" />
 		<result column="post_category" jdbcType="VARCHAR" property="postCategory" />
-		<result column="sal_id" jdbcType="INTEGER" property="salId" />
+		<result column="sal_id" jdbcType="VARCHAR" property="salId" />
 		<result column="sal_dep" jdbcType="VARCHAR" property="salDep" />
 		<result column="sal_post" jdbcType="VARCHAR" property="salPost" />
 		<result column="sal_date" jdbcType="DATE" property="salDate" />
@@ -18,11 +18,11 @@
 
 
 	<resultMap id="innerMap" type="com.tl.sm.pojo.Employee">
-		<id column="e_Id" jdbcType="INTEGER" property="e_id" />
+		<id column="e_Id" jdbcType="INTEGER" property="id" />
 		<result column="bank_account" jdbcType="VARCHAR" property="bankAccount" />
 		<result column="sal_name" jdbcType="VARCHAR" property="salName" />
 		<result column="post_category" jdbcType="VARCHAR" property="postCategory" />
-		<result column="sal_id" jdbcType="INTEGER" property="salId" />
+		<result column="sal_id" jdbcType="VARCHAR" property="salId" />
 		<result column="sal_dep" jdbcType="VARCHAR" property="salDep" />
 		<result column="sal_post" jdbcType="VARCHAR" property="salPost" />
 		<result column="sal_date" jdbcType="DATE" property="salDate" />
@@ -31,9 +31,9 @@
 		<result column="sal_remark" jdbcType="VARCHAR" property="salRemark" />
 		<result column="sal_skilllevel" jdbcType="VARCHAR" property="salSkilllevel" />
 		<collection property="salInsuranceList" ofType="com.tl.sm.pojo.Insurance">
-			<id column="i_Id" jdbcType="INTEGER" property="i_id" />
+			<id column="i_Id" jdbcType="INTEGER" property="id" />
 			<result column="ins_name" jdbcType="VARCHAR" property="insName" />
-			<result column="ins_id" jdbcType="INTEGER" property="insId" />
+			<result column="ins_id" jdbcType="VARCHAR" property="insId" />
 			<result column="ins_sex" jdbcType="VARCHAR" property="insSex" />
 			<result column="ins_both" jdbcType="VARCHAR" property="insBoth" />
 			<result column="ins_iden" jdbcType="CHAR" property="insIden" />
@@ -70,9 +70,9 @@
 		from employee_
 		where Id = #{id,jdbcType=INTEGER}
 	</select>
-	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+	<delete id="deleteByPrimaryKey" parameterType="string">
 		delete from employee_
-		where Id = #{id,jdbcType=INTEGER}
+		where sal_id = #{salId,jdbcType=VARCHAR}
 	</delete>
 	<insert id="insert" parameterType="com.tl.sm.pojo.Employee">
 		insert into employee_ (Id, bank_account, sal_name,
@@ -82,7 +82,7 @@
 		)
 		values (#{id,jdbcType=INTEGER}, #{bankAccount,jdbcType=VARCHAR},
 		#{salName,jdbcType=VARCHAR},
-		#{postCategory,jdbcType=VARCHAR}, #{salId,jdbcType=INTEGER}, #{salDep,jdbcType=VARCHAR},
+		#{postCategory,jdbcType=VARCHAR}, #{salId,jdbcType=VARCHAR}, #{salDep,jdbcType=VARCHAR},
 		#{salPost,jdbcType=VARCHAR}, #{salDate,jdbcType=DATE},
 		#{salOa,jdbcType=VARCHAR},
 		#{staCategory,jdbcType=VARCHAR}, #{salRemark,jdbcType=VARCHAR}, #{salSkilllevel,jdbcType=VARCHAR}
@@ -142,7 +142,7 @@
 				#{postCategory,jdbcType=VARCHAR},
 			</if>
 			<if test="salId != null">
-				#{salId,jdbcType=INTEGER},
+				#{salId,jdbcType=VARCHAR},
 			</if>
 			<if test="salDep != null">
 				#{salDep,jdbcType=VARCHAR},
@@ -180,7 +180,7 @@
 				post_category = #{postCategory,jdbcType=VARCHAR},
 			</if>
 			<if test="salId != null">
-				sal_id = #{salId,jdbcType=INTEGER},
+				sal_id = #{salId,jdbcType=VARCHAR},
 			</if>
 			<if test="salDep != null">
 				sal_dep = #{salDep,jdbcType=VARCHAR},
@@ -211,7 +211,7 @@
 		set bank_account = #{bankAccount,jdbcType=VARCHAR},
 		sal_name = #{salName,jdbcType=VARCHAR},
 		post_category = #{postCategory,jdbcType=VARCHAR},
-		sal_id = #{salId,jdbcType=INTEGER},
+		sal_id = #{salId,jdbcType=VARCHAR},
 		sal_dep = #{salDep,jdbcType=VARCHAR},
 		sal_post = #{salPost,jdbcType=VARCHAR},
 		sal_date = #{salDate,jdbcType=DATE},

@@ -33,8 +33,8 @@ public class SalaryServiceImpl implements SalaryService{
 	        //设置编号  String.valueOf(ob.get())
 	        //通过遍历实现把每一列封装成一个model中，再把所有的model用List集合装载 
 	        salary.setCalDate(simpleDateFormat.parse(calDate));
-	        salary.setCalHr(Integer.parseInt(ob.get(0).toString()));
-	        salary.setCalId(Integer.parseInt(ob.get(1).toString()));
+	        salary.setCalHr(String.valueOf(ob.get(0).toString()));
+	        salary.setCalId(String.valueOf(ob.get(1).toString()));
 	        salary.setCalName(String.valueOf(ob.get(2)));
 	        salary.setCalBasic(Float.parseFloat(ob.get(3).toString()));
 	        salary.setCalPost(Float.parseFloat(ob.get(4).toString()));

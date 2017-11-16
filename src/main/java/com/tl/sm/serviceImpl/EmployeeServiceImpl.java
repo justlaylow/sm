@@ -52,9 +52,9 @@ public class EmployeeServiceImpl implements EmployeeService {
 	}
 	
 	//删除员工
-	public String deleteEmp(Integer id) {
+	public String deleteEmp(String salId) {
 		String message = "";
-		int i = employeeMapper.deleteByPrimaryKey(id);
+		int i = employeeMapper.deleteByPrimaryKey(salId);
 		if (i > 0) {
 			message = "修改成功";
 		} else {
@@ -64,7 +64,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 	}
 	
 	//模糊查询
-	public List<Employee> listEmpBlurry(String name,Integer id,String oa){
+	public List<Employee> listEmpBlurry(String name,String id,String oa){
 		List<Employee> empBlurryList = employeeMapper.listEmpBlurry(name,id , oa);
 		return empBlurryList;
 	}

@@ -1,15 +1,20 @@
 package com.tl.sm.pojo;
 
+import java.util.Date;
+
+import org.springframework.format.annotation.DateTimeFormat;
+
 public class Insurance {
-    private Integer i_id;
+    private Integer id;
 
     private String insName;
 
-    private Integer insId;
+    private String insId;
 
     private String insSex;
 
-    private String insBoth;
+    @DateTimeFormat(pattern="yyyy-MM-dd")
+    private Date insBoth;
 
     private String insIden;
 
@@ -46,11 +51,11 @@ public class Insurance {
     private String insRemark;
 
     public Integer getId() {
-        return i_id;
+        return id;
     }
 
     public void setId(Integer id) {
-        this.i_id = id;
+        this.id = id;
     }
 
     public String getInsName() {
@@ -61,11 +66,11 @@ public class Insurance {
         this.insName = insName == null ? null : insName.trim();
     }
 
-    public Integer getInsId() {
+    public String getInsId() {
         return insId;
     }
 
-    public void setInsId(Integer insId) {
+    public void setInsId(String insId) {
         this.insId = insId;
     }
 
@@ -77,12 +82,12 @@ public class Insurance {
         this.insSex = insSex == null ? null : insSex.trim();
     }
 
-    public String getInsBoth() {
+    public Date getInsBoth() {
         return insBoth;
     }
 
-    public void setInsBoth(String insBoth) {
-        this.insBoth = insBoth == null ? null : insBoth.trim();
+    public void setInsBoth(Date insBoth) {
+        this.insBoth = insBoth ;
     }
 
     public String getInsIden() {

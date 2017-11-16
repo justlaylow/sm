@@ -16,11 +16,11 @@ public interface EmployeeService {
 	public String insertEmp(Employee employee);
 	
 	//删除员工
-	public String deleteEmp(Integer id);
+	public String deleteEmp(String id);
 	
 	//修改员工信息
 	public String updateEmp(Employee employee);
 	
 	//模糊查询
-	public List<Employee> listEmpBlurry(String name,Integer id,String oa);
+	public List<Employee> listEmpBlurry(String name,String id,String oa);
 }

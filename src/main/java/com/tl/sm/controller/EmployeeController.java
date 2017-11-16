@@ -31,7 +31,7 @@ public class EmployeeController {
 	@RequestMapping("/insert/emp")
 	public String insertEmp(Employee employee, HttpServletRequest request) {
 		String insertEmp = employeeService.insertEmp(employee);
-		List<Employee> empList = employeeService.listEmp();
+		List<Employee> empList = employeeService.listInner();
 		request.setAttribute("empList", empList);
 		request.setAttribute("insertEmp", insertEmp);
 		return "employee";
@@ -41,7 +41,7 @@ public class EmployeeController {
 	@RequestMapping("/update/emp")
 	public String updateEmp(Employee employee, HttpServletRequest request) {
 		String updateEmp = employeeService.updateEmp(employee);
-		List<Employee> empList = employeeService.listEmp();
+		List<Employee> empList = employeeService.listInner();
 		request.setAttribute("empList", empList);
 		request.setAttribute("updateEmp", updateEmp);
 		return "employee";
@@ -49,9 +49,9 @@ public class EmployeeController {
 	
 	//删除员工
 	@RequestMapping("/delete/emp")
-	public String deleteEmp(Integer id,HttpServletRequest request) {
-		String deleteEmp = employeeService.deleteEmp(id);
-		List<Employee> empList = employeeService.listEmp();
+	public String deleteEmp(String salId,HttpServletRequest request) {
+		String deleteEmp = employeeService.deleteEmp(salId);
+		List<Employee> empList = employeeService.listInner();
 		request.setAttribute("empList", empList);
 		request.setAttribute("deleteEmp", deleteEmp);
 		return "employee";
@@ -59,7 +59,7 @@ public class EmployeeController {
 	
 	//模糊查询
 	@RequestMapping("/blurry/emp")
-	public String blurryEmp(Employee employee,String salName,String salOa,Integer salId,HttpServletRequest request) {
+	public String blurryEmp(Employee employee,String salName,String salOa,String salId,HttpServletRequest request) {
 		List<Employee> empList = employeeService.listEmpBlurry(salName, salId, salOa);
 		request.setAttribute("empList", empList);
 		return "employee";

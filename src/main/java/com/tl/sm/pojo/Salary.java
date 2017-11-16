@@ -7,9 +7,9 @@ import org.springframework.format.annotation.DateTimeFormat;
 public class Salary {
     private Integer id;
 
-    private Integer calHr;
+    private String calHr;
 
-    private Integer calId;
+    private String calId;
 
     private String calName;
 
@@ -84,19 +84,19 @@ public class Salary {
         this.id = id;
     }
 
-    public Integer getCalHr() {
+    public String getCalHr() {
         return calHr;
     }
 
-    public void setCalHr(Integer calHr) {
+    public void setCalHr(String calHr) {
         this.calHr = calHr;
     }
 
-    public Integer getCalId() {
+    public String getCalId() {
         return calId;
     }
 
-    public void setCalId(Integer calId) {
+    public void setCalId(String calId) {
         this.calId = calId;
     }
 

@@ -3,8 +3,8 @@
 <mapper namespace="com.tl.sm.mapper.SalaryMapper">
   <resultMap id="BaseResultMap" type="com.tl.sm.pojo.Salary">
     <id column="Id" jdbcType="INTEGER" property="id" />
-    <result column="cal_hr" jdbcType="INTEGER" property="calHr" />
-    <result column="cal_id" jdbcType="INTEGER" property="calId" />
+    <result column="cal_hr" jdbcType="VARCHAR" property="calHr" />
+    <result column="cal_id" jdbcType="VARCHAR" property="calId" />
     <result column="cal_name" jdbcType="VARCHAR" property="calName" />
     <result column="cal_basic" jdbcType="REAL" property="calBasic" />
     <result column="cal_post" jdbcType="REAL" property="calPost" />
@@ -68,7 +68,7 @@
       cal_benefitwage, cal_manhour_bonus, cal_manhour_salary, 
       cal_welfare, cal_should, cal_waste, 
       cal_last_withhold, cal_incometax)
-    values (#{id,jdbcType=INTEGER}, #{calHr,jdbcType=INTEGER}, #{calId,jdbcType=INTEGER}, 
+    values (#{id,jdbcType=INTEGER}, #{calHr,jdbcType=VARCHAR}, #{calId,jdbcType=VARCHAR}, 
       #{calName,jdbcType=VARCHAR}, #{calBasic,jdbcType=REAL}, #{calPost,jdbcType=REAL}, 
       #{calFloat,jdbcType=REAL}, #{calCoefficient,jdbcType=REAL}, #{calSecrecy,jdbcType=REAL}, 
       #{calSkillLevel,jdbcType=REAL}, #{calComage,jdbcType=REAL}, #{calBonus,jdbcType=REAL}, 
@@ -195,10 +195,10 @@
         #{id,jdbcType=INTEGER},
       </if>
       <if test="calHr != null">
-        #{calHr,jdbcType=INTEGER},
+        #{calHr,jdbcType=VARCHAR},
       </if>
       <if test="calId != null">
-        #{calId,jdbcType=INTEGER},
+        #{calId,jdbcType=VARCHAR},
       </if>
       <if test="calName != null">
         #{calName,jdbcType=VARCHAR},
@@ -302,10 +302,10 @@
     update calculate_
     <set>
       <if test="calHr != null">
-        cal_hr = #{calHr,jdbcType=INTEGER},
+        cal_hr = #{calHr,jdbcType=VARCHAR},
       </if>
       <if test="calId != null">
-        cal_id = #{calId,jdbcType=INTEGER},
+        cal_id = #{calId,jdbcType=VARCHAR},
       </if>
       <if test="calName != null">
         cal_name = #{calName,jdbcType=VARCHAR},
@@ -408,8 +408,8 @@
   </update>
   <update id="updateByPrimaryKey" parameterType="com.tl.sm.pojo.Salary">
     update calculate_
-    set cal_hr = #{calHr,jdbcType=INTEGER},
-      cal_id = #{calId,jdbcType=INTEGER},
+    set cal_hr = #{calHr,jdbcType=VARCHAR},
+      cal_id = #{calId,jdbcType=VARCHAR},
       cal_name = #{calName,jdbcType=VARCHAR},
       cal_basic = #{calBasic,jdbcType=REAL},
       cal_post = #{calPost,jdbcType=REAL},
@@ -461,7 +461,7 @@
       cal_last_withhold,cal_date)
     values 
     <foreach collection="list" item="item" index="index" separator=",">
-    ( #{item.calHr,jdbcType=INTEGER}, #{item.calId,jdbcType=INTEGER}, 
+    ( #{item.calHr,jdbcType=VARCHAR}, #{item.calId,jdbcType=VARCHAR}, 
       #{item.calName,jdbcType=VARCHAR}, #{item.calBasic,jdbcType=REAL}, #{item.calPost,jdbcType=REAL}, 
       #{item.calFloat,jdbcType=REAL}, #{item.calCoefficient,jdbcType=REAL}, #{item.calSecrecy,jdbcType=REAL}, 
       #{item.calSkillLevel,jdbcType=REAL}, #{item.calComage,jdbcType=REAL}, #{item.calBonus,jdbcType=REAL}, 
@@ -476,6 +476,27 @@
       <!-- (#{item}) -->
       </foreach>
   </insert>
+  
+  <!-- 查询所有 -->
+	<select id="listCal" resultMap="BaseResultMap">
+		select * from calculate_
+	</select>
+
+	<!-- 模糊查询 -->
+	<select id="listCalBlurry" resultMap="BaseResultMap">
+		select * from calculate_
+		<where>
+			<if test="cal_id!=null">
+				and cal_id like concat("%",#{cal_id},"%")
+			</if>
+			<if test="cal_name!=null">
+				and cal_name like "%"#{cal_name}"%"
+			</if>
+			<if test="cal_date!=null">
+				and cal_date like "%"#{cal_date}"%"
+			</if>
+		</where>
+	</select>
   
   
 </mapper>
