@@ -40,6 +40,7 @@ public class ExcelController {
 		String month = request.getParameter("calDate");
 		InputStream in = file.getInputStream();
 		// 数据导入
+		System.out.println(month);
 		salaryService.importExcelInfo(in, file, month, adminId);
 		in.close();
 		return "main";

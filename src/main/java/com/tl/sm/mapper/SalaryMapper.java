@@ -14,7 +14,7 @@ public interface SalaryMapper {
 
     int insertSelective(Salary record);
 
-    Salary selectByPrimaryKey(Integer id);
+    Salary selectByPrimaryKey(String id);
 
     int updateByPrimaryKeySelective(Salary record);
 
@@ -28,5 +28,5 @@ public interface SalaryMapper {
     
     //模糊查询
     List<Salary> listCalBlurry(@Param("cal_id") String calId,@Param("cal_name") String calName
-    		,@Param("cal_date") Date calDate);
+    		,@Param("cal_date") String calDate);
 }

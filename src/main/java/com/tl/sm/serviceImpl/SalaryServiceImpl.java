@@ -22,21 +22,25 @@ public class SalaryServiceImpl implements SalaryService{
 	@Resource
 	private SalaryMapper salaryMapper;
 	
+	//poiExcel导入
 	public void importExcelInfo(InputStream in, MultipartFile file, String calDate,Integer adminId) throws Exception{  
 	    List<List<Object>> listob = ExcelUtil.getBankListByExcel(in,file.getOriginalFilename());  
 	    List<Salary> salaryList = new ArrayList<Salary>();
-	    SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-mm-dd");
+	    SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
 	    //遍历listob数据，把数据放到List中  
 	    for (int i = 0; i < listob.size(); i++) {  
 	        List<Object> ob = listob.get(i);  
 	        Salary salary = new Salary();  
 	        //设置编号  String.valueOf(ob.get())
 	        //通过遍历实现把每一列封装成一个model中，再把所有的model用List集合装载 
+	        System.out.println(simpleDateFormat.parse(calDate));
 	        salary.setCalDate(simpleDateFormat.parse(calDate));
 	        salary.setCalHr(String.valueOf(ob.get(0).toString()));
 	        salary.setCalId(String.valueOf(ob.get(1).toString()));
 	        salary.setCalName(String.valueOf(ob.get(2)));
-	        salary.setCalBasic(Float.parseFloat(ob.get(3).toString()));
+	        if(ob.get(3)!=null) {
+	        	salary.setCalBasic(Float.parseFloat(ob.get(3).toString()));
+	        }
 	        salary.setCalPost(Float.parseFloat(ob.get(4).toString()));
 	        salary.setCalFloat(Float.parseFloat(ob.get(5).toString()));
 	        salary.setCalCoefficient(Float.parseFloat(ob.get(6).toString()));
@@ -64,7 +68,6 @@ public class SalaryServiceImpl implements SalaryService{
 	        salary.setCalWaste(Float.parseFloat(ob.get(28).toString()));
 	        salary.setCalLastWithhold(Float.parseFloat(ob.get(29).toString()));
 	        
-	        
 	        //计算所得税，应得工资，实发工资  
 	        
 	        
@@ -72,6 +75,55 @@ public class SalaryServiceImpl implements SalaryService{
 	    }  
 	    //批量插入  
 	    salaryMapper.insertForeach(salaryList);  
+	}
+
+	
+	//查询所有
+	public List<Salary> listCal() {
+		List<Salary> listCal = salaryMapper.listCal();
+		return listCal;
+	}
+
+	//模糊查询
+	public List<Salary> listCalBlurry(String calId, String calName, String calDate) {
+		List<Salary> listCalBlurry = salaryMapper.listCalBlurry(calId, calName, calDate);
+		return listCalBlurry;
+	}
+
+	//更新
+	public String updateCal(Salary salary) {
+		String message = "";
+		int i = salaryMapper.updateByPrimaryKeySelective(salary);
+		if(i>0) {
+			message = "修改成功";
+		}else {
+			message = "修改失败";
+		}
+		return message;
+	}
+
+	//单个删除
+	public String deleteCal(Integer id) {
+		String message = "";
+		int i = salaryMapper.deleteByPrimaryKey(id);
+		if(i>0) {
+			message = "删除成功";
+		}else {
+			message = "删除失败";
+		}
+		return message;
+	}
+
+	//增加
+	public String insertCal(Salary salary) {
+		String message = "";
+		int i = salaryMapper.insert(salary);
+		if(i>0) {
+			message = "添加成功";
+		}else {
+			message = "添加失败";
+		}
+		return message;
 	}
 	
 	

@@ -8,13 +8,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import com.tl.sm.mapper.AdminMapper;
-import com.tl.sm.mapper.DepartmentMapper;
-import com.tl.sm.mapper.EmployeeMapper;
+import com.tl.sm.mapper.SalaryMapper;
 import com.tl.sm.pojo.Admin;
-import com.tl.sm.pojo.Department;
-import com.tl.sm.pojo.Employee;
-import com.tl.sm.pojo.Insurance;
+import com.tl.sm.pojo.Salary;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration("classpath:applicationContext.xml")
@@ -27,7 +23,7 @@ public class MybatisTest {
 	private AdminMapper adminMapper;*/
 	
 	@Autowired
-	private EmployeeMapper employeeMapper;
+	private SalaryMapper salaryMapper;
 
 	/*@Test
 	public void testAdd() {
@@ -36,7 +32,7 @@ public class MybatisTest {
 		adminMapper.add(admin);
 	}*/
 
-	@Test
+	/*@Test
 	public void testList() {
 		List<Employee> cs=employeeMapper.listInner();
 		for (Employee c : cs) {
@@ -46,14 +42,14 @@ public class MybatisTest {
 				System.out.println(i.getInsName());
 			}
 		}
-	}
-
-	/*@Test
-	public void listAdmin() {
-		List<Admin> cs=adminMapper.list();
-		for (Admin c : cs) {
-			System.out.println(c.getAdm_count());
-		}
 	}*/
+
+	@Test
+	public void listAdmin() {
+		List<Salary> cs=salaryMapper.listCalBlurry("", "", "2017");
+		for (Salary c : cs) {
+			System.out.println(c.getCalDate());
+		}
+	}
 	
 }

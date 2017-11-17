@@ -25,11 +25,16 @@ public class JumpController {
 	
 	@RequestMapping("/salary")
 	public String importExcel(HttpServletRequest request,HttpServletResponse response) {
-		return "salary";
+		return "excel";
 	}
 	
 	@RequestMapping("/insuranceAdd")
 	public String insuranceAdd(HttpServletRequest request,HttpServletResponse response) {
 		return "add/insuranceAdd";
+	}
+	
+	@RequestMapping("/calculateAdd")
+	public String calculateAdd(HttpServletRequest request,HttpServletResponse response) {
+		return "add/calculateAdd";
 	}
 }

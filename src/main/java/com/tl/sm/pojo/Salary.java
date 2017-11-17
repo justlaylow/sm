@@ -1,6 +1,7 @@
 package com.tl.sm.pojo;
 
 import java.util.Date;
+import java.util.List;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -75,8 +76,18 @@ public class Salary {
     private Float calLastWithhold;
 
     private Float calIncometax;
+    
+    private List<Employee> calEmployee;
 
-    public Integer getId() {
+    public List<Employee> getCalEmployee() {
+		return calEmployee;
+	}
+
+	public void setCalEmployee(List<Employee> calEmployee) {
+		this.calEmployee = calEmployee;
+	}
+
+	public Integer getId() {
         return id;
     }
 

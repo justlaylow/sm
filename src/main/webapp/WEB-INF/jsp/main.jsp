@@ -34,7 +34,7 @@
 					<br>
 					<a href="#"><li>人员岗位维护</li></a>
 					<br>
-					<a href="#"><li>工资维护</li></a>
+					<a href="/sm/list/sal"><li>工资维护</li></a>
 					<br>
 					<a href="/sm/salary"><li>工资表数据导入</li></a>
 					<br>
