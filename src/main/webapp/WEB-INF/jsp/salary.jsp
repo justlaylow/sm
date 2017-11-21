@@ -5,38 +5,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>保险金维护</title>
-<script type="text/javascript">
-	//刷新
-	function reload(){
-		window.location.href="/sm/list/sal"; 
-	}
-	
-	//新增工资信息
-	function calAdd(){
-		window.location.href="/sm/calculateAdd"; 
-	}
-	
-	//删除信息
- 	function del(calId){
- 		if(confirm("您确认删除吗？")){   
-            //如果确定删除就访问servlet，这里超链接传值传的是方法里的参数           
-            window.location.href="/sm/delete/sal/?id="+calId;
-        }
-	}
-	
-	//模糊查询
-	function blurrySeach(calId,calName,calDate){
-		calId = document.getElementById("calId").value;
-		calName = document.getElementById("calName").value;
-		calDate = document.getElementById("calDate").value;
-		
-		window.location.href="/sm/blurry/sal/?calId="+calId+"&calName="+calName+"&calDate="+calDate;
-		
-	}
-	
-</script>
-
+<title>工资维护</title>
 </head>
 <body>
 	<div class="container">
@@ -55,8 +24,7 @@
 						<button class="btn btn-default" type="button"
 							onclick="blurrySeach()">搜索</button>
 					</span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 工资时间：<input type="text"
-						placeholder="Search for..." name="calDate" id="calDate"
-						value="${param.calDate}"> <span>
+						placeholder="Search for..." name="calDate" id="calDate"> <span>
 						<button class="btn btn-default" type="button"
 							onclick="blurrySeach()">搜索</button>
 					</span>
@@ -222,5 +190,40 @@
 			</div>
 		</div>
 	</div>
+
+<script type="text/javascript">
+	//刷新
+	function reload(){
+		window.location.href="/sm/list/sal"; 
+	}
+	
+	//新增工资信息
+	function calAdd(){
+		window.location.href="/sm/calculateAdd"; 
+	}
+	
+	//删除信息
+ 	function del(calId){
+ 		if(confirm("您确认删除吗？")){   
+            //如果确定删除就访问servlet，这里超链接传值传的是方法里的参数           
+            window.location.href="/sm/delete/sal/?id="+calId;
+        }
+	}
+	
+	//模糊查询
+	function blurrySeach(calId,calName,calDate){
+		calId = document.getElementById("calId").value;
+		calName = document.getElementById("calName").value;
+		calDate = document.getElementById("calDate").value;
+		
+		window.location.href="/sm/blurry/sal/?calId="+calId+"&calName="+calName+"&calDate="+calDate;
+		
+	}
+	
+	$('#calDate').dcalendarpicker({
+		format:'yyyy-mm-dd'
+	});
+	
+</script>
 </body>
 </html>

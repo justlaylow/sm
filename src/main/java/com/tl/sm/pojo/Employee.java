@@ -33,8 +33,19 @@ public class Employee {
     
     //员工保险信息
     private List<Insurance> salInsuranceList;
+    
+    //员工工资信息
+    private List<Salary> salSalaryList;
 
-    public List<Insurance> getSalInsuranceList() {
+    public List<Salary> getSalSalaryList() {
+		return salSalaryList;
+	}
+
+	public void setSalSalaryList(List<Salary> salSalaryList) {
+		this.salSalaryList = salSalaryList;
+	}
+
+	public List<Insurance> getSalInsuranceList() {
 		return salInsuranceList;
 	}
 

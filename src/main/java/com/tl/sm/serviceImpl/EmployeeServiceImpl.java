@@ -7,7 +7,11 @@ import javax.annotation.Resource;
 import org.springframework.stereotype.Service;
 
 import com.tl.sm.mapper.EmployeeMapper;
+import com.tl.sm.mapper.InsuranceMapper;
+import com.tl.sm.mapper.SalaryMapper;
 import com.tl.sm.pojo.Employee;
+import com.tl.sm.pojo.Insurance;
+import com.tl.sm.pojo.Salary;
 import com.tl.sm.service.EmployeeService;
 
 @Service
@@ -42,7 +46,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 	// 修改员工
 	public String updateEmp(Employee employee) {
 		String message = "";
-		int i = employeeMapper.updateByPrimaryKey(employee);
+		int i = employeeMapper.updateByPrimaryKeySelective(employee);
 		if (i > 0) {
 			message = "修改成功";
 		} else {
@@ -69,5 +73,10 @@ public class EmployeeServiceImpl implements EmployeeService {
 		return empBlurryList;
 	}
 
+	//查询员工，保险，工资信息
+	public List<Employee> listAll(String calDate,String salId) {
+		List<Employee> listAll = employeeMapper.listAll(calDate,salId);
+		return listAll;
+	}
 
 }

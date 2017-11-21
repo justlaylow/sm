@@ -37,4 +37,14 @@ public class JumpController {
 	public String calculateAdd(HttpServletRequest request,HttpServletResponse response) {
 		return "add/calculateAdd";
 	}
+	
+	@RequestMapping("/allInform")
+	public String allInfo(HttpServletRequest request,HttpServletResponse response) {
+		return "allInfo";
+	}
+	
+	@RequestMapping("/exportExcel")
+	public String exportExcel(HttpServletRequest request,HttpServletResponse response) {
+		return "excelExport";
+	}
 }

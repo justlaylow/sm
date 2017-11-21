@@ -1,17 +1,24 @@
 package com.tl.sm.serviceImpl;
 
+import java.beans.IntrospectionException;
 import java.io.InputStream;
+import java.lang.reflect.InvocationTargetException;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.annotation.Resource;
 
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.tl.sm.mapper.SalaryMapper;
+import com.tl.sm.pojo.ExcelBean;
 import com.tl.sm.pojo.Salary;
 import com.tl.sm.service.SalaryService;
 import com.tl.sm.util.ExcelUtil;
@@ -127,6 +134,62 @@ public class SalaryServiceImpl implements SalaryService{
 	}
 	
 	
-	
+	/**
+     * 导出
+     * @param salaryDate
+     * @return
+     * @throws InvocationTargetException
+     * @throws ClassNotFoundException
+     * @throws IntrospectionException
+     * @throws ParseException
+     * @throws IllegalAccessException
+     */
+    public XSSFWorkbook exportExcelInfo(String calDate) throws InvocationTargetException, ClassNotFoundException, IntrospectionException, ParseException, IllegalAccessException{
+        //根据条件查询数据，把数据装载到一个list中
+        List<Salary> list = salaryMapper.selectCal(calDate);
+
+        List<ExcelBean> excel=new ArrayList<ExcelBean>();
+        Map<Integer,List<ExcelBean>> map=new LinkedHashMap<Integer,List<ExcelBean>>();
+        XSSFWorkbook xssfWorkbook=null;
+        //设置标题栏
+        excel.add(new ExcelBean("HR号","calId",0));
+        excel.add(new ExcelBean("工号","calName",0));
+        excel.add(new ExcelBean("姓名","calDate",0));
+        excel.add(new ExcelBean("基本工资","calBasic",0));
+        excel.add(new ExcelBean("岗位工资","calId",0));
+        excel.add(new ExcelBean("浮动工资","calId",0));
+        excel.add(new ExcelBean("系数","calId",0));
+        excel.add(new ExcelBean("保密工资","calId",0));
+        excel.add(new ExcelBean("技能等级工资","calId",0));
+        excel.add(new ExcelBean("司龄工资","calId",0));
+        excel.add(new ExcelBean("奖金","calId",0));
+        excel.add(new ExcelBean("加班工资","calId",0));
+        excel.add(new ExcelBean("津贴","calId",0));
+        excel.add(new ExcelBean("考评工资","calId",0));
+        excel.add(new ExcelBean("工伤工资","calId",0));
+        excel.add(new ExcelBean("缺勤","calId",0));
+        excel.add(new ExcelBean("其他","calId",0));
+        excel.add(new ExcelBean("罚款","calId",0));
+        excel.add(new ExcelBean("扣款","calId",0));
+        excel.add(new ExcelBean("水电","calId",0));
+        excel.add(new ExcelBean("餐补","calId",0));
+        excel.add(new ExcelBean("会费","calId",0));
+        excel.add(new ExcelBean("工时","calId",0));
+        excel.add(new ExcelBean("工价","calId",0));
+        excel.add(new ExcelBean("效益工资","calId",0));
+        excel.add(new ExcelBean("工时奖","calId",0));
+        excel.add(new ExcelBean("工时工资","calId",0));
+        excel.add(new ExcelBean("福利","calId",0));
+        excel.add(new ExcelBean("工废","calId",0));
+        excel.add(new ExcelBean("上月扣款","calId",0));
+        excel.add(new ExcelBean("所得税","calId",0));
+        excel.add(new ExcelBean("应发工资","calId",0));
+        excel.add(new ExcelBean("实得工资","calId",0));
+        map.put(0, excel);
+        String sheetName = calDate + "月份工资";
+        //调用ExcelUtil的方法
+        xssfWorkbook = ExcelUtil.createExcelFile(Salary.class, list, map, sheetName);
+        return xssfWorkbook;
+    }
 	
 }

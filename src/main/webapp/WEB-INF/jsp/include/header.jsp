@@ -19,4 +19,6 @@
 	href="${path}/css/bootstrap/3.3.6/bootstrap.min.css">
 <link rel="stylesheet"
 	href="${path}/css/bootstrap/3.3.6/bootstrap-theme.min.css">
+<link rel="stylesheet" href="${path}/css/calendar/dcalendar.picker.css"/>
 <script type="text/javascript" src="${path}/js/bootstrap/bootstrap.min.js"></script>
+<script type="text/javascript" src="${path}/js/calendar/dcalendar.picker.js"></script>

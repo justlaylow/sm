@@ -1,5 +1,7 @@
 
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.List;
 
 import org.junit.Test;
@@ -8,22 +10,21 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import com.tl.sm.mapper.SalaryMapper;
-import com.tl.sm.pojo.Admin;
-import com.tl.sm.pojo.Salary;
+import com.tl.sm.mapper.EmployeeMapper;
+import com.tl.sm.pojo.Employee;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration("classpath:applicationContext.xml")
 public class MybatisTest {
 
-	/*@Autowired
-	private EmployeeMapper employeeMapper;*/
+	@Autowired
+	private EmployeeMapper employeeMapper;
 	
 	/*@Autowired
 	private AdminMapper adminMapper;*/
 	
-	@Autowired
-	private SalaryMapper salaryMapper;
+	/*@Autowired
+	private SalaryMapper salaryMapper;*/
 
 	/*@Test
 	public void testAdd() {
@@ -44,12 +45,5 @@ public class MybatisTest {
 		}
 	}*/
 
-	@Test
-	public void listAdmin() {
-		List<Salary> cs=salaryMapper.listCalBlurry("", "", "2017");
-		for (Salary c : cs) {
-			System.out.println(c.getCalDate());
-		}
-	}
 	
 }

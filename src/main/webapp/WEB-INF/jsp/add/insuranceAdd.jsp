@@ -25,7 +25,7 @@
 				</tr>
 				<tr>
 					<td><label>性别:</label></td><td> <input name="insSex"></td>
-					<td><label>出生日期:</label></td><td> <input type="text" name="insBoth"></td>
+					<td><label>出生日期:</label></td><td> <input type="text" name="insBoth" id="calendar"></td>
 				</tr>
 				<tr>
 					<td><label>身份证号:</label></td><td> <input name="insIden"></td>
@@ -69,5 +69,11 @@
 			<input class="btn btn-primary" type="submit" value="添加">
 		</form>
 	</div>
+	
+<script type="text/javascript">
+	$('#calendar').dcalendarpicker({
+		format:'yyyy-mm-dd'
+	});
+</script>
 </body>
 </html>

@@ -45,6 +45,36 @@ public class ExcelController {
 		in.close();
 		return "main";
 	}
+	
+	//导出
+	@RequestMapping("/export")
+    @ResponseBody
+    public  void excelAvdImpot(HttpServletRequest request, HttpServletResponse response) throws ClassNotFoundException, IntrospectionException, IllegalAccessException, ParseException, InvocationTargetException {
+        String calDate = request.getParameter("calDate");
+        if(calDate!=""){
+            response.reset(); //清除buffer缓存
+            Map<String,Object> map=new HashMap<String,Object>();
+            // 指定下载的文件名
+            response.setHeader("Content-Disposition", "attachment;filename="+calDate+"工资信息.xlsx");
+            response.setContentType("application/vnd.ms-excel;charset=UTF-8");
+            response.setHeader("Pragma", "no-cache");
+            response.setHeader("Cache-Control", "no-cache");
+            response.setDateHeader("Expires", 0);
+            XSSFWorkbook workbook=null;
+            //导出Excel对象
+            workbook = salaryService.exportExcelInfo(calDate);
+            OutputStream output;
+            try {
+                output = response.getOutputStream();
+                BufferedOutputStream bufferedOutPut = new BufferedOutputStream(output);
+                bufferedOutPut.flush();
+                workbook.write(bufferedOutPut);
+                bufferedOutPut.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
 
 	
 }

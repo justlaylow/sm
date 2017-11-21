@@ -1,5 +1,6 @@
 package com.tl.sm.controller;
 
+import java.text.ParseException;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -9,8 +10,9 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.tl.sm.pojo.Department;
 import com.tl.sm.pojo.Employee;
+import com.tl.sm.pojo.Insurance;
+import com.tl.sm.pojo.Salary;
 import com.tl.sm.service.EmployeeService;
 
 @Controller
@@ -64,5 +66,15 @@ public class EmployeeController {
 		request.setAttribute("empList", empList);
 		return "employee";
 	}
+	
+	// 查询所有员工,保险,工资信息
+	@RequestMapping("/list/all")
+	public String listAll(String salId,String calDate,HttpServletRequest request) throws ParseException {
+		List<Employee> ListAll = employeeService.listAll(calDate,salId);
+		request.setAttribute("listAll", ListAll);
+		return "allInfo";
+	}
+	
+	
 
 }

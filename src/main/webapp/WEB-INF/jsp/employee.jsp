@@ -134,7 +134,6 @@
 					style="white-space: nowrap;">
 					<thead>
 						<tr>
-							<th>删除</th>
 							<th>修改</th>
 							<th>姓名</th>
 							<th>工号</th>
@@ -187,10 +186,6 @@
 						<c:forEach var="emp" items="${empList}">
 							<c:if test="${emp.salName!=null }">
 								<tr>
-									<!-- 删除部门 -->
-									<td><button type="button" id="deleteDep"
-											class="btn btn-primary" onclick="del(${emp.salId})">删除</button></td>
-	
 									<!-- 修改信息 -->
 									<td><button type="button" id="updateDep"
 											class="btn btn-primary" data-toggle="modal"

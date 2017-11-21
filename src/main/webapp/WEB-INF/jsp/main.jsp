@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<title>工资管理系统</title>
 </head>
 <body>
 	<div class="container">
@@ -22,7 +22,7 @@
 
 				</nav>
 				<ul>
-					<a href="#"><li>初始化</li></a>
+					<a href="/sm/allInform"><li>进入查询</li></a>
 					<br>
 					<a href="/sm/list/emp"><li>员工维护</li></a>
 					<br>
@@ -38,7 +38,7 @@
 					<br>
 					<a href="/sm/salary"><li>工资表数据导入</li></a>
 					<br>
-					<a href="#"><li>工资表数据导出</li></a>
+					<a href="/sm/exportExcel"><li>工资表数据导出</li></a>
 					<br>
 				</ul>
 			</div>

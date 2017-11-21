@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.tl.sm.mapper.AllInfoMapper">
+	
+	<!-- 三表联合更新 -->
+	<update id="updateAllByPrimaryKeySelective" parameterType="com.tl.sm.pojo.AllInfo">
+		UPDATE employee_ e INNER JOIN insurance_ i
+		ON e.sal_id = i.ins_id inner join calculate_ c on e.sal_id = c.cal_id
+		<set>
+			<if test="bankAccount != null">
+				bank_account = #{bankAccount,jdbcType=VARCHAR},
+			</if>
+			<if test="calName != null">
+				sal_name = #{calName,jdbcType=VARCHAR},
+				cal_name = #{calName,jdbcType=VARCHAR},
+				ins_name = #{calName,jdbcType=VARCHAR},
+			</if>
+			<if test="postCategory != null">
+				post_category = #{postCategory,jdbcType=VARCHAR},
+			</if>
+			<if test="salId != null">
+				sal_id = #{salId,jdbcType=VARCHAR},
+				cal_id = #{salId,jdbcType=VARCHAR},
+				ins_id = #{salId,jdbcType=VARCHAR},
+			</if>
+			<if test="salDep != null">
+				sal_dep = #{salDep,jdbcType=VARCHAR},
+			</if>
+			<if test="salPost != null">
+				sal_post = #{salPost,jdbcType=VARCHAR},
+			</if>
+			<if test="calDate != null">
+				cal_date = #{calDate,jdbcType=DATE},
+			</if>
+			<if test="salOa != null">
+				sal_oa = #{salOa,jdbcType=VARCHAR},
+			</if>
+			<if test="staCategory != null">
+				sta_category = #{staCategory,jdbcType=VARCHAR},
+			</if>
+			<if test="salRemark != null">
+				sal_remark = #{salRemark,jdbcType=VARCHAR},
+			</if>
+			<if test="salSkilllevel != null">
+				sal_skilllevel = #{salSkilllevel,jdbcType=VARCHAR},
+			</if>
+			<if test="insOld != null">
+		        ins_old = #{insOld,jdbcType=VARCHAR},
+		    </if>
+		    <if test="insTreatments != null">
+		        ins_treatments = #{insTreatments,jdbcType=VARCHAR},
+		    </if>
+		    <if test="insIll != null">
+		        ins_ill = #{insIll,jdbcType=VARCHAR},
+		    </if>
+		    <if test="insUnemp != null">
+		        ins_unemp = #{insUnemp,jdbcType=VARCHAR},
+		    </if>
+		    <if test="insAccFund != null">
+		        ins_acc_fund = #{insAccFund,jdbcType=VARCHAR},
+		    </if>
+		    <if test="calBasic != null">
+		        cal_basic = #{calBasic,jdbcType=REAL},
+		    </if>
+		    <if test="calPost != null">
+		        cal_post = #{calPost,jdbcType=REAL},
+		    </if>
+		    <if test="calCoefficient != null">
+		        cal_coefficient = #{calCoefficient,jdbcType=REAL},
+		    </if>
+		    <if test="calSecrecy != null">
+		        cal_secrecy = #{calSecrecy,jdbcType=REAL},
+		    </if>
+		    <if test="calSkillLevel != null">
+		        cal_skill_level = #{calSkillLevel,jdbcType=REAL},
+		    </if>
+		    <if test="calComage != null">
+		        cal_comage = #{calComage,jdbcType=REAL},
+		    </if>
+		    <if test="calBonus != null">
+		        cal_bonus = #{calBonus,jdbcType=REAL},
+		    </if>
+		    <if test="calOvertime != null">
+		        cal_overtime = #{calOvertime,jdbcType=REAL},
+		    </if>
+		    <if test="calBenefit != null">
+		        cal_benefit = #{calBenefit,jdbcType=REAL},
+		    </if>
+		    <if test="calCheck != null">
+		        cal_check = #{calCheck,jdbcType=REAL},
+		    </if>
+		    <if test="calInjury != null">
+		        cal_injury = #{calInjury,jdbcType=REAL},
+		    </if>
+		    <if test="calLeave != null">
+		        cal_leave = #{calLeave,jdbcType=REAL},
+		    </if>
+		    <if test="calOther != null">
+		        cal_other = #{calOther,jdbcType=REAL},
+		    </if>
+		    <if test="calPenalty != null">
+		        cal_penalty = #{calPenalty,jdbcType=REAL},
+		    </if>
+		    <if test="calWithhold != null">
+		        cal_withhold = #{calWithhold,jdbcType=REAL},
+		    </if>
+		    <if test="calWaterandele != null">
+		        cal_waterandele = #{calWaterandele,jdbcType=REAL},
+		    </if>
+		    <if test="calAllowance != null">
+		        cal_allowance = #{calAllowance,jdbcType=REAL},
+		    </if>
+		    <if test="calResult != null">
+		        cal_result = #{calResult,jdbcType=REAL},
+		    </if>
+		    <if test="calDues != null">
+		        cal_dues = #{calDues,jdbcType=REAL},
+		    </if>
+		    <if test="calManhour != null">
+		        cal_manhour = #{calManhour,jdbcType=REAL},
+		    </if>
+		    <if test="labourCost != null">
+		        labour_cost = #{labourCost,jdbcType=REAL},
+		    </if>
+		    <if test="calBenefitwage != null">
+		        cal_benefitwage = #{calBenefitwage,jdbcType=REAL},
+		    </if>
+		    <if test="calManhourBonus != null">
+		        cal_manhour_bonus = #{calManhourBonus,jdbcType=REAL},
+		    </if>
+		    <if test="calManhourSalary != null">
+		        cal_manhour_salary = #{calManhourSalary,jdbcType=REAL},
+		    </if>
+		    <if test="calWelfare != null">
+		        cal_welfare = #{calWelfare,jdbcType=REAL},
+		    </if>
+		    <if test="calShould != null">
+		        cal_should = #{calShould,jdbcType=REAL},
+		    </if>
+		    <if test="calWaste != null">
+		        cal_waste = #{calWaste,jdbcType=REAL},
+		    </if>
+		    <if test="calLastWithhold != null">
+		        cal_last_withhold = #{calLastWithhold,jdbcType=REAL},
+		    </if>
+		    <if test="calIncometax != null">
+		        cal_incometax = #{calIncometax,jdbcType=REAL},
+		    </if>
+		</set>
+		where sal_id = #{salId,jdbcType=VARCHAR} and cal_date = #{calDate}
+	</update>
+	
+	<!-- 删除 -->
+	<delete id="deleteEmp" parameterType="string">
+		delete from employee_
+		where sal_id = #{salId,jdbcType=VARCHAR}
+	</delete>
+	<delete id="deleteCal" parameterType="string">
+		delete from calculate_
+		where cal_id = #{calId,jdbcType=VARCHAR}
+	</delete>
+	<delete id="deleteIns" parameterType="string">
+		delete from insurance_
+		where ins_id = #{insId,jdbcType=VARCHAR}
+	</delete>
+
+</mapper>

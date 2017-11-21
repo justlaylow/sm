@@ -1,8 +1,12 @@
 package com.tl.sm.service;
 
+import java.text.ParseException;
+import java.util.Date;
 import java.util.List;
 
 import com.tl.sm.pojo.Employee;
+import com.tl.sm.pojo.Insurance;
+import com.tl.sm.pojo.Salary;
 
 public interface EmployeeService {
 	
@@ -23,4 +27,8 @@ public interface EmployeeService {
 	
 	//模糊查询
 	public List<Employee> listEmpBlurry(String name,String id,String oa);
+	
+	//查询员工，保险，工资信息
+	public List<Employee> listAll(String calDate,String salId);
+	
 }

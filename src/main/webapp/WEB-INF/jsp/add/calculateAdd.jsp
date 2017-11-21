@@ -61,7 +61,7 @@
 				</tr>
 				<tr>
 					<td><label>餐补:</label></td><td> <input name="calAllowance"></td>
-					<td><label>工资时间:</label></td><td> <input type="text" name="calDate" required="true"></td>
+					<td><label>工资时间:</label></td><td> <input type="text" name="calDate" required="true" id="calendar"></td>
 				</tr>
 				<tr>
 					<td><label>会费:</label></td><td> <input name="calDues"></td>
@@ -93,5 +93,11 @@
 			<input class="btn btn-primary" type="submit" value="添加">
 		</form>
 	</div>
+	
+<script type="text/javascript">
+	$('#calendar').dcalendarpicker({
+		format:'yyyy-mm-dd'
+	});
+</script>
 </body>
 </html>

@@ -1,5 +1,6 @@
 package com.tl.sm.mapper;
 
+import java.util.Date;
 import java.util.List;
 
 import org.apache.ibatis.annotations.Param;
@@ -25,4 +26,8 @@ public interface EmployeeMapper {
     		@Param("sal_oa") String salOa);
     
     List<Employee> listInner();
+    
+    //三表查询
+    List<Employee> listAll(@Param("cal_date") String calDate,@Param("sal_id") String salId);
+    
 }
