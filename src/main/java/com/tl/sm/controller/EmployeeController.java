@@ -10,6 +10,7 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.tl.sm.pojo.Department;
 import com.tl.sm.pojo.Employee;
 import com.tl.sm.pojo.Insurance;
 import com.tl.sm.pojo.Salary;
@@ -26,6 +27,8 @@ public class EmployeeController {
 	public String listEmp(HttpServletRequest request) {
 		List<Employee> empList = employeeService.listInner();
 		request.setAttribute("empList", empList);
+		List<Department> listDep = employeeService.listDep();
+		request.setAttribute("listDep", listDep);
 		return "employee";
 	}
 
@@ -34,6 +37,8 @@ public class EmployeeController {
 	public String insertEmp(Employee employee, HttpServletRequest request) {
 		String insertEmp = employeeService.insertEmp(employee);
 		List<Employee> empList = employeeService.listInner();
+		List<Department> listDep = employeeService.listDep();
+		request.setAttribute("listDep", listDep);
 		request.setAttribute("empList", empList);
 		request.setAttribute("insertEmp", insertEmp);
 		return "employee";
@@ -54,6 +59,8 @@ public class EmployeeController {
 	public String deleteEmp(String salId,HttpServletRequest request) {
 		String deleteEmp = employeeService.deleteEmp(salId);
 		List<Employee> empList = employeeService.listInner();
+		List<Department> listDep = employeeService.listDep();
+		request.setAttribute("listDep", listDep);
 		request.setAttribute("empList", empList);
 		request.setAttribute("deleteEmp", deleteEmp);
 		return "employee";
@@ -63,6 +70,8 @@ public class EmployeeController {
 	@RequestMapping("/blurry/emp")
 	public String blurryEmp(Employee employee,String salName,String salOa,String salId,HttpServletRequest request) {
 		List<Employee> empList = employeeService.listEmpBlurry(salName, salId, salOa);
+		List<Department> listDep = employeeService.listDep();
+		request.setAttribute("listDep", listDep);
 		request.setAttribute("empList", empList);
 		return "employee";
 	}
@@ -71,6 +80,8 @@ public class EmployeeController {
 	@RequestMapping("/list/all")
 	public String listAll(String salId,String calDate,HttpServletRequest request) throws ParseException {
 		List<Employee> ListAll = employeeService.listAll(calDate,salId);
+		List<Department> listDep = employeeService.listDep();
+		request.setAttribute("listDep", listDep);
 		request.setAttribute("listAll", ListAll);
 		return "allInfo";
 	}

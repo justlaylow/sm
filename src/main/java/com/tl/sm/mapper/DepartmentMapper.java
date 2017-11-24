@@ -16,8 +16,12 @@ public interface DepartmentMapper {
 	Department selectByPrimaryKey(Integer id);
 
 	int updateByPrimaryKeySelective(Department record);
+	
+	List<Department> DepName(@Param("id") Integer id);
 
 	int updateByPrimaryKey(Department record);
+	
+	int updateEmpDep(@Param("sal_dep") String salDep,@Param("sal_dep2") String salDepName);
 
 	List<Department> listAll();
 

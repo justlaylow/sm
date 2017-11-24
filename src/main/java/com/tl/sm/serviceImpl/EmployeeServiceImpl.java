@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import com.tl.sm.mapper.EmployeeMapper;
 import com.tl.sm.mapper.InsuranceMapper;
 import com.tl.sm.mapper.SalaryMapper;
+import com.tl.sm.pojo.Department;
 import com.tl.sm.pojo.Employee;
 import com.tl.sm.pojo.Insurance;
 import com.tl.sm.pojo.Salary;
@@ -23,6 +24,12 @@ public class EmployeeServiceImpl implements EmployeeService {
 	public List<Employee> listEmp() {
 		List<Employee> empList = employeeMapper.listEmp();
 		return empList;
+	}
+	
+	//查询部门
+	public List<Department> listDep(){
+		List<Department> listDep = employeeMapper.listDep();
+		return listDep;
 	}
 	
 	// 查询所有员工和员工保险
@@ -60,9 +67,9 @@ public class EmployeeServiceImpl implements EmployeeService {
 		String message = "";
 		int i = employeeMapper.deleteByPrimaryKey(salId);
 		if (i > 0) {
-			message = "修改成功";
+			message = "删除成功";
 		} else {
-			message = "修改失败";
+			message = "删除失败";
 		}
 		return message;
 	}

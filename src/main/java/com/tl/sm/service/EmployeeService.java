@@ -4,6 +4,7 @@ import java.text.ParseException;
 import java.util.Date;
 import java.util.List;
 
+import com.tl.sm.pojo.Department;
 import com.tl.sm.pojo.Employee;
 import com.tl.sm.pojo.Insurance;
 import com.tl.sm.pojo.Salary;
@@ -12,6 +13,9 @@ public interface EmployeeService {
 	
 	//查询所有员工
 	public List<Employee> listEmp();
+	
+	//查询部门
+	public List<Department> listDep();
 	
 	//查询所有员工和保险
 	public List<Employee> listInner();

@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ include file="/WEB-INF/jsp/include/header.jsp"%>
+<%@ include file="/WEB-INF/jsp/include/background.jsp"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -36,7 +37,7 @@
 	<div class="container">
 		<div class="row clearfix">
 			<div class="col-md-12 column">
-				<h3 class="text-center text-info">部门管理</h3>
+				<h3 class="text-center text-info">部 门 管 理</h3>
 				<br /> <br />
 				<div class="input-group">
 					部门代码：<input type="text" placeholder="Search for..." name="depId" id="depId" value="${param.depId}">
@@ -54,10 +55,10 @@
 				<%@ include file="/WEB-INF/jsp/include/main.jsp"%>
 				
 				<!-- 刷新 -->
-				<button type="button" class="btn btn-primary" onclick="reload()">刷新</button>
+				<button type="button" class="btn btn-default" onclick="reload()">刷新</button>
 				
 				<!-- 添加部门 -->
-				<button type="button" class="btn btn-primary" data-toggle="modal"
+				<button type="button" class="btn btn-success" data-toggle="modal"
 					data-target="#myModal">添加部门</button>
 				<div class="modal fade" id="myModal" data-backdrop="static"
 					tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
@@ -120,10 +121,10 @@
 								<td>${dep.depCostCategory}</td>
 								<td>${dep.depRemark}</td>
 								<!-- 删除部门 -->
-								<td><button type="button" id="deleteDep" class="btn btn-primary" onclick="del(${dep.id})">删除</button></td>
+								<td><button type="button" id="deleteDep" class="btn btn-warning" onclick="del(${dep.id})">删除</button></td>
 								
 								<!-- 修改部门信息 -->
-								<td><button type="button" id="updateDep" class="btn btn-primary" data-toggle="modal" data-target="#upd${dep.id}">修改</button>
+								<td><button type="button" id="updateDep" class="btn btn-default" data-toggle="modal" data-target="#upd${dep.id}">修改</button>
 									<div class="modal fade" id="upd${dep.id}" data-backdrop="static"
 											tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
 										<div class="modal-dialog">

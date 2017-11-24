@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.tl.sm.mapper.EmployeeMapper">
 	<resultMap id="BaseResultMap" type="com.tl.sm.pojo.Employee">
-		<id column="e_Id" jdbcType="INTEGER" property="id" />
+		<id column="Id" jdbcType="INTEGER" property="id" />
 		<result column="bank_account" jdbcType="VARCHAR" property="bankAccount" />
 		<result column="sal_name" jdbcType="VARCHAR" property="salName" />
 		<result column="post_category" jdbcType="VARCHAR" property="postCategory" />
@@ -15,9 +15,17 @@
 		<result column="sal_remark" jdbcType="VARCHAR" property="salRemark" />
 		<result column="sal_skilllevel" jdbcType="VARCHAR" property="salSkilllevel" />
 	</resultMap>
+	
+	<resultMap id="BaseDepMap" type="com.tl.sm.pojo.Department">
+		<id column="d_Id" jdbcType="INTEGER" property="id" />
+		<result column="dep_id" jdbcType="VARCHAR" property="depId" />
+		<result column="dep_name" jdbcType="VARCHAR" property="depName" />
+		<result column="dep_cost_category" jdbcType="VARCHAR" property="depCostCategory" />
+		<result column="dep_remark" jdbcType="VARCHAR" property="depRemark" />
+	</resultMap>
 
 	<resultMap id="innerMap" type="com.tl.sm.pojo.Employee">
-		<id column="e_Id" jdbcType="INTEGER" property="id" />
+		<id column="Id" jdbcType="INTEGER" property="id" />
 		<result column="bank_account" jdbcType="VARCHAR" property="bankAccount" />
 		<result column="sal_name" jdbcType="VARCHAR" property="salName" />
 		<result column="post_category" jdbcType="VARCHAR" property="postCategory" />
@@ -57,7 +65,7 @@
 	</resultMap>
 	
 	<resultMap id="allMap" type="com.tl.sm.pojo.Employee">
-		<id column="e_Id" jdbcType="INTEGER" property="id" />
+		<id column="Id" jdbcType="INTEGER" property="id" />
 		<result column="bank_account" jdbcType="VARCHAR" property="bankAccount" />
 		<result column="sal_name" jdbcType="VARCHAR" property="salName" />
 		<result column="post_category" jdbcType="VARCHAR" property="postCategory" />
@@ -303,6 +311,11 @@
 	<!-- 查询所有 -->
 	<select id="listEmp" resultMap="BaseResultMap">
 		select * from employee_
+	</select>
+	
+	<!-- 查询所有部门 -->
+	<select id="listDep" resultMap="BaseDepMap">
+		select * from department_
 	</select>
 
 	<!-- 模糊查询/关联查询 -->

@@ -23,7 +23,7 @@ public class DepartmentController {
 	@Resource
 	private DepartmentService departmentService;
 
-	// 查询所有员工
+	// 查询所有部门
 	@RequestMapping("/list/dep")
 	public String listDep(HttpServletRequest request) {
 		List<Department> listDep = departmentService.listAll();
@@ -31,7 +31,7 @@ public class DepartmentController {
 		return "department";
 	}
 
-	// 新增员工
+	// 新增部门
 	@RequestMapping("/insert/dep")
 	public String addDep(Department department, HttpServletRequest request) {
 		String insertDep = departmentService.addDep(department);
@@ -41,7 +41,7 @@ public class DepartmentController {
 		return "department";
 	}
 
-	// 修改员工信息
+	// 修改部门信息
 	@RequestMapping("/update/dep")
 	public String updateDep(Department department, HttpServletRequest request) {
 		String updateDep = departmentService.updateDep(department);
@@ -51,7 +51,7 @@ public class DepartmentController {
 		return "department";
 	}
 
-	// 删除员工
+	// 删除部门
 	@RequestMapping("/delete/dep")
 	public ModelAndView deleteDep(Integer id, HttpServletRequest request, ModelAndView mv) {
 		String deleteDep = departmentService.deleteDep(id);

@@ -25,7 +25,8 @@ public interface SalaryService {
 	public List<Salary> listCal();
 	
 	//模糊查询
-	public List<Salary> listCalBlurry(String calId,String calName,String calDate);
+	public List<Salary> listCalBlurry(String calId,String calName,String calDate
+			,String calId2,String calName2,String calDate2);
 	
 	//更新
 	public String updateCal(Salary salary);

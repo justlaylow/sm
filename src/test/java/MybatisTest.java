@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import com.tl.sm.mapper.DepartmentMapper;
 import com.tl.sm.mapper.EmployeeMapper;
 import com.tl.sm.pojo.Employee;
 
@@ -21,17 +22,16 @@ public class MybatisTest {
 	private EmployeeMapper employeeMapper;
 	
 	/*@Autowired
-	private AdminMapper adminMapper;*/
+	private DepartmentMapper departmentMapper;*/
 	
 	/*@Autowired
 	private SalaryMapper salaryMapper;*/
 
-	/*@Test
+	@Test
 	public void testAdd() {
-		Admin admin = new Admin();
-		admin.setAdm_count("adm_count");
-		adminMapper.add(admin);
-	}*/
+		int i = employeeMapper.deleteByPrimaryKey("10");
+		System.out.println(i);
+	}
 
 	/*@Test
 	public void testList() {

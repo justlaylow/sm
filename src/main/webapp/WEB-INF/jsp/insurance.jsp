@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ include file="/WEB-INF/jsp/include/header.jsp"%>
+<%@ include file="/WEB-INF/jsp/include/background.jsp"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -41,7 +42,7 @@
 	<div class="container">
 		<div class="row clearfix">
 			<div class="col-md-12 column">
-				<h3 class="text-center text-info">保险金维护</h3>
+				<h3 class="text-center text-info">保 险 金 维 护</h3>
 				<br /> <br />
 				<div class="input-group">
 					工号：<input type="text" placeholder="Search for..." name="insId"
@@ -61,10 +62,10 @@
 				<%@ include file="/WEB-INF/jsp/include/main.jsp"%>
 
 				<!-- 刷新 -->
-				<button type="button" class="btn btn-primary" onclick="reload()">刷新</button>
+				<button type="button" class="btn btn-default" onclick="reload()">刷新</button>
 				
 				<!-- 保险维护(单) -->
-				<button type="button" class="btn btn-primary" onclick="insAdd()">保险维护(单)</button>
+				<button type="button" class="btn btn-default" onclick="insAdd()">保险维护(单)</button>
 				<span>${param.deleteInsMsg}</span>
 
 				<!-- 部门列表 -->
@@ -90,11 +91,11 @@
 							<tr>
 								<!-- 删除 -->
 								<td><button type="button" id="insId"
-										class="btn btn-primary" onclick="del(${ins.id})">删除</button></td>
+										class="btn btn-warning" onclick="del(${ins.id})">删除</button></td>
 
 								<!-- 修改信息 -->
 								<td><button type="button" id="updateDep"
-										class="btn btn-primary" data-toggle="modal"
+										class="btn btn-default" data-toggle="modal"
 										data-target="#upd${ins.id}">修改</button>
 									<div class="modal fade" id="upd${ins.id}"
 										data-backdrop="static" tabindex="-1" role="dialog"
@@ -108,7 +109,7 @@
 													<h4 class="modal-title" align="center">修改</h4>
 												</div>
 												<div class="modal-body">
-													<form action="/sm/update/ins" method="post" id="fm">
+													<form action="/sm/update/ins" method="post" id="fm${ins.id}">
 														<input style="display: none" name="id" id="Id" value="${ins.id}">
 														<table align="center">
 															<tr>
@@ -117,7 +118,7 @@
 															</tr>
 															<tr>
 																<td><label>性别:</label></td><td> <input name="insSex" value="${ins.insSex}"></td>
-																<td><label>出生日期:</label></td><td> <input type="text" name="insBoth" value="<fmt:formatDate value="${ins.insBoth}" type="date"/>"></td>
+																<td><label>出生日期:</label></td><td> <input type="text" name="insBoth" value="<fmt:formatDate value="${ins.insBoth}" type="date"/>" id="insBoth${ins.id}"></td>
 															</tr>
 															<tr>
 																<td><label>身份证号:</label></td><td> <input name="insIden" value="${ins.insIden}"></td>
@@ -154,15 +155,26 @@
 															<tr>
 																<td><label>备注:</label></td><td> <input name="insRemark" value="${ins.insRemark}"></td>
 																<td><label> </label></td><td> 保：<input type="radio" value="保"name="insSign">  
-																				不保：<input type="radio" value="不保"name="insSign"></td>
+																				不保：<input type="radio" value="不保" name="insSign"></td>
 															</tr>
 														</table>
 														<div class="modal-footer">
 															<button data-dismiss="modal" class="btn btn-default"
 																type="button">关闭</button>
-															<input class="btn btn-primary" type="submit" value="添加">
+															<input class="btn btn-primary" type="submit" value="添加" id="submitUpdate${ins.id}">
 														</div>
 													</form>
+													<script type="text/javascript">
+														$('#submitUpdate'+${ins.id}).click(function(){
+														var insBoth = $('#insBoth'+${ins.id}).val();
+														var reg = /^[0-9]{4}-(0[1-9]|[1-9]|1[0-2])-(0[1-9]|[1-9]|[1-2][0-9]|3[0-1])$/;
+														if(reg.test(insBoth)!=true){
+															confirm("出生日期格式或时间出错 xxxx-xx-xx");
+															return false;
+														}
+														$('#fm'+${ins.id}).submit();
+													});
+													</script>
 												</div>
 											</div>
 											<!-- /.modal-content -->
@@ -189,5 +201,7 @@
 			</div>
 		</div>
 	</div>
+
+	
 </body>
 </html>

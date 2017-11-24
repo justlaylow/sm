@@ -19,4 +19,5 @@ public interface DepartmentService {
 	
 	//模糊查询
 	public List<Department> listByDep(String depId,String depName);
+	
 }

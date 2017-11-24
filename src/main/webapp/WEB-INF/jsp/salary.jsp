@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ include file="/WEB-INF/jsp/include/header.jsp"%>
+<%@ include file="/WEB-INF/jsp/include/background.jsp"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -11,7 +12,7 @@
 	<div class="container">
 		<div class="row clearfix">
 			<div class="col-md-12 column">
-				<h3 class="text-center text-info">工资维护</h3>
+				<h3 class="text-center text-info">工 资 维 护</h3>
 				<br /> <br />
 				<div class="input-group">
 					工号：<input type="text" placeholder="Search for..." name="calId"
@@ -35,10 +36,10 @@
 				<%@ include file="/WEB-INF/jsp/include/main.jsp"%>
 
 				<!-- 刷新 -->
-				<button type="button" class="btn btn-primary" onclick="reload()">刷新</button>
+				<button type="button" class="btn btn-default" onclick="reload()">刷新</button>
 				
 				<!-- 新增工资信息 -->
-				<button type="button" class="btn btn-primary" onclick="calAdd()">新增工资信息</button>
+				<button type="button" class="btn btn-success" onclick="calAdd()">新增工资信息</button>
 
 				<!-- 部门列表 -->
 				<table class="table table-hover" id="datagrid">
@@ -63,11 +64,11 @@
 								<tr>
 									<!-- 删除 -->
 									<td><button type="button" id="calId"
-											class="btn btn-primary" onclick="del(${sal.id })">删除</button></td>
+											class="btn btn-warning" onclick="del(${sal.id })">删除</button></td>
 	
 									<!-- 修改信息 -->
 									<td><button type="button" id="updateDep"
-											class="btn btn-primary" data-toggle="modal"
+											class="btn btn-default" data-toggle="modal"
 											data-target="#upd${sal.id }">查看</button>
 										<div class="modal fade" id="upd${sal.id }"
 											data-backdrop="static" tabindex="-1" role="dialog"
@@ -81,7 +82,7 @@
 														<h4 class="modal-title" align="center">修改</h4>
 													</div>
 													<div class="modal-body">
-														<form action="/sm/update/sal" method="post" id="fm">
+														<form action="/sm/update/sal" method="post" id="fm${sal.id}">
 															<input style="display: none" name="id" id="Id" value="${sal.id}">
 															<table align="center">
 																<tr>
@@ -126,7 +127,7 @@
 																</tr>
 																<tr>
 																	<td><label>餐补:</label></td><td> <input name="calAllowance" value="${sal.calAllowance}"></td>
-																	<td><label>工资时间:</label></td><td> <input type="text" name="calDate" value="<fmt:formatDate value="${sal.calDate}" type="date"/>" required="true"></td>
+																	<td><label>工资时间:</label></td><td> <input type="text" name="calDate" id="calDate${sal.id}" value="<fmt:formatDate value="${sal.calDate}" type="date"/>" required="true"></td>
 																</tr>
 																<tr>
 																	<td><label>会费:</label></td><td> <input name="calDues" value="${sal.calDues}"></td>
@@ -156,9 +157,20 @@
 															<div class="modal-footer">
 																<button data-dismiss="modal" class="btn btn-default"
 																	type="button">关闭</button>
-																<input class="btn btn-primary" type="submit" value="修改">
+																<input class="btn btn-primary" type="button" id="submitUpdate${sal.id}" value="修改">
 															</div>
 														</form>
+														<script type="text/javascript">
+														$('#submitUpdate'+${sal.id}).click(function(){
+														var calDate = $('#calDate'+${sal.id}).val();
+														var reg = /^[0-9]{4}-(0[1-9]|[1-9]|1[0-2])-(0[1-9]|[1-9]|[1-2][0-9]|3[0-1])$/;
+														if(reg.test(calDate)!=true){
+															confirm("工资日期格式或时间出错 xxxx-xx-xx");
+															return false;
+														}
+														$('#fm'+${sal.id}).submit();
+														});
+														</script>
 													</div>
 												</div>
 												<!-- /.modal-content -->
@@ -216,7 +228,7 @@
 		calName = document.getElementById("calName").value;
 		calDate = document.getElementById("calDate").value;
 		
-		window.location.href="/sm/blurry/sal/?calId="+calId+"&calName="+calName+"&calDate="+calDate;
+		window.location.href="/sm/blurry/sal/?calId="+calId+"&calName="+calName+"&calDate="+calDate+"&calId2="+calId+"&calName2="+calName+"&calDate2="+calDate;
 		
 	}
 	

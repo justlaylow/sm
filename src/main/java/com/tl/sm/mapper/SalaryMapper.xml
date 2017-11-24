@@ -539,8 +539,9 @@
 	</select>
 
 	<!-- 模糊查询 -->
-	<select id="listCalBlurry" resultMap="BaseResultMap">
-		select * from calculate_
+	<select id="listCalBlurry" resultMap="innerMap">
+		select c.*,e.* from calculate_ c
+		left join employee_ e on e.sal_id = c.cal_id
 		<where>
 			<if test="cal_id!=null">
 				and cal_id like concat("%",#{cal_id},"%")
@@ -550,6 +551,19 @@
 			</if>
 			<if test="cal_date!=null">
 				and cal_date like "%"#{cal_date}"%"
+			</if>
+		</where>
+		union select c.*,e.*
+		from calculate_ c right join employee_ e on e.sal_id = c.cal_id
+		<where>
+			<if test="cal_id!=null">
+				and cal_id like concat("%",#{cal_id2},"%")
+			</if>
+			<if test="cal_name!=null">
+				and cal_name like "%"#{cal_name2}"%"
+			</if>
+			<if test="cal_date!=null">
+				and cal_date like "%"#{cal_date2}"%"
 			</if>
 		</where>
 	</select>
@@ -566,7 +580,7 @@
   <select id="selectCal" resultMap="BaseResultMap" parameterType="string" >
     select
     <include refid="Base_Column_List" />
-    from calculate_ where cal_date = #{calDate}
+    from calculate_ where cal_date = #{cal_date}
   </select>
   
 </mapper>

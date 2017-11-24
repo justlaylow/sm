@@ -45,5 +45,8 @@
             <value>utf-8</value>  
         </property>  
     </bean>
+    
+    <!-- 异常处理 -->
+    <bean id="exceptionHandler" class="com.tl.sm.exception.MyExceptionHandle"/>
 
 </beans>

@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Param;
 
+import com.tl.sm.pojo.Department;
 import com.tl.sm.pojo.Employee;
 
 public interface EmployeeMapper {
@@ -21,6 +22,8 @@ public interface EmployeeMapper {
     int updateByPrimaryKey(Employee record);
     
     List<Employee> listEmp();
+    
+    List<Department> listDep();
     
     List<Employee> listEmpBlurry(@Param("sal_name") String salName,@Param("sal_id") String salId,
     		@Param("sal_oa") String salOa);

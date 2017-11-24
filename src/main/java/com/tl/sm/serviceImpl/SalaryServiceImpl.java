@@ -40,7 +40,6 @@ public class SalaryServiceImpl implements SalaryService{
 	        Salary salary = new Salary();  
 	        //设置编号  String.valueOf(ob.get())
 	        //通过遍历实现把每一列封装成一个model中，再把所有的model用List集合装载 
-	        System.out.println(simpleDateFormat.parse(calDate));
 	        salary.setCalDate(simpleDateFormat.parse(calDate));
 	        salary.setCalHr(String.valueOf(ob.get(0).toString()));
 	        salary.setCalId(String.valueOf(ob.get(1).toString()));
@@ -92,8 +91,8 @@ public class SalaryServiceImpl implements SalaryService{
 	}
 
 	//模糊查询
-	public List<Salary> listCalBlurry(String calId, String calName, String calDate) {
-		List<Salary> listCalBlurry = salaryMapper.listCalBlurry(calId, calName, calDate);
+	public List<Salary> listCalBlurry(String calId, String calName, String calDate,String calId2, String calName2, String calDate2) {
+		List<Salary> listCalBlurry = salaryMapper.listCalBlurry(calId, calName, calDate,calId2, calName2, calDate2);
 		return listCalBlurry;
 	}
 
@@ -152,39 +151,39 @@ public class SalaryServiceImpl implements SalaryService{
         Map<Integer,List<ExcelBean>> map=new LinkedHashMap<Integer,List<ExcelBean>>();
         XSSFWorkbook xssfWorkbook=null;
         //设置标题栏
-        excel.add(new ExcelBean("HR号","calId",0));
-        excel.add(new ExcelBean("工号","calName",0));
-        excel.add(new ExcelBean("姓名","calDate",0));
+        excel.add(new ExcelBean("HR号","calHr",0));
+        excel.add(new ExcelBean("工号","calId",0));
+        excel.add(new ExcelBean("姓名","calName",0));
         excel.add(new ExcelBean("基本工资","calBasic",0));
-        excel.add(new ExcelBean("岗位工资","calId",0));
-        excel.add(new ExcelBean("浮动工资","calId",0));
-        excel.add(new ExcelBean("系数","calId",0));
-        excel.add(new ExcelBean("保密工资","calId",0));
-        excel.add(new ExcelBean("技能等级工资","calId",0));
-        excel.add(new ExcelBean("司龄工资","calId",0));
-        excel.add(new ExcelBean("奖金","calId",0));
-        excel.add(new ExcelBean("加班工资","calId",0));
-        excel.add(new ExcelBean("津贴","calId",0));
-        excel.add(new ExcelBean("考评工资","calId",0));
-        excel.add(new ExcelBean("工伤工资","calId",0));
-        excel.add(new ExcelBean("缺勤","calId",0));
-        excel.add(new ExcelBean("其他","calId",0));
-        excel.add(new ExcelBean("罚款","calId",0));
-        excel.add(new ExcelBean("扣款","calId",0));
-        excel.add(new ExcelBean("水电","calId",0));
-        excel.add(new ExcelBean("餐补","calId",0));
-        excel.add(new ExcelBean("会费","calId",0));
-        excel.add(new ExcelBean("工时","calId",0));
-        excel.add(new ExcelBean("工价","calId",0));
-        excel.add(new ExcelBean("效益工资","calId",0));
-        excel.add(new ExcelBean("工时奖","calId",0));
-        excel.add(new ExcelBean("工时工资","calId",0));
-        excel.add(new ExcelBean("福利","calId",0));
-        excel.add(new ExcelBean("工废","calId",0));
-        excel.add(new ExcelBean("上月扣款","calId",0));
-        excel.add(new ExcelBean("所得税","calId",0));
-        excel.add(new ExcelBean("应发工资","calId",0));
-        excel.add(new ExcelBean("实得工资","calId",0));
+        excel.add(new ExcelBean("岗位工资","calPost",0));
+        excel.add(new ExcelBean("浮动工资","calFloat",0));
+        excel.add(new ExcelBean("系数","calCoefficient",0));
+        excel.add(new ExcelBean("保密工资","calSecrecy",0));
+        excel.add(new ExcelBean("技能等级工资","calSkillLevel",0));
+        excel.add(new ExcelBean("司龄工资","calComage",0));
+        excel.add(new ExcelBean("奖金","calBonus",0));
+        excel.add(new ExcelBean("加班工资","calOvertime",0));
+        excel.add(new ExcelBean("津贴","calBenefit",0));
+        excel.add(new ExcelBean("考评工资","calCheck",0));
+        excel.add(new ExcelBean("工伤工资","calInjury",0));
+        excel.add(new ExcelBean("缺勤","calLeave",0));
+        excel.add(new ExcelBean("其他","calOther",0));
+        excel.add(new ExcelBean("罚款","calPenalty",0));
+        excel.add(new ExcelBean("扣款","calWithhold",0));
+        excel.add(new ExcelBean("水电","calWaterandele",0));
+        excel.add(new ExcelBean("餐补","calAllowance",0));
+        excel.add(new ExcelBean("会费","calDues",0));
+        excel.add(new ExcelBean("工时","calManhour",0));
+        excel.add(new ExcelBean("工价","LabourCost",0));
+        excel.add(new ExcelBean("效益工资","calBenefitwage",0));
+        excel.add(new ExcelBean("工时奖","calManhourBonus",0));
+        excel.add(new ExcelBean("工时工资","calManhourSalary",0));
+        excel.add(new ExcelBean("福利","calWelfare",0));
+        excel.add(new ExcelBean("工废","calWaste",0));
+        excel.add(new ExcelBean("上月扣款","calLastWithhold",0));
+        excel.add(new ExcelBean("所得税","calIncometax",0));
+        excel.add(new ExcelBean("应发工资","calShould",0));
+        excel.add(new ExcelBean("实得工资","calResult",0));
         map.put(0, excel);
         String sheetName = calDate + "月份工资";
         //调用ExcelUtil的方法

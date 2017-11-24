@@ -28,7 +28,8 @@ public interface SalaryMapper {
     
     //模糊查询
     List<Salary> listCalBlurry(@Param("cal_id") String calId,@Param("cal_name") String calName
-    		,@Param("cal_date") String calDate);
+    		,@Param("cal_date") String calDate,@Param("cal_id2") String calId2,@Param("cal_name2") String calName2
+    		,@Param("cal_date2") String calDate2);
     
     //导出
     List<Salary> selectCal(@Param("cal_date") String calDate);

@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ include file="/WEB-INF/jsp/include/header.jsp"%>
+<%@ include file="/WEB-INF/jsp/include/defaultback.jsp"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -38,7 +39,7 @@
 	<div class="container">
 		<div class="row clearfix">
 			<div class="col-md-12 column">
-				<h3 class="text-center text-info">员工管理</h3>
+				<h3 class="text-center text-info">员 工 管 理</h3>
 				<br /> <br />
 				<div class="input-group">
 					工号：<input type="text" placeholder="Search for..." name="salId"
@@ -63,10 +64,10 @@
 				<%@ include file="/WEB-INF/jsp/include/main.jsp"%>
 				
 				<!-- 刷新 -->
-				<button type="button" class="btn btn-primary" onclick="reload()">刷新</button>
+				<button type="button" class="btn btn-default" onclick="reload()">刷新</button>
 
 				<!-- 添加员工 -->
-				<button type="button" class="btn btn-primary" data-toggle="modal"
+				<button type="button" class="btn btn-success" data-toggle="modal"
 					data-target="#myModal">添加员工</button>
 				<div class="modal fade" id="myModal" data-backdrop="static"
 					tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
@@ -97,11 +98,14 @@
 									<label>部门名称:</label> <input type="text" name="salDep"
 										list="selectDep" style="width: 170px">
 									<datalist id="selectDep">
-										<option>技术部-信息化组</option>
-										<option>质量部</option>
+										<c:forEach var="dep" items="${listDep}">
+											<option value="${dep.depName}"/>
+										</c:forEach>
 									</datalist>
+									
+									
 									<br><br> <label>入职日期:</label>
-									<input name="salDate">&emsp;&emsp;&emsp; <label>&nbsp;&nbsp;&nbsp;OA账号:</label>
+									<input name="salDate" id="mydate">&emsp;&emsp;&emsp; <label>&nbsp;&nbsp;&nbsp;OA账号:</label>
 									<input name="salOa"> <br><br> <label>统计类别:</label> <input
 										name="staCategory" list="staCategory">&emsp;&emsp;&emsp;
 									<datalist id="staCategory">
@@ -123,10 +127,6 @@
 					</div>
 					<!-- /.modal-dialog -->
 				</div>
-
-
-
-
 
 
 				<!-- 员工列表 -->
@@ -165,30 +165,18 @@
 							<th>公积金投保地</th>
 							<th>投保标志</th>
 							<th>保险备注</th>
-							<th>失业</th>
-							<th>大病</th>
-							<th>消耗</th>
-							<th>罚款</th>
-							<th>扣款</th>
-							<th>工废</th>
-							<th>水电</th>
-							<th>公积金</th>
-							<th>上月扣款</th>
-							<th>所得税</th>
-							<th>实得</th>
-							<th>餐补</th>
-							<th>司龄工资</th>
-							<th>保密工资</th>
-							<th>技能工资</th>
 						</tr>
 					</thead>
 					<tbody>
 						<c:forEach var="emp" items="${empList}">
 							<c:if test="${emp.salName!=null }">
 								<tr>
+									<!-- 删除员工 -->
+									<td><button type="button" id="deleteDep" class="btn btn-warning" onclick="del('${emp.salId}')">删除</button></td>
+								
 									<!-- 修改信息 -->
 									<td><button type="button" id="updateDep"
-											class="btn btn-primary" data-toggle="modal"
+											class="btn btn-default" data-toggle="modal"
 											data-target="#upd${emp.id}">修改</button>
 										<div class="modal fade" id="upd${emp.id}"
 											data-backdrop="static" tabindex="-1" role="dialog"
@@ -202,7 +190,7 @@
 														<h4 class="modal-title" align="center">修改</h4>
 													</div>
 													<div class="modal-body">
-														<form action="/sm/update/emp" method="post" id="fm">
+														<form action="/sm/update/emp" method="post" id="fm${emp.id}">
 															<input name="id" style="display: none" value="${emp.id }">
 															<table align="center" style="border-collapse:separate; border-spacing:15px;">
 																<tr>
@@ -218,7 +206,7 @@
 																	<td><label>岗位:</label></td><td> <input type="text" name="salPost" value="${emp.salPost}"></td>
 																</tr>
 																<tr>
-																	<td><label>入职日期:</label></td><td> <input name="salDate" value="<fmt:formatDate value="${emp.salDate}" type="date"/>"></td>
+																	<td><label>入职日期:</label></td><td> <input name="salDate" id="salDate${emp.id}" value="<fmt:formatDate value="${emp.salDate}" type="date"/>"></td>
 																	<td><label>OA账号:</label></td><td> <input type="text" name="salOa" value="${emp.salOa}"></td>
 																</tr>
 																<tr>
@@ -232,9 +220,20 @@
 															<div class="modal-footer">
 																<button data-dismiss="modal" class="btn btn-default"
 																	type="button">关闭</button>
-																<input class="btn btn-primary" type="submit" value="修改">
+																<input class="btn btn-primary" type="button" id="submitUpdate${emp.id}" value="修改">
 															</div>
 														</form>
+														<script type="text/javascript">
+														$('#submitUpdate'+${emp.id}).click(function(){
+														var salDate = $('#salDate'+${emp.id}).val();
+														var reg = /^[0-9]{4}-(0[1-9]|[1-9]|1[0-2])-(0[1-9]|[1-9]|[1-2][0-9]|3[0-1])$/;
+														if(reg.test(salDate)!=true){
+															confirm("入职日期格式或时间出错 xxxx-xx-xx");
+															return false;
+														}
+														$('#fm'+${emp.id}).submit();
+														});
+														</script>
 													</div>
 												</div>
 												<!-- /.modal-content -->
@@ -274,42 +273,6 @@
 										<td>${ins.insSign}</td>
 										<td>${ins.insRemark}</td>
 									</c:forEach>
-									<td></td>
-									<td></td>
-									<td></td>
-									<td></td>
-									<td></td>
-									<td></td>
-									<td></td>
-									<td></td>
-									<td></td>
-									<td></td>
-									<td></td>
-									<td></td>
-									<td></td>
-									<td></td>
-									<td></td>
-									<td></td>
-									<td></td>
-									<td></td>
-									<td></td>
-									<td></td>
-									<td></td>
-									<td></td>
-									<td></td>
-									<td></td>
-									<td></td>
-									<td></td>
-									<td></td>
-									<td></td>
-									<td></td>
-									<td></td>
-									<td></td>
-									<td></td>
-									<td></td>
-									<td></td>
-									<td></td>
-									<td></td>
 								</tr>
 							</c:if>
 						</c:forEach>
@@ -318,6 +281,10 @@
 			</div>
 		</div>
 	</div>
-
+<script type="text/javascript">
+	$('#mydate').dcalendarpicker({
+	format : 'yyyy-mm-dd'
+});
+</script>
 </body>
 </html>

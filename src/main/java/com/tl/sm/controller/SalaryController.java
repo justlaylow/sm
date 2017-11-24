@@ -1,6 +1,5 @@
 package com.tl.sm.controller;
 
-import java.util.Date;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -60,8 +59,8 @@ public class SalaryController {
 		
 		//模糊查询
 		@RequestMapping("/blurry/sal")
-		public String listInsBlurry(String calId,String calName,String calDate,HttpServletRequest request){
-			List<Salary> salList = salaryService.listCalBlurry(calId, calName, calDate);
+		public String listInsBlurry(String calId,String calName,String calDate,String calId2,String calName2,String calDate2,HttpServletRequest request){
+			List<Salary> salList = salaryService.listCalBlurry(calId, calName, calDate,calId2, calName2, calDate2);
 			request.setAttribute("salList", salList);
 			return "salary";
 		}

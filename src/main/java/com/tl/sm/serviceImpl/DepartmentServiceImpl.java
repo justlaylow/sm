@@ -15,7 +15,7 @@ public class DepartmentServiceImpl implements DepartmentService {
 	@Resource
 	private DepartmentMapper departmentMapper;
 
-	// 新增员工
+	// 新增部门
 	public String addDep(Department department) {
 		int res = departmentMapper.insert(department);
 		String message = "";
@@ -27,11 +27,17 @@ public class DepartmentServiceImpl implements DepartmentService {
 		return message;
 	}
 
-	// 修改员工信息
+	// 修改部门信息
 	public String updateDep(Department department) {
+		String depN ="";
+		List<Department> depName = departmentMapper.DepName(department.getId());
+		for(Department c:depName) {
+			depN = c.getDepName();
+		}
 		int res = departmentMapper.updateByPrimaryKeySelective(department);
+		int emp = departmentMapper.updateEmpDep(department.getDepName(), depN);
 		String message = "";
-		if (res > 0) {
+		if (res > 0 & emp>0) {
 			message = "修改成功";
 		} else {
 			message = "修改失败";
@@ -39,7 +45,7 @@ public class DepartmentServiceImpl implements DepartmentService {
 		return message;
 	}
 
-	// 删除员工
+	// 删除部门
 	public String deleteDep(Integer id) {
 		int res = departmentMapper.deleteByPrimaryKey(id);
 		String message = "";
@@ -51,7 +57,7 @@ public class DepartmentServiceImpl implements DepartmentService {
 		return message;
 	}
 	
-	//查询所有员工
+	//查询所有部门
 	public List<Department> listAll(){
 		List<Department> uList = departmentMapper.listAll();
 		return uList;

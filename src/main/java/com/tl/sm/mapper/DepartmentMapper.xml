@@ -8,6 +8,22 @@
 		<result column="dep_cost_category" jdbcType="VARCHAR" property="depCostCategory" />
 		<result column="dep_remark" jdbcType="VARCHAR" property="depRemark" />
 	</resultMap>
+	
+	<resultMap id="BaseResultEmpMap" type="com.tl.sm.pojo.Employee">
+		<id column="e_Id" jdbcType="INTEGER" property="id" />
+		<result column="bank_account" jdbcType="VARCHAR" property="bankAccount" />
+		<result column="sal_name" jdbcType="VARCHAR" property="salName" />
+		<result column="post_category" jdbcType="VARCHAR" property="postCategory" />
+		<result column="sal_id" jdbcType="VARCHAR" property="salId" />
+		<result column="sal_dep" jdbcType="VARCHAR" property="salDep" />
+		<result column="sal_post" jdbcType="VARCHAR" property="salPost" />
+		<result column="sal_date" jdbcType="DATE" property="salDate" />
+		<result column="sal_oa" jdbcType="VARCHAR" property="salOa" />
+		<result column="sta_category" jdbcType="VARCHAR" property="staCategory" />
+		<result column="sal_remark" jdbcType="VARCHAR" property="salRemark" />
+		<result column="sal_skilllevel" jdbcType="VARCHAR" property="salSkilllevel" />
+	</resultMap>
+	
 	<sql id="Base_Column_List">
 		Id, dep_id, dep_name, dep_cost_category, dep_remark
 	</sql>
@@ -92,10 +108,19 @@
 		dep_remark = #{depRemark,jdbcType=VARCHAR}
 		where Id = #{id,jdbcType=INTEGER}
 	</update>
+	
+	<update id="updateEmpDep">
+		update employee_ set sal_dep = #{sal_dep} where sal_dep = #{sal_dep2}
+	</update>
 
 	<!-- 查询所有 -->
 	<select id="listAll" resultMap="BaseResultMap">
 		select * from department_
+	</select>
+	
+	<!-- 查询部门名 -->
+	<select id="DepName" resultMap="BaseResultMap">
+		select dep_name from department_ where Id = #{id}
 	</select>
 
 	<!-- 模糊查询 -->

@@ -40,7 +40,6 @@ public class ExcelController {
 		String month = request.getParameter("calDate");
 		InputStream in = file.getInputStream();
 		// 数据导入
-		System.out.println(month);
 		salaryService.importExcelInfo(in, file, month, adminId);
 		in.close();
 		return "main";
@@ -55,7 +54,7 @@ public class ExcelController {
             response.reset(); //清除buffer缓存
             Map<String,Object> map=new HashMap<String,Object>();
             // 指定下载的文件名
-            response.setHeader("Content-Disposition", "attachment;filename="+calDate+"工资信息.xlsx");
+            response.setHeader("Content-Disposition", "attachment;filename="+calDate+".xlsx");
             response.setContentType("application/vnd.ms-excel;charset=UTF-8");
             response.setHeader("Pragma", "no-cache");
             response.setHeader("Cache-Control", "no-cache");
