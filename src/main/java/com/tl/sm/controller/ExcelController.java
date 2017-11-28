@@ -31,6 +31,7 @@ public class ExcelController {
 	@Resource
 	private SalaryService salaryService;
 
+	//poi Excel导入
 	@RequestMapping("/import")
 	public String impotr(HttpServletRequest request, Model model) throws Exception {
 		int adminId = 1;
@@ -45,7 +46,7 @@ public class ExcelController {
 		return "main";
 	}
 	
-	//导出
+	//poi Excel导出
 	@RequestMapping("/export")
     @ResponseBody
     public  void excelAvdImpot(HttpServletRequest request, HttpServletResponse response) throws ClassNotFoundException, IntrospectionException, IllegalAccessException, ParseException, InvocationTargetException {

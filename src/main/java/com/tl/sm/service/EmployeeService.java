@@ -30,7 +30,7 @@ public interface EmployeeService {
 	public String updateEmp(Employee employee);
 	
 	//模糊查询
-	public List<Employee> listEmpBlurry(String name,String id,String oa);
+	public List<Employee> listEmpBlurry(String name,String id,String oa,String name2,String id2,String oa2);
 	
 	//查询员工，保险，工资信息
 	public List<Employee> listAll(String calDate,String salId);

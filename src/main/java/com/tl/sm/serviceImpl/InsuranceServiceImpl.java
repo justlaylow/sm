@@ -62,5 +62,17 @@ public class InsuranceServiceImpl implements InsuranceService{
 		}
 		return message;
 	}
+
+	//批量更新
+	public String updateBatch(List<Insurance> list) {
+		String message = "";
+		int i = insuranceMapper.updateBatch(list);
+		if(i>0) {
+			message = "修改成功";
+		}else {
+			message = "修改失败";
+		}
+		return message;
+	}
 	
 }

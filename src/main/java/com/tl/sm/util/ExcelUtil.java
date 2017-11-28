@@ -65,7 +65,12 @@ public class ExcelUtil {
 				List<Object> li = new ArrayList<Object>();
 				for (int y = row.getFirstCellNum(); y < row.getLastCellNum(); y++) {
 					cell = row.getCell(y);
-					li.add(getCellValue(cell));
+					if(cell==null||ExcelUtil.getCellValue(cell).equals("")) {
+						li.add("0");
+					}else {
+						li.add(getCellValue(cell));
+					}
+					
 				}
 				list.add(li);
 			}
@@ -287,4 +292,5 @@ public class ExcelUtil {
 			sheet.setColumnWidth(index, width);
 		}
 	}
+	
 }

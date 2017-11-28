@@ -1,25 +1,20 @@
 
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.List;
-
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import com.tl.sm.mapper.DepartmentMapper;
-import com.tl.sm.mapper.EmployeeMapper;
-import com.tl.sm.pojo.Employee;
+import com.tl.sm.mapper.InsuranceMapper;
+import com.tl.sm.pojo.Insurance;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration("classpath:applicationContext.xml")
 public class MybatisTest {
 
 	@Autowired
-	private EmployeeMapper employeeMapper;
+	private InsuranceMapper insuranceMapper;
 	
 	/*@Autowired
 	private DepartmentMapper departmentMapper;*/
@@ -29,8 +24,8 @@ public class MybatisTest {
 
 	@Test
 	public void testAdd() {
-		int i = employeeMapper.deleteByPrimaryKey("10");
-		System.out.println(i);
+		Insurance insurance = insuranceMapper.selectByInsId("009898");
+		System.out.println(insurance.getInsOld());
 	}
 
 	/*@Test

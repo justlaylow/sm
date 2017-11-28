@@ -109,7 +109,17 @@
 									<input name="salOa"> <br><br> <label>统计类别:</label> <input
 										name="staCategory" list="staCategory">&emsp;&emsp;&emsp;
 									<datalist id="staCategory">
-									<option>技术-IT技术</option>
+										<option>管理-二级机构负责人</option>
+										<option>管理-三级机构负责人</option>
+										<option>管理-一般管理</option>
+										<option>技术-IT技术</option>
+										<option>技术-技术服务</option>
+										<option>技术-技术开发</option>
+										<option>技术-技术研究</option>
+										<option>生产人员-计件</option>
+										<option>生产人员-计时</option>
+										<option>事务人员</option>
+										<option>营销人员-售后</option>
 									</datalist>
 									<label>备&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;注:</label> <input name="salRemark"> <br><br>
 									<label>技能等级:</label> <input name="salSkilllevel"> 
@@ -134,6 +144,7 @@
 					style="white-space: nowrap;">
 					<thead>
 						<tr>
+							<th>删除</th>
 							<th>修改</th>
 							<th>姓名</th>
 							<th>工号</th>
@@ -210,7 +221,20 @@
 																	<td><label>OA账号:</label></td><td> <input type="text" name="salOa" value="${emp.salOa}"></td>
 																</tr>
 																<tr>
-																	<td><label>统计类别:</label></td><td> <input type="text" name="staCategory" value="${emp.staCategory}"></td>
+																	<td><label>统计类别:</label></td><td> <input type="text" name="staCategory" list="UpdateStaCategory" value="${emp.staCategory}"></td>
+																	<datalist id="UpdateStaCategory">
+																		<option>管理-二级机构负责人</option>
+																		<option>管理-三级机构负责人</option>
+																		<option>管理-一般管理</option>
+																		<option>技术-IT技术</option>
+																		<option>技术-技术服务</option>
+																		<option>技术-技术开发</option>
+																		<option>技术-技术研究</option>
+																		<option>生产人员-计件</option>
+																		<option>生产人员-计时</option>
+																		<option>事务人员</option>
+																		<option>营销人员-售后</option>
+																	</datalist>
 																	<td><label>备注:</label></td><td> <input name="salRemark" value="${emp.salRemark}"></td>
 																</tr>
 																<tr>

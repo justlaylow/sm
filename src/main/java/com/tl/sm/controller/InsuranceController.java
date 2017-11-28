@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.tl.sm.pojo.Insurance;
 import com.tl.sm.service.InsuranceService;
+import com.tl.sm.util.InsuranceList;
 
 @Controller
 @Scope("prototype")
@@ -64,5 +65,17 @@ public class InsuranceController {
 		return "insurance";
 	}
 	
+	//批量更新
+	@RequestMapping("/updateBatch/ins")
+	public String updateBatch(InsuranceList insurance,HttpServletRequest request) {
+		List<Insurance> list = insurance.getInsurance();
+		System.out.println(list.get(0).getInsName());
+		String updateInsBatchMsg = insuranceService.updateBatch(list);
+		
+		List<Insurance> listIns = insuranceService.listIns();
+		request.setAttribute("listIns", listIns);
+		request.setAttribute("updateInsBatchMsg", updateInsBatchMsg);
+		return "insurance";
+	}
 
 }

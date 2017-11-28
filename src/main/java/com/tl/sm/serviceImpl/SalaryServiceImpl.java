@@ -6,7 +6,6 @@ import java.lang.reflect.InvocationTargetException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -17,8 +16,10 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.tl.sm.mapper.InsuranceMapper;
 import com.tl.sm.mapper.SalaryMapper;
 import com.tl.sm.pojo.ExcelBean;
+import com.tl.sm.pojo.Insurance;
 import com.tl.sm.pojo.Salary;
 import com.tl.sm.service.SalaryService;
 import com.tl.sm.util.ExcelUtil;
@@ -28,6 +29,8 @@ public class SalaryServiceImpl implements SalaryService{
 	
 	@Resource
 	private SalaryMapper salaryMapper;
+	@Resource
+	private InsuranceMapper insuranceMapper;
 	
 	//poiExcel导入
 	public void importExcelInfo(InputStream in, MultipartFile file, String calDate,Integer adminId) throws Exception{  
@@ -35,7 +38,7 @@ public class SalaryServiceImpl implements SalaryService{
 	    List<Salary> salaryList = new ArrayList<Salary>();
 	    SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
 	    //遍历listob数据，把数据放到List中  
-	    for (int i = 0; i < listob.size(); i++) {  
+	    for (int i = 0; i < listob.size(); i++) { 
 	        List<Object> ob = listob.get(i);  
 	        Salary salary = new Salary();  
 	        //设置编号  String.valueOf(ob.get())
@@ -44,9 +47,7 @@ public class SalaryServiceImpl implements SalaryService{
 	        salary.setCalHr(String.valueOf(ob.get(0).toString()));
 	        salary.setCalId(String.valueOf(ob.get(1).toString()));
 	        salary.setCalName(String.valueOf(ob.get(2)));
-	        if(ob.get(3)!=null) {
-	        	salary.setCalBasic(Float.parseFloat(ob.get(3).toString()));
-	        }
+	        salary.setCalBasic(Float.parseFloat(ob.get(3).toString()));
 	        salary.setCalPost(Float.parseFloat(ob.get(4).toString()));
 	        salary.setCalFloat(Float.parseFloat(ob.get(5).toString()));
 	        salary.setCalCoefficient(Float.parseFloat(ob.get(6).toString()));
@@ -74,8 +75,27 @@ public class SalaryServiceImpl implements SalaryService{
 	        salary.setCalWaste(Float.parseFloat(ob.get(28).toString()));
 	        salary.setCalLastWithhold(Float.parseFloat(ob.get(29).toString()));
 	        
+	        //通过工号查到对应保险
+	        Insurance ins = insuranceMapper.selectByInsId(ob.get(1).toString());
 	        //计算所得税，应得工资，实发工资  
-	        
+	        Float calShould = (Float.parseFloat(ob.get(3).toString())+Float.parseFloat(ob.get(4).toString())
+	        +Float.parseFloat(ob.get(5).toString())+Float.parseFloat(ob.get(7).toString())
+	        +Float.parseFloat(ob.get(8).toString())+Float.parseFloat(ob.get(9).toString())
+	        +Float.parseFloat(ob.get(10).toString())+Float.parseFloat(ob.get(11).toString())
+	        +Float.parseFloat(ob.get(12).toString())+Float.parseFloat(ob.get(13).toString())
+	        +Float.parseFloat(ob.get(14).toString())+Float.parseFloat(ob.get(16).toString())
+	        +Float.parseFloat(ob.get(20).toString())+Float.parseFloat(ob.get(21).toString())
+	        +Float.parseFloat(ob.get(22).toString())+Float.parseFloat(ob.get(23).toString())
+	        +Float.parseFloat(ob.get(24).toString())+Float.parseFloat(ob.get(25).toString())
+	        +Float.parseFloat(ob.get(26).toString())+Float.parseFloat(ob.get(27).toString())
+	        +Float.parseFloat(ob.get(28).toString())-Float.parseFloat(ob.get(17).toString())
+	        -Float.parseFloat(ob.get(15).toString())-Float.parseFloat(ob.get(18).toString())
+	        -Float.parseFloat(ob.get(19).toString())-Float.parseFloat(ob.get(29).toString())
+	        -Float.parseFloat(ins.getInsOld())-Float.parseFloat(ins.getInsTreatments())
+	        -Float.parseFloat(ins.getInsIll())-Float.parseFloat(ins.getInsUnemp())
+	        -Float.parseFloat(ins.getInsAccFund()))
+	        *Float.parseFloat(ob.get(6).toString());
+	        salary.setCalShould(calShould);
 	        
 	        salaryList.add(salary);  
 	    }  

@@ -309,5 +309,171 @@
 			</if>
 		</where>
 	</select>
+	
+	<!-- 通过工号查询 -->
+	<select id="selectByInsId" parameterType="string" resultMap="BaseResultMap">
+    select 
+    *
+    from insurance_
+    where ins_id = #{ins_id,jdbcType=VARCHAR}
+  	</select>
+  	
+  	<!-- 批量更新 -->
+  	<update id="updateBatch" parameterType="java.util.List">
+        update insurance_
+        <trim prefix="set" suffixOverrides=",">
+            <trim prefix="ins_name =case" suffix="end,">
+     			<foreach collection="list" item="item" index="index">
+          			<if test="item.insName!=null">
+          			when Id=#{item.id} then #{item.insName}
+          			</if>
+     			</foreach>
+			</trim>
+			<trim prefix="ins_id =case" suffix="end,">
+     			<foreach collection="list" item="item" index="index">
+          			<if test="item.insId!=null">
+          			when Id=#{item.id} then #{item.insId}
+          			</if>
+     			</foreach>
+			</trim>
+			<trim prefix="ins_sex =case" suffix="end,">
+     			<foreach collection="list" item="item" index="index">
+          			<if test="item.insSex!=null">
+          			when Id=#{item.id} then #{item.insSex}
+          			</if>
+     			</foreach>
+			</trim>
+			<trim prefix="ins_both =case" suffix="end,">
+     			<foreach collection="list" item="item" index="index">
+          			<if test="item.insBoth!=null">
+          			when Id=#{item.id} then #{item.insBoth}
+          			</if>
+     			</foreach>
+			</trim>
+			<trim prefix="ins_iden =case" suffix="end,">
+     			<foreach collection="list" item="item" index="index">
+          			<if test="item.insIden!=null">
+          			when Id=#{item.id} then #{item.insIden}
+          			</if>
+     			</foreach>
+			</trim>
+			<trim prefix="ins_address =case" suffix="end,">
+     			<foreach collection="list" item="item" index="index">
+          			<if test="item.insAddress!=null">
+          			when Id=#{item.id} then #{item.insAddress}
+          			</if>
+     			</foreach>
+			</trim>
+			<trim prefix="ins_car_number =case" suffix="end,">
+     			<foreach collection="list" item="item" index="index">
+          			<if test="item.insCarNumber!=null">
+          			when Id=#{item.id} then #{item.insCarNumber}
+          			</if>
+     			</foreach>
+			</trim>
+			<trim prefix="ins_old_id =case" suffix="end,">
+     			<foreach collection="list" item="item" index="index">
+          			<if test="item.insOldId!=null">
+          			when Id=#{item.id} then #{item.insOldId}
+          			</if>
+     			</foreach>
+			</trim>
+			<trim prefix="ins_old =case" suffix="end,">
+     			<foreach collection="list" item="item" index="index">
+          			<if test="item.insOld!=null">
+          			when Id=#{item.id} then #{item.insOld}
+          			</if>
+     			</foreach>
+			</trim>
+			<trim prefix="ins_treatment_id =case" suffix="end,">
+     			<foreach collection="list" item="item" index="index">
+          			<if test="item.insTreatmentId!=null">
+          			when Id=#{item.id} then #{item.insTreatmentId}
+          			</if>
+     			</foreach>
+			</trim>
+			<trim prefix="ins_treatments =case" suffix="end,">
+     			<foreach collection="list" item="item" index="index">
+          			<if test="item.insTreatments!=null">
+          			when Id=#{item.id} then #{item.insTreatments}
+          			</if>
+     			</foreach>
+			</trim>
+			<trim prefix="ins_ill_id =case" suffix="end,">
+     			<foreach collection="list" item="item" index="index">
+          			<if test="item.insIllId!=null">
+          			when Id=#{item.id} then #{item.insIllId}
+          			</if>
+     			</foreach>
+			</trim>
+			<trim prefix="ins_ill =case" suffix="end,">
+     			<foreach collection="list" item="item" index="index">
+          			<if test="item.insIll!=null">
+          			when Id=#{item.id} then #{item.insIll}
+          			</if>
+     			</foreach>
+			</trim>
+			<trim prefix="insurance =case" suffix="end,">
+     			<foreach collection="list" item="item" index="index">
+          			<if test="item.insurance!=null">
+          			when Id=#{item.id} then #{item.insurance}
+          			</if>
+     			</foreach>
+			</trim>
+			<trim prefix="ins_unemp_id =case" suffix="end,">
+     			<foreach collection="list" item="item" index="index">
+          			<if test="item.insUnempId!=null">
+          			when Id=#{item.id} then #{item.insUnempId}
+          			</if>
+     			</foreach>
+			</trim>
+			<trim prefix="ins_unemp =case" suffix="end,">
+     			<foreach collection="list" item="item" index="index">
+          			<if test="item.insUnemp!=null">
+          			when Id=#{item.id} then #{item.insUnemp}
+          			</if>
+     			</foreach>
+			</trim>
+			<trim prefix="ins_unemp_address =case" suffix="end,">
+     			<foreach collection="list" item="item" index="index">
+          			<if test="item.insUnempAddress!=null">
+          			when Id=#{item.id} then #{item.insUnempAddress}
+          			</if>
+     			</foreach>
+			</trim>
+			<trim prefix="ins_acc_fund =case" suffix="end,">
+     			<foreach collection="list" item="item" index="index">
+          			<if test="item.insAccFund!=null">
+          			when Id=#{item.id} then #{item.insAccFund}
+          			</if>
+     			</foreach>
+			</trim>
+			<trim prefix="ins_acc_address =case" suffix="end,">
+     			<foreach collection="list" item="item" index="index">
+          			<if test="item.insAccAddress!=null">
+          			when Id=#{item.id} then #{item.insAccAddress}
+          			</if>
+     			</foreach>
+			</trim>
+			<trim prefix="ins_sign =case" suffix="end,">
+     			<foreach collection="list" item="item" index="index">
+          			<if test="item.insSign!=null">
+          			when Id=#{item.id} then #{item.insSign}
+          			</if>
+     			</foreach>
+			</trim>
+			<trim prefix="ins_remark =case" suffix="end,">
+     			<foreach collection="list" item="item" index="index">
+          			<if test="item.insRemark!=null">
+          			when Id=#{item.id} then #{item.insRemark}
+          			</if>
+     			</foreach>
+			</trim>
+        </trim>
+        where Id in
+        <foreach collection="list" index="index" item="item" separator="," open="(" close=")">
+            #{item.id}
+        </foreach>
+    </update>
   
 </mapper>

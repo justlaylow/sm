@@ -69,11 +69,11 @@
 				<span>${param.deleteInsMsg}</span>
 
 				<!-- 部门列表 -->
-				<table class="table table-hover" id="datagrid">
+				<form action="/sm/updateBatch/ins" method="post" id="fm">
+				<table class="table table-bordered" id="datagrid">
 					<thead>
 						<tr>
 							<th>删除</th>
-							<th>修改</th>
 							<th>工号</th>
 							<th>姓名</th>
 							<th>性别</th>
@@ -84,124 +84,59 @@
 							<th>大病医疗</th>
 							<th>失业保险</th>
 							<th>公积金</th>
+							<th>保险投保地</th>
+							<th>失业投保地</th>
+							<th>公积金投保地</th>
+							<th>养老编号</th>
+							<th>医保编号</th>
+							<th>大病编号</th>
+							<th>失业编号</th>
+							<th>出生日期</th>
+							<th>家庭住址</th>
+							<th>投保标志</th>
+							<th>备注</th>
 						</tr>
 					</thead>
 					<tbody>
-						<c:forEach var="ins" items="${listIns}">
+						<c:forEach var="ins" items="${listIns}" varStatus="i">
 							<tr>
 								<!-- 删除 -->
 								<td><button type="button" id="insId"
-										class="btn btn-warning" onclick="del(${ins.id})">删除</button></td>
-
-								<!-- 修改信息 -->
-								<td><button type="button" id="updateDep"
-										class="btn btn-default" data-toggle="modal"
-										data-target="#upd${ins.id}">修改</button>
-									<div class="modal fade" id="upd${ins.id}"
-										data-backdrop="static" tabindex="-1" role="dialog"
-										aria-labelledby="myModalLabel">
-										<div class="modal-dialog">
-											<div class="modal-content">
-												<div class="modal-header">
-													<button data-dismiss="modal" class="close" type="button">
-														<span aria-hidden="true">×</span><span class="sr-only">Close</span>
-													</button>
-													<h4 class="modal-title" align="center">修改</h4>
-												</div>
-												<div class="modal-body">
-													<form action="/sm/update/ins" method="post" id="fm${ins.id}">
-														<input style="display: none" name="id" id="Id" value="${ins.id}">
-														<table align="center">
-															<tr>
-																<td><label>姓名:</label></td><td> <input name="insName" required="true" value="${ins.insName}"></td>
-																<td><label>工号:</label></td><td> <input name="insId" required="true" value="${ins.insId}"></td>
-															</tr>
-															<tr>
-																<td><label>性别:</label></td><td> <input name="insSex" value="${ins.insSex}"></td>
-																<td><label>出生日期:</label></td><td> <input type="text" name="insBoth" value="<fmt:formatDate value="${ins.insBoth}" type="date"/>" id="insBoth${ins.id}"></td>
-															</tr>
-															<tr>
-																<td><label>身份证号:</label></td><td> <input name="insIden" value="${ins.insIden}"></td>
-																<td><label>家庭住址:</label></td><td> <input type="text" name="insAddress" value="${ins.insAddress}"></td>
-															</tr>
-															<tr>
-																<td><label>保险基数:</label></td><td> <input name="insCarNumber" value="${ins.insCarNumber}"></td>
-																<td><label>养老编号:</label></td><td> <input type="text" name="insOldId" value="${ins.insOldId}"></td>
-															</tr>
-															<tr>
-																<td><label>养老保险:</label></td><td> <input name="insOld" value="${ins.insOld}"></td>
-																<td><label>医保编号:</label></td><td> <input type="text" name="insTreatmentId" value="${ins.insTreatmentId}"></td>
-															</tr>
-															<tr>
-																<td><label>医疗保险:</label></td><td> <input name="insTreatments" value="${ins.insTreatments}"></td>
-																<td><label>大病编号:</label></td><td> <input type="text" name="insIllId" value="${ins.insIllId}"></td>
-															</tr>
-															<tr>
-																<td><label>大病医疗:</label></td><td> <input name="insIll" value="${ins.insIll}"></td>
-																<td><label>保险投保地:</label></td><td> <input type="text" name="insurance" value="${ins.insurance}"></td>
-															</tr>
-															<tr>
-																<td><label>失业编号:</label></td><td> <input name="insUnempId" value="${ins.insUnempId}"></td>
-																<td><label>失业保险:</label></td><td> <input type="text" name="insUnemp" value="${ins.insUnemp}"></td>
-															</tr>
-															<tr>
-																<td><label>失业投保地:</label></td><td> <input name="insUnempAddress" value="${ins.insUnempAddress}"></td>
-																<td><label>公积金:</label></td><td> <input type="text" name="insAccFund" value="${ins.insAccFund}"></td>
-															</tr>
-															<tr>
-																<td><label>公积金投保地:</label></td><td> <input name="insAccAddress" value="${ins.insAccAddress}"></td>
-																<td><label>投标标志:</label></td><td> <input type="text" value="${ins.insSign}"></td>
-															</tr>
-															<tr>
-																<td><label>备注:</label></td><td> <input name="insRemark" value="${ins.insRemark}"></td>
-																<td><label> </label></td><td> 保：<input type="radio" value="保"name="insSign">  
-																				不保：<input type="radio" value="不保" name="insSign"></td>
-															</tr>
-														</table>
-														<div class="modal-footer">
-															<button data-dismiss="modal" class="btn btn-default"
-																type="button">关闭</button>
-															<input class="btn btn-primary" type="submit" value="添加" id="submitUpdate${ins.id}">
-														</div>
-													</form>
-													<script type="text/javascript">
-														$('#submitUpdate'+${ins.id}).click(function(){
-														var insBoth = $('#insBoth'+${ins.id}).val();
-														var reg = /^[0-9]{4}-(0[1-9]|[1-9]|1[0-2])-(0[1-9]|[1-9]|[1-2][0-9]|3[0-1])$/;
-														if(reg.test(insBoth)!=true){
-															confirm("出生日期格式或时间出错 xxxx-xx-xx");
-															return false;
-														}
-														$('#fm'+${ins.id}).submit();
-													});
-													</script>
-												</div>
-											</div>
-											<!-- /.modal-content -->
-										</div>
-										<!-- /.modal-dialog -->
-									</div>
-								</td>
+										class="btn btn-sm btn-warning" onclick="del(${ins.id})">删除</button></td>
 								
 								<!-- 和po类里的属性名一样 -->
-								<td>${ins.insId}</td>
-								<td>${ins.insName}</td>
-								<td>${ins.insSex}</td>
-								<td>${ins.insIden}</td>
-								<td>${ins.insCarNumber}</td>
-								<td>${ins.insOld}</td>
-								<td>${ins.insTreatments}</td>
-								<td>${ins.insIll}</td>
-								<td>${ins.insUnemp}</td>
-								<td>${ins.insAccFund}</td>
+									<td> <input style="display: none" name="insurance[${i.index}].id" id="Id" value="${ins.id}">
+										 <input name="insurance[${i.index}].insId" required="true" value="${ins.insId}" style="width: 70px;"></td>
+									<td> <input name="insurance[${i.index}].insName" required="true" value="${ins.insName}" style="width: 70px;"></td>
+									<td> <input name="insurance[${i.index}].insSex" value="${ins.insSex}" style="width: 40px;text-align: center;"></td>
+									<td> <input name="insurance[${i.index}].insIden" value="${ins.insIden}"></td>
+									<td> <input name="insurance[${i.index}].insCarNumber" value="${ins.insCarNumber}" style="width: 70px;"></td>
+									<td> <input name="insurance[${i.index}].insOld" value="${ins.insOld}" style="width: 70px;"></td>
+									<td> <input name="insurance[${i.index}].insTreatments" value="${ins.insTreatments}" style="width: 70px;"></td>
+									<td> <input name="insurance[${i.index}].insIll" value="${ins.insIll}" style="width: 70px;"></td>
+									<td> <input type="text" name="insurance[${i.index}].insUnemp" value="${ins.insUnemp}" style="width: 70px;"></td>
+									<td> <input type="text" name="insurance[${i.index}].insAccFund" value="${ins.insAccFund}" style="width: 70px;"></td>
+									<td> <input type="text" name="insurance[${i.index}].insurance" value="${ins.insurance}" style="width: 80px;text-align: center;"></td>
+									<td> <input name="insurance[${i.index}].insUnempAddress" value="${ins.insUnempAddress}" style="width: 80px;text-align: center;"></td>
+									<td> <input name="insurance[${i.index}].insAccAddress" value="${ins.insAccAddress}" style="width: 100px;text-align: center;"></td>
+									<td> <input type="text" name="insurance[${i.index}].insOldId" value="${ins.insOldId}" style="width: 70px;"></td>
+									<td> <input type="text" name="insurance[${i.index}].insTreatmentId" value="${ins.insTreatmentId}" style="width: 70px;"></td>
+									<td> <input type="text" name="insurance[${i.index}].insIllId" value="${ins.insIllId}" style="width: 70px;"></td>
+									<td> <input name="insurance[${i.index}].insUnempId" value="${ins.insUnempId}" style="width: 70px;"></td>
+									<td> <input type="text" name="insurance[${i.index}].insBoth" value="<fmt:formatDate value="${ins.insBoth}" type="date"/>" style="width: 90px;"></td>
+									<td> <input type="text" name="insurance[${i.index}].insAddress" value="${ins.insAddress}" style="width: 300px;"></td>
+									<td> <input type="text" name="insurance[${i.index}].insSign" value="${ins.insSign}" style="width: 70px;"></td>
+									<td> <input name="insurance[${i.index}].insRemark" value="${ins.insRemark}" style="width: 100px;"></td>
+								
 							</tr>
 						</c:forEach>
 					</tbody>
 				</table>
+				<p align="center"><input type="submit" id="insId" class="btn btn-sm btn-success" value="修改"/></p>
+				</form>
 			</div>
 		</div>
 	</div>
 
-	
 </body>
 </html>

@@ -319,8 +319,9 @@
 	</select>
 
 	<!-- 模糊查询/关联查询 -->
-	<select id="listEmpBlurry" resultMap="BaseResultMap">
-		select * from employee_
+	<select id="listEmpBlurry" resultMap="innerMap">
+		select e.*,i.* from employee_ e
+		left join insurance_ i on e.sal_id = i.ins_id
 		<where>
 			<if test="sal_id!=null">
 				and sal_id like concat("%",#{sal_id},"%")
@@ -330,6 +331,19 @@
 			</if>
 			<if test="sal_oa!=null">
 				and sal_oa like "%"#{sal_oa}"%"
+			</if>
+		</where>
+		union select e.*,i.*
+		from employee_ e right join insurance_ i on e.sal_id = i.ins_id
+		<where>
+			<if test="sal_id!=null">
+				and sal_id like concat("%",#{sal_id2},"%")
+			</if>
+			<if test="sal_name!=null">
+				and sal_name like "%"#{sal_name2}"%"
+			</if>
+			<if test="sal_oa!=null">
+				and sal_oa like "%"#{sal_oa2}"%"
 			</if>
 		</where>
 	</select>

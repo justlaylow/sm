@@ -69,7 +69,7 @@ public class EmployeeController {
 	//模糊查询
 	@RequestMapping("/blurry/emp")
 	public String blurryEmp(Employee employee,String salName,String salOa,String salId,HttpServletRequest request) {
-		List<Employee> empList = employeeService.listEmpBlurry(salName, salId, salOa);
+		List<Employee> empList = employeeService.listEmpBlurry(salName, salId, salOa,salName, salId, salOa);
 		List<Department> listDep = employeeService.listDep();
 		request.setAttribute("listDep", listDep);
 		request.setAttribute("empList", empList);

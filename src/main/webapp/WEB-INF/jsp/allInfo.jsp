@@ -205,6 +205,7 @@
 
 		}
 
+		//bootstrap日期选择
 		$('#mydatepicker').dcalendarpicker({
 			format : 'yyyy-mm-dd'
 		});

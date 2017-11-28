@@ -19,11 +19,17 @@ public interface InsuranceMapper {
 
     int updateByPrimaryKey(Insurance record);
     
+    //通过工号查询
+    Insurance selectByInsId(@Param("ins_id") String insId);
+    
     //查询所有
     List<Insurance> listIns();
     
     //模糊查询
     List<Insurance> listInsBlurry(@Param("ins_id") String insId,@Param("ins_name") String insName);
+    
+    //批量更新
+    int updateBatch(List<Insurance> list);
     
     
 }

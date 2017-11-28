@@ -75,8 +75,8 @@ public class EmployeeServiceImpl implements EmployeeService {
 	}
 	
 	//模糊查询
-	public List<Employee> listEmpBlurry(String name,String id,String oa){
-		List<Employee> empBlurryList = employeeMapper.listEmpBlurry(name,id , oa);
+	public List<Employee> listEmpBlurry(String name,String id,String oa,String name2,String id2,String oa2){
+		List<Employee> empBlurryList = employeeMapper.listEmpBlurry(name,id , oa,name2,id2 , oa2);
 		return empBlurryList;
 	}
 

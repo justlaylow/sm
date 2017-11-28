@@ -20,4 +20,7 @@ public interface InsuranceService {
 	//新增
 	public String insertIns(Insurance insurance);
 	
+	//批量更新
+	public String updateBatch(List<Insurance> list);
+	
 }
