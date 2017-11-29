@@ -16,8 +16,10 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.tl.sm.mapper.EmployeeMapper;
 import com.tl.sm.mapper.InsuranceMapper;
 import com.tl.sm.mapper.SalaryMapper;
+import com.tl.sm.pojo.Employee;
 import com.tl.sm.pojo.ExcelBean;
 import com.tl.sm.pojo.Insurance;
 import com.tl.sm.pojo.Salary;
@@ -31,9 +33,11 @@ public class SalaryServiceImpl implements SalaryService{
 	private SalaryMapper salaryMapper;
 	@Resource
 	private InsuranceMapper insuranceMapper;
+	@Resource
+	private EmployeeMapper employeeMapper;
 	
 	//poiExcel导入
-	public void importExcelInfo(InputStream in, MultipartFile file, String calDate,Integer adminId) throws Exception{  
+	public List<Salary> importExcelInfo(InputStream in, MultipartFile file, String calDate,Integer adminId) throws Exception{  
 	    List<List<Object>> listob = ExcelUtil.getBankListByExcel(in,file.getOriginalFilename());  
 	    List<Salary> salaryList = new ArrayList<Salary>();
 	    SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
@@ -65,18 +69,26 @@ public class SalaryServiceImpl implements SalaryService{
 	        salary.setCalWithhold(Float.parseFloat(ob.get(18).toString()));
 	        salary.setCalWaterandele(Float.parseFloat(ob.get(19).toString()));
 	        salary.setCalAllowance(Float.parseFloat(ob.get(20).toString()));
-	        salary.setCalDues(Float.parseFloat(ob.get(21).toString()));
-	        salary.setCalManhour(Float.parseFloat(ob.get(22).toString()));
-	        salary.setLabourCost(Float.parseFloat(ob.get(23).toString()));
-	        salary.setCalBenefitwage(Float.parseFloat(ob.get(24).toString()));
-	        salary.setCalManhourBonus(Float.parseFloat(ob.get(25).toString()));
-	        salary.setCalManhourSalary(Float.parseFloat(ob.get(26).toString()));
-	        salary.setCalWelfare(Float.parseFloat(ob.get(27).toString()));
-	        salary.setCalWaste(Float.parseFloat(ob.get(28).toString()));
-	        salary.setCalLastWithhold(Float.parseFloat(ob.get(29).toString()));
+	        salary.setCalManhour(Float.parseFloat(ob.get(21).toString()));
+	        salary.setLabourCost(Float.parseFloat(ob.get(22).toString()));
+	        salary.setCalBenefitwage(Float.parseFloat(ob.get(23).toString()));
+	        salary.setCalManhourBonus(Float.parseFloat(ob.get(24).toString()));
+	        salary.setCalManhourSalary(Float.parseFloat(ob.get(25).toString()));
+	        salary.setCalWelfare(Float.parseFloat(ob.get(26).toString()));
+	        salary.setCalWaste(Float.parseFloat(ob.get(27).toString()));
+	        salary.setCalLastWithhold(Float.parseFloat(ob.get(28).toString()));
 	        
 	        //通过工号查到对应保险
 	        Insurance ins = insuranceMapper.selectByInsId(ob.get(1).toString());
+	        //通过工号取到对应的统计类别，计算会费
+	        Employee emp = employeeMapper.selectByEmpId(ob.get(1).toString());
+	        
+	        //公积金
+	        Float accFund = Float.parseFloat(ins.getInsAccFund());
+	        //社保
+	        Float insurance = Float.parseFloat(ins.getInsOld())+Float.parseFloat(ins.getInsTreatments())
+	    	        +Float.parseFloat(ins.getInsIll())+Float.parseFloat(ins.getInsUnemp());
+	        
 	        //计算所得税，应得工资，实发工资  
 	        Float calShould = (Float.parseFloat(ob.get(3).toString())+Float.parseFloat(ob.get(4).toString())
 	        +Float.parseFloat(ob.get(5).toString())+Float.parseFloat(ob.get(7).toString())
@@ -84,26 +96,68 @@ public class SalaryServiceImpl implements SalaryService{
 	        +Float.parseFloat(ob.get(10).toString())+Float.parseFloat(ob.get(11).toString())
 	        +Float.parseFloat(ob.get(12).toString())+Float.parseFloat(ob.get(13).toString())
 	        +Float.parseFloat(ob.get(14).toString())+Float.parseFloat(ob.get(16).toString())
-	        +Float.parseFloat(ob.get(20).toString())+Float.parseFloat(ob.get(21).toString())
-	        +Float.parseFloat(ob.get(22).toString())+Float.parseFloat(ob.get(23).toString())
-	        +Float.parseFloat(ob.get(24).toString())+Float.parseFloat(ob.get(25).toString())
-	        +Float.parseFloat(ob.get(26).toString())+Float.parseFloat(ob.get(27).toString())
-	        +Float.parseFloat(ob.get(28).toString())-Float.parseFloat(ob.get(17).toString())
+	        +Float.parseFloat(ob.get(20).toString())
+	        +Float.parseFloat(ob.get(21).toString())+Float.parseFloat(ob.get(22).toString())
+	        +Float.parseFloat(ob.get(23).toString())+Float.parseFloat(ob.get(24).toString())
+	        +Float.parseFloat(ob.get(25).toString())+Float.parseFloat(ob.get(26).toString())
+	        +Float.parseFloat(ob.get(27).toString())-Float.parseFloat(ob.get(17).toString())
 	        -Float.parseFloat(ob.get(15).toString())-Float.parseFloat(ob.get(18).toString())
-	        -Float.parseFloat(ob.get(19).toString())-Float.parseFloat(ob.get(29).toString())
-	        -Float.parseFloat(ins.getInsOld())-Float.parseFloat(ins.getInsTreatments())
-	        -Float.parseFloat(ins.getInsIll())-Float.parseFloat(ins.getInsUnemp())
-	        -Float.parseFloat(ins.getInsAccFund()))
+	        -Float.parseFloat(ob.get(19).toString())-Float.parseFloat(ob.get(28).toString()))
 	        *Float.parseFloat(ob.get(6).toString());
-	        salary.setCalShould(calShould);
 	        
+	        //计算所得税
+	        Float calIncometax = calShould-accFund-insurance-3500;
+	    	       
+	        if(calShould<=3500) {
+	        	calIncometax = 0f;
+	        }else {
+	        	if(calIncometax<=1500) {
+	        		calIncometax = calIncometax*0.03f;
+	        	}else if(calIncometax>1500&&calIncometax<=4500) {
+	        		calIncometax = calIncometax*0.1f-105;
+	        	}else if(calIncometax>4500&&calIncometax<=9000) {
+	        		calIncometax = calIncometax*0.2f-555;
+	        	}else if(calIncometax>9000&&calIncometax<=35000) {
+	        		calIncometax = calIncometax*0.25f-1005;
+	        	}else if(calIncometax>35000&&calIncometax<=55000) {
+	        		calIncometax = calIncometax*0.3f-2755;
+	        	}else if(calIncometax>55000&&calIncometax<=80000) {
+	        		calIncometax = calIncometax*0.35f-5505;
+	        	}else {
+	        		calIncometax = calIncometax*0.45f-13505;
+	        	}
+	        }
+	        
+	        //会费
+	        String staCategory = emp.getStaCategory().substring(0, 2);
+	        System.out.println(staCategory);
+	        Float calDues = 0f;
+	        if(staCategory.equals("管理")||staCategory.equals("技术")||staCategory.equals("事务")) {
+	        	calDues = (Float.parseFloat(ob.get(3).toString())+Float.parseFloat(ob.get(4).toString())
+	        	+Float.parseFloat(ob.get(7).toString())-calIncometax-accFund-insurance)*0.005f;
+	        }else if(staCategory.equals("营销")) {
+	        	//calDues = 
+	        }else {
+	        	Float all = Float.parseFloat(ob.get(8).toString())+Float.parseFloat(ob.get(13).toString());
+	        	if(all<2000) {
+	        		calDues = 5f;
+	        	}else {
+	        		calDues = 10f;
+	        	}
+	        }
+	        
+	        //实得工资
+	        Float calResult = calShould-accFund-insurance-calIncometax-calDues;
+	        
+	        salary.setCalResult(calResult);
+	        salary.setCalDues(calDues);
+	        salary.setCalShould(calShould);
+	        salary.setCalIncometax(calIncometax);
 	        salaryList.add(salary);  
 	    }  
-	    //批量插入  
-	    salaryMapper.insertForeach(salaryList);  
+	    return salaryList;  
 	}
 
-	
 	//查询所有
 	public List<Salary> listCal() {
 		List<Salary> listCal = salaryMapper.listCal();
@@ -210,5 +264,18 @@ public class SalaryServiceImpl implements SalaryService{
         xssfWorkbook = ExcelUtil.createExcelFile(Salary.class, list, map, sheetName);
         return xssfWorkbook;
     }
+
+	//Excel数据插入数据库
+	public String importDB(List<Salary> salaryList) {
+		//批量插入  
+		String message = "";
+		int i = salaryMapper.insertForeach(salaryList);
+		if(i>0) {
+			message = "导入成功";
+		}else {
+			message = "导入失败";
+		}
+		return message;
+	}
 	
 }

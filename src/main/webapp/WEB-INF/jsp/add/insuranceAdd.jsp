@@ -32,32 +32,20 @@
 						<tr>
 							<td><label>性别:</label></td>
 							<td><input name="insSex"></td>
-							<td><label>出生日期:</label></td>
-							<td><input type="text" name="insBoth" id="calendar"></td>
-						</tr>
-						<tr>
 							<td><label>身份证号:</label></td>
 							<td><input name="insIden"></td>
-							<td><label>家庭住址:</label></td>
-							<td><input type="text" name="insAddress" size="30px"></td>
 						</tr>
 						<tr>
 							<td><label>保险基数:</label></td>
 							<td><input name="insCarNumber"></td>
-							<td><label>养老编号:</label></td>
-							<td><input type="text" name="insOldId"></td>
+							<td><label>备注:</label></td>
+							<td><input name="insRemark"></td>
 						</tr>
 						<tr>
 							<td><label>养老保险:</label></td>
 							<td><input name="insOld"></td>
-							<td><label>医保编号:</label></td>
-							<td><input type="text" name="insTreatmentId"></td>
-						</tr>
-						<tr>
 							<td><label>医疗保险:</label></td>
 							<td><input name="insTreatments"></td>
-							<td><label>大病编号:</label></td>
-							<td><input type="text" name="insIllId"></td>
 						</tr>
 						<tr>
 							<td><label>大病医疗:</label></td>
@@ -66,27 +54,21 @@
 							<td><input type="text" name="insurance"></td>
 						</tr>
 						<tr>
-							<td><label>失业编号:</label></td>
-							<td><input name="insUnempId"></td>
 							<td><label>失业保险:</label></td>
 							<td><input type="text" name="insUnemp"></td>
-						</tr>
-						<tr>
 							<td><label>失业投保地:</label></td>
 							<td><input name="insUnempAddress"></td>
-							<td><label>公积金:</label></td>
-							<td><input type="text" name="insAccFund"></td>
 						</tr>
 						<tr>
+							<td><label>公积金:</label></td>
+							<td><input type="text" name="insAccFund"></td>
 							<td><label>公积金投保地:</label></td>
 							<td><input name="insAccAddress"></td>
+						</tr>
+						<tr>
 							<td><label>投标标志:</label></td>
 							<td>保：<input type="radio" value="保" name="insSign">
 								不保：<input type="radio" value="不保" name="insSign"></td>
-						</tr>
-						<tr>
-							<td><label>备注:</label></td>
-							<td><input name="insRemark"></td>
 						</tr>
 					</table>
 					<button data-dismiss="modal" class="btn btn-default" type="button"

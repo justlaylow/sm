@@ -16,6 +16,8 @@ public interface EmployeeMapper {
     int insertSelective(Employee record);
 
     Employee selectByPrimaryKey(Integer id);
+    
+    Employee selectByEmpId(String salId);
 
     int updateByPrimaryKeySelective(Employee record);
 

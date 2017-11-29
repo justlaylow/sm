@@ -15,8 +15,11 @@ import com.tl.sm.pojo.Salary;
 
 public interface SalaryService {
 	
-	//Excel导入
-	public void importExcelInfo(InputStream in, MultipartFile file, String salaryDate,Integer adminId)throws Exception;
+	//Excel导入预览集合
+	public List<Salary> importExcelInfo(InputStream in, MultipartFile file, String salaryDate,Integer adminId)throws Exception;
+	
+	//Excel数据插入数据库
+	public String importDB(List<Salary> list);
 	
 	//Excel导出
 	public XSSFWorkbook exportExcelInfo(String calDate) throws InvocationTargetException, ClassNotFoundException, IntrospectionException, ParseException, IllegalAccessException ; 

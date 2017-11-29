@@ -8,6 +8,7 @@ import java.io.OutputStream;
 import java.lang.reflect.InvocationTargetException;
 import java.text.ParseException;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.annotation.Resource;
@@ -23,7 +24,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
+import com.tl.sm.pojo.Salary;
 import com.tl.sm.service.SalaryService;
+import com.tl.sm.util.excelList;
 
 @Controller
 @Scope("prototype")
@@ -33,6 +36,15 @@ public class ExcelController {
 
 	//poi Excel导入
 	@RequestMapping("/import")
+	public String beforeImport(excelList salaryLsit,HttpServletRequest request) {
+		System.out.println(salaryLsit.getSalaryList().get(0).getCalHr());
+		String importMsg = salaryService.importDB(salaryLsit.getSalaryList());
+		request.setAttribute("importMsg", importMsg);
+		return "beforeImport";
+	}
+	
+	//poi导入预览
+	@RequestMapping("/beforeImport")
 	public String impotr(HttpServletRequest request, Model model) throws Exception {
 		int adminId = 1;
 		// 获取上传的文件
@@ -41,9 +53,10 @@ public class ExcelController {
 		String month = request.getParameter("calDate");
 		InputStream in = file.getInputStream();
 		// 数据导入
-		salaryService.importExcelInfo(in, file, month, adminId);
+		List<Salary> salaryList = salaryService.importExcelInfo(in, file, month, adminId);
+		request.setAttribute("salaryList", salaryList);
 		in.close();
-		return "main";
+		return "beforeImport";
 	}
 	
 	//poi Excel导出

@@ -364,4 +364,13 @@
 		where e.sal_id = #{sal_id} and c.cal_date = #{cal_date}
 	</select>
 	
+	<!-- 通过工号查询 -->
+	<select id="selectByEmpId" parameterType="string"
+		resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from employee_
+		where sal_id = #{salId,jdbcType=VARCHAR}
+	</select>
+	
 </mapper>

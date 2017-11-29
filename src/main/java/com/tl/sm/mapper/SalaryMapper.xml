@@ -512,7 +512,8 @@
       cal_dues, cal_manhour, labour_cost, 
       cal_benefitwage, cal_manhour_bonus, cal_manhour_salary, 
       cal_welfare, cal_waste, 
-      cal_last_withhold,cal_date)
+      cal_last_withhold,cal_date,
+      cal_incometax,cal_result)
     values 
     <foreach collection="list" item="item" index="index" separator=",">
     ( #{item.calHr,jdbcType=VARCHAR}, #{item.calId,jdbcType=VARCHAR}, 
@@ -526,7 +527,8 @@
       #{item.calDues,jdbcType=REAL}, #{item.calManhour,jdbcType=REAL}, #{item.labourCost,jdbcType=REAL}, 
       #{item.calBenefitwage,jdbcType=REAL}, #{item.calManhourBonus,jdbcType=REAL}, #{item.calManhourSalary,jdbcType=REAL}, 
       #{item.calWelfare,jdbcType=REAL},  #{item.calWaste,jdbcType=REAL}, 
-      #{item.calLastWithhold,jdbcType=REAL},#{item.calDate,jdbcType=REAL})
+      #{item.calLastWithhold,jdbcType=REAL},#{item.calDate,jdbcType=REAL},
+      #{item.calIncometax,jdbcType=REAL},#{item.calResult,jdbcType=REAL})
       <!-- (#{item}) -->
       </foreach>
   </insert>

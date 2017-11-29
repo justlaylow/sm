@@ -44,16 +44,13 @@
 				<div class="input-group">
 					工号：<input type="text" placeholder="Search for..." name="salId"
 						id="salId" value="${param.salId}"> <span>
-						<button class="btn btn-default" type="button"
-							onclick="blurrySeach()">搜索</button>
 					</span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 姓名：<input type="text"
 						placeholder="Search for..." name="salName" id="salName"
 						value="${param.salName}"> <span>
-						<button class="btn btn-default" type="button"
-							onclick="blurrySeach()">搜索</button>
 					</span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; OA账号：<input type="text"
 						placeholder="Search for..." name="salOa" id="salOa"
 						value="${param.salOa}"> <span>
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 						<button class="btn btn-default" type="button"
 							onclick="blurrySeach()">搜索</button>
 					</span>
@@ -158,18 +155,12 @@
 							<th>备注</th>
 							<th>技能等级</th>
 							<th>性别</th>
-							<th>出生日期</th>
 							<th>身份证号</th>
-							<th>家庭住址</th>
 							<th>保险基数</th>
-							<th>养老编号</th>
 							<th>养老保险</th>
-							<th>医保编号</th>
 							<th>医疗保险</th>
-							<th>大病编号</th>
 							<th>大病医疗</th>
 							<th>保险投保地</th>
-							<th>失业编号</th>
 							<th>失业保险</th>
 							<th>失业投保地</th>
 							<th>公积金</th>
@@ -278,18 +269,12 @@
 									<td>${emp.salSkilllevel}</td>
 									<c:forEach var="ins" items="${emp.salInsuranceList}">
 										<td>${ins.insSex}</td>
-										<td><fmt:formatDate value="${ins.insBoth}" type="date"/></td>
 										<td>${ins.insIden}</td>
-										<td>${ins.insAddress}</td>
 										<td>${ins.insCarNumber}</td>
-										<td>${ins.insOldId}</td>
 										<td>${ins.insOld}</td>
-										<td>${ins.insTreatmentId}</td>
 										<td>${ins.insTreatments}</td>
-										<td>${ins.insIllId}</td>
 										<td>${ins.insIll}</td>
 										<td>${ins.insurance}</td>
-										<td>${ins.insUnempId}</td>
 										<td>${ins.insUnemp}</td>
 										<td>${ins.insUnempAddress}</td>
 										<td>${ins.insAccFund}</td>

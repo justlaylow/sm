@@ -47,11 +47,10 @@
 				<div class="input-group">
 					工号：<input type="text" placeholder="Search for..." name="insId"
 						id="insId" value="${param.insId}"> <span>
-						<button class="btn btn-default" type="button"
-							onclick="blurrySeach()">搜索</button>
 					</span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 姓名：<input type="text"
 						placeholder="Search for..." name="insName" id="insName"
 						value="${param.insName}"> <span>
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 						<button class="btn btn-default" type="button"
 							onclick="blurrySeach()">搜索</button>
 					</span>
@@ -87,12 +86,6 @@
 							<th>保险投保地</th>
 							<th>失业投保地</th>
 							<th>公积金投保地</th>
-							<th>养老编号</th>
-							<th>医保编号</th>
-							<th>大病编号</th>
-							<th>失业编号</th>
-							<th>出生日期</th>
-							<th>家庭住址</th>
 							<th>投保标志</th>
 							<th>备注</th>
 						</tr>
@@ -119,12 +112,6 @@
 									<td> <input type="text" name="insurance[${i.index}].insurance" value="${ins.insurance}" style="width: 80px;text-align: center;"></td>
 									<td> <input name="insurance[${i.index}].insUnempAddress" value="${ins.insUnempAddress}" style="width: 80px;text-align: center;"></td>
 									<td> <input name="insurance[${i.index}].insAccAddress" value="${ins.insAccAddress}" style="width: 100px;text-align: center;"></td>
-									<td> <input type="text" name="insurance[${i.index}].insOldId" value="${ins.insOldId}" style="width: 70px;"></td>
-									<td> <input type="text" name="insurance[${i.index}].insTreatmentId" value="${ins.insTreatmentId}" style="width: 70px;"></td>
-									<td> <input type="text" name="insurance[${i.index}].insIllId" value="${ins.insIllId}" style="width: 70px;"></td>
-									<td> <input name="insurance[${i.index}].insUnempId" value="${ins.insUnempId}" style="width: 70px;"></td>
-									<td> <input type="text" name="insurance[${i.index}].insBoth" value="<fmt:formatDate value="${ins.insBoth}" type="date"/>" style="width: 90px;"></td>
-									<td> <input type="text" name="insurance[${i.index}].insAddress" value="${ins.insAddress}" style="width: 300px;"></td>
 									<td> <input type="text" name="insurance[${i.index}].insSign" value="${ins.insSign}" style="width: 70px;"></td>
 									<td> <input name="insurance[${i.index}].insRemark" value="${ins.insRemark}" style="width: 100px;"></td>
 								

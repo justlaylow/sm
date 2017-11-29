@@ -15,7 +15,7 @@
 				<h3 class="text-center text-info">工 资 表 数 据 导 入</h3>
 				<br>
 				<div style="text-align: center; width: 400px; margin: auto;">
-					<form action="/sm/import" method="post"
+					<form action="/sm/beforeImport" method="post"
 						enctype="multipart/form-data" id="formSub">
 						&emsp;请选择Excel： <input type="file" name="upfile"
 							style="margin-left: 130px; margin-top: 10px" id="excelFile"><br> <span

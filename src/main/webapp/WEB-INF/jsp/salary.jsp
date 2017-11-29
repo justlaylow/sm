@@ -17,15 +17,12 @@
 				<div class="input-group">
 					工号：<input type="text" placeholder="Search for..." name="calId"
 						id="calId" value="${param.calId}"> <span>
-						<button class="btn btn-default" type="button"
-							onclick="blurrySeach()">搜索</button>
 					</span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 姓名：<input type="text"
 						placeholder="Search for..." name="calName" id="calName"
 						value="${param.calName}"> <span>
-						<button class="btn btn-default" type="button"
-							onclick="blurrySeach()">搜索</button>
 					</span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 工资时间：<input type="text"
 						placeholder="Search for..." name="calDate" id="calDate"> <span>
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 						<button class="btn btn-default" type="button"
 							onclick="blurrySeach()">搜索</button>
 					</span>
