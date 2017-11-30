@@ -42,8 +42,8 @@
 				<table class="table table-hover" id="datagrid">
 					<thead>
 						<tr>
-							<th>删除</th>
-							<th>查看</th>
+							<!-- <th>删除</th>
+							<th>查看</th> -->
 							<th>工号</th>
 							<th>姓名</th>
 							<th>部门代码</th>
@@ -59,7 +59,7 @@
 						<c:forEach var="sal" items="${salList}">
 							<c:if test="${sal.id!=null }">
 								<tr>
-									<!-- 删除 -->
+									<%-- <!-- 删除 -->
 									<td><button type="button" id="calId"
 											class="btn btn-warning" onclick="del(${sal.id })">删除</button></td>
 	
@@ -174,7 +174,7 @@
 											</div>
 											<!-- /.modal-dialog -->
 										</div>
-									</td>
+									</td> --%>
 									
 									<!-- 和po类里的属性名一样 -->
 									<td>${sal.calId}</td>

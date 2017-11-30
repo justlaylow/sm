@@ -476,4 +476,71 @@
         </foreach>
     </update>
   
+  	<!-- 批量导入更新 -->
+  	<update id="importBatch" parameterType="java.util.List">
+        update insurance_
+        <trim prefix="set" suffixOverrides=",">
+            <trim prefix="ins_name =case" suffix="end,">
+     			<foreach collection="list" item="item" index="index">
+          			<if test="item.insName!=null">
+          			when ins_id=#{item.insId} then #{item.insName}
+          			</if>
+     			</foreach>
+			</trim>
+			<trim prefix="ins_id =case" suffix="end,">
+     			<foreach collection="list" item="item" index="index">
+          			<if test="item.insId!=null">
+          			when ins_id=#{item.insId} then #{item.insId}
+          			</if>
+     			</foreach>
+			</trim>
+			<trim prefix="ins_car_number =case" suffix="end,">
+     			<foreach collection="list" item="item" index="index">
+          			<if test="item.insCarNumber!=null">
+          			when ins_id=#{item.insId} then #{item.insCarNumber}
+          			</if>
+     			</foreach>
+			</trim>
+			<trim prefix="ins_old =case" suffix="end,">
+     			<foreach collection="list" item="item" index="index">
+          			<if test="item.insOld!=null">
+          			when ins_id=#{item.insId} then #{item.insOld}
+          			</if>
+     			</foreach>
+			</trim>
+			<trim prefix="ins_treatments =case" suffix="end,">
+     			<foreach collection="list" item="item" index="index">
+          			<if test="item.insTreatments!=null">
+          			when ins_id=#{item.insId} then #{item.insTreatments}
+          			</if>
+     			</foreach>
+			</trim>
+			<trim prefix="ins_ill =case" suffix="end,">
+     			<foreach collection="list" item="item" index="index">
+          			<if test="item.insIll!=null">
+          			when ins_id=#{item.insId} then #{item.insIll}
+          			</if>
+     			</foreach>
+			</trim>
+			<trim prefix="ins_unemp =case" suffix="end,">
+     			<foreach collection="list" item="item" index="index">
+          			<if test="item.insUnemp!=null">
+          			when ins_id=#{item.insId} then #{item.insUnemp}
+          			</if>
+     			</foreach>
+			</trim>
+			<trim prefix="ins_acc_fund =case" suffix="end,">
+     			<foreach collection="list" item="item" index="index">
+          			<if test="item.insAccFund!=null">
+          			when ins_id=#{item.insId} then #{item.insAccFund}
+          			</if>
+     			</foreach>
+			</trim>
+        </trim>
+        where ins_id in
+        <foreach collection="list" index="index" item="item" separator="," open="(" close=")">
+            #{item.insId}
+        </foreach>
+    </update>
+  
 </mapper>

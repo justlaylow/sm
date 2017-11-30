@@ -1,5 +1,7 @@
 package com.tl.sm.controller;
 
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -7,7 +9,10 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.tl.sm.pojo.Insurance;
 import com.tl.sm.service.InsuranceService;
@@ -69,12 +74,35 @@ public class InsuranceController {
 	@RequestMapping("/updateBatch/ins")
 	public String updateBatch(InsuranceList insurance,HttpServletRequest request) {
 		List<Insurance> list = insurance.getInsurance();
-		System.out.println(list.get(0).getInsName());
 		String updateInsBatchMsg = insuranceService.updateBatch(list);
 		
 		List<Insurance> listIns = insuranceService.listIns();
 		request.setAttribute("listIns", listIns);
 		request.setAttribute("updateInsBatchMsg", updateInsBatchMsg);
+		return "insurance";
+	}
+	
+	//批量导入
+	@RequestMapping("/insBeforeImport")
+	public String importBatch(Model model,HttpServletRequest request) throws Exception {
+		int adminId = 1;
+		//获取上传文件
+		MultipartHttpServletRequest multipart = (MultipartHttpServletRequest)request;
+		MultipartFile file = multipart.getFile("upfile");
+		InputStream in = file.getInputStream();
+		//数据导入
+		List<Insurance> insurance = insuranceService.importExcelInfo(in, file, adminId);
+		request.setAttribute("insurance", insurance);
+		in.close();
+		return "add/insuranceImport";
+	}
+	@RequestMapping("/insImport")
+	public String insImport(HttpServletRequest request,InsuranceList insurance) {
+		List<Insurance> list = insurance.getInsurance();
+		String insImportMsg = insuranceService.importBatch(list);
+		List<Insurance> listIns = insuranceService.listIns();
+		request.setAttribute("listIns", listIns);
+		request.setAttribute("insImportMsg", insImportMsg);
 		return "insurance";
 	}
 

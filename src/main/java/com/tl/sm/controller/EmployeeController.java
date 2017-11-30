@@ -76,16 +76,5 @@ public class EmployeeController {
 		return "employee";
 	}
 	
-	// 查询所有员工,保险,工资信息
-	@RequestMapping("/list/all")
-	public String listAll(String salId,String calDate,HttpServletRequest request) throws ParseException {
-		List<Employee> ListAll = employeeService.listAll(calDate,salId);
-		List<Department> listDep = employeeService.listDep();
-		request.setAttribute("listDep", listDep);
-		request.setAttribute("listAll", ListAll);
-		return "allInfo";
-	}
-	
-	
 
 }

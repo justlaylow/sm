@@ -37,7 +37,6 @@ public class ExcelController {
 	//poi Excel导入
 	@RequestMapping("/import")
 	public String beforeImport(excelList salaryLsit,HttpServletRequest request) {
-		System.out.println(salaryLsit.getSalaryList().get(0).getCalHr());
 		String importMsg = salaryService.importDB(salaryLsit.getSalaryList());
 		request.setAttribute("importMsg", importMsg);
 		return "beforeImport";

@@ -31,5 +31,6 @@ public interface InsuranceMapper {
     //批量更新
     int updateBatch(List<Insurance> list);
     
-    
+    //批量导入更新
+    int importBatch(List<Insurance> list);
 }

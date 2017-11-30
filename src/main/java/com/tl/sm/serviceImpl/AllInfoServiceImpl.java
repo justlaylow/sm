@@ -37,4 +37,10 @@ public class AllInfoServiceImpl implements AllInfoService{
 		return message;
 	}
 
+	//查询最大日期
+	public String maxMonth() {
+		String maxMonth = allInfoMapper.selectMaxDate();
+		return maxMonth;
+	}
+
 }

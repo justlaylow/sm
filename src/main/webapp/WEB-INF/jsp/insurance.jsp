@@ -18,6 +18,11 @@
 		window.location.href="/sm/insuranceAdd"; 
 	}
 	
+	//批量更新
+	function insImport(){
+		window.location.href="/sm/insImportFile"; 
+	}
+	
 	//删除信息
  	function del(userid){
  		if(confirm("您确认删除吗？")){   
@@ -65,7 +70,9 @@
 				
 				<!-- 保险维护(单) -->
 				<button type="button" class="btn btn-default" onclick="insAdd()">保险维护(单)</button>
-				<span>${param.deleteInsMsg}</span>
+				
+				<!-- 批量更新 -->
+				<button type="button" class="btn btn-default" onclick="insImport()">批量更新</button>
 
 				<!-- 部门列表 -->
 				<form action="/sm/updateBatch/ins" method="post" id="fm">
@@ -119,7 +126,7 @@
 						</c:forEach>
 					</tbody>
 				</table>
-				<p align="center"><input type="submit" id="insId" class="btn btn-sm btn-success" value="修改"/></p>
+				<p align="center"><input type="submit" id="insId" class="btn btn-sm btn-success" value="修改" style="position: fixed;bottom: 0"/></p>
 				</form>
 			</div>
 		</div>

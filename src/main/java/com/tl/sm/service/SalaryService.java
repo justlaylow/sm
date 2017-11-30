@@ -39,4 +39,5 @@ public interface SalaryService {
 	
 	//新增
 	public String insertCal(Salary salary);
+	
 }

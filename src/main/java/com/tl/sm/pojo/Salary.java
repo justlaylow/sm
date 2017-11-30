@@ -72,8 +72,10 @@ public class Salary {
     private Float calShould;
 
     private Float calWaste;
+    
+    private Float calTotal;
 
-    private Float calLastWithhold;
+	private Float calLastWithhold;
 
     private Float calIncometax;
     
@@ -87,6 +89,14 @@ public class Salary {
 		this.calEmployee = calEmployee;
 	}
 
+	public Float getCalTotal() {
+		return calTotal;
+	}
+
+	public void setCalTotal(Float calTotal) {
+		this.calTotal = calTotal;
+	}
+	
 	public Integer getId() {
         return id;
     }

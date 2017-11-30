@@ -15,9 +15,10 @@
 				<h3>工 资 查 询</h3>
 				<!-- 添加保险 -->
 				<form action="/sm/list/all" method="post">
-					工号：<input name="salId" value="${param.salId}" required="true"> 工资日期：<input
-						name="calDate" tyep="text" id="mydatepicker"> <input
-						type="submit" value="查询">
+					工号：<input name="salId" value="${param.salId}" required="true"> 
+					工资日期：<input name="calDate" tyep="text" value="${param.calDate}" id="mydatepicker"> 
+					<input type="submit" value="查询" id="find">
+					<input id="maxMonth" value="${maxMonth}" style="display: none;">
 					<button type="button" onclick="back()">返回</button>
 				</form>
 				<c:forEach var="all" items="${listAll }">
@@ -182,9 +183,22 @@
 							</tr>
 							</c:forEach>
 						</table>
-						<input class="btn btn-success" type="submit" value="修改">
+						<input class="btn btn-success" type="submit" value="修改" id="updateAll">
 						<button class="btn btn-warning" type="button"
 							onclick="del('${all.salId}')">删除员工</button>
+						
+						<script type="text/javascript">
+							//最大日期显示修改按钮	
+							$(function() {
+								var dt = $("#mydatepicker").val();
+								var maxmonth = $("#maxMonth").val();
+								 if($.trim(dt) == $.trim(maxmonth)){
+									$("#updateAll").show();
+								}else{
+									$("#updateAll").hide();
+								}
+							});
+						</script>
 					</form>
 				</c:forEach>
 			</div>
@@ -210,6 +224,14 @@
 			format : 'yyyy-mm-dd'
 		});
 		
+		$('#find').click(function(){
+		var salDate = $('#mydatepicker').val();
+		var reg = /^[0-9]{4}-(0[1-9]|[1-9]|1[0-2])-(0[1-9]|[1-9]|[1-2][0-9]|3[0-1])$/;
+		if(reg.test(salDate)!=true){
+			confirm("日期格式或时间出错 xxxx-xx-xx");
+		}
+		});
 	</script>
+	
 </body>
 </html>

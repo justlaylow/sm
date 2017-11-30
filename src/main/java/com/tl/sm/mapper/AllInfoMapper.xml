@@ -163,5 +163,10 @@
 		delete from insurance_
 		where ins_id = #{insId,jdbcType=VARCHAR}
 	</delete>
+	
+	<!-- 查询最大月份 -->
+	<select id="selectMaxDate" resultType="string">
+	  select max(cal_date) from calculate_
+	</select>
 
 </mapper>

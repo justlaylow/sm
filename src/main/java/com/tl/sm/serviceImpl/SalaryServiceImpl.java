@@ -36,7 +36,7 @@ public class SalaryServiceImpl implements SalaryService{
 	@Resource
 	private EmployeeMapper employeeMapper;
 	
-	//poiExcel导入
+	//poiExcel导入工资
 	public List<Salary> importExcelInfo(InputStream in, MultipartFile file, String calDate,Integer adminId) throws Exception{  
 	    List<List<Object>> listob = ExcelUtil.getBankListByExcel(in,file.getOriginalFilename());  
 	    List<Salary> salaryList = new ArrayList<Salary>();
@@ -224,6 +224,21 @@ public class SalaryServiceImpl implements SalaryService{
         List<ExcelBean> excel=new ArrayList<ExcelBean>();
         Map<Integer,List<ExcelBean>> map=new LinkedHashMap<Integer,List<ExcelBean>>();
         XSSFWorkbook xssfWorkbook=null;
+        
+        for(Salary s:list) {
+        	//通过工号查到对应保险
+	        Insurance ins = insuranceMapper.selectByInsId(s.getCalId());
+	        Float total = s.getCalDues()+Float.parseFloat(ins.getInsOld())
+			+Float.parseFloat(ins.getInsTreatments())
+        	+Float.parseFloat(ins.getInsIll())
+        	+Float.parseFloat(ins.getInsUnemp())
+        	+Float.parseFloat(ins.getInsAccFund())
+        	+s.getCalWaterandele()+s.getCalWithhold()
+        	+s.getCalPenalty()+s.getCalLastWithhold()
+        	+s.getCalIncometax();
+        	s.setCalTotal(total);
+        }
+        
         //设置标题栏
         excel.add(new ExcelBean("HR号","calHr",0));
         excel.add(new ExcelBean("工号","calId",0));
@@ -256,6 +271,7 @@ public class SalaryServiceImpl implements SalaryService{
         excel.add(new ExcelBean("工废","calWaste",0));
         excel.add(new ExcelBean("上月扣款","calLastWithhold",0));
         excel.add(new ExcelBean("所得税","calIncometax",0));
+        excel.add(new ExcelBean("扣款合计","calTotal",0));
         excel.add(new ExcelBean("应发工资","calShould",0));
         excel.add(new ExcelBean("实得工资","calResult",0));
         map.put(0, excel);
@@ -277,5 +293,6 @@ public class SalaryServiceImpl implements SalaryService{
 		}
 		return message;
 	}
+
 	
 }

@@ -47,4 +47,9 @@ public class JumpController {
 	public String exportExcel(HttpServletRequest request,HttpServletResponse response) {
 		return "excelExport";
 	}
+	
+	@RequestMapping("/insImportFile")
+	public String insImportFile(HttpServletRequest request,HttpServletResponse response) {
+		return "insuranceFile";
+	}
 }

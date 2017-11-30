@@ -581,7 +581,7 @@
   <!-- 导出 -->
   <select id="selectCal" resultMap="BaseResultMap" parameterType="string" >
     select
-    <include refid="Base_Column_List" />
+    *
     from calculate_ where cal_date = #{cal_date}
   </select>
   
