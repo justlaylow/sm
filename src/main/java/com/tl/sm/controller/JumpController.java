@@ -1,13 +1,23 @@
 package com.tl.sm.controller;
 
+import java.util.List;
+
+import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.tl.sm.mapper.DepartmentMapper;
+import com.tl.sm.pojo.Department;
+
+
 @Controller
 public class JumpController {
+	@Resource
+	private DepartmentMapper departmentMapper;
+	
 	@RequestMapping("/dep")
 	public String dep(HttpServletRequest request,HttpServletResponse response) {
 		return "department";
@@ -51,5 +61,12 @@ public class JumpController {
 	@RequestMapping("/insImportFile")
 	public String insImportFile(HttpServletRequest request,HttpServletResponse response) {
 		return "insuranceFile";
+	}
+	
+	@RequestMapping("/print")
+	public String print(HttpServletRequest request,HttpServletResponse response) {
+		List<Department> listDep = departmentMapper.listAll();
+		request.setAttribute("listDep", listDep);
+		return "print";
 	}
 }

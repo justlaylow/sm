@@ -37,6 +37,7 @@
     <result column="cal_waste" jdbcType="REAL" property="calWaste" />
     <result column="cal_last_withhold" jdbcType="REAL" property="calLastWithhold" />
     <result column="cal_incometax" jdbcType="REAL" property="calIncometax" />
+    <result column="cal_total" jdbcType="REAL" property="calTotal" />
   </resultMap>
   
   <resultMap id="innerMap" type="com.tl.sm.pojo.Salary">
@@ -74,6 +75,7 @@
 	    <result column="cal_should" jdbcType="REAL" property="calShould" />
 	    <result column="cal_waste" jdbcType="REAL" property="calWaste" />
 	    <result column="cal_last_withhold" jdbcType="REAL" property="calLastWithhold" />
+	    <result column="cal_total" jdbcType="REAL" property="calTotal" />
 	    <result column="cal_incometax" jdbcType="REAL" property="calIncometax" />
 		<collection property="calEmployee" ofType="com.tl.sm.pojo.Employee">
 			<id column="e_Id" jdbcType="INTEGER" property="id" />
@@ -97,7 +99,7 @@
     cal_skill_level, cal_comage, cal_bonus, cal_overtime, cal_benefit, cal_check, cal_injury, 
     cal_leave, cal_other, cal_penalty, cal_withhold, cal_waterandele, cal_allowance, 
     cal_result, cal_date, cal_dues, cal_manhour, labour_cost, cal_benefitwage, cal_manhour_bonus, 
-    cal_manhour_salary, cal_welfare, cal_should, cal_waste, cal_last_withhold, cal_incometax
+    cal_manhour_salary, cal_welfare, cal_should, cal_waste, cal_last_withhold, cal_incometax,cal_total
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 
@@ -513,7 +515,7 @@
       cal_benefitwage, cal_manhour_bonus, cal_manhour_salary, 
       cal_welfare, cal_waste, 
       cal_last_withhold,cal_date,
-      cal_incometax,cal_result)
+      cal_incometax,cal_result,cal_total)
     values 
     <foreach collection="list" item="item" index="index" separator=",">
     ( #{item.calHr,jdbcType=VARCHAR}, #{item.calId,jdbcType=VARCHAR}, 
@@ -528,7 +530,8 @@
       #{item.calBenefitwage,jdbcType=REAL}, #{item.calManhourBonus,jdbcType=REAL}, #{item.calManhourSalary,jdbcType=REAL}, 
       #{item.calWelfare,jdbcType=REAL},  #{item.calWaste,jdbcType=REAL}, 
       #{item.calLastWithhold,jdbcType=REAL},#{item.calDate,jdbcType=REAL},
-      #{item.calIncometax,jdbcType=REAL},#{item.calResult,jdbcType=REAL})
+      #{item.calIncometax,jdbcType=REAL},#{item.calResult,jdbcType=REAL},
+      #{item.calTotal,jdbcType=REAL})
       <!-- (#{item}) -->
       </foreach>
   </insert>

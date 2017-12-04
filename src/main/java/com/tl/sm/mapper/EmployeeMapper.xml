@@ -138,6 +138,7 @@
 		    <result column="cal_waste" jdbcType="REAL" property="calWaste" />
 		    <result column="cal_last_withhold" jdbcType="REAL" property="calLastWithhold" />
 		    <result column="cal_incometax" jdbcType="REAL" property="calIncometax" />
+		    <result column="cal_total" jdbcType="REAL" property="calTotal" />
 		</collection>
 	</resultMap>
 	
@@ -371,6 +372,21 @@
 		<include refid="Base_Column_List" />
 		from employee_
 		where sal_id = #{salId,jdbcType=VARCHAR}
+	</select>
+	
+	<!-- 三表查询打印结果 -->
+	<select id="printAll" resultMap="allMap">
+		select i.*,c.*,e.* from employee_ e left join
+		insurance_ i on e.sal_id = i.ins_id left join
+		calculate_ c on e.sal_id = c.cal_id
+	</select>
+	
+	<!-- 通过部门名三表查询打印各个部门的工资条 -->
+	<select id="printByDepName" resultMap="allMap" parameterType="string">
+		select i.*,c.*,e.* from employee_ e left join
+		insurance_ i on e.sal_id = i.ins_id left join
+		calculate_ c on e.sal_id = c.cal_id
+		where e.sal_dep = #{sal_dep} and c.cal_date = (select max(cal_date) from calculate_)
 	</select>
 	
 </mapper>

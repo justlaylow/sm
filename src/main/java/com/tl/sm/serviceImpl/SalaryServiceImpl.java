@@ -130,7 +130,6 @@ public class SalaryServiceImpl implements SalaryService{
 	        
 	        //会费
 	        String staCategory = emp.getStaCategory().substring(0, 2);
-	        System.out.println(staCategory);
 	        Float calDues = 0f;
 	        if(staCategory.equals("管理")||staCategory.equals("技术")||staCategory.equals("事务")) {
 	        	calDues = (Float.parseFloat(ob.get(3).toString())+Float.parseFloat(ob.get(4).toString())
@@ -146,6 +145,17 @@ public class SalaryServiceImpl implements SalaryService{
 	        	}
 	        }
 	        
+	        //扣款合计
+	        Float total = calDues+Float.parseFloat(ins.getInsOld())
+			+Float.parseFloat(ins.getInsTreatments())
+        	+Float.parseFloat(ins.getInsIll())
+        	+Float.parseFloat(ins.getInsUnemp())
+        	+Float.parseFloat(ins.getInsAccFund())
+        	+Float.parseFloat(ob.get(19).toString())+Float.parseFloat(ob.get(18).toString())
+        	+Float.parseFloat(ob.get(17).toString())+Float.parseFloat(ob.get(28).toString())
+        	+calIncometax;
+	        salary.setCalTotal(total);
+        	
 	        //实得工资
 	        Float calResult = calShould-accFund-insurance-calIncometax-calDues;
 	        
@@ -224,20 +234,6 @@ public class SalaryServiceImpl implements SalaryService{
         List<ExcelBean> excel=new ArrayList<ExcelBean>();
         Map<Integer,List<ExcelBean>> map=new LinkedHashMap<Integer,List<ExcelBean>>();
         XSSFWorkbook xssfWorkbook=null;
-        
-        for(Salary s:list) {
-        	//通过工号查到对应保险
-	        Insurance ins = insuranceMapper.selectByInsId(s.getCalId());
-	        Float total = s.getCalDues()+Float.parseFloat(ins.getInsOld())
-			+Float.parseFloat(ins.getInsTreatments())
-        	+Float.parseFloat(ins.getInsIll())
-        	+Float.parseFloat(ins.getInsUnemp())
-        	+Float.parseFloat(ins.getInsAccFund())
-        	+s.getCalWaterandele()+s.getCalWithhold()
-        	+s.getCalPenalty()+s.getCalLastWithhold()
-        	+s.getCalIncometax();
-        	s.setCalTotal(total);
-        }
         
         //设置标题栏
         excel.add(new ExcelBean("HR号","calHr",0));

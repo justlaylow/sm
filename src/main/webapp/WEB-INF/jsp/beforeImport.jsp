@@ -90,7 +90,7 @@
 								<td><input name="salaryList[${i.index}].calWelfare" value="${exc.calWelfare}"/></td>
 								<td><input name="salaryList[${i.index}].calWaste" value="${exc.calWaste}"/></td>
 								<td><input name="salaryList[${i.index}].calLastWithhold" value="${exc.calLastWithhold}"/></td>
-								<td><input value="扣款合计"/></td>
+								<td><input name="salaryList[${i.index}].calTotal" value="${exc.calTotal}"/></td>
 								<td><input name="salaryList[${i.index}].calIncometax" value="${exc.calIncometax}"/></td>
 								<td><input name="salaryList[${i.index}].calShould" value="${exc.calShould}"/></td>
 								<td><input name="salaryList[${i.index}].calResult" value="${exc.calResult}"/></td>

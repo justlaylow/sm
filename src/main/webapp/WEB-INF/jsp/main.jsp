@@ -29,11 +29,9 @@
 					<br><br>
 					<a href="/sm/list/dep" class="btn btn-primary"><li>部门类别</li></a>
 					<br><br>
-					<a href="#" class="btn btn-primary"><li>工价工种维护</li></a>
+					<a href="/sm/print" class="btn btn-primary"><li>工资打印</li></a>
 					<br><br>
 					<a href="/sm/select/ins" class="btn btn-primary"><li>保险金维护</li></a>
-					<br><br>
-					<a href="#" class="btn btn-primary"><li>人员岗位维护</li></a>
 					<br><br>
 					<a href="/sm/list/sal" class="btn btn-primary"><li>工资维护</li></a>
 					<br><br>
