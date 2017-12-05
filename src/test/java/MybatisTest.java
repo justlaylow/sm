@@ -1,12 +1,15 @@
 
 
+import java.util.List;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import com.tl.sm.mapper.AllInfoMapper;
+import com.tl.sm.mapper.EmployeeMapper;
+import com.tl.sm.pojo.Employee;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration("classpath:applicationContext.xml")
@@ -19,12 +22,15 @@ public class MybatisTest {
 	private DepartmentMapper departmentMapper;*/
 	
 	@Autowired
-	private AllInfoMapper allInfoMapper;
+	private EmployeeMapper employeeMapper;
 
 	@Test
 	public void testAdd() {
-		String m = allInfoMapper.selectMaxDate();
-		System.out.println(m);
+		List<Employee> list = employeeMapper.printAll();
+		for(int i=0;i<list.size();i++) {
+			System.out.println(list.size());
+			System.out.println(list.get(i).getSalSalaryList().get(0).getCalName());
+		}
 	}
 
 	/*@Test

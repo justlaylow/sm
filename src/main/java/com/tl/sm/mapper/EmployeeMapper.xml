@@ -379,6 +379,7 @@
 		select i.*,c.*,e.* from employee_ e left join
 		insurance_ i on e.sal_id = i.ins_id left join
 		calculate_ c on e.sal_id = c.cal_id
+		where c.cal_date = (select max(cal_date) from calculate_)
 	</select>
 	
 	<!-- 通过部门名三表查询打印各个部门的工资条 -->

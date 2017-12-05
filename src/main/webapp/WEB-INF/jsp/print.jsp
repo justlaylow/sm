@@ -17,26 +17,31 @@
 				      <span class="caret"></span>          
 				    </button>
 				    <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
-				      <c:forEach var="dep" items="${listDep }">
+				    <c:forEach var="dep" items="${listDep }">
 					      <li>
 					         <a href="javascript:void(0)" id="a${dep.id}">${dep.depName}</a>             
 					      </li>
 					      <script type="text/javascript">
-							 $("#a"+${dep.id}).click(function() {
-								var a1 = $('#a'+${dep.id}).text();
+							 $("#a"+${dep.id} ).click(function() {
+								var a1 = $('#a'+${dep.id} ).text();
 								window.location = "/sm/departmentSalary?salDep="+a1;
 							 });
 						  </script>
 				      </c:forEach>
 				      <li role="presentation">
-				         <a href="#">CSS</a>              
+				         <a href="javascript:void(0)" id="az">月工资汇总(应发)</a>              
 				      </li>
 				 
 				      <li role="presentation">
-				         <a href="#">Javascript</a>           
+				         <a href="javascript:void(0)" id="ax">月工资汇总(实得)</a>           
 				      </li>
+				      
 				      <li role="presentation">
-				         <a href="#">AJAX</a>             
+				         <a href="javascript:void(0)" id="ac">月工资统计(应发)</a>           
+				      </li>
+				      
+				      <li role="presentation">
+				         <a href="javascript:void(0)" id="av">月工资统计(实得)</a>           
 				      </li>
 				    </ul>
 				</div>
@@ -44,6 +49,22 @@
 		</div>
 	</div>
 	
-
+<script type="text/javascript">
+	$("#az").click(function() {
+		window.location = "/sm/departmentShould";
+	});
+	
+	$("#ax").click(function() {
+		window.location = "/sm/departmentReality";
+	});
+	
+	$("#ac").click(function() {
+		window.location = "/sm/categoryShould";
+	});
+	
+	$("#av").click(function() {
+		window.location = "/sm/categoryReality";
+	});
+</script>
 </body>
 </html>
