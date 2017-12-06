@@ -92,6 +92,69 @@
 			<result column="sal_skilllevel" jdbcType="VARCHAR" property="salSkilllevel" />
 		</collection>
 	</resultMap>
+	
+	<resultMap type="com.tl.sm.pojo.ExcelExport" id="exportMap">
+		<result column="cal_hr" jdbcType="VARCHAR" property="calHr" />
+	    <result column="cal_id" jdbcType="VARCHAR" property="calId" />
+	    <result column="cal_name" jdbcType="VARCHAR" property="calName" />
+	    <result column="cal_basic" jdbcType="REAL" property="calBasic" />
+	    <result column="cal_post" jdbcType="REAL" property="calPost" />
+	    <result column="cal_float" jdbcType="REAL" property="calFloat" />
+	    <result column="cal_coefficient" jdbcType="REAL" property="calCoefficient" />
+	    <result column="cal_secrecy" jdbcType="REAL" property="calSecrecy" />
+	    <result column="cal_skill_level" jdbcType="REAL" property="calSkillLevel" />
+	    <result column="cal_comage" jdbcType="REAL" property="calComage" />
+	    <result column="cal_bonus" jdbcType="REAL" property="calBonus" />
+	    <result column="cal_overtime" jdbcType="REAL" property="calOvertime" />
+	    <result column="cal_benefit" jdbcType="REAL" property="calBenefit" />
+	    <result column="cal_check" jdbcType="REAL" property="calCheck" />
+	    <result column="cal_injury" jdbcType="REAL" property="calInjury" />
+	    <result column="cal_leave" jdbcType="REAL" property="calLeave" />
+	    <result column="cal_other" jdbcType="REAL" property="calOther" />
+	    <result column="cal_penalty" jdbcType="REAL" property="calPenalty" />
+	    <result column="cal_withhold" jdbcType="REAL" property="calWithhold" />
+	    <result column="cal_waterandele" jdbcType="REAL" property="calWaterandele" />
+	    <result column="cal_allowance" jdbcType="REAL" property="calAllowance" />
+	    <result column="cal_result" jdbcType="REAL" property="calResult" />
+	    <result column="cal_date" jdbcType="DATE" property="calDate" />
+	    <result column="cal_dues" jdbcType="REAL" property="calDues" />
+	    <result column="cal_manhour" jdbcType="REAL" property="calManhour" />
+	    <result column="labour_cost" jdbcType="REAL" property="labourCost" />
+	    <result column="cal_benefitwage" jdbcType="REAL" property="calBenefitwage" />
+	    <result column="cal_manhour_bonus" jdbcType="REAL" property="calManhourBonus" />
+	    <result column="cal_manhour_salary" jdbcType="REAL" property="calManhourSalary" />
+	    <result column="cal_welfare" jdbcType="REAL" property="calWelfare" />
+	    <result column="cal_should" jdbcType="REAL" property="calShould" />
+	    <result column="cal_waste" jdbcType="REAL" property="calWaste" />
+	    <result column="cal_last_withhold" jdbcType="REAL" property="calLastWithhold" />
+	    <result column="cal_total" jdbcType="REAL" property="calTotal" />
+	    <result column="cal_incometax" jdbcType="REAL" property="calIncometax" />
+		<result column="bank_account" jdbcType="VARCHAR" property="bankAccount" />
+		<result column="sal_name" jdbcType="VARCHAR" property="salName" />
+		<result column="post_category" jdbcType="VARCHAR" property="postCategory" />
+		<result column="sal_id" jdbcType="VARCHAR" property="salId" />
+		<result column="sal_dep" jdbcType="VARCHAR" property="salDep" />
+		<result column="sal_post" jdbcType="VARCHAR" property="salPost" />
+		<result column="sal_oa" jdbcType="VARCHAR" property="salOa" />
+		<result column="sal_remark" jdbcType="VARCHAR" property="salRemark" />
+		<result column="sta_category" jdbcType="VARCHAR" property="staCategory" />
+		<result column="sal_skilllevel" jdbcType="VARCHAR" property="salSkilllevel" />
+	    <result column="ins_iden" jdbcType="CHAR" property="insIden" />
+	    <result column="ins_address" jdbcType="VARCHAR" property="insAddress" />
+	    <result column="ins_car_number" jdbcType="VARCHAR" property="insCarNumber" />
+	    <result column="ins_old_id" jdbcType="VARCHAR" property="insOldId" />
+	    <result column="ins_old" jdbcType="VARCHAR" property="insOld" />
+	    <result column="ins_treatment_id" jdbcType="VARCHAR" property="insTreatmentId" />
+	    <result column="ins_treatments" jdbcType="VARCHAR" property="insTreatments" />
+	    <result column="ins_ill_id" jdbcType="VARCHAR" property="insIllId" />
+	    <result column="ins_ill" jdbcType="VARCHAR" property="insIll" />
+	    <result column="insurance" jdbcType="VARCHAR" property="insurance" />
+	    <result column="ins_unemp_id" jdbcType="VARCHAR" property="insUnempId" />
+	    <result column="ins_unemp" jdbcType="VARCHAR" property="insUnemp" />
+	    <result column="ins_unemp_address" jdbcType="VARCHAR" property="insUnempAddress" />
+	    <result column="ins_acc_fund" jdbcType="VARCHAR" property="insAccFund" />
+	    <result column="ins_acc_address" jdbcType="VARCHAR" property="insAccAddress" />
+	</resultMap>
   
   
   <sql id="Base_Column_List">
@@ -587,5 +650,13 @@
     *
     from calculate_ where cal_date = #{cal_date}
   </select>
+  
+  <!-- 三表查询打印结果 -->
+	<select id="exportAll" resultMap="exportMap">
+		select i.*,c.*,e.* from employee_ e left join
+		insurance_ i on e.sal_id = i.ins_id left join
+		calculate_ c on e.sal_id = c.cal_id
+		where c.cal_date = #{cal_date}
+	</select>
   
 </mapper>

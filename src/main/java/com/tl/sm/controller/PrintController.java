@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.tl.sm.mapper.AllInfoMapper;
 import com.tl.sm.pojo.Employee;
+import com.tl.sm.pojo.Salary;
 import com.tl.sm.pojo.Summing;
 import com.tl.sm.service.PrintService;
 
@@ -21,6 +22,7 @@ public class PrintController {
 	private PrintService printService;
 	@Resource
 	private AllInfoMapper allInfoMapper;//查询工资最大月份
+	
 	//部门工资条
 	@RequestMapping("/departmentSalary")
 	public String departmentSalary(String salDep,HttpServletRequest request) {
@@ -75,5 +77,13 @@ public class PrintController {
 		request.setAttribute("maxMonth", maxMonth);
 		request.setAttribute("categoryReality", categoryReality);
 		return "print/categoryReality";
+	}
+	
+	//送银行文件
+	@RequestMapping("/sendBank")
+	public String sendBank(HttpServletRequest request) {
+		List<Salary> sendBank = printService.sendBank();
+		request.setAttribute("sendBank", sendBank);
+		return "print/sendBank";
 	}
 }

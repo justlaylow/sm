@@ -8,8 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import com.tl.sm.mapper.EmployeeMapper;
-import com.tl.sm.pojo.Employee;
+import com.tl.sm.mapper.SalaryMapper;
+import com.tl.sm.pojo.ExcelExport;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration("classpath:applicationContext.xml")
@@ -22,14 +22,14 @@ public class MybatisTest {
 	private DepartmentMapper departmentMapper;*/
 	
 	@Autowired
-	private EmployeeMapper employeeMapper;
+	private SalaryMapper salaryMapper;
 
 	@Test
 	public void testAdd() {
-		List<Employee> list = employeeMapper.printAll();
+		List<ExcelExport> list = salaryMapper.exportAll("2017-12-08");
 		for(int i=0;i<list.size();i++) {
 			System.out.println(list.size());
-			System.out.println(list.get(i).getSalSalaryList().get(0).getCalName());
+			System.out.println(list.get(i).getBankAccount());
 		}
 	}
 

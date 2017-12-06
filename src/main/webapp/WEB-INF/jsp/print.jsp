@@ -43,6 +43,10 @@
 				      <li role="presentation">
 				         <a href="javascript:void(0)" id="av">月工资统计(实得)</a>           
 				      </li>
+				      
+				      <li role="presentation">
+				         <a href="javascript:void(0)" id="ab">送银行文件</a>           
+				      </li>
 				    </ul>
 				</div>
 			</div>
@@ -64,6 +68,9 @@
 	
 	$("#av").click(function() {
 		window.location = "/sm/categoryReality";
+	});
+	$("#ab").click(function() {
+		window.location = "/sm/sendBank";
 	});
 </script>
 </body>

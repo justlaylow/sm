@@ -9,8 +9,10 @@ import org.springframework.stereotype.Service;
 
 import com.tl.sm.mapper.DepartmentMapper;
 import com.tl.sm.mapper.EmployeeMapper;
+import com.tl.sm.mapper.SalaryMapper;
 import com.tl.sm.pojo.Department;
 import com.tl.sm.pojo.Employee;
+import com.tl.sm.pojo.Salary;
 import com.tl.sm.pojo.Summing;
 import com.tl.sm.service.PrintService;
 @Service
@@ -19,6 +21,8 @@ public class PrintServiceImpl implements PrintService{
 	private EmployeeMapper printMapper;
 	@Resource
 	private DepartmentMapper departmentMapper;
+	@Resource
+	private SalaryMapper salaryMapper;
 	
 	
 	//部门工资条
@@ -480,6 +484,12 @@ public class PrintServiceImpl implements PrintService{
 		}
 		sumList.add(sum);
 		return sumList;
+	}
+
+	//送银行文件
+	public List<Salary> sendBank() {
+		List<Salary> sendBank = salaryMapper.listCal();
+		return sendBank;
 	}
 
 }

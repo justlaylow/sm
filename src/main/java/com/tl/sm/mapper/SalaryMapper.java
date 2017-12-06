@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Param;
 
+import com.tl.sm.pojo.ExcelExport;
 import com.tl.sm.pojo.Salary;
 
 public interface SalaryMapper {
@@ -32,4 +33,5 @@ public interface SalaryMapper {
     
     //导出
     List<Salary> selectCal(@Param("cal_date") String calDate);
+    List<ExcelExport> exportAll(@Param("cal_date") String calDate);
 }

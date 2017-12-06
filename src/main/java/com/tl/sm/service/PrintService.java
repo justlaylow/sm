@@ -3,6 +3,7 @@ package com.tl.sm.service;
 import java.util.List;
 
 import com.tl.sm.pojo.Employee;
+import com.tl.sm.pojo.Salary;
 import com.tl.sm.pojo.Summing;
 
 public interface PrintService {
@@ -14,5 +15,7 @@ public interface PrintService {
 
 	//按统计类别统计
 	public List<Summing> category();
+	
+	public List<Salary> sendBank();
 	
 }
