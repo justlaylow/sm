@@ -25,6 +25,7 @@ public class AllInfoController {
 	@Resource
 	private EmployeeService employeeService;
 	
+	//三表联合更新,allInfoMapper.xml
 	@RequestMapping("/allInfo")
 	public String AllUpdate(AllInfo allInfo,HttpServletRequest request) {
 		String AllUpdateMessage = allInfoService.AllUpdate(allInfo);
@@ -32,6 +33,7 @@ public class AllInfoController {
 		return "allInfo";
 	}
 	
+	//通过工号删除员工,delete语句执行3次分别删除员工表,保险表,工资表内的数据
 	@RequestMapping("/allInfo/del")
 	public String deleteAll(String salId,HttpServletRequest request) {
 		String AllUpdateMessage = allInfoService.deleteAll(salId);
@@ -39,7 +41,7 @@ public class AllInfoController {
 		return "allInfo";
 	}
 	
-	// 查询所有员工,保险,工资信息
+	// 通过工号和工资日期查询员工的所有信息
 	@RequestMapping("/list/all")
 	public String listAll(String salId,String calDate,HttpServletRequest request) throws ParseException {
 		List<Employee> ListAll = employeeService.listAll(calDate,salId);

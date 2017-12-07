@@ -1,6 +1,5 @@
 package com.tl.sm.controller;
 
-import java.io.IOException;
 import java.io.InputStream;
 import java.util.List;
 
@@ -24,7 +23,7 @@ public class InsuranceController {
 	@Resource
 	private InsuranceService insuranceService;
 	
-	//查询所有
+	//查询所有员工的保险信息
 	@RequestMapping("/select/ins")
 	public String listIns(HttpServletRequest request){
 		List<Insurance> listIns = insuranceService.listIns();
@@ -70,7 +69,7 @@ public class InsuranceController {
 		return "insurance";
 	}
 	
-	//批量更新
+	//批量更新,直接在页面上改,更直观
 	@RequestMapping("/updateBatch/ins")
 	public String updateBatch(InsuranceList insurance,HttpServletRequest request) {
 		List<Insurance> list = insurance.getInsurance();
@@ -82,7 +81,7 @@ public class InsuranceController {
 		return "insurance";
 	}
 	
-	//批量导入
+	//批量导入预览
 	@RequestMapping("/insBeforeImport")
 	public String importBatch(Model model,HttpServletRequest request) throws Exception {
 		int adminId = 1;
@@ -96,6 +95,7 @@ public class InsuranceController {
 		in.close();
 		return "add/insuranceImport";
 	}
+	//获得导入预览的List,然后执行批量更新方法,通过excel导入实现
 	@RequestMapping("/insImport")
 	public String insImport(HttpServletRequest request,InsuranceList insurance) {
 		List<Insurance> list = insurance.getInsurance();

@@ -23,7 +23,7 @@ public class DepartmentController {
 	@Resource
 	private DepartmentService departmentService;
 
-	// 查询所有部门
+	// select * from department_查询所有部门
 	@RequestMapping("/list/dep")
 	public String listDep(HttpServletRequest request) {
 		List<Department> listDep = departmentService.listAll();
@@ -31,7 +31,7 @@ public class DepartmentController {
 		return "department";
 	}
 
-	// 新增部门
+	// insert新增部门
 	@RequestMapping("/insert/dep")
 	public String addDep(Department department, HttpServletRequest request) {
 		String insertDep = departmentService.addDep(department);
@@ -65,7 +65,7 @@ public class DepartmentController {
 		return mv;
 	}
 
-	// 模糊查询
+	// mysql模糊查询like %xx%
 	@RequestMapping("/blurryF/dep")
 	public String listByDep(Department department, HttpServletRequest request,String depId,String depName) {
 		List<Department> listDep = departmentService.listByDep(depId, depName);

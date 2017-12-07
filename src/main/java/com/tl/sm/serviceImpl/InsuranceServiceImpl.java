@@ -82,7 +82,7 @@ public class InsuranceServiceImpl implements InsuranceService{
 		return message;
 	}
 	
-	//poiExcel导入
+	//poi Excel导入
 	public List<Insurance> importExcelInfo(InputStream in, MultipartFile file,Integer adminId) throws Exception{  
 	    List<List<Object>> listob = ExcelUtil.getBankListByExcel(in,file.getOriginalFilename());  
 	    List<Insurance> insuranceList = new ArrayList<Insurance>();
@@ -107,7 +107,7 @@ public class InsuranceServiceImpl implements InsuranceService{
 	    return insuranceList;  
 	}
 	
-	//批量更新
+	//批量更新,通过导入excel表实现,修改的字段比updateBatch少,可以考虑直接用updateBatch
 	public String importBatch(List<Insurance> list) {
 		String message = "";
 		int i = insuranceMapper.importBatch(list);

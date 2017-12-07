@@ -18,6 +18,7 @@ public class LoginController {
 	@Resource
 	private AdminService adminService;
 
+	//登陆
 	@RequestMapping(value = "login")
 	public ModelAndView login(String loginname, String password, ModelAndView mv, HttpSession session) {
 		Admin admin = adminService.checkLogin(loginname, password);

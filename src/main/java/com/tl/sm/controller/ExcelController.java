@@ -42,7 +42,7 @@ public class ExcelController {
 		return "beforeImport";
 	}
 	
-	//poi导入预览
+	//poi导入预览,返回的集合在页面显示,提交后Controller拿到页面的数据执行工资表的insert方法
 	@RequestMapping("/beforeImport")
 	public String impotr(HttpServletRequest request, Model model) throws Exception {
 		int adminId = 1;

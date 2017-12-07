@@ -22,7 +22,7 @@ public class EmployeeController {
 	@Resource
 	private EmployeeService employeeService;
 
-	// 查询所有员工和员工保险
+	// 查询所有员工和员工保险,保险表联合员工表
 	@RequestMapping("/list/emp")
 	public String listEmp(HttpServletRequest request) {
 		List<Employee> empList = employeeService.listInner();
