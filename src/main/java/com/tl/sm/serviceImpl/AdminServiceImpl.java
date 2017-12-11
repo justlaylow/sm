@@ -13,6 +13,7 @@ public class AdminServiceImpl implements AdminService{
 	@Resource
 	private AdminMapper adminMapper;
 	
+	//验证登陆，用户名和密码
 	public Admin checkLogin(String adminname,String password) {
 		Admin admin = adminMapper.getAdmin(adminname, password);
 		if(admin!=null&&admin.getAdm_pass().equals(password)) {

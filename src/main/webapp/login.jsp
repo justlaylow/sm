@@ -17,20 +17,20 @@
 						特力液压 <small>工资管理系统</small>
 					</h1>
 				</div>
-				<form class="form-horizontal" role="form" action="/sm/admin/login"
+				<form class="form-horizontal" role="form" action="/sm/login"
 					method="post" id="myform">
 					<div class="form-group">
 						<label for="inputEmail3" class="col-sm-2 control-label">用户名</label>
 						<div class="col-sm-10">
 							<input class="form-control" id="loginname" name="loginname"
-								type="text" />
+								type="text" required="true"/>
 						</div>
 					</div>
 					<div class="form-group">
 						<label for="inputPassword3" class="col-sm-2 control-label">密码</label>
 						<div class="col-sm-10">
 							<input class="form-control" id="password" name="password"
-								type="password" />
+								type="password" required="true"/>
 						</div>
 					</div>
 					<div class="form-group">

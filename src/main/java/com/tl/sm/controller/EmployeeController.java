@@ -49,6 +49,8 @@ public class EmployeeController {
 	public String updateEmp(Employee employee, HttpServletRequest request) {
 		String updateEmp = employeeService.updateEmp(employee);
 		List<Employee> empList = employeeService.listInner();
+		List<Department> listDep = employeeService.listDep();
+		request.setAttribute("listDep", listDep);
 		request.setAttribute("empList", empList);
 		request.setAttribute("updateEmp", updateEmp);
 		return "employee";

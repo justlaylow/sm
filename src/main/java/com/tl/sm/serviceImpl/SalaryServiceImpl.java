@@ -90,7 +90,7 @@ public class SalaryServiceImpl implements SalaryService{
 	        Float insurance = Float.parseFloat(ins.getInsOld())+Float.parseFloat(ins.getInsTreatments())
 	    	        +Float.parseFloat(ins.getInsIll())+Float.parseFloat(ins.getInsUnemp());
 	        
-	        //计算所得税，应得工资，实发工资  
+	        //计算应得工资  
 	        Float calShould = (Float.parseFloat(ob.get(3).toString())+Float.parseFloat(ob.get(4).toString())
 	        +Float.parseFloat(ob.get(5).toString())+Float.parseFloat(ob.get(7).toString())
 	        +Float.parseFloat(ob.get(8).toString())+Float.parseFloat(ob.get(9).toString())
@@ -136,7 +136,8 @@ public class SalaryServiceImpl implements SalaryService{
 	        	calDues = (Float.parseFloat(ob.get(3).toString())+Float.parseFloat(ob.get(4).toString())
 	        	+Float.parseFloat(ob.get(7).toString())-calIncometax-accFund-insurance)*0.005f;
 	        }else if(staCategory.equals("营销")) {
-	        	//calDues = 
+	        	//营销人员会费
+	        	calDues = 15f; 
 	        }else {
 	        	Float all = Float.parseFloat(ob.get(8).toString())+Float.parseFloat(ob.get(13).toString());
 	        	if(all<2000) {

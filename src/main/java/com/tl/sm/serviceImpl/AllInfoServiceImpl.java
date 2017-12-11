@@ -13,6 +13,7 @@ public class AllInfoServiceImpl implements AllInfoService{
 	@Resource
 	private AllInfoMapper allInfoMapper;
 	
+	//更新数据,联合三个表批量更新
 	public String AllUpdate(AllInfo allInfo) {
 		String message = "";
 		int i = allInfoMapper.updateAllByPrimaryKeySelective(allInfo);
@@ -24,6 +25,7 @@ public class AllInfoServiceImpl implements AllInfoService{
 		return message;
 	}
 
+	//通过工号删除员工的信息,保险信息,工资信息
 	public String deleteAll(String calId) {
 		String message = "";
 		int i = allInfoMapper.deleteEmp(calId);
@@ -37,7 +39,7 @@ public class AllInfoServiceImpl implements AllInfoService{
 		return message;
 	}
 
-	//查询最大日期
+	//查询最大日期,用于修改操作,实现仅最大的月份能修改,之前的月份无法修改
 	public String maxMonth() {
 		String maxMonth = allInfoMapper.selectMaxDate();
 		return maxMonth;

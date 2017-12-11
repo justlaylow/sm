@@ -25,13 +25,13 @@ public class PrintServiceImpl implements PrintService{
 	private SalaryMapper salaryMapper;
 	
 	
-	//部门工资条
+	//部门工资条,通过传部门名称来打印对应的工资条
 	public List<Employee> departmentSalary(String depName) {
 		List<Employee> listall = printMapper.printByDepName(depName);
 		return listall;
 	}
 
-	//按部门统计
+	//按部门统计,循环将所有最大月份的工资信息按部门累加起来,然后放到Summing集合里
 	public List<Summing> department() {
 		List<Summing> sumList = new ArrayList<Summing>();
 		List<Employee> list = printMapper.printAll();
@@ -252,7 +252,7 @@ public class PrintServiceImpl implements PrintService{
 		return sumList;
 	}
 
-	//按统计类别统计
+	//按统计类别统计,循环将所有最大月份的工资信息按统计类别累加起来,然后放到Summing集合里
 	public List<Summing> category() {
 		List<String> listCategory = new ArrayList<String>();
 		listCategory.add("管理-二级机构负责人");
@@ -486,7 +486,7 @@ public class PrintServiceImpl implements PrintService{
 		return sumList;
 	}
 
-	//送银行文件
+	//送银行文件,(银行账号,姓名,实发工资)
 	public List<Salary> sendBank() {
 		List<Salary> sendBank = salaryMapper.listCal();
 		return sendBank;

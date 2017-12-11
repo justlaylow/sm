@@ -26,7 +26,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 		return empList;
 	}
 	
-	//查询部门
+	//查询部门,用于实现部门的名称改变,员工表里的部门名称跟着改变
 	public List<Department> listDep(){
 		List<Department> listDep = employeeMapper.listDep();
 		return listDep;

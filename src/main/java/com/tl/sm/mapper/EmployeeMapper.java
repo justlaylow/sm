@@ -31,6 +31,7 @@ public interface EmployeeMapper {
     		@Param("sal_oa") String salOa,@Param("sal_name2") String salName2,@Param("sal_id2") String salId2,
     		@Param("sal_oa2") String salOa2);
     
+    //查询员工表联合保险表
     List<Employee> listInner();
     
     //三表查询

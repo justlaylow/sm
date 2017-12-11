@@ -7,6 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-	fail
+	<h3 align="center">${message}</h3>
 </body>
 </html>

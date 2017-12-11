@@ -22,7 +22,7 @@ public class InsuranceServiceImpl implements InsuranceService{
 	@Resource
 	private InsuranceMapper insuranceMapper;
 
-	//查询所有
+	//查询所有的保险信息 
 	public List<Insurance> listIns() {
 		List<Insurance> listIns = insuranceMapper.listIns();
 		return listIns;
@@ -70,7 +70,7 @@ public class InsuranceServiceImpl implements InsuranceService{
 		return message;
 	}
 
-	//批量更新
+	//批量更新,用于直接在页面上进行修改并提交,更直观
 	public String updateBatch(List<Insurance> list) {
 		String message = "";
 		int i = insuranceMapper.updateBatch(list);

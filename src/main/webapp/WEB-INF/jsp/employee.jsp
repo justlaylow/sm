@@ -78,33 +78,36 @@
 							</div>
 							<div class="modal-body">
 								<form action="/sm/insert/emp" method="post" id="fm">
-									<input name="id" style="display: none"> <label>姓&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;名:</label>
+									<input name="id" style="display: none"> 
+									<label>姓&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;名:</label>
 									<input name="salName" required="true">&emsp;&emsp;&emsp;
-									<label>工&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;号:</label> <input
-										name="salId" required="true"> <br><br> <label>岗&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;位:</label>
+									<label>部门名称:</label> 
+									<input type="text" name="salDep" style="width: 170px;display:none;" id="selectInput">
+									<select id="selectDep" style="height: 27px;">
+										<c:forEach var="dep" items="${listDep}">
+											<%-- <option value="${dep.depName}"/> --%>
+											<option>${dep.depName}</option>
+										</c:forEach>
+									</select><br><br>
+									<label>岗&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;位:</label>
 									<input name="salPost" list="post">&emsp;&emsp;&emsp;
 									<datalist id="post">
 									<option>网络工程师</option>
 									</datalist>
-									<label>银行账户:</label> <input name="bankAccount" required="true"
-										style="width: 170px"> <br><br> <label>岗位类别:</label> <input
-										name="postCategory" list="postCategory">&emsp;&emsp;&emsp;
+									<label>工&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;号:</label> 
+									<input name="salId" required="true"><br><br>
+									<label>岗位类别:</label> 
+									<input name="postCategory" list="postCategory">&emsp;&emsp;&emsp;
 									<datalist id="postCategory">
 									<option>技术人员</option>
 									</datalist>
-									<label>部门名称:</label> <input type="text" name="salDep"
-										list="selectDep" style="width: 170px">
-									<datalist id="selectDep">
-										<c:forEach var="dep" items="${listDep}">
-											<option value="${dep.depName}"/>
-										</c:forEach>
-									</datalist>
-									
-									
-									<br><br> <label>入职日期:</label>
+									<label>银行账户:</label>
+									<input name="bankAccount" required="true" style="width: 170px"><br><br> 
+									<label>入职日期:</label>
 									<input name="salDate" id="mydate">&emsp;&emsp;&emsp; <label>&nbsp;&nbsp;&nbsp;OA账号:</label>
-									<input name="salOa"> <br><br> <label>统计类别:</label> <input
-										name="staCategory" list="staCategory">&emsp;&emsp;&emsp;
+									<input name="salOa"> <br><br> 
+									<label>统计类别:</label> 
+									<input name="staCategory" list="staCategory">&emsp;&emsp;&emsp;
 									<datalist id="staCategory">
 										<option>管理-二级机构负责人</option>
 										<option>管理-三级机构负责人</option>
@@ -194,7 +197,7 @@
 													<div class="modal-body">
 														<form action="/sm/update/emp" method="post" id="fm${emp.id}">
 															<input name="id" style="display: none" value="${emp.id }">
-															<table align="center" style="border-collapse:separate; border-spacing:15px;">
+															<table align="center" style="border-collapse:separate; border-spacing:15px;white-space: nowrap;">
 																<tr>
 																	<td><label>姓名:</label></td><td> <input name="salName" required="true" value="${emp.salName}"></td>
 																	<td><label>工号:</label></td><td> <input name="salId" required="true" value="${emp.salId}"></td>
@@ -204,7 +207,13 @@
 																	<td><label>岗位类别:</label></td><td> <input type="text" name="postCategory" value="${emp.postCategory}"></td>
 																</tr>
 																<tr>
-																	<td><label>部门代码:</label></td><td> <input name="salDep" value="${emp.salDep}"></td>
+																	<td><label>部门代码:</label></td><td> <input name="salDep" value="${emp.salDep}" id="updateDepInput${emp.id}" style="display:none;">
+																	<select id="updateDepSelect${emp.id}" style="height: 27px;width: 180px;">
+																		<option style="display: none;">${emp.salDep}</option>
+																		<c:forEach var="dep" items="${listDep}">
+																			<option>${dep.depName}</option>
+																		</c:forEach>
+																	</select></td>
 																	<td><label>岗位:</label></td><td> <input type="text" name="salPost" value="${emp.salPost}"></td>
 																</tr>
 																<tr>
@@ -247,6 +256,12 @@
 															return false;
 														}
 														$('#fm'+${emp.id}).submit();
+														});
+														
+														//数据修改,从数据库取得部门名到select中,从select中选择部门名
+														$('#updateDepSelect'+${emp.id}).change(function (){
+															var dep = $('#updateDepSelect'+${emp.id}+' option:selected').text();
+															$('#updateDepInput'+${emp.id}).val(dep);
 														});
 														</script>
 													</div>
@@ -293,7 +308,13 @@
 <script type="text/javascript">
 	$('#mydate').dcalendarpicker({
 	format : 'yyyy-mm-dd'
-});
+	});
+	
+	$('#selectDep').change(function (){
+		var dep = $('#selectDep option:selected').text();
+		$('#selectInput').val(dep);
+	});
+	
 </script>
 </body>
 </html>
