@@ -43,8 +43,13 @@ public class AllInfoController {
 	
 	// 通过工号和工资日期查询员工的所有信息
 	@RequestMapping("/list/all")
-	public String listAll(String salId,String calDate,HttpServletRequest request) throws ParseException {
-		List<Employee> ListAll = employeeService.listAll(calDate,salId);
+	public String listAll(String salId,String calDate,String salName,HttpServletRequest request) throws ParseException {
+		if(salId.equals("")) {
+			salId = null;
+		}else if(salName.equals("")) {
+			salName = null;
+		}
+		List<Employee> ListAll = employeeService.listAll(calDate,salId,salName);
 		List<Department> listDep = employeeService.listDep();
 		String maxMonth = allInfoService.maxMonth();
 		request.setAttribute("maxMonth", maxMonth);

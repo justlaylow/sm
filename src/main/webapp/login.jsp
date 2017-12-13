@@ -18,25 +18,25 @@
 					</h1>
 				</div>
 				<form class="form-horizontal" role="form" action="/sm/login"
-					method="post" id="myform">
+					method="post" id="myform" style="width: 500px;margin-left: 600px;">
 					<div class="form-group">
 						<label for="inputEmail3" class="col-sm-2 control-label">用户名</label>
 						<div class="col-sm-10">
 							<input class="form-control" id="loginname" name="loginname"
-								type="text" required="true"/>
+								type="text" required="true" style="width: 200px;"/>
 						</div>
 					</div>
 					<div class="form-group">
 						<label for="inputPassword3" class="col-sm-2 control-label">密码</label>
 						<div class="col-sm-10">
 							<input class="form-control" id="password" name="password"
-								type="password" required="true"/>
+								type="password" required="true" style="width: 200px;"/>
 						</div>
 					</div>
 					<div class="form-group">
 						<div class="col-sm-offset-2 col-sm-10">
 							<div class="checkbox">
-								<label><input type="checkbox" />Remember me</label>
+								<label><input type="checkbox" />记住登录名和密码</label>
 							</div>
 						</div>
 					</div>

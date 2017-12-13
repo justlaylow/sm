@@ -14,6 +14,11 @@
 		window.location.href="/sm/list/emp"; 
 	}
 	
+	//刷新
+	function employeeImport(){
+		window.location.href="/sm/empImportFile"; 
+	}
+	
 	//删除信息
  	function del(userid){
  		if(confirm("您确认删除吗？")){   
@@ -104,7 +109,7 @@
 									<label>银行账户:</label>
 									<input name="bankAccount" required="true" style="width: 170px"><br><br> 
 									<label>入职日期:</label>
-									<input name="salDate" id="mydate">&emsp;&emsp;&emsp; <label>&nbsp;&nbsp;&nbsp;OA账号:</label>
+									<input name="salDate" id="mydate">&emsp;&emsp;&emsp; <label>&nbsp;SAP账号:</label>
 									<input name="salOa"> <br><br> 
 									<label>统计类别:</label> 
 									<input name="staCategory" list="staCategory">&emsp;&emsp;&emsp;
@@ -123,6 +128,7 @@
 									</datalist>
 									<label>备&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;注:</label> <input name="salRemark"> <br><br>
 									<label>技能等级:</label> <input name="salSkilllevel"> 
+									<label>&emsp;技能等级工资:</label> <input name="salSkillSalary">
 
 
 									<div class="modal-footer">
@@ -137,7 +143,9 @@
 					</div>
 					<!-- /.modal-dialog -->
 				</div>
-
+				
+				<!-- 批量导入 -->
+				<button type="button" class="btn btn-default" onclick="employeeImport()">批量导入</button>
 
 				<!-- 员工列表 -->
 				<table class="table table-hover" id="datagrid"
@@ -153,10 +161,11 @@
 							<th>部门代码</th>
 							<th>岗位</th>
 							<th>入职日期</th>
-							<th>OA账号</th>
+							<th>SAP账号</th>
 							<th>统计类别</th>
 							<th>备注</th>
 							<th>技能等级</th>
+							<th>技能等级工资</th>
 							<th>性别</th>
 							<th>身份证号</th>
 							<th>保险基数</th>
@@ -218,7 +227,7 @@
 																</tr>
 																<tr>
 																	<td><label>入职日期:</label></td><td> <input name="salDate" id="salDate${emp.id}" value="<fmt:formatDate value="${emp.salDate}" type="date"/>"></td>
-																	<td><label>OA账号:</label></td><td> <input type="text" name="salOa" value="${emp.salOa}"></td>
+																	<td><label>SAP账号:</label></td><td> <input type="text" name="salOa" value="${emp.salOa}"></td>
 																</tr>
 																<tr>
 																	<td><label>统计类别:</label></td><td> <input type="text" name="staCategory" list="UpdateStaCategory" value="${emp.staCategory}"></td>
@@ -239,6 +248,7 @@
 																</tr>
 																<tr>
 																	<td><label>技能等级:</label></td><td> <input type="text" name="salSkilllevel" value="${emp.salSkilllevel}"></td>
+																	<td><label>技能工资:</label></td><td> <input type="text" name="salSkillSalary" value="${emp.salSkillSalary}"></td>
 																</tr>
 															</table>
 															<div class="modal-footer">
@@ -282,6 +292,7 @@
 									<td>${emp.staCategory}</td>
 									<td>${emp.salRemark}</td>
 									<td>${emp.salSkilllevel}</td>
+									<td>${emp.salSkillSalary}</td>
 									<c:forEach var="ins" items="${emp.salInsuranceList}">
 										<td>${ins.insSex}</td>
 										<td>${ins.insIden}</td>

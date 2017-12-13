@@ -30,4 +30,10 @@ public interface InsuranceService {
 	public List<Insurance> importExcelInfo(InputStream in, MultipartFile file,Integer adminId) throws Exception;
 	//批量导入更新
 	public String importBatch(List<Insurance> list);
+	
+	//Excel导入预览集合
+	public List<Insurance> importInsurance(InputStream in, MultipartFile file,Integer adminId)throws Exception;
+	
+	//Excel数据插入数据库
+	public String importDB(List<Insurance> list);
 }

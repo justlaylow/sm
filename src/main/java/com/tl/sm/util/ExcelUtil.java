@@ -58,7 +58,7 @@ public class ExcelUtil {
 				// 读取一行
 				row = sheet.getRow(j);
 				// 去掉空行和表头
-				if (row == null || row.getFirstCellNum() == j) {
+				if (row == null || row.getFirstCellNum() == j||ExcelUtil.getCellValue(row.getCell(1)).equals("")) {
 					continue;
 				}
 				// 遍历所有的列

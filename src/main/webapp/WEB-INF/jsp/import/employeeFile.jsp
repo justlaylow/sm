@@ -6,16 +6,16 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>保险数据更新</title>
+<title>员工数据导入</title>
 </head>
 <body>
 	<div class="container">
 		<div class="row clearfix">
 			<div class="col-md-12 column" style="text-align: center">
-				<h3 class="text-center text-info">保 险 数 据 更 新</h3>
+				<h3 class="text-center text-info">员 工 数 据 导 入</h3>
 				<br>
 				<div style="text-align: center; width: 400px; margin: auto;">
-					<form action="/sm/insBeforeImport" method="post"
+					<form action="/sm/beforeEmployeeImport" method="post"
 						enctype="multipart/form-data" id="formSub">
 						&emsp;请选择Excel： <input type="file" name="upfile"
 							style="margin-left: 130px; margin-top: 10px" id="excelFile"><br>  
@@ -29,7 +29,7 @@
 	<script type="text/javascript">
 		//返回
 		function back() {
-			window.location.href = "/sm/select/ins";
+			window.location.href = "/sm/list/emp";
 		}
 
 		$('#import').click(function(){

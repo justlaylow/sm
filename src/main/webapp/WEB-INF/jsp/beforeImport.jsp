@@ -22,7 +22,7 @@
 					<form action="/sm/import" method="post" enctype="multipart/form-data" id="formSub">
 						<table class="table table-bordered">
 							<thead>
-								<th>HR号</th>
+								<th>SAP账号</th>
 								<th>工号</th>
 								<th>姓名</th>
 								<th>基本工资</th>
@@ -43,19 +43,12 @@
 								<th>扣款</th>
 								<th>水电</th>
 								<th>餐补</th>
-								<th>会费</th>
-								<th>工时</th>
-								<th>工价</th>
-								<th>效益工资</th>
-								<th>工时奖</th>
+								<!-- <th>会费</th> -->
 								<th>工时工资</th>
-								<th>福利</th>
-								<th>工废</th>
-								<th>上月扣款</th>
-								<th>扣款合计</th>
+								<!-- <th>扣款合计</th>
 								<th>所得税</th>
 								<th>应发工资</th>
-								<th>实得工资</th>
+								<th>实得工资</th>-->
 								<th>工资时间</th>
 							</thead>
 							<c:forEach var="exc" items="${salaryList}" varStatus="i">
@@ -80,20 +73,13 @@
 								<td><input name="salaryList[${i.index}].calPenalty" value="${exc.calPenalty}"/></td>
 								<td><input name="salaryList[${i.index}].calWithhold" value="${exc.calWithhold}"/></td>
 								<td><input name="salaryList[${i.index}].calWaterandele" value="${exc.calWaterandele}"/></td>
-								<td><input name="salaryList[${i.index}].calAllowance" value="${exc.calAllowance}"/></td>
-								<td><input name="salaryList[${i.index}].calDues" value="${exc.calDues}"/></td>
-								<td><input name="salaryList[${i.index}].calManhour" value="${exc.calManhour}"/></td>
-								<td><input name="salaryList[${i.index}].labourCost" value="${exc.labourCost}"/></td>
-								<td><input name="salaryList[${i.index}].calBenefitwage" value="${exc.calBenefitwage}"/></td>
-								<td><input name="salaryList[${i.index}].calManhourBonus" value="${exc.calManhourBonus}"/></td>
-								<td><input name="salaryList[${i.index}].calManhourSalary" value="${exc.calManhourSalary}"/></td>
-								<td><input name="salaryList[${i.index}].calWelfare" value="${exc.calWelfare}"/></td>
-								<td><input name="salaryList[${i.index}].calWaste" value="${exc.calWaste}"/></td>
-								<td><input name="salaryList[${i.index}].calLastWithhold" value="${exc.calLastWithhold}"/></td>
-								<td><input name="salaryList[${i.index}].calTotal" value="${exc.calTotal}"/></td>
-								<td><input name="salaryList[${i.index}].calIncometax" value="${exc.calIncometax}"/></td>
-								<td><input name="salaryList[${i.index}].calShould" value="${exc.calShould}"/></td>
-								<td><input name="salaryList[${i.index}].calResult" value="${exc.calResult}"/></td>
+								<td><input name="salaryList[${i.index}].calAllowance" value="${exc.calAllowance}"/>
+								<input name="salaryList[${i.index}].calDues" value="${exc.calDues}" style="display: none;"/></td>
+								<td><input name="salaryList[${i.index}].calManhourSalary" value="${exc.calManhourSalary}"/>
+								<input name="salaryList[${i.index}].calTotal" value="${exc.calTotal}" style="display: none;"/>
+								<input name="salaryList[${i.index}].calIncometax" value="${exc.calIncometax}" style="display: none;"/>
+								<input name="salaryList[${i.index}].calShould" value="${exc.calShould}" style="display: none;"/>
+								<input name="salaryList[${i.index}].calResult" value="${exc.calResult}" style="display: none;"/></td>
 								<td><input name="salaryList[${i.index}].calDate" value="<fmt:formatDate value="${exc.calDate}" type="date"/>" style="width: 100px;"/></td>
 							</tbody>
 							</c:forEach>

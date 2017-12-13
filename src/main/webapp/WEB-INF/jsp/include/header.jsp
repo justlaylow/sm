@@ -14,11 +14,11 @@
 </script>
 
 <!-- 引入公共的Js和Css -->
-<script type="text/javascript" src="${path}/js/jquery/jquery.min.js"></script>
 <link rel="stylesheet" type="text/css"
 	href="${path}/css/bootstrap/3.3.6/bootstrap.min.css">
 <link rel="stylesheet"
 	href="${path}/css/bootstrap/3.3.6/bootstrap-theme.min.css">
 <link rel="stylesheet" href="${path}/css/calendar/dcalendar.picker.css"/>
+<script type="text/javascript" src="${path}/js/jquery/jquery.min.js"></script>
 <script type="text/javascript" src="${path}/js/bootstrap/bootstrap.min.js"></script>
 <script type="text/javascript" src="${path}/js/calendar/dcalendar.picker.js"></script>

@@ -8,7 +8,9 @@ import org.springframework.format.annotation.DateTimeFormat;
 public class Employee {
     private Integer id;
 
-    private String bankAccount;
+    private Float salSkillSalary;
+    
+	private String bankAccount;
 
     private String salName;
 
@@ -37,6 +39,13 @@ public class Employee {
     //员工工资信息
     private List<Salary> salSalaryList;
 
+    public Float getSalSkillSalary() {
+		return salSkillSalary;
+	}
+
+	public void setSalSkillSalary(Float salSkillSalary) {
+		this.salSkillSalary = salSkillSalary;
+	}
     public List<Salary> getSalSalaryList() {
 		return salSalaryList;
 	}

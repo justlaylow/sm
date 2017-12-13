@@ -70,14 +70,7 @@ public class SalaryServiceImpl implements SalaryService{
 	        salary.setCalWithhold(Float.parseFloat(ob.get(18).toString()));
 	        salary.setCalWaterandele(Float.parseFloat(ob.get(19).toString()));
 	        salary.setCalAllowance(Float.parseFloat(ob.get(20).toString()));
-	        salary.setCalManhour(Float.parseFloat(ob.get(21).toString()));
-	        salary.setLabourCost(Float.parseFloat(ob.get(22).toString()));
-	        salary.setCalBenefitwage(Float.parseFloat(ob.get(23).toString()));
-	        salary.setCalManhourBonus(Float.parseFloat(ob.get(24).toString()));
-	        salary.setCalManhourSalary(Float.parseFloat(ob.get(25).toString()));
-	        salary.setCalWelfare(Float.parseFloat(ob.get(26).toString()));
-	        salary.setCalWaste(Float.parseFloat(ob.get(27).toString()));
-	        salary.setCalLastWithhold(Float.parseFloat(ob.get(28).toString()));
+	        salary.setCalManhourSalary(Float.parseFloat(ob.get(21).toString()));
 	        
 	        //通过工号查到对应保险
 	        Insurance ins = insuranceMapper.selectByInsId(ob.get(1).toString());
@@ -98,12 +91,9 @@ public class SalaryServiceImpl implements SalaryService{
 	        +Float.parseFloat(ob.get(12).toString())+Float.parseFloat(ob.get(13).toString())
 	        +Float.parseFloat(ob.get(14).toString())+Float.parseFloat(ob.get(16).toString())
 	        +Float.parseFloat(ob.get(20).toString())
-	        +Float.parseFloat(ob.get(21).toString())+Float.parseFloat(ob.get(22).toString())
-	        +Float.parseFloat(ob.get(23).toString())+Float.parseFloat(ob.get(24).toString())
-	        +Float.parseFloat(ob.get(25).toString())+Float.parseFloat(ob.get(26).toString())
-	        +Float.parseFloat(ob.get(27).toString())-Float.parseFloat(ob.get(17).toString())
+	        +Float.parseFloat(ob.get(21).toString())-Float.parseFloat(ob.get(17).toString())
 	        -Float.parseFloat(ob.get(15).toString())-Float.parseFloat(ob.get(18).toString())
-	        -Float.parseFloat(ob.get(19).toString())-Float.parseFloat(ob.get(28).toString()))
+	        -Float.parseFloat(ob.get(19).toString()))
 	        *Float.parseFloat(ob.get(6).toString());
 	        
 	        //计算所得税
@@ -154,7 +144,7 @@ public class SalaryServiceImpl implements SalaryService{
         	+Float.parseFloat(ins.getInsUnemp())
         	+Float.parseFloat(ins.getInsAccFund())
         	+Float.parseFloat(ob.get(19).toString())+Float.parseFloat(ob.get(18).toString())
-        	+Float.parseFloat(ob.get(17).toString())+Float.parseFloat(ob.get(28).toString())
+        	+Float.parseFloat(ob.get(17).toString())
         	+calIncometax;
 	        salary.setCalTotal(total);
         	
@@ -166,7 +156,71 @@ public class SalaryServiceImpl implements SalaryService{
 	        salary.setCalShould(calShould);
 	        salary.setCalIncometax(calIncometax);
 	        salaryList.add(salary);  
-	    }  
+	    }
+	    //导入合计
+	    int count=0;
+	    Float basic = 0f;
+	    Float post = 0f;
+	    Float floats = 0f;
+	    Float secrecy = 0f;
+	    Float skill = 0f;
+	    Float comage = 0f;
+	    Float bonus = 0f;
+	    Float overtime = 0f;
+	    Float benefit = 0f;
+	    Float check = 0f;
+	    Float injury = 0f;
+	    Float leave = 0f;
+	    Float other = 0f;
+	    Float penalty = 0f;
+	    Float withhold = 0f;
+	    Float waterele =0f;
+	    Float mealAllowance = 0f;
+	    Float manhour = 0f;
+	    for(Salary s:salaryList) {
+	    	basic+=s.getCalBasic();
+	    	post+=s.getCalPost();
+	    	floats+=s.getCalFloat();
+	    	secrecy+=s.getCalSecrecy();
+	    	skill+=s.getCalSkillLevel();
+	    	comage+=s.getCalComage();
+	    	bonus+=s.getCalBonus();
+	    	overtime+=s.getCalOvertime();
+	    	benefit+=s.getCalBenefit();
+	    	check+=s.getCalCheck();
+	    	injury+=s.getCalInjury();
+	    	leave+=s.getCalLeave();
+	    	other+=s.getCalOther();
+	    	penalty+=s.getCalPenalty();
+	    	withhold+=s.getCalWithhold();
+	    	waterele+=s.getCalWaterandele();
+	    	mealAllowance+=s.getCalAllowance();
+	    	manhour+=s.getCalManhourSalary();
+	    	count++;
+	    }
+	    
+	    Salary s = new Salary();
+	    s.setCalId("合计");
+	    s.setCalName(count+"");//人数合计
+	    s.setCalBasic(basic);
+	    s.setCalPost(post);
+	    s.setCalFloat(floats);
+	    s.setCalSecrecy(secrecy);
+	    s.setCalSkillLevel(skill);
+	    s.setCalComage(comage);
+	    s.setCalBonus(bonus);
+	    s.setCalOvertime(overtime);
+	    s.setCalBenefit(benefit);
+	    s.setCalCheck(check);
+	    s.setCalInjury(injury);
+	    s.setCalLeave(leave);
+	    s.setCalOther(other);
+	    s.setCalPenalty(penalty);
+	    s.setCalWithhold(withhold);
+	    s.setCalWaterandele(waterele);
+	    s.setCalAllowance(mealAllowance);
+	    s.setCalManhourSalary(manhour);
+	    salaryList.add(s);
 	    return salaryList;  
 	}
 
@@ -239,7 +293,7 @@ public class SalaryServiceImpl implements SalaryService{
         XSSFWorkbook xssfWorkbook=null;
 
         //设置标题栏
-        excel.add(new ExcelBean("OA","calHr",0));
+        excel.add(new ExcelBean("SAP账号","calHr",0));
         excel.add(new ExcelBean("工号","calId",0));
         excel.add(new ExcelBean("姓名","calName",0));
         excel.add(new ExcelBean("基本工资","calBasic",0));
@@ -260,7 +314,6 @@ public class SalaryServiceImpl implements SalaryService{
         excel.add(new ExcelBean("大病医疗","insIll",0));
         excel.add(new ExcelBean("罚款","calPenalty",0));
         excel.add(new ExcelBean("扣款","calWithhold",0));
-        excel.add(new ExcelBean("工废","calWaste",0));
         excel.add(new ExcelBean("水电","calWaterandele",0));
         excel.add(new ExcelBean("公积金","insAccFund",0));
         excel.add(new ExcelBean("所得税","calIncometax",0));
@@ -268,20 +321,18 @@ public class SalaryServiceImpl implements SalaryService{
         excel.add(new ExcelBean("实得工资","calResult",0));
         excel.add(new ExcelBean("岗位类别","postCategory",0));
         excel.add(new ExcelBean("岗位","salPost",0));
-        excel.add(new ExcelBean("备注","salRemark",0));
         excel.add(new ExcelBean("上月扣款","calLastWithhold",0));
         excel.add(new ExcelBean("工价","LabourCost",0));
-        excel.add(new ExcelBean("福利","calWelfare",0));
         excel.add(new ExcelBean("司龄工资","calComage",0));
         excel.add(new ExcelBean("保密工资","calSecrecy",0));
         excel.add(new ExcelBean("技能等级","salSkilllevel",0));
         excel.add(new ExcelBean("技能等级工资","calSkillLevel",0));
         excel.add(new ExcelBean("工资时间","calDate",0));
         excel.add(new ExcelBean("银行账号","bankAccount",0));
-        excel.add(new ExcelBean("保险投保地","insurance",0));
+        excel.add(new ExcelBean("养老投保地","insurance",0));
+        excel.add(new ExcelBean("医保投保地","insSign",0));
         excel.add(new ExcelBean("失业投保地","insUnempAddress",0));
         excel.add(new ExcelBean("公积金投保地","insAccAddress",0));
-        excel.add(new ExcelBean("身份证","insIden",0));
         excel.add(new ExcelBean("部门名称","salDep",0));
         excel.add(new ExcelBean("统计类别","staCategory",0));
         excel.add(new ExcelBean("考评工资","calCheck",0));
@@ -290,7 +341,6 @@ public class SalaryServiceImpl implements SalaryService{
         
         excel.add(new ExcelBean("餐补","calAllowance",0));
         excel.add(new ExcelBean("工时","calManhour",0));
-        excel.add(new ExcelBean("工时奖","calManhourBonus",0));
         
         
         map.put(0, excel);

@@ -44,14 +44,15 @@
 						<tr>
 							<td><label>养老保险:</label></td>
 							<td><input name="insOld"></td>
-							<td><label>医疗保险:</label></td>
-							<td><input name="insTreatments"></td>
+							<td><label>养老投保地:</label></td>
+							<td><input type="text" name="insurance"></td>
+							
 						</tr>
 						<tr>
-							<td><label>大病医疗:</label></td>
-							<td><input name="insIll"></td>
-							<td><label>保险投保地:</label></td>
-							<td><input type="text" name="insurance"></td>
+							<td><label>医疗保险:</label></td>
+							<td><input name="insTreatments"></td>
+							<td><label>医保投保地:</label></td>
+							<td><input type="text" name="insSign"></td>
 						</tr>
 						<tr>
 							<td><label>失业保险:</label></td>
@@ -66,9 +67,8 @@
 							<td><input name="insAccAddress"></td>
 						</tr>
 						<tr>
-							<td><label>投标标志:</label></td>
-							<td>保：<input type="radio" value="保" name="insSign">
-								不保：<input type="radio" value="不保" name="insSign"></td>
+							<td><label>大病医疗:</label></td>
+							<td><input name="insIll"></td>
 						</tr>
 					</table>
 					<button data-dismiss="modal" class="btn btn-default" type="button"

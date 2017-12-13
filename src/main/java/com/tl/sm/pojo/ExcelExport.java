@@ -125,6 +125,16 @@ public class ExcelExport {
     private String insAccFund;
 
     private String insAccAddress;
+    
+    private String insSign;
+
+	public String getInsSign() {
+		return insSign;
+	}
+
+	public void setInsSign(String insSign) {
+		this.insSign = insSign;
+	}
 
 	public String getBankAccount() {
 		return bankAccount;

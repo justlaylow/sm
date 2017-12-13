@@ -14,8 +14,10 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.tl.sm.pojo.Insurance;
+import com.tl.sm.pojo.Salary;
 import com.tl.sm.service.InsuranceService;
 import com.tl.sm.util.InsuranceList;
+import com.tl.sm.util.excelList;
 
 @Controller
 @Scope("prototype")
@@ -104,6 +106,32 @@ public class InsuranceController {
 		request.setAttribute("listIns", listIns);
 		request.setAttribute("insImportMsg", insImportMsg);
 		return "insurance";
+	}
+	
+	
+	//poi Excel导入
+	@RequestMapping("/importInsurance")
+	public String beforeImport(excelList insuranceList,HttpServletRequest request) {
+		String importMsg = insuranceService.importDB(insuranceList.getInsuranceList());
+		List<Insurance> listIns = insuranceService.listIns();
+		request.setAttribute("listIns", listIns);
+		request.setAttribute("importMsg", importMsg);
+		return "insurance";
+	}
+	
+	//poi导入预览,返回的集合在页面显示,提交后Controller拿到页面的数据执行保险表的insert方法
+	@RequestMapping("/beforeInsuranceImport")
+	public String impotr(HttpServletRequest request, Model model) throws Exception {
+		int adminId = 1;
+		// 获取上传的文件
+		MultipartHttpServletRequest multipart = (MultipartHttpServletRequest) request;
+		MultipartFile file = multipart.getFile("upfile");
+		InputStream in = file.getInputStream();
+		// 数据导入
+		List<Insurance> insuranceList = insuranceService.importInsurance(in, file, adminId);
+		request.setAttribute("insuranceList", insuranceList);
+		in.close();
+		return "import/insuranceImport";
 	}
 
 }

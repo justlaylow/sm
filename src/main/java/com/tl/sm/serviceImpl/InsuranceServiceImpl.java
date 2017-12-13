@@ -86,7 +86,6 @@ public class InsuranceServiceImpl implements InsuranceService{
 	public List<Insurance> importExcelInfo(InputStream in, MultipartFile file,Integer adminId) throws Exception{  
 	    List<List<Object>> listob = ExcelUtil.getBankListByExcel(in,file.getOriginalFilename());  
 	    List<Insurance> insuranceList = new ArrayList<Insurance>();
-	    SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
 	    //遍历listob数据，把数据放到List中  
 	    for (int i = 0; i < listob.size(); i++) { 
 	        List<Object> ob = listob.get(i);  
@@ -115,6 +114,53 @@ public class InsuranceServiceImpl implements InsuranceService{
 			message = "更新成功";
 		}else {
 			message = "更新失败";
+		}
+		return message;
+	}
+	
+	//poiExcel导入保险
+	public List<Insurance> importInsurance(InputStream in, MultipartFile file,Integer adminId) throws Exception{  
+	    List<List<Object>> listob = ExcelUtil.getBankListByExcel(in,file.getOriginalFilename());  
+	    List<Insurance> insuranceList = new ArrayList<Insurance>();
+	    //遍历listob数据，把数据放到List中  
+	    for (int i = 0; i < listob.size(); i++) { 
+	        List<Object> ob = listob.get(i);  
+	        Insurance ins = new Insurance();  
+	        //设置编号  String.valueOf(ob.get())
+	        //通过遍历实现把每一列封装成一个model中，再把所有的model用List集合装载 
+	        ins.setInsId(ob.get(0).toString());
+	        ins.setInsName(ob.get(1).toString());
+	        ins.setInsSex(ob.get(2).toString());
+	        ins.setInsCarNumber(ob.get(3).toString());
+	        ins.setInsOldId(ob.get(4).toString());
+	        ins.setInsOld(ob.get(5).toString());
+	        ins.setInsTreatmentId(ob.get(6).toString());
+	        ins.setInsTreatments(ob.get(7).toString());
+	        ins.setInsIllId(ob.get(8).toString());
+	        ins.setInsIll(ob.get(9).toString());
+	        ins.setInsUnempId(ob.get(10).toString());
+	        ins.setInsUnemp(ob.get(11).toString());
+	        ins.setInsAccFund(ob.get(12).toString());
+	        ins.setInsurance(ob.get(13).toString());
+	        ins.setInsSign(ob.get(14).toString());
+	        ins.setInsUnempAddress(ob.get(15).toString());
+	        ins.setInsAccAddress(ob.get(16).toString());
+	        
+	        insuranceList.add(ins);
+	        
+	    }  
+	    return insuranceList;  
+	}
+	
+	//Excel数据插入数据库
+	public String importDB(List<Insurance> insuranceList) {
+		//批量插入  
+		String message = "";
+		int i = insuranceMapper.insertForeach(insuranceList);
+		if(i>0) {
+			message = "导入成功";
+		}else {
+			message = "导入失败";
 		}
 		return message;
 	}

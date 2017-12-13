@@ -15,10 +15,12 @@
 				<h3>工 资 查 询</h3>
 				<!-- 添加保险 -->
 				<form action="/sm/list/all" method="post">
-					工号：<input name="salId" value="${param.salId}" required="true"> 
-					工资日期：<input name="calDate" tyep="text" value="${param.calDate}" id="mydatepicker"> 
+					工号：<input name="salId" value="${param.salId}">
+					姓名：<input name="salName" value="${param.salName}"> 
+					工资日期：<input name="calDate" tyep="text" id="mydatepicker"> 
 					<input type="submit" value="查询" id="find">
 					<input id="maxMonth" value="${maxMonth}" style="display: none;">
+					<input id="checkMonth" value="${param.calDate}" style="display: none;">
 					<button type="button" onclick="back()">返回</button>
 				</form>
 				<c:forEach var="all" items="${listAll }">
@@ -51,48 +53,39 @@
 								<td><label>Gzsj:</label></td>
 								<td><input name="calDate"
 									value="<fmt:formatDate value="${cal.calDate}" type="date"/>"></td>
-								<td><label>OA账号:</label></td>
+								<td><label>SAP账号:</label></td>
 								<td><input type="text" name="salOa" value="${all.salOa}"></td>
 								<td><label>统计类别:</label></td>
 								<td><input type="text" name="staCategory"
 									value="${all.staCategory}"></td>
 							</tr>
 							<tr>
-								<td><label>备注:</label></td>
-								<td><input name="salRemark" value="${all.salRemark}"></td>
 								<td><label>基本工资:</label></td>
 								<td><input type="text" name="calBasic"
 									value="${cal.calBasic}"></td>
 								<td><label>岗位工资:</label></td>
 								<td><input name="calPost" value="${cal.calPost}"></td>
-							</tr>
-							<tr>
 								<td><label>系数:</label></td>
 								<td><input type="text" name="calCoefficient"
 									value="${cal.calCoefficient}"></td>
+							</tr>
+							<tr>
 								<td><label>效益工资:</label></td>
 								<td><input name="calBenefitwage"
 									value="${cal.calBenefitwage}"></td>
 								<td><label>奖金:</label></td>
 								<td><input type="text" name="calBonus"
 									value="${cal.calBonus}"></td>
-							</tr>
-							<tr>
-								<td><label>工时奖:</label></td>
-								<td><input name="calManhourBonus"
-									value="${cal.calManhourBonus}"></td>
 								<td><label>工时工资:</label></td>
 								<td><input type="text" name="calManhourSalary"
 									value="${cal.calManhourSalary}"></td>
-								<td><label>加班:</label></td>
-								<td><input name="calOvertime" value="${cal.calOvertime}"></td>
 							</tr>
 							<tr>
+								<td><label>加班:</label></td>
+								<td><input name="calOvertime" value="${cal.calOvertime}"></td>
 								<td><label>津贴:</label></td>
 								<td><input type="text" name="calBenefit"
 									value="${cal.calBenefit}"></td>
-								<td><label>福利:</label></td>
-								<td><input name="calWelfare" value="${cal.calWelfare}"></td>
 								<td><label>考评工资:</label></td>
 								<td><input type="text" name="calCheck"
 									value="${cal.calCheck}"></td>
@@ -122,20 +115,13 @@
 								<td><input name="insUnemp" value="${ins.insUnemp}"></td>
 								<td><label>大病:</label></td>
 								<td><input type="text" name="insIll" value="${ins.insIll}"></td>
-								<td><label>消耗:</label></td>
-								<td><input name="calPost"></td>
-							</tr>
-							<tr>
 								<td><label>罚款:</label></td>
 								<td><input type="text" name="calPenalty"
 									value="${cal.calPenalty}"></td>
-								<td><label>扣款:</label></td>
-								<td><input name="calWithhold" value="${cal.calWithhold}"></td>
-								<td><label>工废:</label></td>
-								<td><input type="text" name="calWaste"
-									value="${cal.calWaste}"></td>
 							</tr>
 							<tr>
+								<td><label>扣款:</label></td>
+								<td><input name="calWithhold" value="${cal.calWithhold}"></td>
 								<td><label>水电:</label></td>
 								<td><input name="calWaterandele"
 									value="${cal.calWaterandele}"></td>
@@ -143,41 +129,41 @@
 								<td><input type="text" name="insAccFund"
 									value="${ins.insAccFund}"></td>
 								</c:forEach>
+							</tr>
+							<tr>
 								<td><label>上月扣款:</label></td>
 								<td><input name="calLastWithhold"
 									value="${cal.calLastWithhold}"></td>
-							</tr>
-							<tr>
 								<td><label>所得税:</label></td>
 								<td><input type="text" name="calIncometax"
 									value="${cal.calIncometax}"></td>
 								<td><label>工时:</label></td>
 								<td><input name="calManhour" value="${cal.calManhour}"></td>
+							</tr>
+							<tr>
 								<td><label>工价:</label></td>
 								<td><input type="text" name="labourCost"
 									value="${cal.labourCost}"></td>
-							</tr>
-							<tr>
 								<td><label>餐补:</label></td>
 								<td><input name="calAllowance" value="${cal.calAllowance}"></td>
 								<td><label>司龄工资:</label></td>
 								<td><input type="text" name="calComage"
 									value="${cal.calComage}"></td>
-								<td><label>保密工资:</label></td>
-								<td><input name="calSecrecy" value="${cal.calSecrecy}"></td>
 							</tr>
 							<tr>
+								<td><label>保密工资:</label></td>
+								<td><input name="calSecrecy" value="${cal.calSecrecy}"></td>
 								<td><label>应发工资:</label></td>
 								<td><input type="text" name="calShould"
 									value="${cal.calShould}"></td>
 								<td><label>技能等级:</label></td>
 								<td><input type="text" name="salSkilllevel"
 									value="${all.salSkilllevel}"></td>
+							</tr>
+							<tr>
 								<td><label>技能工资:</label></td>
 								<td><input name="calSkillLevel"
 									value="${cal.calSkillLevel}"></td>
-							</tr>
-							<tr>
 								<td><label>实得:</label></td>
 								<td><input name="calResult" value="${cal.calResult}"></td>
 							</tr>
@@ -190,7 +176,7 @@
 						<script type="text/javascript">
 							//最大日期显示修改按钮	
 							$(function() {
-								var dt = $("#mydatepicker").val();
+								var dt = $("#checkMonth").val();
 								var maxmonth = $("#maxMonth").val();
 								 if($.trim(dt) == $.trim(maxmonth)){
 									$("#updateAll").show();

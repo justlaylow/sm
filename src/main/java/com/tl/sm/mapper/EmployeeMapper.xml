@@ -14,6 +14,7 @@
 		<result column="sta_category" jdbcType="VARCHAR" property="staCategory" />
 		<result column="sal_remark" jdbcType="VARCHAR" property="salRemark" />
 		<result column="sal_skilllevel" jdbcType="VARCHAR" property="salSkilllevel" />
+		<result column="sal_skill_salary" jdbcType="REAL" property="salSkillSalary" />
 	</resultMap>
 	
 	<resultMap id="BaseDepMap" type="com.tl.sm.pojo.Department">
@@ -37,6 +38,7 @@
 		<result column="sta_category" jdbcType="VARCHAR" property="staCategory" />
 		<result column="sal_remark" jdbcType="VARCHAR" property="salRemark" />
 		<result column="sal_skilllevel" jdbcType="VARCHAR" property="salSkilllevel" />
+		<result column="sal_skill_salary" jdbcType="REAL" property="salSkillSalary" />
 		<collection property="salInsuranceList" ofType="com.tl.sm.pojo.Insurance">
 			<id column="i_Id" jdbcType="INTEGER" property="id" />
 			<result column="ins_name" jdbcType="VARCHAR" property="insName" />
@@ -77,6 +79,7 @@
 		<result column="sta_category" jdbcType="VARCHAR" property="staCategory" />
 		<result column="sal_remark" jdbcType="VARCHAR" property="salRemark" />
 		<result column="sal_skilllevel" jdbcType="VARCHAR" property="salSkilllevel" />
+		<result column="sal_skill_salary" jdbcType="REAL" property="salSkillSalary" />
 		<collection property="salInsuranceList" ofType="com.tl.sm.pojo.Insurance">
 			<id column="i_Id" jdbcType="INTEGER" property="id" />
 			<result column="ins_name" jdbcType="VARCHAR" property="insName" />
@@ -148,7 +151,7 @@
 	<sql id="Base_Column_List">
 		Id, bank_account, sal_name, post_category, sal_id, sal_dep, sal_post,
 		sal_date, sal_oa,
-		sta_category, sal_remark, sal_skilllevel
+		sta_category, sal_remark, sal_skilllevel,sal_skill_salary
 	</sql>
 	<select id="selectByPrimaryKey" parameterType="java.lang.Integer"
 		resultMap="BaseResultMap">
@@ -165,14 +168,15 @@
 		insert into employee_ (Id, bank_account, sal_name,
 		post_category, sal_id, sal_dep,
 		sal_post, sal_date, sal_oa,
-		sta_category, sal_remark, sal_skilllevel
+		sta_category, sal_remark, sal_skilllevel,sal_skill_salary
 		)
 		values (#{id,jdbcType=INTEGER}, #{bankAccount,jdbcType=VARCHAR},
 		#{salName,jdbcType=VARCHAR},
 		#{postCategory,jdbcType=VARCHAR}, #{salId,jdbcType=VARCHAR}, #{salDep,jdbcType=VARCHAR},
 		#{salPost,jdbcType=VARCHAR}, #{salDate,jdbcType=DATE},
 		#{salOa,jdbcType=VARCHAR},
-		#{staCategory,jdbcType=VARCHAR}, #{salRemark,jdbcType=VARCHAR}, #{salSkilllevel,jdbcType=VARCHAR}
+		#{staCategory,jdbcType=VARCHAR}, #{salRemark,jdbcType=VARCHAR}, #{salSkilllevel,jdbcType=VARCHAR},
+		#{salSkillSalary,jdbcType=REAL}
 		)
 	</insert>
 	<insert id="insertSelective" parameterType="com.tl.sm.pojo.Employee">
@@ -214,6 +218,9 @@
 			<if test="salSkilllevel != null">
 				sal_skilllevel,
 			</if>
+			<if test="salSkilSalary != null">
+				sal_skill_salary,
+			</if>
 		</trim>
 		<trim prefix="values (" suffix=")" suffixOverrides=",">
 			<if test="id != null">
@@ -251,6 +258,9 @@
 			</if>
 			<if test="salSkilllevel != null">
 				#{salSkilllevel,jdbcType=VARCHAR},
+			</if>
+			<if test="salSkillSalary != null">
+				#{salSkillSalary,jdbcType=REAL},
 			</if>
 		</trim>
 	</insert>
@@ -290,6 +300,9 @@
 			<if test="salSkilllevel != null">
 				sal_skilllevel = #{salSkilllevel,jdbcType=VARCHAR},
 			</if>
+			<if test="salSkillSalary != null">
+				sal_skill_salary = #{salSkillSalary,jdbcType=REAL},
+			</if>
 		</set>
 		where Id = #{id,jdbcType=INTEGER}
 	</update>
@@ -305,7 +318,8 @@
 		sal_oa = #{salOa,jdbcType=VARCHAR},
 		sta_category = #{staCategory,jdbcType=VARCHAR},
 		sal_remark = #{salRemark,jdbcType=VARCHAR},
-		sal_skilllevel = #{salSkilllevel,jdbcType=VARCHAR}
+		sal_skilllevel = #{salSkilllevel,jdbcType=VARCHAR},
+		sal_skill_salary = #{salSkillSalary,jdbcType=REAL}
 		where Id = #{id,jdbcType=INTEGER}
 	</update>
 
@@ -362,7 +376,18 @@
 		select i.*,c.*,e.* from employee_ e left join
 		insurance_ i on e.sal_id = i.ins_id left join
 		calculate_ c on e.sal_id = c.cal_id
-		where e.sal_id = #{sal_id} and c.cal_date = #{cal_date}
+		<where>
+			<if test="sal_id!=null">
+				and sal_id = #{sal_id}
+			</if>
+			<if test="sal_name!=null">
+				and sal_name = #{sal_name}
+			</if>
+			<if test="cal_date!=null">
+				and cal_date = #{cal_date}
+			</if>
+		</where>
+		<!-- where e.sal_id = #{sal_id} and c.cal_date = #{cal_date} -->
 	</select>
 	
 	<!-- 通过工号查询 -->
@@ -389,5 +414,24 @@
 		calculate_ c on e.sal_id = c.cal_id
 		where e.sal_dep = #{sal_dep} and c.cal_date = (select max(cal_date) from calculate_)
 	</select>
+	
+	<!-- 批量插入 -->
+  	<insert id="insertForeach" parameterType="java.util.List">
+    	insert into employee_ (bank_account, sal_name,
+		post_category, sal_id, sal_dep,
+		sal_post,  sal_oa,
+		sta_category, sal_remark, sal_skilllevel,sal_skill_salary
+		)
+    values 
+    <foreach collection="list" item="item" index="index" separator=",">
+    	(#{item.bankAccount,jdbcType=VARCHAR},
+		#{item.salName,jdbcType=VARCHAR},
+		#{item.postCategory,jdbcType=VARCHAR}, #{item.salId,jdbcType=VARCHAR}, #{item.salDep,jdbcType=VARCHAR},
+		#{item.salPost,jdbcType=VARCHAR}, 
+		#{item.salOa,jdbcType=VARCHAR},
+		#{item.staCategory,jdbcType=VARCHAR}, #{item.salRemark,jdbcType=VARCHAR}, #{item.salSkilllevel,jdbcType=VARCHAR},
+		#{item.salSkillSalary,jdbcType=REAL})
+      </foreach>
+  	</insert>
 	
 </mapper>

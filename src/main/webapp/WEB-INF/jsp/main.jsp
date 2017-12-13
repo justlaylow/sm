@@ -22,7 +22,7 @@
 				</div>
 
 				</nav>
-				<ul>
+				<ul style="list-style-type: none;">
 					<a href="/sm/allInform" class="btn btn-primary"><li>进入查询</li></a>
 					<br><br>
 					<a href="/sm/list/emp" class="btn btn-primary"><li>员工维护</li></a>

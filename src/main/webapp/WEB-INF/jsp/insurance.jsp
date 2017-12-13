@@ -19,6 +19,11 @@
 	}
 	
 	//批量更新
+	function insUpdateImport(){
+		window.location.href="/sm/insUpdateFile"; 
+	}
+	
+	//批量导入
 	function insImport(){
 		window.location.href="/sm/insImportFile"; 
 	}
@@ -72,28 +77,31 @@
 				<button type="button" class="btn btn-default" onclick="insAdd()">保险维护(单)</button>
 				
 				<!-- 批量更新 -->
-				<button type="button" class="btn btn-default" onclick="insImport()">批量更新</button>
+				<button type="button" class="btn btn-default" onclick="insUpdateImport()">批量更新</button>
+				
+				<!-- 批量导入 -->
+				<button type="button" class="btn btn-default" onclick="insImport()">批量导入</button>
 
 				<!-- 部门列表 -->
 				<form action="/sm/updateBatch/ins" method="post" id="fm">
-				<table class="table table-bordered" id="datagrid">
+				<table class="table table-bordered" id="datagrid" style="white-space: nowrap;">
 					<thead>
 						<tr>
 							<th>删除</th>
 							<th>工号</th>
 							<th>姓名</th>
 							<th>性别</th>
-							<th>身份证号</th>
+							<!-- <th>身份证号</th> -->
 							<th>保险基数</th>
 							<th>养老保险</th>
 							<th>医保</th>
 							<th>大病医疗</th>
 							<th>失业保险</th>
 							<th>公积金</th>
-							<th>保险投保地</th>
+							<th>养老投保地</th>
 							<th>失业投保地</th>
 							<th>公积金投保地</th>
-							<th>投保标志</th>
+							<th>医保投保地</th>
 							<th>备注</th>
 						</tr>
 					</thead>
@@ -109,7 +117,7 @@
 										 <input name="insurance[${i.index}].insId" required="true" value="${ins.insId}" style="width: 70px;"></td>
 									<td> <input name="insurance[${i.index}].insName" required="true" value="${ins.insName}" style="width: 70px;"></td>
 									<td> <input name="insurance[${i.index}].insSex" value="${ins.insSex}" style="width: 40px;text-align: center;"></td>
-									<td> <input name="insurance[${i.index}].insIden" value="${ins.insIden}"></td>
+									<%-- <td> <input name="insurance[${i.index}].insIden" value="${ins.insIden}"></td> --%>
 									<td> <input name="insurance[${i.index}].insCarNumber" value="${ins.insCarNumber}" style="width: 70px;"></td>
 									<td> <input name="insurance[${i.index}].insOld" value="${ins.insOld}" style="width: 70px;"></td>
 									<td> <input name="insurance[${i.index}].insTreatments" value="${ins.insTreatments}" style="width: 70px;"></td>

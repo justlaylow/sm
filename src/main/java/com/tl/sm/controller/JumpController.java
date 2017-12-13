@@ -65,10 +65,22 @@ public class JumpController {
 		return "excelExport";
 	}
 	
+	//跳转到选择excel文件页面,用于保险更新预览
+	@RequestMapping("/insUpdateFile")
+	public String insUpdateFile(HttpServletRequest request,HttpServletResponse response) {
+		return "insuranceFile";
+	}
+	
 	//跳转到选择excel文件页面,用于保险导入预览
 	@RequestMapping("/insImportFile")
 	public String insImportFile(HttpServletRequest request,HttpServletResponse response) {
-		return "insuranceFile";
+		return "import/insuranceImportFile";
+	}
+	
+	//跳转到选择excel文件页面,用于保险导入预览
+	@RequestMapping("/empImportFile")
+	public String empImportFile(HttpServletRequest request,HttpServletResponse response) {
+		return "import/employeeFile";
 	}
 	
 	//跳转到打印页面

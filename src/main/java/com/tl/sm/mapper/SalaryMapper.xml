@@ -149,6 +149,7 @@
 	    <result column="ins_ill_id" jdbcType="VARCHAR" property="insIllId" />
 	    <result column="ins_ill" jdbcType="VARCHAR" property="insIll" />
 	    <result column="insurance" jdbcType="VARCHAR" property="insurance" />
+	    <result column="ins_sign" jdbcType="VARCHAR" property="insSign" />
 	    <result column="ins_unemp_id" jdbcType="VARCHAR" property="insUnempId" />
 	    <result column="ins_unemp" jdbcType="VARCHAR" property="insUnemp" />
 	    <result column="ins_unemp_address" jdbcType="VARCHAR" property="insUnempAddress" />
@@ -574,10 +575,8 @@
       cal_injury, cal_leave, cal_other, 
       cal_penalty, cal_withhold, cal_waterandele, 
       cal_allowance, cal_should,
-      cal_dues, cal_manhour, labour_cost, 
-      cal_benefitwage, cal_manhour_bonus, cal_manhour_salary, 
-      cal_welfare, cal_waste, 
-      cal_last_withhold,cal_date,
+      cal_dues,  cal_manhour_salary, 
+      cal_date,
       cal_incometax,cal_result,cal_total)
     values 
     <foreach collection="list" item="item" index="index" separator=",">
@@ -589,10 +588,8 @@
       #{item.calInjury,jdbcType=REAL}, #{item.calLeave,jdbcType=REAL}, #{item.calOther,jdbcType=REAL}, 
       #{item.calPenalty,jdbcType=REAL}, #{item.calWithhold,jdbcType=REAL}, #{item.calWaterandele,jdbcType=REAL}, 
       #{item.calAllowance,jdbcType=REAL}, #{item.calShould,jdbcType=REAL}, 
-      #{item.calDues,jdbcType=REAL}, #{item.calManhour,jdbcType=REAL}, #{item.labourCost,jdbcType=REAL}, 
-      #{item.calBenefitwage,jdbcType=REAL}, #{item.calManhourBonus,jdbcType=REAL}, #{item.calManhourSalary,jdbcType=REAL}, 
-      #{item.calWelfare,jdbcType=REAL},  #{item.calWaste,jdbcType=REAL}, 
-      #{item.calLastWithhold,jdbcType=REAL},#{item.calDate,jdbcType=REAL},
+      #{item.calDues,jdbcType=REAL},  #{item.calManhourSalary,jdbcType=REAL}, 
+      #{item.calDate,jdbcType=REAL},
       #{item.calIncometax,jdbcType=REAL},#{item.calResult,jdbcType=REAL},
       #{item.calTotal,jdbcType=REAL})
       <!-- (#{item}) -->
@@ -651,7 +648,7 @@
     from calculate_ where cal_date = #{cal_date}
   </select>
   
-  <!-- 三表查询打印结果 -->
+  <!-- 三表查询打印结果  导出 -->
 	<select id="exportAll" resultMap="exportMap">
 		select i.*,c.*,e.* from employee_ e left join
 		insurance_ i on e.sal_id = i.ins_id left join
