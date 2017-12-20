@@ -8,6 +8,10 @@ public class AllInfo {
 	private String bankAccount;
 
     private String calName;
+    
+    private String calId;
+    
+    private String salName;
 
     private String postCategory;
 
@@ -25,10 +29,16 @@ public class AllInfo {
 
     private String salSkilllevel;
     
+    private String salSkillSalary;
+    
     private String insOld;
 
     private String insTreatments;
 
+    private String insId;
+    
+    private String insName;
+    
     private String insIll;
 
     private String insUnemp;
@@ -96,7 +106,48 @@ public class AllInfo {
 
     private Float calIncometax;
 
-    public String getBankAccount() {
+    
+    public String getCalId() {
+		return calId;
+	}
+
+	public void setCalId(String calId) {
+		this.calId = calId;
+	}
+
+	public String getSalName() {
+		return salName;
+	}
+
+	public void setSalName(String salName) {
+		this.salName = salName;
+	}
+
+	public String getSalSkillSalary() {
+		return salSkillSalary;
+	}
+
+	public void setSalSkillSalary(String salSkillSalary) {
+		this.salSkillSalary = salSkillSalary;
+	}
+
+	public String getInsId() {
+		return insId;
+	}
+
+	public void setInsId(String insId) {
+		this.insId = insId;
+	}
+
+	public String getInsName() {
+		return insName;
+	}
+
+	public void setInsName(String insName) {
+		this.insName = insName;
+	}
+
+	public String getBankAccount() {
 		return bankAccount;
 	}
 

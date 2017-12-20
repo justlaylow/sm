@@ -16,8 +16,11 @@ public class AllInfoServiceImpl implements AllInfoService{
 	//更新数据,联合三个表批量更新
 	public String AllUpdate(AllInfo allInfo) {
 		String message = "";
-		int i = allInfoMapper.updateAllByPrimaryKeySelective(allInfo);
-		if(i>0) {
+		int i = allInfoMapper.updateAllByPrimaryKeyEmp(allInfo);
+		System.out.println(i);
+		int j = allInfoMapper.updateAllByPrimaryKeyCal(allInfo);
+		int x = allInfoMapper.updateAllByPrimaryKeyIns(allInfo);
+		if(i>0&&j>0&&x>0) {
 			message = "更新成功";
 		}else {
 			message = "更新失败";

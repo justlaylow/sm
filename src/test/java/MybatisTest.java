@@ -8,10 +8,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import com.tl.sm.mapper.EmployeeMapper;
-import com.tl.sm.mapper.SalaryMapper;
+import com.tl.sm.mapper.AdminMapper;
+import com.tl.sm.pojo.Admin;
 import com.tl.sm.pojo.Employee;
-import com.tl.sm.pojo.ExcelExport;
 import com.tl.sm.pojo.Insurance;
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -22,7 +21,7 @@ public class MybatisTest {
 	private InsuranceMapper insuranceMapper;*/
 	
 	@Autowired
-	private EmployeeMapper employeeMapper;
+	private AdminMapper adminMapper;
 	
 	/*@Autowired
 	private SalaryMapper salaryMapper;*/
@@ -38,13 +37,9 @@ public class MybatisTest {
 	
 	@Test
 	public void testList() {
-		List<Employee> cs = employeeMapper.listInner();
-		for(Employee c : cs) {
-			System.out.println("员工："+c.getSalId());
-			List<Insurance> listIns = c.getSalInsuranceList();
-			for(Insurance i :listIns) {
-				System.out.println("保险："+i.getInsId());
-			}
+		List<Admin> list = adminMapper.list();
+		for(Admin s:list) {
+			System.out.println(s.getAdm_count());
 		}
 	}
 	

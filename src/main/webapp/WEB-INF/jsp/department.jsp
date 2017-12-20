@@ -46,7 +46,7 @@
 						placeholder="Search for..." name="depName" id="depName" value="${param.depName}"> 
 					<span>
 						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-						<button class="btn btn-default" type="button" onclick="blurrySeach()">搜索</button>
+						<button class="btn btn-sm btn-default" type="button" onclick="blurrySeach()">搜索</button>
 					</span>
 				</div>
 				<br />
@@ -65,23 +65,24 @@
 					<div class="modal-dialog">
 						<div class="modal-content">
 							<div class="modal-header">
-								<button data-dismiss="modal" class="close" type="button">
+								<button id="close1" class="close" type="button">
 									<span aria-hidden="true">×</span><span class="sr-only">Close</span>
 								</button>
 								<h4 class="modal-title">添加</h4>
 							</div>
 							<div class="modal-body">
-								<form action="/sm/insert/dep" method="post" id="fm">
-									<label>部门代码:</label> <input name="depId" required="true"><br><br> 
-									<label>部门名称:</label> <input name="depName" required="true"><br><br>
+								<form action="/sm/insert/dep" method="post" id="fm1" onsubmit="return checkAdd()">
+									<label>部门代码:</label> <input name="depId" id="idcheck" required="true"><br><br> 
+									<label>部门名称:</label> <input name="depName" id="namecheck" required="true"><br><br>
 									<label>成本类别:</label> <input name="depCostCategory"><br><br>
-									<label>备&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;注:</label> <input type="text" name="depRemark" list="selectDep"><br><br>
-										<datalist id="selectDep">
-											<option>在用</option>
-											<option>废弃</option>
-                        				</datalist>
+									<label>备&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;注:</label> <input type="text" name="depRemark" id="selectDepInput" style="display :none;">
+									<select id="selectDep" style="height: 24px;width: 160px;">
+										<option style="display :none;"></option>
+										<option>在用</option>
+										<option>废弃</option>
+                       				</select>
 									<div class="modal-footer">
-										<button data-dismiss="modal" class="btn btn-default"
+										<button id="close2" class="btn btn-default"
 											type="button">关闭</button>
 										<input class="btn btn-primary" type="submit" value="添加">
 									</div>
@@ -121,16 +122,16 @@
 								<td>${dep.depCostCategory}</td>
 								<td>${dep.depRemark}</td>
 								<!-- 删除部门 -->
-								<td><button type="button" id="deleteDep" class="btn btn-warning" onclick="del(${dep.id})">删除</button></td>
+								<td><button type="button" id="deleteDep" class="btn btn-sm btn-warning" onclick="del(${dep.id})">删除</button></td>
 								
 								<!-- 修改部门信息 -->
-								<td><button type="button" id="updateDep" class="btn btn-default" data-toggle="modal" data-target="#upd${dep.id}">修改</button>
+								<td><button type="button" id="updateDep" class="btn btn-sm btn-default" data-toggle="modal" data-target="#upd${dep.id}">修改</button>
 									<div class="modal fade" id="upd${dep.id}" data-backdrop="static"
 											tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
 										<div class="modal-dialog">
 											<div class="modal-content">
 												<div class="modal-header">
-													<button data-dismiss="modal" class="close" type="button">
+													<button id="close3${dep.id}" class="close" type="button">
 														<span aria-hidden="true">×</span><span class="sr-only">Close</span>
 													</button>
 													<h4 class="modal-title" align="center">修改</h4>
@@ -141,17 +142,32 @@
 															<label>部门代码:</label> <input name="depId" id="dep_id" value="${dep.depId}"><br><br> 
 															<label>部门名称:</label> <input name="depName" id="dep_name" value="${dep.depName}"><br><br>
 															<label>成本类别:</label> <input name="depCostCategory" value="${dep.depCostCategory}"><br><br>
-															<label>备&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;注:</label> <input name="depRemark" value="${dep.depRemark}" list="selectDep2"><br><br>
-																<datalist id="selectDep2">
-																	<option>在用</option>
-																	<option>废弃</option>
-                        										</datalist>
+															<label>备&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;注:</label> <input name="depRemark" value="${dep.depRemark}" id="selectDepInput2${dep.id}" style="display: none;">
+															<select id="selectDep2${dep.id}" style="height: 27px;width: 170px;">
+																<option style="display: none;">${dep.depRemark}</option>
+																<option>在用</option>
+																<option>废弃</option>
+                       										</select>
 															<div class="modal-footer">
-															<button data-dismiss="modal" class="btn btn-default"
+															<button id="close4${dep.id}" class="btn btn-default"
 																type="button">关闭</button>
 															<input class="btn btn-primary" type="submit" value="修改">
 															</div>
 													</form>
+													<script type="text/javascript">
+														//模态框关闭	
+														$('#close3'+${dep.id}).click(function() {
+															$('#upd'+${dep.id}).modal('hide');
+														});
+														$('#close4'+${dep.id}).click(function() {
+															$('#upd'+${dep.id}).modal('hide');
+														});
+														
+														$('#selectDep2'+${dep.id}).change(function() {
+															var selectDep = $('#selectDep2'+${dep.id}+' option:selected').text();
+															$('#selectDepInput2'+${dep.id}).val(selectDep);
+														});
+													</script>
 												</div>
 											</div>
 											<!-- /.modal-content -->
@@ -178,7 +194,33 @@
 		</div>
 	</div>
 
-
+<script type="text/javascript">
+	$('#selectDep').change(function() {
+		var selectDep = $('#selectDep option:selected').text();
+		$('#selectDepInput').val(selectDep);
+	});
+	
+	//模态框关闭
+	$('#close1').click(function() {
+		$('#myModal').modal('hide');
+	});
+	$('#close2').click(function() {
+		$('#myModal').modal('hide');
+	});
+	
+	function checkAdd(){
+		var id = $('#idcheck').val();
+		var name = $('#namecheck').val();
+		if(id==""){
+			alert('部门代码不能为空');
+			return false;
+		}
+		if(name==""){
+			alert('部门名称不能为空');
+			return false;
+		}
+	}
+</script>
 
 </body>
 </html>

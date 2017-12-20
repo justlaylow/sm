@@ -1,10 +1,16 @@
 package com.tl.sm.serviceImpl;
 
+import java.beans.IntrospectionException;
+import java.lang.reflect.InvocationTargetException;
+import java.text.ParseException;
 import java.util.ArrayList;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.annotation.Resource;
 
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.springframework.stereotype.Service;
 
 import com.tl.sm.mapper.DepartmentMapper;
@@ -12,9 +18,12 @@ import com.tl.sm.mapper.EmployeeMapper;
 import com.tl.sm.mapper.SalaryMapper;
 import com.tl.sm.pojo.Department;
 import com.tl.sm.pojo.Employee;
+import com.tl.sm.pojo.ExcelBean;
 import com.tl.sm.pojo.Salary;
+import com.tl.sm.pojo.SendBank;
 import com.tl.sm.pojo.Summing;
 import com.tl.sm.service.PrintService;
+import com.tl.sm.util.ExcelUtil;
 @Service
 public class PrintServiceImpl implements PrintService{
 	@Resource
@@ -79,9 +88,9 @@ public class PrintServiceImpl implements PrintService{
 					comage+=list.get(j).getSalSalaryList().get(0).getCalComage();
 					secrecy+=list.get(j).getSalSalaryList().get(0).getCalSecrecy();
 					skillSalary+=list.get(j).getSalSalaryList().get(0).getCalSkillLevel();
-					benefit+=list.get(j).getSalSalaryList().get(0).getCalBenefitwage();
-					labourCost+=list.get(j).getSalSalaryList().get(0).getLabourCost();
-					manhour+=list.get(j).getSalSalaryList().get(0).getCalManhour();
+					//benefit+=list.get(j).getSalSalaryList().get(0).getCalBenefitwage();
+					//labourCost+=list.get(j).getSalSalaryList().get(0).getLabourCost();
+					//manhour+=list.get(j).getSalSalaryList().get(0).getCalManhour();
 					manhourSalary+=list.get(j).getSalSalaryList().get(0).getCalManhourSalary();
 					overtime+=list.get(j).getSalSalaryList().get(0).getCalOvertime();
 					bonus+=list.get(j).getSalSalaryList().get(0).getCalBonus();
@@ -100,7 +109,7 @@ public class PrintServiceImpl implements PrintService{
 					accFund+=Float.parseFloat(list.get(j).getSalInsuranceList().get(0).getInsAccFund());
 					waterAndEle+=list.get(j).getSalSalaryList().get(0).getCalWaterandele();
 					withhold+=list.get(j).getSalSalaryList().get(0).getCalWithhold();
-					lastMonthWithhold+=list.get(j).getSalSalaryList().get(0).getCalLastWithhold();
+					//lastMonthWithhold+=list.get(j).getSalSalaryList().get(0).getCalLastWithhold();
 					incomeTax+=list.get(j).getSalSalaryList().get(0).getCalIncometax();
 					withholdTotal+=list.get(j).getSalSalaryList().get(0).getCalTotal();
 					reality+=list.get(j).getSalSalaryList().get(0).getCalResult();
@@ -185,9 +194,9 @@ public class PrintServiceImpl implements PrintService{
 			comage+=list.get(j).getSalSalaryList().get(0).getCalComage();
 			secrecy+=list.get(j).getSalSalaryList().get(0).getCalSecrecy();
 			skillSalary+=list.get(j).getSalSalaryList().get(0).getCalSkillLevel();
-			benefit+=list.get(j).getSalSalaryList().get(0).getCalBenefitwage();
-			labourCost+=list.get(j).getSalSalaryList().get(0).getLabourCost();
-			manhour+=list.get(j).getSalSalaryList().get(0).getCalManhour();
+			//benefit+=list.get(j).getSalSalaryList().get(0).getCalBenefitwage();
+			//labourCost+=list.get(j).getSalSalaryList().get(0).getLabourCost();
+			//manhour+=list.get(j).getSalSalaryList().get(0).getCalManhour();
 			manhourSalary+=list.get(j).getSalSalaryList().get(0).getCalManhourSalary();
 			overtime+=list.get(j).getSalSalaryList().get(0).getCalOvertime();
 			bonus+=list.get(j).getSalSalaryList().get(0).getCalBonus();
@@ -206,7 +215,7 @@ public class PrintServiceImpl implements PrintService{
 			accFund+=Float.parseFloat(list.get(j).getSalInsuranceList().get(0).getInsAccFund());
 			waterAndEle+=list.get(j).getSalSalaryList().get(0).getCalWaterandele();
 			withhold+=list.get(j).getSalSalaryList().get(0).getCalWithhold();
-			lastMonthWithhold+=list.get(j).getSalSalaryList().get(0).getCalLastWithhold();
+			//lastMonthWithhold+=list.get(j).getSalSalaryList().get(0).getCalLastWithhold();
 			incomeTax+=(float)(Math.round(list.get(j).getSalSalaryList().get(0).getCalIncometax()*100))/100;
 			withholdTotal+=list.get(j).getSalSalaryList().get(0).getCalTotal();
 			reality+=list.get(j).getSalSalaryList().get(0).getCalResult();
@@ -313,9 +322,9 @@ public class PrintServiceImpl implements PrintService{
 					comage+=list.get(j).getSalSalaryList().get(0).getCalComage();
 					secrecy+=list.get(j).getSalSalaryList().get(0).getCalSecrecy();
 					skillSalary+=list.get(j).getSalSalaryList().get(0).getCalSkillLevel();
-					benefit+=list.get(j).getSalSalaryList().get(0).getCalBenefitwage();
-					labourCost+=list.get(j).getSalSalaryList().get(0).getLabourCost();
-					manhour+=list.get(j).getSalSalaryList().get(0).getCalManhour();
+					//benefit+=list.get(j).getSalSalaryList().get(0).getCalBenefitwage();
+					//labourCost+=list.get(j).getSalSalaryList().get(0).getLabourCost();
+					//manhour+=list.get(j).getSalSalaryList().get(0).getCalManhour();
 					manhourSalary+=list.get(j).getSalSalaryList().get(0).getCalManhourSalary();
 					overtime+=list.get(j).getSalSalaryList().get(0).getCalOvertime();
 					bonus+=list.get(j).getSalSalaryList().get(0).getCalBonus();
@@ -334,7 +343,7 @@ public class PrintServiceImpl implements PrintService{
 					accFund+=Float.parseFloat(list.get(j).getSalInsuranceList().get(0).getInsAccFund());
 					waterAndEle+=list.get(j).getSalSalaryList().get(0).getCalWaterandele();
 					withhold+=list.get(j).getSalSalaryList().get(0).getCalWithhold();
-					lastMonthWithhold+=list.get(j).getSalSalaryList().get(0).getCalLastWithhold();
+					//lastMonthWithhold+=list.get(j).getSalSalaryList().get(0).getCalLastWithhold();
 					incomeTax+=(float)(Math.round(list.get(j).getSalSalaryList().get(0).getCalIncometax()*100))/100;
 					withholdTotal+=list.get(j).getSalSalaryList().get(0).getCalTotal();
 					reality+=list.get(j).getSalSalaryList().get(0).getCalResult();
@@ -419,9 +428,9 @@ public class PrintServiceImpl implements PrintService{
 			comage+=list.get(j).getSalSalaryList().get(0).getCalComage();
 			secrecy+=list.get(j).getSalSalaryList().get(0).getCalSecrecy();
 			skillSalary+=list.get(j).getSalSalaryList().get(0).getCalSkillLevel();
-			benefit+=list.get(j).getSalSalaryList().get(0).getCalBenefitwage();
-			labourCost+=list.get(j).getSalSalaryList().get(0).getLabourCost();
-			manhour+=list.get(j).getSalSalaryList().get(0).getCalManhour();
+			//benefit+=list.get(j).getSalSalaryList().get(0).getCalBenefitwage();
+			//labourCost+=list.get(j).getSalSalaryList().get(0).getLabourCost();
+			//manhour+=list.get(j).getSalSalaryList().get(0).getCalManhour();
 			manhourSalary+=list.get(j).getSalSalaryList().get(0).getCalManhourSalary();
 			overtime+=list.get(j).getSalSalaryList().get(0).getCalOvertime();
 			bonus+=list.get(j).getSalSalaryList().get(0).getCalBonus();
@@ -440,7 +449,7 @@ public class PrintServiceImpl implements PrintService{
 			accFund+=Float.parseFloat(list.get(j).getSalInsuranceList().get(0).getInsAccFund());
 			waterAndEle+=list.get(j).getSalSalaryList().get(0).getCalWaterandele();
 			withhold+=list.get(j).getSalSalaryList().get(0).getCalWithhold();
-			lastMonthWithhold+=list.get(j).getSalSalaryList().get(0).getCalLastWithhold();
+			//lastMonthWithhold+=list.get(j).getSalSalaryList().get(0).getCalLastWithhold();
 			incomeTax+=(float)(Math.round(list.get(j).getSalSalaryList().get(0).getCalIncometax()*100))/100;
 			withholdTotal+=list.get(j).getSalSalaryList().get(0).getCalTotal();
 			reality+=list.get(j).getSalSalaryList().get(0).getCalResult();
@@ -491,5 +500,36 @@ public class PrintServiceImpl implements PrintService{
 		List<Salary> sendBank = salaryMapper.listCal();
 		return sendBank;
 	}
+	
+	/**
+     * 导出	送银行文件
+     * @param salaryDate
+     * @return
+     * @throws InvocationTargetException
+     * @throws ClassNotFoundException
+     * @throws IntrospectionException
+     * @throws ParseException
+     * @throws IllegalAccessException
+     */
+    public XSSFWorkbook exportExcelInfo() throws InvocationTargetException, ClassNotFoundException, IntrospectionException, ParseException, IllegalAccessException{
+        //根据条件查询数据，把数据装载到一个list中
+    	List<SendBank> sendBank = salaryMapper.exportSendBank();
+
+        List<ExcelBean> excel=new ArrayList<ExcelBean>();
+        Map<Integer,List<ExcelBean>> map=new LinkedHashMap<Integer,List<ExcelBean>>();
+        XSSFWorkbook xssfWorkbook=null;
+
+        //设置标题栏
+        excel.add(new ExcelBean("银行账号","bankAccount",0));
+        excel.add(new ExcelBean("姓名","salName",0));
+        excel.add(new ExcelBean("实得","calResult",0));
+        
+        
+        map.put(0, excel);
+        String sheetName = "sendBank";
+        //调用ExcelUtil的方法
+        xssfWorkbook = ExcelUtil.createExcelFile(SendBank.class, sendBank, map, sheetName);
+        return xssfWorkbook;
+    }
 
 }

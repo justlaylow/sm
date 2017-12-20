@@ -31,22 +31,22 @@
 		resultMap="BaseResultMap">
 		select
 		<include refid="Base_Column_List" />
-		from department_
+		from salary_manage.department_
 		where Id = #{id,jdbcType=INTEGER}
 	</select>
 	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
-		delete from department_
+		delete from salary_manage.department_
 		where Id = #{id,jdbcType=INTEGER}
 	</delete>
 	<insert id="insert" parameterType="com.tl.sm.pojo.Department">
-		insert into department_ (Id, dep_id, dep_name,
+		insert into salary_manage.department_ (Id, dep_id, dep_name,
 		dep_cost_category, dep_remark)
 		values (#{id,jdbcType=INTEGER}, #{depId,jdbcType=VARCHAR},
 		#{depName,jdbcType=VARCHAR},
 		#{depCostCategory,jdbcType=VARCHAR}, #{depRemark,jdbcType=VARCHAR})
 	</insert>
 	<insert id="insertSelective" parameterType="com.tl.sm.pojo.Department">
-		insert into department_
+		insert into salary_manage.department_
 		<trim prefix="(" suffix=")" suffixOverrides=",">
 			<if test="id != null">
 				Id,
@@ -83,7 +83,7 @@
 		</trim>
 	</insert>
 	<update id="updateByPrimaryKeySelective" parameterType="com.tl.sm.pojo.Department">
-		update department_
+		update salary_manage.department_
 		<set>
 			<if test="depId != null">
 				dep_id = #{depId,jdbcType=VARCHAR},
@@ -101,7 +101,7 @@
 		where Id = #{id,jdbcType=INTEGER}
 	</update>
 	<update id="updateByPrimaryKey" parameterType="com.tl.sm.pojo.Department">
-		update department_
+		update salary_manage.department_
 		set dep_id = #{depId,jdbcType=VARCHAR},
 		dep_name = #{depName,jdbcType=VARCHAR},
 		dep_cost_category = #{depCostCategory,jdbcType=VARCHAR},
@@ -110,28 +110,28 @@
 	</update>
 	
 	<update id="updateEmpDep">
-		update employee_ set sal_dep = #{sal_dep} where sal_dep = #{sal_dep2}
+		update salary_manage.employee_ set sal_dep = #{sal_dep} where sal_dep = #{sal_dep2}
 	</update>
 
 	<!-- 查询所有 -->
 	<select id="listAll" resultMap="BaseResultMap">
-		select * from department_
+		select * from salary_manage.department_
 	</select>
 	
 	<!-- 查询部门名 -->
 	<select id="DepName" resultMap="BaseResultMap">
-		select dep_name from department_ where Id = #{id}
+		select dep_name from salary_manage.department_ where Id = #{id}
 	</select>
 
 	<!-- 模糊查询 -->
 	<select id="listByDep" resultMap="BaseResultMap">
-		select * from department_
+		select * from salary_manage.department_
 		<where>
 			<if test="dep_id!=null">
-				and dep_id like concat("%",#{dep_id},"%")
+				and dep_id like concat(concat('%',#{dep_id}),'%')
 			</if>
 			<if test="dep_name!=null">
-				and dep_name like "%"#{dep_name}"%"
+				and dep_name like concat(concat('%',#{dep_name}),'%')
 			</if>
 		</where>
 	</select>

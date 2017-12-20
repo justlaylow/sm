@@ -156,6 +156,12 @@
 	    <result column="ins_acc_fund" jdbcType="VARCHAR" property="insAccFund" />
 	    <result column="ins_acc_address" jdbcType="VARCHAR" property="insAccAddress" />
 	</resultMap>
+	
+	<resultMap type="com.tl.sm.pojo.SendBank" id="sendBankMap">
+	    <result column="cal_result" jdbcType="REAL" property="calResult" />
+		<result column="bank_account" jdbcType="VARCHAR" property="bankAccount" />
+		<result column="sal_name" jdbcType="VARCHAR" property="salName" />
+	</resultMap>
   
   
   <sql id="Base_Column_List">
@@ -578,9 +584,9 @@
       cal_dues,  cal_manhour_salary, 
       cal_date,
       cal_incometax,cal_result,cal_total)
-    values 
-    <foreach collection="list" item="item" index="index" separator=",">
-    ( #{item.calHr,jdbcType=VARCHAR}, #{item.calId,jdbcType=VARCHAR}, 
+    ( 
+    <foreach collection="list" item="item" index="index" separator="union all">
+    ( select #{item.calHr,jdbcType=VARCHAR}, #{item.calId,jdbcType=VARCHAR}, 
       #{item.calName,jdbcType=VARCHAR}, #{item.calBasic,jdbcType=REAL}, #{item.calPost,jdbcType=REAL}, 
       #{item.calFloat,jdbcType=REAL}, #{item.calCoefficient,jdbcType=REAL}, #{item.calSecrecy,jdbcType=REAL}, 
       #{item.calSkillLevel,jdbcType=REAL}, #{item.calComage,jdbcType=REAL}, #{item.calBonus,jdbcType=REAL}, 
@@ -589,11 +595,12 @@
       #{item.calPenalty,jdbcType=REAL}, #{item.calWithhold,jdbcType=REAL}, #{item.calWaterandele,jdbcType=REAL}, 
       #{item.calAllowance,jdbcType=REAL}, #{item.calShould,jdbcType=REAL}, 
       #{item.calDues,jdbcType=REAL},  #{item.calManhourSalary,jdbcType=REAL}, 
-      #{item.calDate,jdbcType=REAL},
+      #{item.calDate,jdbcType=DATE},
       #{item.calIncometax,jdbcType=REAL},#{item.calResult,jdbcType=REAL},
-      #{item.calTotal,jdbcType=REAL})
+      #{item.calTotal,jdbcType=REAL} from dual)
       <!-- (#{item}) -->
       </foreach>
+      )
   </insert>
   
   <!-- 查询所有 -->
@@ -609,26 +616,26 @@
 		left join employee_ e on e.sal_id = c.cal_id
 		<where>
 			<if test="cal_id!=null">
-				and cal_id like concat("%",#{cal_id},"%")
+				and cal_id like concat(concat('%',#{cal_id}),'%')
 			</if>
 			<if test="cal_name!=null">
-				and cal_name like "%"#{cal_name}"%"
+				and cal_name like concat(concat('%',#{cal_name}),'%')
 			</if>
 			<if test="cal_date!=null">
-				and cal_date like "%"#{cal_date}"%"
+				and to_char(cal_date,'yyyy-mm-dd') like concat(concat('%',#{cal_date}),'%')
 			</if>
 		</where>
 		union select c.*,e.*
 		from calculate_ c right join employee_ e on e.sal_id = c.cal_id
 		<where>
 			<if test="cal_id!=null">
-				and cal_id like concat("%",#{cal_id2},"%")
+				and cal_id like concat(concat('%',#{cal_id2}),'%')
 			</if>
 			<if test="cal_name!=null">
-				and cal_name like "%"#{cal_name2}"%"
+				and cal_name like concat(concat('%',#{cal_name2}),'%')
 			</if>
 			<if test="cal_date!=null">
-				and cal_date like "%"#{cal_date2}"%"
+				and to_char(cal_date,'yyyy-mm-dd') like concat(concat('%',#{cal_date2}),'%')
 			</if>
 		</where>
 	</select>
@@ -653,7 +660,13 @@
 		select i.*,c.*,e.* from employee_ e left join
 		insurance_ i on e.sal_id = i.ins_id left join
 		calculate_ c on e.sal_id = c.cal_id
-		where c.cal_date = #{cal_date}
+		where to_char(c.cal_date,'yyyy-MM-dd') = #{cal_date}
+	</select>
+	
+	<!-- 双表查询打印结果  导出送银行文件 -->
+	<select id="exportSendBank" resultMap="sendBankMap">
+		select c.*,e.* from employee_ e left join
+		calculate_ c on e.sal_id = c.cal_id
 	</select>
   
 </mapper>

@@ -20,33 +20,30 @@
 <body>
 <div align="center">
 	<h3 align="center">送 银 行 文 件</h3>
-	<table border="1" style="white-space: nowrap;">
-		<thead>
-			<tr>
-				<th>银行账号</th>
-				<th>姓名</th>
-				<th>实得</th>
-			</tr>
-		</thead>
-		<c:forEach var="send" items="${sendBank }">
-			<tbody>
+	<form action="/sm/exportBank" method="post">
+		<table border="1" style="white-space: nowrap;">
+			<thead>
 				<tr>
-					<c:forEach var="emp" items="${send.calEmployee }">
-						<td>${emp.bankAccount}</td>
-					</c:forEach>
-					<td>${send.calName}</td>
-					<td>${send.calResult}</td>
+					<th>银行账号</th>
+					<th>姓名</th>
+					<th>实得</th>
 				</tr>
-			</tbody>
-		</c:forEach>
-	</table>
-	<p align="center"><input type="button" id="print" value="打印"></p>
+			</thead>
+			<c:forEach var="send" items="${sendBank }">
+				<tbody>
+					<tr>
+						<c:forEach var="emp" items="${send.calEmployee }">
+							<td>${emp.bankAccount}</td>
+						</c:forEach>
+						<td>${send.calName}</td>
+						<td>${send.calResult}</td>
+					</tr>
+				</tbody>
+			</c:forEach>
+		</table>
+		<p align="center"><input type="submit" id="print" value="导出"></p>
+	</form>
 </div>
 	
-<script type="text/javascript">
-	$("#print").click(function(){
-		window.print();
-	});
-</script>
 </body>
 </html>

@@ -1,14 +1,47 @@
+<!DOCTYPE html>
+<html>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ include file="/WEB-INF/jsp/include/mainback.jsp"%>
-<%@ include file="/WEB-INF/jsp/include/header.jsp"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<c:set value="${pageContext.request.contextPath}" var="path" scope="page"/>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>工资管理系统</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport"
+	content="width=device-width, 
+             initial-scale=1.0, 
+             maximum-scale=1.0, 
+             user-scalable=no">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,Chrome=1" />
+<script type="text/javascript">
+    var path = "${path}";
+</script>
+
+<!-- 引入公共的Js和Css -->
+<link rel="stylesheet" type="text/css"
+	href="${path}/css/bootstrap/3.3.6/bootstrap.min.css">
+<link rel="stylesheet"
+	href="${path}/css/bootstrap/3.3.6/bootstrap-theme.min.css">
+<link rel="stylesheet" href="${path}/css/calendar/dcalendar.picker.css"/>
+<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+<!--[if lt IE 9]>
+  	<script src="//cdn.bootcss.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+    <script src="//cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+<![endif]-->
+<script type="text/javascript" src="${path}/js/jquery/jquery-1.11.0.min.js"></script>
+<script type="text/javascript" src="${path}/js/bootstrap/bootstrap.min.js"></script>
+<script type="text/javascript" src="${path}/js/calendar/dcalendar.picker.js"></script>
+
 </head>
 <body>
+	<!-- 背景 -->
+	<div id="Layer1" style="position:absolute; width:100%; height:100%; background-color: #22C3AA; z-index:-1" >      
+		<img src="${path}/img/background5.jpg" height="100%" width="100%"/>      
+	</div>
+	<!-- bootstrap格栅布局 -->
+	
 	<div class="container">
 		<div class="row clearfix">
 			<div class="col-md-12 column">

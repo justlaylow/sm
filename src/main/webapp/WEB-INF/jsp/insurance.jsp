@@ -61,7 +61,7 @@
 						placeholder="Search for..." name="insName" id="insName"
 						value="${param.insName}"> <span>
 						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-						<button class="btn btn-default" type="button"
+						<button class="btn btn-sm btn-default" type="button"
 							onclick="blurrySeach()">搜索</button>
 					</span>
 				</div>

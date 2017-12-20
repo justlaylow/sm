@@ -36,8 +36,10 @@ public class ExcelController {
 
 	//poi Excel导入
 	@RequestMapping("/import")
-	public String beforeImport(excelList salaryLsit,HttpServletRequest request) {
-		String importMsg = salaryService.importDB(salaryLsit.getSalaryList());
+	public String beforeImport(excelList salaryList,HttpServletRequest request) {
+		List<Salary> list = salaryList.getSalaryList();
+		list.remove(list.size()-1);
+		String importMsg = salaryService.importDB(list);
 		request.setAttribute("importMsg", importMsg);
 		return "beforeImport";
 	}

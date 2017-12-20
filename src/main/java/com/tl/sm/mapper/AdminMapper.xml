@@ -22,6 +22,6 @@
 	</insert>
 
 	<select id="list" resultType="Admin">
-		select * from admin_
+		select * from salary_manage.admin_
 	</select>
 </mapper>

@@ -302,10 +302,10 @@
 		select * from insurance_
 		<where>
 			<if test="ins_id!=null">
-				and ins_id like concat("%",#{ins_id},"%")
+				and ins_id like concat(concat('%',#{ins_id}),'%')
 			</if>
 			<if test="ins_name!=null">
-				and ins_name like "%"#{ins_name}"%"
+				and ins_name like concat(concat('%',#{ins_name}),'%')
 			</if>
 		</where>
 	</select>
@@ -328,17 +328,18 @@
       ins_unemp_id, ins_unemp, ins_unemp_address, 
       ins_acc_fund, ins_acc_address, ins_sign 
       )
-    values 
-    <foreach collection="list" item="item" index="index" separator=",">
-    ( #{item.insName,jdbcType=VARCHAR}, #{item.insId,jdbcType=VARCHAR}, 
+    ( 
+    <foreach collection="list" item="item" index="index" separator="union all">
+    (  select #{item.insName,jdbcType=VARCHAR}, #{item.insId,jdbcType=VARCHAR}, 
       #{item.insSex,jdbcType=VARCHAR}, #{item.insBoth,jdbcType=DATE},  
       #{item.insAddress,jdbcType=VARCHAR}, #{item.insCarNumber,jdbcType=VARCHAR}, #{item.insOldId,jdbcType=VARCHAR}, 
       #{item.insOld,jdbcType=VARCHAR}, #{item.insTreatmentId,jdbcType=VARCHAR}, #{item.insTreatments,jdbcType=VARCHAR}, 
       #{item.insIllId,jdbcType=VARCHAR}, #{item.insIll,jdbcType=VARCHAR}, #{item.insurance,jdbcType=VARCHAR}, 
       #{item.insUnempId,jdbcType=VARCHAR}, #{item.insUnemp,jdbcType=VARCHAR}, #{item.insUnempAddress,jdbcType=VARCHAR}, 
       #{item.insAccFund,jdbcType=VARCHAR}, #{item.insAccAddress,jdbcType=VARCHAR}, #{item.insSign,jdbcType=VARCHAR} 
-      )
+      from dual)
       </foreach>
+      )
   	</insert>
   	
   	<!-- 批量更新 -->

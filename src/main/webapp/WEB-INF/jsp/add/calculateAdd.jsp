@@ -20,15 +20,15 @@
 			<div class="col-md-12 column" style="text-align: center">
 				<h3>新 增 工 资 信 息</h3>
 				<!-- 新增 -->
-				<form action="/sm/insert/sal" method="post">
+				<form action="/sm/insert/sal" method="post" onsubmit="return checkAdd()">
 					<table align="center"
-						style="border-collapse: separate; border-spacing: 15px;">
+						style="border-collapse: separate; border-spacing: 15px;white-space: nowrap;">
 						<tr>
 							<td><label>姓名:</label></td>
-							<td><input name="calName" required="true"></td>
+							<td><input name="calName" required="true" id="namecheck"></td>
 							<td><label>工号:</label></td>
-							<td><input name="calId" required="true"></td>
-							<td><label>HR号:</label></td>
+							<td><input name="calId" required="true" id="idcheck"></td>
+							<td><label>SAP号:</label></td>
 							<td><input name="calHr"></td>
 						</tr>
 						<tr>
@@ -129,6 +129,19 @@
 		$('#calendar').dcalendarpicker({
 			format : 'yyyy-mm-dd'
 		});
+		
+		function checkAdd(){
+			var id = $('#idcheck').val();
+			var name = $('#namecheck').val();
+			if(id==""){
+				alert('工号不能为空');
+				return false;
+			}
+			if(name==""){
+				alert('姓名不能为空');
+				return false;
+			}
+		}
 	</script>
 </body>
 </html>

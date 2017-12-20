@@ -4,7 +4,9 @@ import com.tl.sm.pojo.AllInfo;
 
 public interface AllInfoMapper {
 	//更新
-	int updateAllByPrimaryKeySelective(AllInfo allInfo);
+	int updateAllByPrimaryKeyEmp(AllInfo allInfo);
+	int updateAllByPrimaryKeyCal(AllInfo allInfo);
+	int updateAllByPrimaryKeyIns(AllInfo allInfo);
 	
 	//查询最大月份
     String selectMaxDate();

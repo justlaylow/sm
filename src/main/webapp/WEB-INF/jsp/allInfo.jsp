@@ -26,7 +26,7 @@
 				<c:forEach var="all" items="${listAll }">
 					<form action="/sm/allInfo" method="post">
 						<table align="center"
-							style="border-collapse: separate; border-spacing: 15px;">
+							style="border-collapse: separate; border-spacing: 15px;white-space: nowrap;">
 							<tr>
 								<c:forEach var="cal" items="${all.salSalaryList }">
 									<td><label>姓名:</label></td>
@@ -163,7 +163,8 @@
 							<tr>
 								<td><label>技能工资:</label></td>
 								<td><input name="calSkillLevel"
-									value="${cal.calSkillLevel}"></td>
+									value="${cal.calSkillLevel}" id="calSkill">
+									<input name="salSkillSalary" style="display: none;" id="salSkill"></td>
 								<td><label>实得:</label></td>
 								<td><input name="calResult" value="${cal.calResult}"></td>
 							</tr>
@@ -217,6 +218,8 @@
 			confirm("日期格式或时间出错 xxxx-xx-xx");
 		}
 		});
+		
+		
 	</script>
 	
 </body>

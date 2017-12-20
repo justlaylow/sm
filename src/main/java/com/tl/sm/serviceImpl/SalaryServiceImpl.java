@@ -344,7 +344,7 @@ public class SalaryServiceImpl implements SalaryService{
         
         
         map.put(0, excel);
-        String sheetName = calDate + "月份工资";
+        String sheetName = calDate;
         //调用ExcelUtil的方法
         xssfWorkbook = ExcelUtil.createExcelFile(ExcelExport.class, list, map, sheetName);
         return xssfWorkbook;

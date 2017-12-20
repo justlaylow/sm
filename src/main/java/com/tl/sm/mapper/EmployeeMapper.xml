@@ -339,26 +339,26 @@
 		left join insurance_ i on e.sal_id = i.ins_id
 		<where>
 			<if test="sal_id!=null">
-				and sal_id like concat("%",#{sal_id},"%")
+				and sal_id like concat(concat('%',#{sal_id}),'%')
 			</if>
 			<if test="sal_name!=null">
-				and sal_name like "%"#{sal_name}"%"
+				and sal_name like concat(concat('%',#{sal_name}),'%')
 			</if>
 			<if test="sal_oa!=null">
-				and sal_oa like "%"#{sal_oa}"%"
+				and sal_oa like concat(concat('%',#{sal_oa}),'%')
 			</if>
 		</where>
 		union select e.*,i.*
 		from employee_ e right join insurance_ i on e.sal_id = i.ins_id
 		<where>
 			<if test="sal_id!=null">
-				and sal_id like concat("%",#{sal_id2},"%")
+				and sal_id like concat(concat('%',#{sal_id2}),'%')
 			</if>
 			<if test="sal_name!=null">
-				and sal_name like "%"#{sal_name2}"%"
+				and sal_name like concat(concat('%',#{sal_name2}),'%')
 			</if>
 			<if test="sal_oa!=null">
-				and sal_oa like "%"#{sal_oa2}"%"
+				and sal_oa like concat(concat('%',#{sal_oa2}),'%')
 			</if>
 		</where>
 	</select>
@@ -384,7 +384,7 @@
 				and sal_name = #{sal_name}
 			</if>
 			<if test="cal_date!=null">
-				and cal_date = #{cal_date}
+				and to_char(cal_date,'yyyy-mm-dd') = #{cal_date}
 			</if>
 		</where>
 		<!-- where e.sal_id = #{sal_id} and c.cal_date = #{cal_date} -->
@@ -422,16 +422,17 @@
 		sal_post,  sal_oa,
 		sta_category, sal_remark, sal_skilllevel,sal_skill_salary
 		)
-    values 
-    <foreach collection="list" item="item" index="index" separator=",">
-    	(#{item.bankAccount,jdbcType=VARCHAR},
+    ( 
+    <foreach collection="list" item="item" index="index" separator="union all">
+    	( select #{item.bankAccount,jdbcType=VARCHAR},
 		#{item.salName,jdbcType=VARCHAR},
 		#{item.postCategory,jdbcType=VARCHAR}, #{item.salId,jdbcType=VARCHAR}, #{item.salDep,jdbcType=VARCHAR},
 		#{item.salPost,jdbcType=VARCHAR}, 
 		#{item.salOa,jdbcType=VARCHAR},
 		#{item.staCategory,jdbcType=VARCHAR}, #{item.salRemark,jdbcType=VARCHAR}, #{item.salSkilllevel,jdbcType=VARCHAR},
-		#{item.salSkillSalary,jdbcType=REAL})
+		#{item.salSkillSalary,jdbcType=REAL} from dual)
       </foreach>
+    )
   	</insert>
 	
 </mapper>

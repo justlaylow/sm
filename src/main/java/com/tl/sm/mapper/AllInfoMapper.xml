@@ -2,35 +2,28 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.tl.sm.mapper.AllInfoMapper">
 	
-	<!-- 三表联合更新 -->
-	<update id="updateAllByPrimaryKeySelective" parameterType="com.tl.sm.pojo.AllInfo">
-		UPDATE employee_ e INNER JOIN insurance_ i
-		ON e.sal_id = i.ins_id inner join calculate_ c on e.sal_id = c.cal_id
+	<!-- 三表联合更新,oracle中不能直接联合更新,写三次update语句 -->
+	<update id="updateAllByPrimaryKeyEmp" parameterType="com.tl.sm.pojo.AllInfo">
+		UPDATE (select * from salary_manage.employee_ e INNER JOIN salary_manage.insurance_ i
+		ON e.sal_id = i.ins_id inner join salary_manage.calculate_ c on e.sal_id = c.cal_id)
 		<set>
 			<if test="bankAccount != null">
 				bank_account = #{bankAccount,jdbcType=VARCHAR},
 			</if>
 			<if test="calName != null">
 				sal_name = #{calName,jdbcType=VARCHAR},
-				cal_name = #{calName,jdbcType=VARCHAR},
-				ins_name = #{calName,jdbcType=VARCHAR},
 			</if>
 			<if test="postCategory != null">
 				post_category = #{postCategory,jdbcType=VARCHAR},
 			</if>
 			<if test="salId != null">
 				sal_id = #{salId,jdbcType=VARCHAR},
-				cal_id = #{salId,jdbcType=VARCHAR},
-				ins_id = #{salId,jdbcType=VARCHAR},
 			</if>
 			<if test="salDep != null">
 				sal_dep = #{salDep,jdbcType=VARCHAR},
 			</if>
 			<if test="salPost != null">
 				sal_post = #{salPost,jdbcType=VARCHAR},
-			</if>
-			<if test="calDate != null">
-				cal_date = #{calDate,jdbcType=DATE},
 			</if>
 			<if test="salOa != null">
 				sal_oa = #{salOa,jdbcType=VARCHAR},
@@ -44,21 +37,26 @@
 			<if test="salSkilllevel != null">
 				sal_skilllevel = #{salSkilllevel,jdbcType=VARCHAR},
 			</if>
-			<if test="insOld != null">
-		        ins_old = #{insOld,jdbcType=VARCHAR},
-		    </if>
-		    <if test="insTreatments != null">
-		        ins_treatments = #{insTreatments,jdbcType=VARCHAR},
-		    </if>
-		    <if test="insIll != null">
-		        ins_ill = #{insIll,jdbcType=VARCHAR},
-		    </if>
-		    <if test="insUnemp != null">
-		        ins_unemp = #{insUnemp,jdbcType=VARCHAR},
-		    </if>
-		    <if test="insAccFund != null">
-		        ins_acc_fund = #{insAccFund,jdbcType=VARCHAR},
-		    </if>
+			<if test="calSkillLevel != null">
+				sal_skill_salary = #{calSkillLevel,jdbcType=REAL},
+			</if>
+		</set>
+		where sal_id = #{salId,jdbcType=VARCHAR} and cal_date = #{calDate,jdbcType=DATE}
+	</update>
+	
+	<update id="updateAllByPrimaryKeyCal" parameterType="com.tl.sm.pojo.AllInfo">
+		UPDATE (select * from salary_manage.employee_ e INNER JOIN salary_manage.insurance_ i
+		ON e.sal_id = i.ins_id inner join salary_manage.calculate_ c on e.sal_id = c.cal_id)
+		<set>
+			<if test="salId != null">
+				cal_id = #{salId,jdbcType=VARCHAR},
+			</if>
+			<if test="calName != null">
+				cal_name = #{calName,jdbcType=VARCHAR},
+			</if>
+			<if test="calDate != null">
+				cal_date = #{calDate,jdbcType=DATE},
+			</if>
 		    <if test="calBasic != null">
 		        cal_basic = #{calBasic,jdbcType=REAL},
 		    </if>
@@ -150,23 +148,52 @@
 		where sal_id = #{salId,jdbcType=VARCHAR} and cal_date = #{calDate}
 	</update>
 	
+	<update id="updateAllByPrimaryKeyIns" parameterType="com.tl.sm.pojo.AllInfo">
+		UPDATE (select * from salary_manage.employee_ e INNER JOIN salary_manage.insurance_ i
+		ON e.sal_id = i.ins_id inner join salary_manage.calculate_ c on e.sal_id = c.cal_id)
+		<set>
+			<if test="calName != null">
+				ins_name = #{calName,jdbcType=VARCHAR},
+			</if>
+			<if test="salId != null">
+				ins_id = #{salId,jdbcType=VARCHAR},
+			</if>
+			<if test="insOld != null">
+		        ins_old = #{insOld,jdbcType=VARCHAR},
+		    </if>
+		    <if test="insTreatments != null">
+		        ins_treatments = #{insTreatments,jdbcType=VARCHAR},
+		    </if>
+		    <if test="insIll != null">
+		        ins_ill = #{insIll,jdbcType=VARCHAR},
+		    </if>
+		    <if test="insUnemp != null">
+		        ins_unemp = #{insUnemp,jdbcType=VARCHAR},
+		    </if>
+		    <if test="insAccFund != null">
+		        ins_acc_fund = #{insAccFund,jdbcType=VARCHAR},
+		    </if>
+		</set>
+		where sal_id = #{salId,jdbcType=VARCHAR} and cal_date = #{calDate}
+	</update>
+	
 	<!-- 删除 -->
 	<delete id="deleteEmp" parameterType="string">
-		delete from employee_
+		delete from salary_manage.employee_
 		where sal_id = #{salId,jdbcType=VARCHAR}
 	</delete>
 	<delete id="deleteCal" parameterType="string">
-		delete from calculate_
+		delete from salary_manage.calculate_
 		where cal_id = #{calId,jdbcType=VARCHAR}
 	</delete>
 	<delete id="deleteIns" parameterType="string">
-		delete from insurance_
+		delete from salary_manage.insurance_
 		where ins_id = #{insId,jdbcType=VARCHAR}
 	</delete>
 	
 	<!-- 查询最大月份 -->
 	<select id="selectMaxDate" resultType="string">
-	  select max(cal_date) from calculate_
+	  select to_char(max(cal_date),'yyyy-mm-dd') from salary_manage.calculate_
 	</select>
 
 </mapper>

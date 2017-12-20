@@ -4,13 +4,13 @@ import java.beans.IntrospectionException;
 import java.io.InputStream;
 import java.lang.reflect.InvocationTargetException;
 import java.text.ParseException;
-import java.util.Date;
 import java.util.List;
 
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.tl.sm.pojo.Salary;
+import com.tl.sm.pojo.SendBank;
 
 
 public interface SalaryService {
@@ -26,6 +26,9 @@ public interface SalaryService {
 	
 	//查询所有
 	public List<Salary> listCal();
+	
+	/*//导出送银行文件，查询员工，工资表中的所有信息
+	public List<SendBank> sendBank();*/
 	
 	//模糊查询
 	public List<Salary> listCalBlurry(String calId,String calName,String calDate

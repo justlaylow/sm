@@ -1,6 +1,11 @@
 package com.tl.sm.service;
 
+import java.beans.IntrospectionException;
+import java.lang.reflect.InvocationTargetException;
+import java.text.ParseException;
 import java.util.List;
+
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 import com.tl.sm.pojo.Employee;
 import com.tl.sm.pojo.Salary;
@@ -16,6 +21,11 @@ public interface PrintService {
 	//按统计类别统计
 	public List<Summing> category();
 	
+	//送银行文件
 	public List<Salary> sendBank();
+	
+	//送银行文件excel导出
+	//Excel导出
+	public XSSFWorkbook exportExcelInfo() throws InvocationTargetException, ClassNotFoundException, IntrospectionException, ParseException, IllegalAccessException ;
 	
 }

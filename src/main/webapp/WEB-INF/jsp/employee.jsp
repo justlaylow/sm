@@ -1,20 +1,18 @@
+<!DOCTYPE html>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ include file="/WEB-INF/jsp/include/header.jsp"%>
 <%@ include file="/WEB-INF/jsp/include/defaultback.jsp"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>员工管理</title>
-
 <script type="text/javascript">
 	//刷新
 	function reload(){
 		window.location.href="/sm/list/emp"; 
 	}
 	
-	//刷新
+	//批量导入，选择文件
 	function employeeImport(){
 		window.location.href="/sm/empImportFile"; 
 	}
@@ -52,11 +50,11 @@
 					</span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 姓名：<input type="text"
 						placeholder="Search for..." name="salName" id="salName"
 						value="${param.salName}"> <span>
-					</span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; OA账号：<input type="text"
+					</span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; SAP账号：<input type="text"
 						placeholder="Search for..." name="salOa" id="salOa"
 						value="${param.salOa}"> <span>
 						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-						<button class="btn btn-default" type="button"
+						<button class="btn btn-sm btn-default" type="button"
 							onclick="blurrySeach()">搜索</button>
 					</span>
 				</div>
@@ -73,22 +71,23 @@
 					data-target="#myModal">添加员工</button>
 				<div class="modal fade" id="myModal" data-backdrop="static"
 					tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-					<div class="modal-dialog">
+					<div class="modal-dialog" aria-hidden="true">
 						<div class="modal-content">
 							<div class="modal-header">
-								<button data-dismiss="modal" class="close" type="button">
+								<button id="modalclose1" class="close" type="button">
 									<span aria-hidden="true">×</span><span class="sr-only">Close</span>
 								</button>
 								<h4 class="modal-title">添加</h4>
 							</div>
 							<div class="modal-body">
-								<form action="/sm/insert/emp" method="post" id="fm">
+								<form action="/sm/insert/emp" method="post" id="fm" onsubmit="return checkAdd()">
 									<input name="id" style="display: none"> 
 									<label>姓&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;名:</label>
-									<input name="salName" required="true">&emsp;&emsp;&emsp;
+									<input name="salName" required="true" id="checkName">&emsp;&emsp;&emsp;
 									<label>部门名称:</label> 
 									<input type="text" name="salDep" style="width: 170px;display:none;" id="selectInput">
-									<select id="selectDep" style="height: 27px;">
+									<select id="selectDep" style="height: 24px;width: 160px;">
+										<option style="display: none;"></option>
 										<c:forEach var="dep" items="${listDep}">
 											<%-- <option value="${dep.depName}"/> --%>
 											<option>${dep.depName}</option>
@@ -96,24 +95,25 @@
 									</select><br><br>
 									<label>岗&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;位:</label>
 									<input name="salPost" list="post">&emsp;&emsp;&emsp;
-									<datalist id="post">
+									<!-- <datalist id="post">
 									<option>网络工程师</option>
-									</datalist>
+									</datalist> -->
 									<label>工&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;号:</label> 
-									<input name="salId" required="true"><br><br>
+									<input name="salId" required="true" id="checkId"><br><br>
 									<label>岗位类别:</label> 
 									<input name="postCategory" list="postCategory">&emsp;&emsp;&emsp;
-									<datalist id="postCategory">
+									<!-- <datalist id="postCategory">
 									<option>技术人员</option>
-									</datalist>
+									</datalist> -->
 									<label>银行账户:</label>
-									<input name="bankAccount" required="true" style="width: 170px"><br><br> 
+									<input name="bankAccount" required="true" id="checkBank" style="width: 170px"><br><br> 
 									<label>入职日期:</label>
 									<input name="salDate" id="mydate">&emsp;&emsp;&emsp; <label>&nbsp;SAP账号:</label>
 									<input name="salOa"> <br><br> 
 									<label>统计类别:</label> 
-									<input name="staCategory" list="staCategory">&emsp;&emsp;&emsp;
-									<datalist id="staCategory">
+									<input name="staCategory" id="staCategoryInput" style="width: 170px;display:none;">
+									<select id="staCategory" style="height: 24px;width: 160px;">
+										<option style="display: none"></option>
 										<option>管理-二级机构负责人</option>
 										<option>管理-三级机构负责人</option>
 										<option>管理-一般管理</option>
@@ -125,15 +125,15 @@
 										<option>生产人员-计时</option>
 										<option>事务人员</option>
 										<option>营销人员-售后</option>
-									</datalist>
+									</select>&emsp;&emsp;&nbsp;&nbsp;
 									<label>备&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;注:</label> <input name="salRemark"> <br><br>
 									<label>技能等级:</label> <input name="salSkilllevel"> 
 									<label>&emsp;技能等级工资:</label> <input name="salSkillSalary">
 
 
 									<div class="modal-footer">
-										<button data-dismiss="modal" class="btn btn-default"
-											type="button">关闭</button>
+										<button class="btn btn-default"
+											type="button" id="modalclose2">关闭</button>
 										<input class="btn btn-primary" type="submit" value="添加">
 									</div>
 								</form>
@@ -198,7 +198,7 @@
 											<div class="modal-dialog">
 												<div class="modal-content">
 													<div class="modal-header">
-														<button data-dismiss="modal" class="close" type="button">
+														<button id="modalclose1${emp.id}" class="close" type="button">
 															<span aria-hidden="true">×</span><span class="sr-only">Close</span>
 														</button>
 														<h4 class="modal-title" align="center">修改</h4>
@@ -217,7 +217,7 @@
 																</tr>
 																<tr>
 																	<td><label>部门代码:</label></td><td> <input name="salDep" value="${emp.salDep}" id="updateDepInput${emp.id}" style="display:none;">
-																	<select id="updateDepSelect${emp.id}" style="height: 27px;width: 180px;">
+																	<select id="updateDepSelect${emp.id}" style="height: 24px;width: 160px;">
 																		<option style="display: none;">${emp.salDep}</option>
 																		<c:forEach var="dep" items="${listDep}">
 																			<option>${dep.depName}</option>
@@ -230,8 +230,9 @@
 																	<td><label>SAP账号:</label></td><td> <input type="text" name="salOa" value="${emp.salOa}"></td>
 																</tr>
 																<tr>
-																	<td><label>统计类别:</label></td><td> <input type="text" name="staCategory" list="UpdateStaCategory" value="${emp.staCategory}"></td>
-																	<datalist id="UpdateStaCategory">
+																	<td><label>统计类别:</label></td><td> <input type="text" name="staCategory" id="UpdateStaCategoryInput${emp.id}" value="${emp.staCategory}" style="display: none;">
+																	<select id="UpdateStaCategory${emp.id}" style="height: 24px;width: 160px;">
+																		<option style="display: none;">${emp.staCategory}</option>
 																		<option>管理-二级机构负责人</option>
 																		<option>管理-三级机构负责人</option>
 																		<option>管理-一般管理</option>
@@ -243,7 +244,7 @@
 																		<option>生产人员-计时</option>
 																		<option>事务人员</option>
 																		<option>营销人员-售后</option>
-																	</datalist>
+																	</select></td>
 																	<td><label>备注:</label></td><td> <input name="salRemark" value="${emp.salRemark}"></td>
 																</tr>
 																<tr>
@@ -252,7 +253,7 @@
 																</tr>
 															</table>
 															<div class="modal-footer">
-																<button data-dismiss="modal" class="btn btn-default"
+																<button id="modalclose2${emp.id}" class="btn btn-default"
 																	type="button">关闭</button>
 																<input class="btn btn-primary" type="button" id="submitUpdate${emp.id}" value="修改">
 															</div>
@@ -272,6 +273,19 @@
 														$('#updateDepSelect'+${emp.id}).change(function (){
 															var dep = $('#updateDepSelect'+${emp.id}+' option:selected').text();
 															$('#updateDepInput'+${emp.id}).val(dep);
+														});
+														//从select中选择统计类别
+														$('#UpdateStaCategory'+${emp.id}).change(function (){
+															var dep = $('#UpdateStaCategory'+${emp.id}+' option:selected').text();
+															$('#UpdateStaCategoryInput'+${emp.id}).val(dep);
+														});
+														
+														//关闭模态窗
+														$('#modalclose1'+${emp.id}).click(function(){
+															$('#upd'+${emp.id}).modal('hide');
+														}); 
+														$('#modalclose2'+${emp.id}).click(function(){
+															$('#upd'+${emp.id}).modal('hide');
 														});
 														</script>
 													</div>
@@ -324,8 +338,38 @@
 	$('#selectDep').change(function (){
 		var dep = $('#selectDep option:selected').text();
 		$('#selectInput').val(dep);
+	}) ;
+	
+	$('#staCategory').change(function (){
+		var dep = $('#staCategory option:selected').text();
+		$('#staCategoryInput').val(dep);
 	});
 	
+	$('#modalclose1').click(function(){
+		$('#myModal').modal('hide');
+	}); 
+	$('#modalclose2').click(function(){
+		$('#myModal').modal('hide');
+	});
+	
+	function checkAdd(){
+		var name = $('#checkName').val();
+		var account = $('#checkBank').val();
+		var id = $('#checkId').val();
+		
+		if(name==""){
+			alert('姓名不能为空');
+			return false;
+		}
+		if(account==""){
+			alert('银行账户不能为空');
+			return false;
+		}
+		if(id==""){
+			alert('工号不能为空');
+			return false;
+		}
+	};
 </script>
 </body>
 </html>

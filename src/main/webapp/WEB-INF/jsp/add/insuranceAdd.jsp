@@ -20,14 +20,14 @@
 			<div class="col-md-12 column" style="text-align: center">
 				<h3 class="text-center text-info">保 险 金 维 护 (单)</h3>
 				<!-- 添加保险 -->
-				<form action="/sm/insert/ins" method="post">
+				<form action="/sm/insert/ins" method="post" onsubmit="return checkAdd()">
 					<table align="center"
-						style="border-collapse: separate; border-spacing: 15px;">
+						style="border-collapse: separate; border-spacing: 15px;white-space: nowrap;">
 						<tr>
 							<td><label>姓名:</label></td>
-							<td><input name="insName" required="true"></td>
+							<td><input name="insName" required="true" id="namecheck"></td>
 							<td><label>工号:</label></td>
-							<td><input name="insId" required="true"></td>
+							<td><input name="insId" required="true" id="idcheck"></td>
 						</tr>
 						<tr>
 							<td><label>性别:</label></td>
@@ -71,7 +71,7 @@
 							<td><input name="insIll"></td>
 						</tr>
 					</table>
-					<button data-dismiss="modal" class="btn btn-default" type="button"
+					<button class="btn btn-default" type="button"
 						onclick="back()">返回</button>
 					<input class="btn btn-success" type="submit" value="添加">
 				</form>
@@ -83,6 +83,19 @@
 		$('#calendar').dcalendarpicker({
 			format : 'yyyy-mm-dd'
 		});
+		
+		function checkAdd(){
+			var id = $('#idcheck').val();
+			var name = $('#namecheck').val();
+			if(id==""){
+				alert('工号不能为空');
+				return false;
+			}
+			if(name==""){
+				alert('姓名不能为空');
+				return false;
+			}
+		}
 	</script>
 </body>
 </html>
