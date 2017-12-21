@@ -17,7 +17,6 @@ public class AllInfoServiceImpl implements AllInfoService{
 	public String AllUpdate(AllInfo allInfo) {
 		String message = "";
 		int i = allInfoMapper.updateAllByPrimaryKeyEmp(allInfo);
-		System.out.println(i);
 		int j = allInfoMapper.updateAllByPrimaryKeyCal(allInfo);
 		int x = allInfoMapper.updateAllByPrimaryKeyIns(allInfo);
 		if(i>0&&j>0&&x>0) {

@@ -133,12 +133,17 @@
 		function checkAdd(){
 			var id = $('#idcheck').val();
 			var name = $('#namecheck').val();
+			var caldate = $('#calendar').val();
 			if(id==""){
 				alert('工号不能为空');
 				return false;
 			}
 			if(name==""){
 				alert('姓名不能为空');
+				return false;
+			}
+			if(caldate==""){
+				alert('工资时间不能为空');
 				return false;
 			}
 		}

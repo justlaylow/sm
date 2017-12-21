@@ -22,9 +22,9 @@
 					         <a href="javascript:void(0)" id="a${dep.id}">${dep.depName}</a>             
 					      </li>
 					      <script type="text/javascript">
-							 $("#a"+${dep.id} ).click(function() {
+							 $('#a'+${dep.id} ).click(function() {
 								var a1 = $('#a'+${dep.id} ).text();
-								window.location = "/sm/departmentSalary?salDep="+a1;
+								window.location = '/sm/departmentSalary?salDep='+encodeURIComponent(a1);
 							 });
 						  </script>
 				      </c:forEach>

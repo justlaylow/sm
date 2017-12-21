@@ -34,7 +34,7 @@
 										value="${cal.calName}"></td>
 									<td><label>工号:</label></td>
 									<td><input name="salId" required="true"
-										value="${all.salId}"></td>
+										value="${all.salId}" readonly="readonly"></td>
 									<td><label>银行账号:</label></td>
 									<td><input name="bankAccount" value="${all.bankAccount}"
 										size="30px"></td>
@@ -52,7 +52,7 @@
 							<tr>
 								<td><label>Gzsj:</label></td>
 								<td><input name="calDate"
-									value="<fmt:formatDate value="${cal.calDate}" type="date"/>"></td>
+									value="<fmt:formatDate value="${cal.calDate}" type="date"/>" readonly="readonly"></td>
 								<td><label>SAP账号:</label></td>
 								<td><input type="text" name="salOa" value="${all.salOa}"></td>
 								<td><label>统计类别:</label></td>
@@ -219,6 +219,10 @@
 		}
 		});
 		
+		//ie中input只读bug处理,按退格键会触发history.back()方法
+		$("input[readOnly]").keydown(function(e) {
+            e.preventDefault();
+       });
 		
 	</script>
 	

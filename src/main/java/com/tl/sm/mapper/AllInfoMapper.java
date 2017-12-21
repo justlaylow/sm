@@ -8,6 +8,7 @@ public interface AllInfoMapper {
 	int updateAllByPrimaryKeyCal(AllInfo allInfo);
 	int updateAllByPrimaryKeyIns(AllInfo allInfo);
 	
+	
 	//查询最大月份
     String selectMaxDate();
 	

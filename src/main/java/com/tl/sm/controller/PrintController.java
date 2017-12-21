@@ -36,9 +36,10 @@ public class PrintController {
 	
 	//部门工资条
 	@RequestMapping("/departmentSalary")
-	public String departmentSalary(String salDep,HttpServletRequest request) {
+	public String departmentSalary(HttpServletRequest request,String salDep) {
 		//部门员工的工资信息
 		List<Employee> listByDepName = printService.departmentSalary(salDep);
+		System.out.println("listByDepName");
 		//部门工资合计
 		List<Summing> sumList = printService.department();
 		Summing sum = new Summing();

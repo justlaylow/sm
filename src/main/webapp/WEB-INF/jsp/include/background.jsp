@@ -12,5 +12,5 @@
     var path = "${path}";
 </script>
 <div id="Layer1" style="position:absolute; width:100%; height:100%; background-color: #22C3AA; z-index:-1;" >      
-<img src="${path}/img/background2.jpeg" height="100%" width="100%" style="position: fixed;"/>      
+<img src="${path}/img/background6.jpg" height="100%" width="100%" style="position: fixed;"/>      
 </div>

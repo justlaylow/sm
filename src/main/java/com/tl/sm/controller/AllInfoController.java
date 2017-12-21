@@ -29,7 +29,6 @@ public class AllInfoController {
 	@RequestMapping("/allInfo")
 	public String AllUpdate(AllInfo allInfo,HttpServletRequest request) {
 		String AllUpdateMessage = allInfoService.AllUpdate(allInfo);
-		System.out.println(allInfo.getSalId());
 		request.setAttribute("AllUpdateMessage", AllUpdateMessage);
 		return "allInfo";
 	}

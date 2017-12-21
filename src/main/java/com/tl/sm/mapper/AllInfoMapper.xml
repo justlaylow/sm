@@ -177,6 +177,12 @@
 		where sal_id = #{salId,jdbcType=VARCHAR} and cal_date = #{calDate}
 	</update>
 	
+	<update id="updateCalId" parameterType="com.tl.sm.pojo.AllInfo">
+		update calculate_ set cal_id = #{salId,jdbcType=VARCHAR} 
+		where exists(select sal_name from employee_ where sal_id = #{salId,jdbcType=VARCHAR})
+	</update>
+	
+	
 	<!-- 删除 -->
 	<delete id="deleteEmp" parameterType="string">
 		delete from salary_manage.employee_
