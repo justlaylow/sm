@@ -44,9 +44,9 @@
 								<td><input name="employeeList[${i.index}].salOa" value="${exc.salOa}"/></td>
 								<td><input name="employeeList[${i.index}].staCategory" value="${exc.staCategory}"/></td>
 								<td><input name="employeeList[${i.index}].salRemark" value="${exc.salRemark}"/></td>
-								<td><input name="employeeList[${i.index}].salSkilllevel" value="${exc.salSkilllevel}" style="width: 100px;"/></td>
+								<td><input name="employeeList[${i.index}].salSkilllevel" value="${exc.salSkilllevel}"/></td>
 								<td><input name="employeeList[${i.index}].salSkillSalary" value="${exc.salSkillSalary}"/></td>
-								<td><input name="employeeList[${i.index}].bankAccount" value="${exc.bankAccount}"/></td>
+								<td><input name="employeeList[${i.index}].bankAccount" value="${exc.bankAccount}" style="width: 180px;"/></td>
 							</tbody>
 							</c:forEach>
 						</table>

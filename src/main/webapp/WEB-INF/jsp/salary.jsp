@@ -39,19 +39,37 @@
 				<button type="button" class="btn btn-success" onclick="calAdd()">新增工资信息</button>
 
 				<!-- 部门列表 -->
-				<table class="table table-hover" id="datagrid">
+				<table class="table table-hover" id="datagrid" style="white-space: nowrap;">
 					<thead>
 						<tr>
 							<!-- <th>删除</th>
 							<th>查看</th> -->
 							<th>工号</th>
 							<th>姓名</th>
-							<th>部门代码</th>
+							<th>部门</th>
 							<th>基本工资</th>
 							<th>岗位工资</th>
 							<th>司龄工资</th>
 							<th>保密工资</th>
 							<th>技能工资</th>
+							<th>浮动工资</th>
+							<th>系数</th>
+							<th>奖金</th>
+							<th>加班工资</th>
+							<th>津贴</th>
+							<th>考评工资</th>
+							<th>工伤工资</th>
+							<th>缺勤</th>
+							<th>其他</th>
+							<th>罚款</th>
+							<th>扣款</th>
+							<th>水电</th>
+							<th>餐补</th>
+							<th>工时工资</th>
+							<th>会费</th>
+							<th>所得税</th>
+							<th>应发工资</th>
+							<th>实得工资</th>
 							<th>工资时间</th>
 						</tr>
 					</thead>
@@ -183,13 +201,36 @@
 										<c:if test="${emp==sal.calEmployee[0]}">
 											<td>${emp.salDep}</td>
 										</c:if>
+										
 									</c:forEach>
+									<!-- 删除员工之后calEmployee为空，部门得不到需占一格 -->
+									<c:if test="${sal.calEmployee[0]==null}">
+											<td> </td>
+									</c:if>
 									<td>${sal.calBasic}</td>
 									<td>${sal.calPost}</td>
 									<td>${sal.calComage}</td>
 									<td>${sal.calSecrecy}</td>
 									<td>${sal.calSkillLevel}</td>
-									<td><fmt:formatDate value="${sal.calDate}" type="date"/></td>
+									<td>${sal.calFloat}</td>
+									<td>${sal.calCoefficient}</td>
+									<td>${sal.calBonus}</td>
+									<td>${sal.calOvertime}</td>
+									<td>${sal.calBenefit}</td>
+									<td>${sal.calCheck}</td>
+									<td>${sal.calInjury}</td>
+									<td>${sal.calLeave}</td>
+									<td>${sal.calOther}</td>
+									<td>${sal.calPenalty}</td>
+									<td>${sal.calWithhold}</td>
+									<td>${sal.calWaterandele}</td>
+									<td>${sal.calAllowance}</td>
+									<td>${sal.calManhourSalary}</td>
+									<td>${sal.calDues}</td>
+									<td>${sal.calIncometax}</td>
+									<td>${sal.calShould}</td>
+									<td>${sal.calResult}</td>
+									<td><fmt:formatDate value="${sal.calDate}" type="date" pattern="yyyy-MM-dd"/></td>
 									<td></td>
 								</tr>
 							</c:if>

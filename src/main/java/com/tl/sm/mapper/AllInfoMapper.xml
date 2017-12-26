@@ -4,8 +4,7 @@
 	
 	<!-- 三表联合更新,oracle中不能直接联合更新,写三次update语句 -->
 	<update id="updateAllByPrimaryKeyEmp" parameterType="com.tl.sm.pojo.AllInfo">
-		UPDATE (select * from salary_manage.employee_ e INNER JOIN salary_manage.insurance_ i
-		ON e.sal_id = i.ins_id inner join salary_manage.calculate_ c on e.sal_id = c.cal_id)
+		UPDATE salary_manage.employee_
 		<set>
 			<if test="bankAccount != null">
 				bank_account = #{bankAccount,jdbcType=VARCHAR},
@@ -41,15 +40,14 @@
 				sal_skill_salary = #{calSkillLevel,jdbcType=REAL},
 			</if>
 		</set>
-		where sal_id = #{salId,jdbcType=VARCHAR} and cal_date = #{calDate,jdbcType=DATE}
+		where sal_id = #{calId,jdbcType=VARCHAR}
 	</update>
 	
 	<update id="updateAllByPrimaryKeyCal" parameterType="com.tl.sm.pojo.AllInfo">
-		UPDATE (select * from salary_manage.employee_ e INNER JOIN salary_manage.insurance_ i
-		ON e.sal_id = i.ins_id inner join salary_manage.calculate_ c on e.sal_id = c.cal_id)
+		UPDATE salary_manage.calculate_
 		<set>
-			<if test="salId != null">
-				cal_id = #{salId,jdbcType=VARCHAR},
+			<if test="calId != null">
+				cal_id = #{calId,jdbcType=VARCHAR},
 			</if>
 			<if test="calName != null">
 				cal_name = #{calName,jdbcType=VARCHAR},
@@ -145,12 +143,11 @@
 		        cal_incometax = #{calIncometax,jdbcType=REAL},
 		    </if>
 		</set>
-		where sal_id = #{salId,jdbcType=VARCHAR} and cal_date = #{calDate}
+		where cal_id = #{calId,jdbcType=VARCHAR} and cal_date = #{calDate,jdbcType=DATE}
 	</update>
 	
 	<update id="updateAllByPrimaryKeyIns" parameterType="com.tl.sm.pojo.AllInfo">
-		UPDATE (select * from salary_manage.employee_ e INNER JOIN salary_manage.insurance_ i
-		ON e.sal_id = i.ins_id inner join salary_manage.calculate_ c on e.sal_id = c.cal_id)
+		UPDATE salary_manage.insurance_
 		<set>
 			<if test="calName != null">
 				ins_name = #{calName,jdbcType=VARCHAR},
@@ -174,7 +171,7 @@
 		        ins_acc_fund = #{insAccFund,jdbcType=VARCHAR},
 		    </if>
 		</set>
-		where sal_id = #{salId,jdbcType=VARCHAR} and cal_date = #{calDate}
+		where ins_id = #{calId,jdbcType=VARCHAR}
 	</update>
 	
 	<update id="updateCalId" parameterType="com.tl.sm.pojo.AllInfo">
@@ -190,7 +187,7 @@
 	</delete>
 	<delete id="deleteCal" parameterType="string">
 		delete from salary_manage.calculate_
-		where cal_id = #{calId,jdbcType=VARCHAR}
+		where cal_id = #{calId,jdbcType=VARCHAR} and to_char(cal_date,'yyyy-MM-dd') = #{calDate,jdbcType=VARCHAR}
 	</delete>
 	<delete id="deleteIns" parameterType="string">
 		delete from salary_manage.insurance_

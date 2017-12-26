@@ -88,7 +88,7 @@ public class PrintServiceImpl implements PrintService{
 					comage+=list.get(j).getSalSalaryList().get(0).getCalComage();
 					secrecy+=list.get(j).getSalSalaryList().get(0).getCalSecrecy();
 					skillSalary+=list.get(j).getSalSalaryList().get(0).getCalSkillLevel();
-					//benefit+=list.get(j).getSalSalaryList().get(0).getCalBenefitwage();
+					//benefit+=list.get(j).getSalSalaryList().get(0).getCalBenefitwage();效益工资
 					//labourCost+=list.get(j).getSalSalaryList().get(0).getLabourCost();
 					//manhour+=list.get(j).getSalSalaryList().get(0).getCalManhour();
 					manhourSalary+=list.get(j).getSalSalaryList().get(0).getCalManhourSalary();

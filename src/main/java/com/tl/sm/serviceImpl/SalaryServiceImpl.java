@@ -77,7 +77,7 @@ public class SalaryServiceImpl implements SalaryService{
 	        //通过工号取到对应的统计类别，计算会费
 	        Employee emp = employeeMapper.selectByEmpId(ob.get(1).toString());
 	        
-	        //公积金
+	        //取得公积金
 	        Float accFund = Float.parseFloat(ins.getInsAccFund());
 	        //社保
 	        Float insurance = Float.parseFloat(ins.getInsOld())+Float.parseFloat(ins.getInsTreatments())

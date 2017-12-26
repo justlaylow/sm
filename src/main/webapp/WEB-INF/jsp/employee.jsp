@@ -127,8 +127,17 @@
 										<option>营销人员-售后</option>
 									</select>&emsp;&emsp;&nbsp;&nbsp;
 									<label>备&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;注:</label> <input name="salRemark"> <br><br>
-									<label>技能等级:</label> <input name="salSkilllevel"> 
-									<label>&emsp;技能等级工资:</label> <input name="salSkillSalary">
+									<label>技能等级:</label> <input name="salSkilllevel" id="salskill" style="display: none;"> 
+									<select id="skill" style="height: 24px;width: 160px;">
+										<option style="display: none"></option>
+										<option>3</option>
+										<option>4</option>
+										<option>5</option>
+										<option>6</option>
+										<option>7</option>
+										<option>8</option>
+									</select>
+									<label>&emsp;技能等级工资:</label> <input name="salSkillSalary" id="skillsalary">
 
 
 									<div class="modal-footer">
@@ -158,7 +167,7 @@
 							<th>工号</th>
 							<th>银行账户</th>
 							<th>岗位类别</th>
-							<th>部门代码</th>
+							<th>部门</th>
 							<th>岗位</th>
 							<th>入职日期</th>
 							<th>SAP账号</th>
@@ -216,7 +225,7 @@
 																	<td><label>岗位类别:</label></td><td> <input type="text" name="postCategory" value="${emp.postCategory}"></td>
 																</tr>
 																<tr>
-																	<td><label>部门代码:</label></td><td> <input name="salDep" value="${emp.salDep}" id="updateDepInput${emp.id}" style="display:none;">
+																	<td><label>部门:</label></td><td> <input name="salDep" value="${emp.salDep}" id="updateDepInput${emp.id}" style="display:none;">
 																	<select id="updateDepSelect${emp.id}" style="height: 24px;width: 160px;">
 																		<option style="display: none;">${emp.salDep}</option>
 																		<c:forEach var="dep" items="${listDep}">
@@ -248,8 +257,17 @@
 																	<td><label>备注:</label></td><td> <input name="salRemark" value="${emp.salRemark}"></td>
 																</tr>
 																<tr>
-																	<td><label>技能等级:</label></td><td> <input type="text" name="salSkilllevel" value="${emp.salSkilllevel}"></td>
-																	<td><label>技能工资:</label></td><td> <input type="text" name="salSkillSalary" value="${emp.salSkillSalary}"></td>
+																	<td><label>技能等级:</label></td><td> <input type="text" name="salSkilllevel" value="${emp.salSkilllevel}" id="salskill${emp.id}" style="display: none;">
+																	<select id="skill${emp.id}" style="height: 24px;width: 160px;">
+																		<option style="display: none"></option>
+																		<option>3</option>
+																		<option>4</option>
+																		<option>5</option>
+																		<option>6</option>
+																		<option>7</option>
+																		<option>8</option>
+																	</select></td>
+																	<td><label>技能工资:</label></td><td> <input type="text" name="salSkillSalary" value="${emp.salSkillSalary}" id="skillsalary${emp.id}"></td>
 																</tr>
 															</table>
 															<div class="modal-footer">
@@ -286,6 +304,27 @@
 														}); 
 														$('#modalclose2'+${emp.id}).click(function(){
 															$('#upd'+${emp.id}).modal('hide');
+														});
+														
+														//技能等级选择
+														$('#skill'+${emp.id}).change(function (){
+															var dep = $('#skill'+${emp.id}+' option:selected').text();
+															$('#salskill'+${emp.id}).val(dep);
+															switch(dep){
+															case '3':$('#skillsalary'+${emp.id}).val('960');
+															break;
+															case '4':$('#skillsalary'+${emp.id}).val('780');
+															break;
+															case '5':$('#skillsalary'+${emp.id}).val('630');
+															break;
+															case '6':$('#skillsalary'+${emp.id}).val('510');
+															break;
+															case '7':$('#skillsalary'+${emp.id}).val('390');
+															break;
+															case '8':$('#skillsalary'+${emp.id}).val('300');
+															break;
+															default:$('#skillsalary'+${emp.id}).val('0');
+															}
 														});
 														</script>
 													</div>
@@ -331,20 +370,24 @@
 		</div>
 	</div>
 <script type="text/javascript">
+	//日期插件
 	$('#mydate').dcalendarpicker({
 	format : 'yyyy-mm-dd'
 	});
 	
+	//下拉框的值赋给部门名称输入框
 	$('#selectDep').change(function (){
 		var dep = $('#selectDep option:selected').text();
 		$('#selectInput').val(dep);
 	}) ;
 	
+	//下拉框的值赋给统计类别输入框,
 	$('#staCategory').change(function (){
 		var dep = $('#staCategory option:selected').text();
 		$('#staCategoryInput').val(dep);
 	});
 	
+	//模态框关闭，ie中data-dismiss不起作用
 	$('#modalclose1').click(function(){
 		$('#myModal').modal('hide');
 	}); 
@@ -352,6 +395,7 @@
 		$('#myModal').modal('hide');
 	});
 	
+	//添加员工必填项
 	function checkAdd(){
 		var name = $('#checkName').val();
 		var account = $('#checkBank').val();
@@ -370,6 +414,27 @@
 			return false;
 		}
 	};
+	
+	//技能等级选择
+	$('#skill').change(function (){
+		var dep = $('#skill option:selected').text();
+		$('#salskill').val(dep);
+		switch(dep){
+		case '3':$('#skillsalary').val('960');
+		break;
+		case '4':$('#skillsalary').val('780');
+		break;
+		case '5':$('#skillsalary').val('630');
+		break;
+		case '6':$('#skillsalary').val('510');
+		break;
+		case '7':$('#skillsalary').val('390');
+		break;
+		case '8':$('#skillsalary').val('300');
+		break;
+		default:$('#skillsalary').val('0');
+		}
+	});
 </script>
 </body>
 </html>

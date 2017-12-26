@@ -15,8 +15,8 @@
 				<h3>工 资 查 询</h3>
 				<!-- 添加保险 -->
 				<form action="/sm/list/all" method="post">
-					工号：<input name="salId" value="${param.salId}">
-					姓名：<input name="salName" value="${param.salName}"> 
+					工号：<input name="calId" value="${param.calId}">
+					姓名：<input name="calName" value="${param.calName}"> 
 					工资日期：<input name="calDate" tyep="text" id="mydatepicker"> 
 					<input type="submit" value="查询" id="find">
 					<input id="maxMonth" value="${maxMonth}" style="display: none;">
@@ -33,8 +33,8 @@
 									<td><input name="calName" required="true"
 										value="${cal.calName}"></td>
 									<td><label>工号:</label></td>
-									<td><input name="salId" required="true"
-										value="${all.salId}" readonly="readonly"></td>
+									<td><input name="calId" required="true"
+										value="${cal.calId}" readonly="readonly"></td>
 									<td><label>银行账号:</label></td>
 									<td><input name="bankAccount" value="${all.bankAccount}"
 										size="30px"></td>
@@ -52,7 +52,7 @@
 							<tr>
 								<td><label>Gzsj:</label></td>
 								<td><input name="calDate"
-									value="<fmt:formatDate value="${cal.calDate}" type="date"/>" readonly="readonly"></td>
+									value="<fmt:formatDate value="${cal.calDate}" type="date" pattern="yyyy-MM-dd"/>" readonly="readonly"></td>
 								<td><label>SAP账号:</label></td>
 								<td><input type="text" name="salOa" value="${all.salOa}"></td>
 								<td><label>统计类别:</label></td>
@@ -168,12 +168,12 @@
 								<td><label>实得:</label></td>
 								<td><input name="calResult" value="${cal.calResult}"></td>
 							</tr>
-							</c:forEach>
+							
 						</table>
 						<input class="btn btn-success" type="submit" value="修改" id="updateAll">
 						<button class="btn btn-warning" type="button"
-							onclick="del('${all.salId}')">删除员工</button>
-						
+							onclick="del('${cal.calId}','<fmt:formatDate value="${cal.calDate}" type="date" pattern="yyyy-MM-dd"/>')">删除员工</button>
+						</c:forEach>
 						<script type="text/javascript">
 							//最大日期显示修改按钮	
 							$(function() {
@@ -188,6 +188,8 @@
 						</script>
 					</form>
 				</c:forEach>
+				${AllDeleteMessage}
+				${AllUpdateMessage}
 			</div>
 		</div>
 	</div>
@@ -199,9 +201,9 @@
 		}
 
 		//删除
-		function del(salId) {
+		function del(calId,calDate) {
 			if (confirm("确定删除吗？")) {
-				window.location.href = "/sm/allInfo/del?salId=" + salId;
+				window.location.href = "/sm/allInfo/del?calId=" + calId+"&calDate="+calDate;
 			}
 
 		}

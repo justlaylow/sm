@@ -34,8 +34,8 @@ public interface EmployeeMapper {
     List<Employee> listInner();
     
     //三表查询
-    List<Employee> listAll(@Param("cal_date") String calDate,@Param("sal_id") String salId,
-    		@Param("sal_name") String salName);
+    List<Employee> listAll(@Param("cal_date") String calDate,@Param("cal_id") String salId,
+    		@Param("cal_name") String salName);
     
     //查询三表信息,保险和工资为员工的属性集合
   	List<Employee> printAll();

@@ -28,10 +28,10 @@ public class AllInfoServiceImpl implements AllInfoService{
 	}
 
 	//通过工号删除员工的信息,保险信息,工资信息
-	public String deleteAll(String calId) {
+	public String deleteAll(String calId,String calDate) {
 		String message = "";
 		int i = allInfoMapper.deleteEmp(calId);
-		int j = allInfoMapper.deleteCal(calId);
+		int j = allInfoMapper.deleteCal(calId,calDate);
 		int x = allInfoMapper.deleteIns(calId);
 		if(i>0&&j>0&&x>0) {
 			message = "删除成功";

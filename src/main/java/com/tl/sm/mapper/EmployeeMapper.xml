@@ -377,11 +377,11 @@
 		insurance_ i on e.sal_id = i.ins_id left join
 		calculate_ c on e.sal_id = c.cal_id
 		<where>
-			<if test="sal_id!=null">
-				and sal_id = #{sal_id}
+			<if test="cal_id!=null">
+				and cal_id = #{cal_id}
 			</if>
-			<if test="sal_name!=null">
-				and sal_name = #{sal_name}
+			<if test="cal_name!=null">
+				and cal_name = #{cal_name}
 			</if>
 			<if test="cal_date!=null">
 				and to_char(cal_date,'yyyy-mm-dd') = #{cal_date}

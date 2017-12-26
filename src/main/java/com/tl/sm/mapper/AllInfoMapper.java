@@ -1,5 +1,7 @@
 package com.tl.sm.mapper;
 
+import org.apache.ibatis.annotations.Param;
+
 import com.tl.sm.pojo.AllInfo;
 
 public interface AllInfoMapper {
@@ -14,6 +16,6 @@ public interface AllInfoMapper {
 	
 	//删除
 	int deleteEmp(String salId);
-	int deleteCal(String calId);
+	int deleteCal(@Param("calId")String calId,@Param("calDate")String calDate);
 	int deleteIns(String insId);
 }

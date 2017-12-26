@@ -35,21 +35,21 @@ public class AllInfoController {
 	
 	//通过工号删除员工,delete语句执行3次分别删除员工表,保险表,工资表内的数据
 	@RequestMapping("/allInfo/del")
-	public String deleteAll(String salId,HttpServletRequest request) {
-		String AllUpdateMessage = allInfoService.deleteAll(salId);
-		request.setAttribute("AllUpdateMessage", AllUpdateMessage);
+	public String deleteAll(String calId,String calDate,HttpServletRequest request) {
+		String AllDeleteMessage = allInfoService.deleteAll(calId,calDate);
+		request.setAttribute("AllDeleteMessage", AllDeleteMessage);
 		return "allInfo";
 	}
 	
 	// 通过工号和工资日期查询员工的所有信息
 	@RequestMapping("/list/all")
-	public String listAll(String salId,String calDate,String salName,HttpServletRequest request) throws ParseException {
-		if(salId.equals("")) {
-			salId = null;
-		}else if(salName.equals("")) {
-			salName = null;
+	public String listAll(String calId,String calDate,String calName,HttpServletRequest request) throws ParseException {
+		if(calId.equals("")) {
+			calId = null;
+		}else if(calName.equals("")) {
+			calName = null;
 		}
-		List<Employee> ListAll = employeeService.listAll(calDate,salId,salName);
+		List<Employee> ListAll = employeeService.listAll(calDate,calId,calName);
 		List<Department> listDep = employeeService.listDep();
 		String maxMonth = allInfoService.maxMonth();
 		request.setAttribute("maxMonth", maxMonth);

@@ -12,6 +12,7 @@
 		<div class="row clearfix">
 			<div class="col-md-12 column">
 				<div class="dropdown">
+					<div><%@ include file="/WEB-INF/jsp/include/main.jsp"%></div>
 				    <button type="button" class="btn dropdown-toggle" id="dropdownMenu1" data-toggle="dropdown" style="margin-top: 35px">
 				      	导 出 工 资 文 件
 				      <span class="caret"></span>          

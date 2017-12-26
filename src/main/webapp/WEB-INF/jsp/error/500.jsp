@@ -4,11 +4,9 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>error</title>
+<title>500</title>
 </head>
 <body>
-	<h3 align="center">未知错误,请确认是否操作正确</h3>
-	<p align="center"><%@ include file="/WEB-INF/jsp/include/main.jsp"%></p>
-	<p></p>
+	<h3 align="center">服务器错误</h3>
 </body>
 </html>
