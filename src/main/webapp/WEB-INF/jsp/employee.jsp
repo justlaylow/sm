@@ -181,13 +181,8 @@
 							<th>养老保险</th>
 							<th>医疗保险</th>
 							<th>大病医疗</th>
-							<th>保险投保地</th>
 							<th>失业保险</th>
-							<th>失业投保地</th>
 							<th>公积金</th>
-							<th>公积金投保地</th>
-							<th>投保标志</th>
-							<th>保险备注</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -353,13 +348,8 @@
 										<td>${ins.insOld}</td>
 										<td>${ins.insTreatments}</td>
 										<td>${ins.insIll}</td>
-										<td>${ins.insurance}</td>
 										<td>${ins.insUnemp}</td>
-										<td>${ins.insUnempAddress}</td>
 										<td>${ins.insAccFund}</td>
-										<td>${ins.insAccAddress}</td>
-										<td>${ins.insSign}</td>
-										<td>${ins.insRemark}</td>
 									</c:forEach>
 								</tr>
 							</c:if>

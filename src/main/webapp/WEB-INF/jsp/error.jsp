@@ -7,7 +7,7 @@
 <title>error</title>
 </head>
 <body>
-	<h3 align="center">未知错误,请确认是否操作正确</h3>
+	<h3 align="center">未知错误,请确认操作是否有误</h3>
 	<p align="center"><%@ include file="/WEB-INF/jsp/include/main.jsp"%></p>
 	<p></p>
 </body>

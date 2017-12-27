@@ -52,23 +52,30 @@
 					<td>${should.withhold}</td>
 					<td>${should.waterAndEle}</td>
 					<td>${should.accFund}</td>
-					<td>${should.lastMonthWithhold}</td>
+					<td></td>
 					<td>${should.incomeTax}</td>
 					<td>${should.withholdTotal}</td>
 					<td>${should.reality}</td>
-					<td></td>
+					<td>${should.lastMonthWithhold}</td>
 					<td>${should.mealAllowance}</td>
 					<td>${should.reality}</td>
 				</tr>
 			</tbody>
 		</c:forEach>
 	</table>
-	<p align="center"><input type="button" id="print" value="工资条"></p>
+	<p align="center">
+		<input type="button" id="print" value="打印">
+		<button id="back">返回</button>
+	</p>
 </div>
 	
 <script type="text/javascript">
 	$("#print").click(function(){
 		window.print();
+	});
+	
+	$('#back').click(function(){
+		window.location = "/sm/print";
 	});
 </script>
 </body>

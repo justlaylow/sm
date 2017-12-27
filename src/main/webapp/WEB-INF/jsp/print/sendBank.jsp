@@ -41,9 +41,17 @@
 				</tbody>
 			</c:forEach>
 		</table>
-		<p align="center"><input type="submit" id="print" value="导出"></p>
+		<p align="center">
+			<input type="submit" id="print" value="导出">
+			<button id="back">返回</button>
+		</p>
 	</form>
 </div>
 	
+<script type="text/javascript">
+	$('#back').click(function(){
+		window.location = "/sm/print";
+	});
+</script>
 </body>
 </html>

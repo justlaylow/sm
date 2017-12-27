@@ -93,21 +93,13 @@
 							<td><input name="labourCost"></td>
 							<td><label>效益工资:</label></td>
 							<td><input type="text" name="calBenefitwage"></td>
-							<td><label>工时奖:</label></td>
-							<td><input name="calManhourBonus"></td>
-						</tr>
-						<tr>
 							<td><label>工时工资:</label></td>
 							<td><input type="text" name="calMnahourSalary"></td>
-							<td><label>福利:</label></td>
-							<td><input name="calWelfare"></td>
-							<td><label>工废:</label></td>
-							<td><input name="calWaste"></td>
 						</tr>
 						<tr>
 							<td><label>应发工资:</label></td>
 							<td><input type="text" name="calShould"></td>
-							<td><label>上月扣款:</label></td>
+							<td><label>下月扣款:</label></td>
 							<td><input type="text" name="calLastWithhold"></td>
 							<td><label>所得税:</label></td>
 							<td><input name="calIncometax"></td>

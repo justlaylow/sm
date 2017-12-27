@@ -56,7 +56,7 @@
 					<th>公积金</th>
 					<th>水电</th>
 					<th>扣款</th>
-					<th>上月扣款</th>
+					<th>下月扣款</th>
 					<th>所得税</th>
 					<th>扣款合计</th>
 					<th>实得工资</th>
@@ -149,7 +149,7 @@
 					<th>公积金</th>
 					<th>水电</th>
 					<th>扣款</th>
-					<th>上月扣款</th>
+					<th>下月扣款</th>
 					<th>所得税</th>
 					<th>扣款合计</th>
 					<th>实得工资</th>
@@ -200,11 +200,18 @@
 				</tr>
 			</tbody>
 	</table>
-	<p align="center"><input type="button" id="print" value="工资条"></p>
+	<p align="center">
+		<input type="button" id="print" value="打印">
+		<button id="back">返回</button>
+	</p>
 	
 <script type="text/javascript">
 	$("#print").click(function(){
 		window.print();
+	});
+	
+	$('#back').click(function(){
+		window.location = "/sm/print";
 	});
 </script>
 </body>

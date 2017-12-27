@@ -4,10 +4,10 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<title>error</title>
 </head>
 <body>
-	<h3 align="center">${message}</h3>
-	<a href="/sm/login.jsp" class="btn btn-link" style="margin-top: 10px;margin-left:640px">返回登陆</a>
+	<h3 align="center">工号不能重复</h3>
+	<p align="center"><%@ include file="/WEB-INF/jsp/include/main.jsp"%></p>
 </body>
 </html>

@@ -48,37 +48,69 @@ public class PrintServiceImpl implements PrintService{
 		for(int i =0;i<listDep.size();i++) {
 			Summing sum = new Summing();
 			String department ="";
+			//基本工资
 			Float basic=0f;
+			//岗位工资
 			Float post=0f;
+			//司龄工资
 			Float comage=0f;
+			//保密工资
 			Float secrecy=0f;
+			//技能工资
 			Float skillSalary=0f;
+			//效益工资
 			Float benefit=0f;
+			//工废
 			Float labourCost=0f;
+			//工时
 			Float manhour=0f;
+			//工时工资
 			Float manhourSalary=0f;
+			//加班工资
 			Float overtime=0f;
+			//奖金
 			Float bonus=0f;
+			//考评工资
 			Float check=0f;
-			Float allowance=0f;//津贴
+			//津贴
+			Float allowance=0f;
+			//缺勤
 			Float leave=0f;
+			//工伤工资
 			Float injury=0f;
+			//罚款
 			Float penalty=0f;
+			//其他
 			Float other=0f;
+			//应发工资
 			Float should=0f;
+			//会费
 			Float dues=0f;
+			//养老保险
 			Float old=0f;
+			//医保
 			Float treatments=0f;
+			//大病医疗
 			Float ill=0f;
+			//失业
 			Float unemp=0f;
+			//公积金
 			Float accFund=0f;
+			//水电
 			Float waterAndEle=0f;
+			//扣款
 			Float withhold=0f;
+			//所得税
 			Float incomeTax=0f;
+			//下月扣款
 			Float lastMonthWithhold=0f;
+			//扣款合计
 			Float withholdTotal=0f;
+			//实得
 			Float reality=0f;
+			//餐补
 			Float mealAllowance=0f;
+			//部门名称
 			department = listDep.get(i).getDepName();
 			sum.setDepartment(department);
 			for(int j=0;j<list.size();j++) {
@@ -88,7 +120,7 @@ public class PrintServiceImpl implements PrintService{
 					comage+=list.get(j).getSalSalaryList().get(0).getCalComage();
 					secrecy+=list.get(j).getSalSalaryList().get(0).getCalSecrecy();
 					skillSalary+=list.get(j).getSalSalaryList().get(0).getCalSkillLevel();
-					//benefit+=list.get(j).getSalSalaryList().get(0).getCalBenefitwage();效益工资
+					benefit+=((list.get(j).getSalSalaryList().get(0).getCalBasic()+list.get(j).getSalSalaryList().get(0).getCalPost())*list.get(j).getSalSalaryList().get(0).getCalCoefficient());
 					//labourCost+=list.get(j).getSalSalaryList().get(0).getLabourCost();
 					//manhour+=list.get(j).getSalSalaryList().get(0).getCalManhour();
 					manhourSalary+=list.get(j).getSalSalaryList().get(0).getCalManhourSalary();
@@ -194,7 +226,7 @@ public class PrintServiceImpl implements PrintService{
 			comage+=list.get(j).getSalSalaryList().get(0).getCalComage();
 			secrecy+=list.get(j).getSalSalaryList().get(0).getCalSecrecy();
 			skillSalary+=list.get(j).getSalSalaryList().get(0).getCalSkillLevel();
-			//benefit+=list.get(j).getSalSalaryList().get(0).getCalBenefitwage();
+			benefit+=((list.get(j).getSalSalaryList().get(0).getCalBasic()+list.get(j).getSalSalaryList().get(0).getCalPost())*list.get(j).getSalSalaryList().get(0).getCalCoefficient());
 			//labourCost+=list.get(j).getSalSalaryList().get(0).getLabourCost();
 			//manhour+=list.get(j).getSalSalaryList().get(0).getCalManhour();
 			manhourSalary+=list.get(j).getSalSalaryList().get(0).getCalManhourSalary();
@@ -322,7 +354,7 @@ public class PrintServiceImpl implements PrintService{
 					comage+=list.get(j).getSalSalaryList().get(0).getCalComage();
 					secrecy+=list.get(j).getSalSalaryList().get(0).getCalSecrecy();
 					skillSalary+=list.get(j).getSalSalaryList().get(0).getCalSkillLevel();
-					//benefit+=list.get(j).getSalSalaryList().get(0).getCalBenefitwage();
+					benefit+=((list.get(j).getSalSalaryList().get(0).getCalBasic()+list.get(j).getSalSalaryList().get(0).getCalPost())*list.get(j).getSalSalaryList().get(0).getCalCoefficient());
 					//labourCost+=list.get(j).getSalSalaryList().get(0).getLabourCost();
 					//manhour+=list.get(j).getSalSalaryList().get(0).getCalManhour();
 					manhourSalary+=list.get(j).getSalSalaryList().get(0).getCalManhourSalary();
@@ -428,7 +460,7 @@ public class PrintServiceImpl implements PrintService{
 			comage+=list.get(j).getSalSalaryList().get(0).getCalComage();
 			secrecy+=list.get(j).getSalSalaryList().get(0).getCalSecrecy();
 			skillSalary+=list.get(j).getSalSalaryList().get(0).getCalSkillLevel();
-			//benefit+=list.get(j).getSalSalaryList().get(0).getCalBenefitwage();
+			benefit+=((list.get(j).getSalSalaryList().get(0).getCalBasic()+list.get(j).getSalSalaryList().get(0).getCalPost())*list.get(j).getSalSalaryList().get(0).getCalCoefficient());
 			//labourCost+=list.get(j).getSalSalaryList().get(0).getLabourCost();
 			//manhour+=list.get(j).getSalSalaryList().get(0).getCalManhour();
 			manhourSalary+=list.get(j).getSalSalaryList().get(0).getCalManhourSalary();

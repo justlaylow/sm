@@ -1,6 +1,7 @@
 package com.tl.sm.service;
 
 import java.io.InputStream;
+import java.sql.SQLIntegrityConstraintViolationException;
 import java.text.ParseException;
 import java.util.Date;
 import java.util.List;
@@ -22,7 +23,7 @@ public interface EmployeeService {
 	public List<Employee> listInner();
 	
 	//增加员工
-	public String insertEmp(Employee employee);
+	public String insertEmp(Employee employee) throws SQLIntegrityConstraintViolationException;
 	
 	//删除员工
 	public String deleteEmp(String id);

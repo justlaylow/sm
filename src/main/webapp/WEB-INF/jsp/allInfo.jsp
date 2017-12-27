@@ -131,7 +131,7 @@
 								</c:forEach>
 							</tr>
 							<tr>
-								<td><label>上月扣款:</label></td>
+								<td><label>下月扣款:</label></td>
 								<td><input name="calLastWithhold"
 									value="${cal.calLastWithhold}"></td>
 								<td><label>所得税:</label></td>

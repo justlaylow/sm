@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ include file="/WEB-INF/jsp/include/header.jsp"%>
+<%@ include file="/WEB-INF/jsp/include/background.jsp"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -12,7 +13,7 @@
 		<div class="row clearfix">
 			<div class="col-md-12 column">
 				<div class="dropdown">
-					<div><%@ include file="/WEB-INF/jsp/include/main.jsp"%></div>
+					<div style="float: left;">
 				    <button type="button" class="btn dropdown-toggle" id="dropdownMenu1" data-toggle="dropdown" style="margin-top: 35px">
 				      	导 出 工 资 文 件
 				      <span class="caret"></span>          
@@ -49,6 +50,8 @@
 				         <a href="javascript:void(0)" id="ab">送银行文件</a>           
 				      </li>
 				    </ul>
+				    </div>
+				    <div style="margin-top: 35px;margin-left: 10px;float: left;"><%@ include file="/WEB-INF/jsp/include/main.jsp"%></div>
 				</div>
 			</div>
 		</div>

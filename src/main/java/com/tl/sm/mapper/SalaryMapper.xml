@@ -580,7 +580,7 @@
       cal_overtime, cal_benefit, cal_check, 
       cal_injury, cal_leave, cal_other, 
       cal_penalty, cal_withhold, cal_waterandele, 
-      cal_allowance, cal_should,
+      cal_allowance, cal_should,cal_benefitwage,
       cal_dues,  cal_manhour_salary, 
       cal_date,
       cal_incometax,cal_result,cal_total)
@@ -593,7 +593,7 @@
       #{item.calOvertime,jdbcType=REAL}, #{item.calBenefit,jdbcType=REAL}, #{item.calCheck,jdbcType=REAL}, 
       #{item.calInjury,jdbcType=REAL}, #{item.calLeave,jdbcType=REAL}, #{item.calOther,jdbcType=REAL}, 
       #{item.calPenalty,jdbcType=REAL}, #{item.calWithhold,jdbcType=REAL}, #{item.calWaterandele,jdbcType=REAL}, 
-      #{item.calAllowance,jdbcType=REAL}, #{item.calShould,jdbcType=REAL}, 
+      #{item.calAllowance,jdbcType=REAL}, #{item.calShould,jdbcType=REAL}, #{item.calBenefitwage,jdbcType=REAL},
       #{item.calDues,jdbcType=REAL},  #{item.calManhourSalary,jdbcType=REAL}, 
       #{item.calDate,jdbcType=DATE},
       #{item.calIncometax,jdbcType=REAL},#{item.calResult,jdbcType=REAL},

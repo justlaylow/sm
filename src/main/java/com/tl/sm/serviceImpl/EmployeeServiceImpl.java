@@ -1,6 +1,7 @@
 package com.tl.sm.serviceImpl;
 
 import java.io.InputStream;
+import java.sql.SQLIntegrityConstraintViolationException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -43,7 +44,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 	}
 
 	// 新增员工
-	public String insertEmp(Employee employee) {
+	public String insertEmp(Employee employee) throws SQLIntegrityConstraintViolationException {
 		String message = "";
 		int i = employeeMapper.insert(employee);
 		if (i > 0) {

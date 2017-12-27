@@ -71,7 +71,8 @@ public class SalaryServiceImpl implements SalaryService{
 	        salary.setCalWaterandele(Float.parseFloat(ob.get(19).toString()));
 	        salary.setCalAllowance(Float.parseFloat(ob.get(20).toString()));
 	        salary.setCalManhourSalary(Float.parseFloat(ob.get(21).toString()));
-	        
+	        Float calBenefitwage = (salary.getCalPost()+salary.getCalBasic())*salary.getCalCoefficient();
+	        salary.setCalBenefitwage(calBenefitwage);
 	        //通过工号查到对应保险
 	        Insurance ins = insuranceMapper.selectByInsId(ob.get(1).toString());
 	        //通过工号取到对应的统计类别，计算会费
@@ -260,7 +261,7 @@ public class SalaryServiceImpl implements SalaryService{
 		return message;
 	}
 
-	//增加
+	//单条工资信息增加
 	public String insertCal(Salary salary) {
 		String message = "";
 		int i = salaryMapper.insert(salary);

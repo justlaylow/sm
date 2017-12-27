@@ -6,6 +6,7 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.springframework.dao.DuplicateKeyException;
 import org.springframework.web.servlet.HandlerExceptionResolver;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -21,10 +22,10 @@ public class MyExceptionHandle implements HandlerExceptionResolver {
         // 根据不同错误转向不同页面  
         if(ex instanceof BusinessException) {  
             return new ModelAndView("error-business", model);  
-        }/*else if(ex instanceof NullPointerException) {  
+        }else if(ex instanceof DuplicateKeyException) {  
         	ex.printStackTrace();
-            return new ModelAndView("error-parameter", model);  
-        } */else {
+            return new ModelAndView("error/error-idRepetition", model);  
+        }else {
         	ex.printStackTrace();
             return new ModelAndView("error", model);  
         }  

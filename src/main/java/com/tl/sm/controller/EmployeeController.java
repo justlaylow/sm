@@ -1,7 +1,7 @@
 package com.tl.sm.controller;
 
 import java.io.InputStream;
-import java.text.ParseException;
+import java.sql.SQLIntegrityConstraintViolationException;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -14,11 +14,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
-import com.tl.sm.pojo.BusinessException;
 import com.tl.sm.pojo.Department;
 import com.tl.sm.pojo.Employee;
-import com.tl.sm.pojo.Insurance;
-import com.tl.sm.pojo.Salary;
 import com.tl.sm.service.EmployeeService;
 import com.tl.sm.util.excelList;
 
@@ -40,7 +37,7 @@ public class EmployeeController {
 
 	// 新增员工
 	@RequestMapping("/insert/emp")
-	public String insertEmp(Employee employee, HttpServletRequest request) throws BusinessException{
+	public String insertEmp(Employee employee, HttpServletRequest request) throws SQLIntegrityConstraintViolationException{
 		String insertEmp = employeeService.insertEmp(employee);
 		List<Employee> empList = employeeService.listInner();
 		List<Department> listDep = employeeService.listDep();

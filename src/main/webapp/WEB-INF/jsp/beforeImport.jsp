@@ -29,6 +29,7 @@
 								<th>岗位工资</th>
 								<th>浮动工资</th>
 								<th>系数</th>
+								<th>效益工资</th>
 								<th>保密工资</th>
 								<th>技能等级工资</th>
 								<th>司龄工资</th>
@@ -60,6 +61,7 @@
 								<td><input name="salaryList[${i.index}].calPost" value="${exc.calPost}"/></td>
 								<td><input name="salaryList[${i.index}].calFloat" value="${exc.calFloat}"/></td>
 								<td><input name="salaryList[${i.index}].calCoefficient" value="${exc.calCoefficient}"/></td>
+								<td><input name="salaryList[${i.index}].calBenefitwage" value="${exc.calBenefitwage}"/></td>
 								<td><input name="salaryList[${i.index}].calSecrecy" value="${exc.calSecrecy}"/></td>
 								<td><input name="salaryList[${i.index}].calSkillLevel" value="${exc.calSkillLevel}" style="width: 100px;"/></td>
 								<td><input name="salaryList[${i.index}].calComage" value="${exc.calComage}"/></td>
