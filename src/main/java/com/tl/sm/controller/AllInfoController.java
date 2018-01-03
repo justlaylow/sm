@@ -24,11 +24,18 @@ public class AllInfoController {
 	private AllInfoService allInfoService;
 	@Resource
 	private EmployeeService employeeService;
-	
-	//三表联合更新,allInfoMapper.xml
+	/**
+	 * 用来查询修改工资表，员工表，保险表的数据
+	 * listDep在allInfo.jsp中没有使用到
+	 * */
+	//三表更新,分三次update完成,allInfoMapper.xml
 	@RequestMapping("/allInfo")
 	public String AllUpdate(AllInfo allInfo,HttpServletRequest request) {
 		String AllUpdateMessage = allInfoService.AllUpdate(allInfo);
+		List<Department> listDep = employeeService.listDep();
+		String maxMonth = allInfoService.maxMonth();
+		request.setAttribute("maxMonth", maxMonth);
+		request.setAttribute("listDep", listDep);
 		request.setAttribute("AllUpdateMessage", AllUpdateMessage);
 		return "allInfo";
 	}
@@ -44,6 +51,8 @@ public class AllInfoController {
 	// 通过工号和工资日期查询员工的所有信息
 	@RequestMapping("/list/all")
 	public String listAll(String calId,String calDate,String calName,HttpServletRequest request) throws ParseException {
+		/*判断工号和姓名，如果没填值可能为空字符串，如果是赋值为空，否则listAll查询
+		不到工号和姓名为空字符串的数据*/
 		if(calId.equals("")) {
 			calId = null;
 		}else if(calName.equals("")) {

@@ -43,13 +43,13 @@
 		</table>
 		<p align="center">
 			<input type="submit" id="print" value="导出">
-			<button id="back">返回</button>
 		</p>
 	</form>
+	<button id="back1">返回</button>
 </div>
 	
 <script type="text/javascript">
-	$('#back').click(function(){
+	$('#back1').click(function(){
 		window.location = "/sm/print";
 	});
 </script>

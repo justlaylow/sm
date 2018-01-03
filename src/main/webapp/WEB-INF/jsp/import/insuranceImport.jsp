@@ -26,19 +26,16 @@
 								<th>姓名</th>
 								<th>性别</th>
 								<th>保险基数</th>
-								<th>养老编号</th>
 								<th>养老保险</th>
-								<th>医疗编号</th>
 								<th>医疗保险</th>
-								<th>大病编号</th>
 								<th>大病医疗</th>
-								<th>失业编号</th>
 								<th>失业保险</th>
 								<th>公积金</th>
 								<th>养老投保地</th>
 								<th>医保投保地</th>
 								<th>失业投保地</th>
 								<th>公积金投保地</th>
+								<th>工伤投保地</th>
 							</thead>
 							<c:forEach var="exc" items="${insuranceList}" varStatus="i">
 							<tbody>
@@ -46,19 +43,16 @@
 								<td><input name="insuranceList[${i.index}].insName" value="${exc.insName}"/></td>
 								<td><input name="insuranceList[${i.index}].insSex" value="${exc.insSex}"/></td>
 								<td><input name="insuranceList[${i.index}].insCarNumber" value="${exc.insCarNumber}"/></td>
-								<td><input name="insuranceList[${i.index}].insOldId" value="${exc.insOldId}"/></td>
 								<td><input name="insuranceList[${i.index}].insOld" value="${exc.insOld}"/></td>
-								<td><input name="insuranceList[${i.index}].insTreatmentId" value="${exc.insTreatmentId}"/></td>
 								<td><input name="insuranceList[${i.index}].insTreatments" value="${exc.insTreatments}"/></td>
-								<td><input name="insuranceList[${i.index}].insIllId" value="${exc.insIllId}" style="width: 100px;"/></td>
 								<td><input name="insuranceList[${i.index}].insIll" value="${exc.insIll}"/></td>
-								<td><input name="insuranceList[${i.index}].insUnempId" value="${exc.insUnempId}"/></td>
 								<td><input name="insuranceList[${i.index}].insUnemp" value="${exc.insUnemp}"/></td>
 								<td><input name="insuranceList[${i.index}].insAccFund" value="${exc.insAccFund}"/></td>
 								<td><input name="insuranceList[${i.index}].insurance" value="${exc.insurance}"/></td>
 								<td><input name="insuranceList[${i.index}].insSign" value="${exc.insSign}"/></td>
 								<td><input name="insuranceList[${i.index}].insUnempAddress" value="${exc.insUnempAddress}"/></td>
 								<td><input name="insuranceList[${i.index}].insAccAddress" value="${exc.insAccAddress}"/></td>
+								<td><input name="insuranceList[${i.index}].insTreatmentId" value="${exc.insTreatmentId}"/></td>
 							</tbody>
 							</c:forEach>
 						</table>

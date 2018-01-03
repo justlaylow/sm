@@ -65,8 +65,8 @@ public class ExcelUtil {
 				List<Object> li = new ArrayList<Object>();
 				for (int y = row.getFirstCellNum(); y < row.getLastCellNum(); y++) {
 					cell = row.getCell(y);
-					if(cell==null||ExcelUtil.getCellValue(cell).equals("")) {
-						li.add("0");
+					if(cell==null||"".equals(ExcelUtil.getCellValue(cell))) {
+						li.add("");
 					}else {
 						li.add(getCellValue(cell));
 					}

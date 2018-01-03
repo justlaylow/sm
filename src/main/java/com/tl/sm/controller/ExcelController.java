@@ -34,6 +34,9 @@ public class ExcelController {
 	@Resource
 	private SalaryService salaryService;
 
+	/**
+	 * 工资导入导出
+	 * */
 	//poi Excel导入
 	@RequestMapping("/import")
 	public String beforeImport(excelList salaryList,HttpServletRequest request) {

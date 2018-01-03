@@ -3,129 +3,133 @@ package com.tl.sm.pojo;
 import java.util.Date;
 
 import org.springframework.format.annotation.DateTimeFormat;
+/**
+ * 工资导出实体类
+ * */
 
 public class ExcelExport {
+	//银行账户
 	private String bankAccount;
-
+	//姓名(员工表)
     private String salName;
-
+    //岗位类别
     private String postCategory;
-
+    //工号(员工表)
     private String salId;
-
+    //部门
     private String salDep;
-
+    //岗位
     private String salPost;
-
+    //sap账号
     private String salOa;
-
+    //统计类别
     private String staCategory;
-
+    //技能等级
     private String salSkilllevel;
-    
+    //备注
     private String salRemark;
-    
+    //sap账号
 	private String calHr;
-
+    //工号(工资表)
     private String calId;
-
+    //姓名(工资表)
     private String calName;
-
+    //基本工资
     private Float calBasic;
-
+    //岗位工资
     private Float calPost;
-
+    //浮动工资
     private Float calFloat;
-
+    //系数
     private Float calCoefficient;
-
+    //保密工资
     private Float calSecrecy;
-
+    //技能等级工资
     private Float calSkillLevel;
-
+    //司龄工资
     private Float calComage;
-
+    //奖金
     private Float calBonus;
-
+    //加班工资
     private Float calOvertime;
-
+    //津贴
     private Float calBenefit;
-
+    //考评工资
     private Float calCheck;
-
+    //工伤工资
     private Float calInjury;
-
+    //缺勤
     private Float calLeave;
-
+    //其他
     private Float calOther;
-
+    //罚款
     private Float calPenalty;
-
+    //扣款
     private Float calWithhold;
-
+    //水电
     private Float calWaterandele;
-
+    //餐补
     private Float calAllowance;
-
+    //实得工资
     private Float calResult;
-
+    //工资日期
     @DateTimeFormat(pattern="yyyy-MM-dd")
     private Date calDate;
-
+    //会费
     private Float calDues;
-
+    //工时
     private Float calManhour;
-
+    //工价
     private Float labourCost;
-
+    //效益工资
     private Float calBenefitwage;
-
+    //工时奖(没有使用)
     private Float calManhourBonus;
-
+    //工时工资
     private Float calManhourSalary;
-
+    //福利(没有使用)
     private Float calWelfare;
-
+    //应发工资
     private Float calShould;
-
+    //工废(没有使用)
     private Float calWaste;
-    
+    //工资合计
     private Float calTotal;
-
+    //下月扣款
 	private Float calLastWithhold;
-
+    //所得税
     private Float calIncometax;
-    
+    //身份证
     private String insIden;
-
+    //家庭住址
     private String insAddress;
-
+    //保险基数
     private String insCarNumber;
-
+    //养老编号(没有使用)
     private String insOldId;
-
+    //养老保险
     private String insOld;
-
+    //工伤投保地
     private String insTreatmentId;
-
+    //医疗保险
     private String insTreatments;
-
+    //大病编号(没有使用)
     private String insIllId;
-
+    //大病医疗
     private String insIll;
-
+    //养老投保地
     private String insurance;
-
+    //失业编号(没有使用)
     private String insUnempId;
-
+    //失业保险
     private String insUnemp;
-
+    //失业投保地
     private String insUnempAddress;
-
+    //公积金
     private String insAccFund;
-
+    //公积投保地
     private String insAccAddress;
-    
+    //医保投保地
     private String insSign;
 
 	public String getInsSign() {

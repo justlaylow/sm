@@ -17,27 +17,26 @@
 				<form action="/sm/list/all" method="post">
 					工号：<input name="calId" value="${param.calId}">
 					姓名：<input name="calName" value="${param.calName}"> 
-					工资日期：<input name="calDate" tyep="text" id="mydatepicker"> 
+					工资日期：<input name="calDate" type="text" id="mydatepicker"> 
 					<input type="submit" value="查询" id="find">
 					<input id="maxMonth" value="${maxMonth}" style="display: none;">
 					<input id="checkMonth" value="${param.calDate}" style="display: none;">
 					<button type="button" onclick="back()">返回</button>
 				</form>
-				<c:forEach var="all" items="${listAll }">
-					<form action="/sm/allInfo" method="post">
-						<table align="center"
-							style="border-collapse: separate; border-spacing: 15px;white-space: nowrap;">
+				<form action="/sm/allInfo" method="post">
+					<c:forEach var="all" items="${listAll}">
+						<c:forEach var="cal" items="${all.salSalaryList}">
+						<table align="center" style="border-collapse: separate; border-spacing: 15px;white-space: nowrap;">
 							<tr>
-								<c:forEach var="cal" items="${all.salSalaryList }">
-									<td><label>姓名:</label></td>
-									<td><input name="calName" required="true"
-										value="${cal.calName}"></td>
-									<td><label>工号:</label></td>
-									<td><input name="calId" required="true"
-										value="${cal.calId}" readonly="readonly"></td>
-									<td><label>银行账号:</label></td>
-									<td><input name="bankAccount" value="${all.bankAccount}"
-										size="30px"></td>
+								<td><label>姓名:</label></td>
+								<td><input name="calName" required="true"
+									value="${cal.calName}"></td>
+								<td><label>工号:</label></td>
+								<td><input name="calId" required="true"
+									value="${cal.calId}" readonly="readonly"></td>
+								<td><label>银行账号:</label></td>
+								<td><input name="bankAccount" value="${all.bankAccount}"
+									size="30px"></td>
 							</tr>
 							<tr>
 								<td><label>岗位类别:</label></td>
@@ -99,16 +98,16 @@
 								<td><label>其他:</label></td>
 								<td><input name="calOther" value="${cal.calOther}"></td>
 							</tr>
+							<c:forEach var="ins" items="${all.salInsuranceList}">
 							<tr>
 								<td><label>会费:</label></td>
 								<td><input type="text" name="calDues"
 									value="${cal.calDues}"></td>
-								<c:forEach var="ins" items="${all.salInsuranceList }">
-									<td><label>养老保险:</label></td>
-									<td><input name="insOld" value="${ins.insOld}"></td>
-									<td><label>医保:</label></td>
-									<td><input type="text" name="insTreatments"
-										value="${ins.insTreatments}"></td>
+								<td><label>养老保险:</label></td>
+								<td><input name="insOld" value="${ins.insOld}"></td>
+								<td><label>医保:</label></td>
+								<td><input type="text" name="insTreatments"
+									value="${ins.insTreatments}"></td>
 							</tr>
 							<tr>
 								<td><label>失业:</label></td>
@@ -128,8 +127,8 @@
 								<td><label>公积金:</label></td>
 								<td><input type="text" name="insAccFund"
 									value="${ins.insAccFund}"></td>
-								</c:forEach>
 							</tr>
+							</c:forEach>
 							<tr>
 								<td><label>下月扣款:</label></td>
 								<td><input name="calLastWithhold"
@@ -186,8 +185,8 @@
 								}
 							});
 						</script>
-					</form>
-				</c:forEach>
+					</c:forEach>
+				</form>
 				${AllDeleteMessage}
 				${AllUpdateMessage}
 			</div>

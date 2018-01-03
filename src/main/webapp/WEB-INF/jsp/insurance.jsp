@@ -84,7 +84,7 @@
 
 				<!-- 部门列表 -->
 				<form action="/sm/updateBatch/ins" method="post" id="fm">
-				<table class="table table-bordered" id="datagrid" style="white-space: nowrap;">
+				<table class="table table-hover" id="datagrid" style="white-space: nowrap;">
 					<thead>
 						<tr>
 							<th>删除</th>
@@ -102,6 +102,7 @@
 							<th>医保投保地</th>
 							<th>失业投保地</th>
 							<th>公积金投保地</th>
+							<th>工伤投保地</th>
 							<th>备注</th>
 						</tr>
 					</thead>
@@ -125,9 +126,10 @@
 									<td> <input type="text" name="insurance[${i.index}].insUnemp" value="${ins.insUnemp}" style="width: 70px;"></td>
 									<td> <input type="text" name="insurance[${i.index}].insAccFund" value="${ins.insAccFund}" style="width: 70px;"></td>
 									<td> <input type="text" name="insurance[${i.index}].insurance" value="${ins.insurance}" style="width: 80px;text-align: center;"></td>
-									<td> <input type="text" name="insurance[${i.index}].insSign" value="${ins.insSign}" style="width: 70px;"></td>
+									<td> <input type="text" name="insurance[${i.index}].insSign" value="${ins.insSign}" style="width: 80px;text-align: center;"></td>
 									<td> <input name="insurance[${i.index}].insUnempAddress" value="${ins.insUnempAddress}" style="width: 80px;text-align: center;"></td>
 									<td> <input name="insurance[${i.index}].insAccAddress" value="${ins.insAccAddress}" style="width: 100px;text-align: center;"></td>
+									<td> <input name="insurance[${i.index}].insTreatmentId" value="${ins.insTreatmentId}" style="width: 80px;text-align: center;"></td>
 									<td> <input name="insurance[${i.index}].insRemark" value="${ins.insRemark}" style="width: 100px;"></td>
 								
 							</tr>

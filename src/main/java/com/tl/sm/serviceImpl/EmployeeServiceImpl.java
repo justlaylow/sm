@@ -91,7 +91,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 		return listAll;
 	}
 	
-	//poiExcel导入保险
+	//poiExcel导入员工信息
 	public List<Employee> importExcelInfo(InputStream in, MultipartFile file,Integer adminId) throws Exception{  
 	    List<List<Object>> listob = ExcelUtil.getBankListByExcel(in,file.getOriginalFilename());  
 	    List<Employee> employeeList = new ArrayList<Employee>();
@@ -106,11 +106,20 @@ public class EmployeeServiceImpl implements EmployeeService {
 	        emp.setSalDep(ob.get(2).toString());
 	        emp.setPostCategory(ob.get(3).toString());
 	        emp.setSalPost(ob.get(4).toString());
-	        emp.setSalOa(ob.get(5).toString());
+	        if("".equals(ob.get(5).toString())||ob.get(5).toString()==null) {
+	        	emp.setSalOa("");
+	        }else {
+	        	emp.setSalOa(ob.get(5).toString());
+	        }
+	        
 	        emp.setStaCategory(ob.get(6).toString());
 	        emp.setSalRemark(ob.get(7).toString());
 	        emp.setSalSkilllevel(ob.get(8).toString());
-	        emp.setSalSkillSalary(Float.parseFloat(ob.get(9).toString()));
+	        if("".equals(ob.get(9).toString())||ob.get(9).toString()==null) {
+	        	emp.setSalSkillSalary(0.0f);
+	        }else {
+	        	emp.setSalSkillSalary(Float.parseFloat(ob.get(9).toString()));
+	        }
 	        emp.setBankAccount(ob.get(10).toString());
 	        
 	        employeeList.add(emp);

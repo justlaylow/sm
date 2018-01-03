@@ -44,10 +44,17 @@ public class SalaryServiceImpl implements SalaryService{
 	    SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
 	    //遍历listob数据，把数据放到List中  
 	    for (int i = 0; i < listob.size(); i++) { 
-	        List<Object> ob = listob.get(i);  
+	        List<Object> ob = listob.get(i);
 	        Salary salary = new Salary();  
 	        //设置编号  String.valueOf(ob.get())
 	        //通过遍历实现把每一列封装成一个model中，再把所有的model用List集合装载 
+	        
+	        //工资表单元格如果为空，则赋0
+	        for(int j=0;j<22;j++) {
+	        	if("".equals(ob.get(j))) {
+		        	ob.set(j, "0");
+		        }
+	        }
 	        salary.setCalDate(simpleDateFormat.parse(calDate));
 	        salary.setCalHr(String.valueOf(ob.get(0).toString()));
 	        salary.setCalId(String.valueOf(ob.get(1).toString()));
@@ -71,6 +78,7 @@ public class SalaryServiceImpl implements SalaryService{
 	        salary.setCalWaterandele(Float.parseFloat(ob.get(19).toString()));
 	        salary.setCalAllowance(Float.parseFloat(ob.get(20).toString()));
 	        salary.setCalManhourSalary(Float.parseFloat(ob.get(21).toString()));
+	        //效益工资
 	        Float calBenefitwage = (salary.getCalPost()+salary.getCalBasic())*salary.getCalCoefficient();
 	        salary.setCalBenefitwage(calBenefitwage);
 	        //通过工号查到对应保险
@@ -85,16 +93,15 @@ public class SalaryServiceImpl implements SalaryService{
 	    	        +Float.parseFloat(ins.getInsIll())+Float.parseFloat(ins.getInsUnemp());
 	        
 	        //计算应得工资  
+	        //(基本工资+岗位工资+保密工资+技能工资+司龄工资+奖金+加班工资+津贴+考评工资+工伤工资+其他+工时工资-罚款-缺勤)*系数
 	        Float calShould = (Float.parseFloat(ob.get(3).toString())+Float.parseFloat(ob.get(4).toString())
-	        +Float.parseFloat(ob.get(5).toString())+Float.parseFloat(ob.get(7).toString())
+	        +Float.parseFloat(ob.get(7).toString())
 	        +Float.parseFloat(ob.get(8).toString())+Float.parseFloat(ob.get(9).toString())
 	        +Float.parseFloat(ob.get(10).toString())+Float.parseFloat(ob.get(11).toString())
 	        +Float.parseFloat(ob.get(12).toString())+Float.parseFloat(ob.get(13).toString())
 	        +Float.parseFloat(ob.get(14).toString())+Float.parseFloat(ob.get(16).toString())
-	        +Float.parseFloat(ob.get(20).toString())
 	        +Float.parseFloat(ob.get(21).toString())-Float.parseFloat(ob.get(17).toString())
-	        -Float.parseFloat(ob.get(15).toString())-Float.parseFloat(ob.get(18).toString())
-	        -Float.parseFloat(ob.get(19).toString()))
+	        -Float.parseFloat(ob.get(15).toString()))
 	        *Float.parseFloat(ob.get(6).toString());
 	        
 	        //计算所得税
@@ -139,18 +146,19 @@ public class SalaryServiceImpl implements SalaryService{
 	        }
 	        
 	        //扣款合计
+	        //(会费+养老+医保+大病+失业+扣款+水电费+公积金+所得税)
 	        Float total = calDues+Float.parseFloat(ins.getInsOld())
 			+Float.parseFloat(ins.getInsTreatments())
         	+Float.parseFloat(ins.getInsIll())
         	+Float.parseFloat(ins.getInsUnemp())
         	+Float.parseFloat(ins.getInsAccFund())
         	+Float.parseFloat(ob.get(19).toString())+Float.parseFloat(ob.get(18).toString())
-        	+Float.parseFloat(ob.get(17).toString())
         	+calIncometax;
 	        salary.setCalTotal(total);
         	
 	        //实得工资
-	        Float calResult = calShould-accFund-insurance-calIncometax-calDues;
+	        //(应发工资-扣款合计)
+	        Float calResult = calShould-total;
 	        
 	        salary.setCalResult(calResult);
 	        salary.setCalDues(calDues);
@@ -334,6 +342,7 @@ public class SalaryServiceImpl implements SalaryService{
         excel.add(new ExcelBean("医保投保地","insSign",0));
         excel.add(new ExcelBean("失业投保地","insUnempAddress",0));
         excel.add(new ExcelBean("公积金投保地","insAccAddress",0));
+        excel.add(new ExcelBean("工伤投保地","insTreatmentId",0));
         excel.add(new ExcelBean("部门名称","salDep",0));
         excel.add(new ExcelBean("统计类别","staCategory",0));
         excel.add(new ExcelBean("考评工资","calCheck",0));
@@ -360,6 +369,18 @@ public class SalaryServiceImpl implements SalaryService{
 			message = "导入成功";
 		}else {
 			message = "导入失败";
+		}
+		return message;
+	}
+
+	//批量更新工资信息
+	public String updateBatch(List<Salary> list) {
+		String message = "";
+		int i = salaryMapper.updateBatchSalary(list);
+		if(i>0) {
+			message = "更新成功";
+		}else {
+			message = "更新失败";
 		}
 		return message;
 	}

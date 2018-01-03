@@ -43,32 +43,64 @@
 						</tr>
 						<tr>
 							<td><label>养老保险:</label></td>
-							<td><input name="insOld"></td>
+							<td><input name="insOld" id="old"></td>
 							<td><label>养老投保地:</label></td>
-							<td><input type="text" name="insurance"></td>
+							<td><input type="text" name="insurance" id="old1" style="display: none">
+								<select id="old2" style="width: 175px;">
+									<option style="display: none"></option>
+									<option>常德</option>
+									<option>长沙</option>
+								</select>
+							</td>
 							
 						</tr>
 						<tr>
 							<td><label>医疗保险:</label></td>
-							<td><input name="insTreatments"></td>
+							<td><input name="insTreatments" id="treatment"></td>
 							<td><label>医保投保地:</label></td>
-							<td><input type="text" name="insSign"></td>
+							<td><input type="text" name="insSign" id="treatment1" style="display: none;">
+								<select id="treatment2" style="width: 175px;">
+									<option style="display: none"></option>
+									<option>常德</option>
+									<option>长沙</option>
+								</select>
+							</td>
 						</tr>
 						<tr>
 							<td><label>失业保险:</label></td>
-							<td><input type="text" name="insUnemp"></td>
+							<td><input type="text" name="insUnemp" id="unemp"></td>
 							<td><label>失业投保地:</label></td>
-							<td><input name="insUnempAddress"></td>
+							<td><input name="insUnempAddress" id="unemp1" style="display: none;">
+								<select id="unemp2" style="width: 175px;">
+									<option style="display: none"></option>
+									<option>常德</option>
+									<option>长沙</option>
+								</select>
+							</td>
 						</tr>
 						<tr>
 							<td><label>公积金:</label></td>
-							<td><input type="text" name="insAccFund"></td>
+							<td><input type="text" name="insAccFund" id="accfund"></td>
 							<td><label>公积金投保地:</label></td>
-							<td><input name="insAccAddress"></td>
+							<td><input name="insAccAddress" id="accfund1" style="display: none;">
+								<select id="accfund2" style="width: 175px;">
+									<option style="display: none"></option>
+									<option>常德</option>
+									<option>长沙</option>
+								</select>
+							</td>
 						</tr>
 						<tr>
 							<td><label>大病医疗:</label></td>
-							<td><input name="insIll"></td>
+							<td><input name="insIll" id="ill"></td>
+							<td><label>工伤投保地:</label></td>
+							<td><input name="insTreatmentId" id="injury1" style="display: none;">
+								<select id="injury2" style="width: 175px;">
+									<option style="display: none"></option>
+									<option>常德</option>
+									<option>长沙</option>
+								</select>
+							</td>
 						</tr>
 					</table>
 					<button class="btn btn-default" type="button"
@@ -87,6 +119,11 @@
 		function checkAdd(){
 			var id = $('#idcheck').val();
 			var name = $('#namecheck').val();
+			var old = $('#old').val();
+			var treatment = $('#treatment').val();
+			var unemp = $('#unemp').val();
+			var accfund = $('#accfund').val();
+			var ill = $('#ill').val();
 			if(id==""){
 				alert('工号不能为空');
 				return false;
@@ -95,7 +132,52 @@
 				alert('姓名不能为空');
 				return false;
 			}
+			if(old==""){
+				alert('养老保险不能为空');
+				return false;
+			}
+			if(treatment==""){
+				alert('医保不能为空');
+				return false;
+			}
+			if(ill==""){
+				alert('大病医疗不能为空');
+				return false;
+			}
+			if(unemp==""){
+				alert('失业保险不能为空');
+				return false;
+			}
+			if(accfund==""){
+				alert('公积金不能为空');
+				return false;
+			}
 		}
+		
+		$('#old2').change(function(){
+			var value = $('#old2 option:selected').text();
+			$('#old1').val(value);
+		})
+		
+		$('#treatment2').change(function(){
+			var value = $('#treatment2 option:selected').text();
+			$('#treatment1').val(value);
+		})
+		
+		$('#unemp2').change(function(){
+			var value = $('#unemp2 option:selected').text();
+			$('#unemp1').val(value);
+		})
+		
+		$('#accfund2').change(function(){
+			var value = $('#accfund2 option:selected').text();
+			$('#accfund1').val(value);
+		})
+		
+		$('#injury2').change(function(){
+			var value = $('#injury2 option:selected').text();
+			$('#injury1').val(value);
+		})
 	</script>
 </body>
 </html>

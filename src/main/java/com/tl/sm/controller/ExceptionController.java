@@ -14,7 +14,9 @@ import com.tl.sm.service.ExceptionService;
 public class ExceptionController {
 	@Resource
 	private ExceptionService exceptionService;
-	
+	/**
+	 * 异常处理
+	 * */
 	@RequestMapping("/controller")
 	public void controller(HttpServletRequest request,Integer id) throws Exception{
 		switch(id) {

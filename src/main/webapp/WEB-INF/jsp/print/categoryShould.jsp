@@ -69,8 +69,10 @@
 			</tbody>
 		</c:forEach>
 	</table>
+	<br>
 	<p align="center">
 		<input type="button" id="print" value="打印">
+		<button id="categoryShould">导出</button>
 		<button id="back">返回</button>
 	</p>
 </div>
@@ -82,6 +84,10 @@
 	
 	$('#back').click(function(){
 		window.location = "/sm/print";
+	});
+
+	$('#categoryShould').click(function(){
+		window.location = "/sm/exportCategoryShould"
 	});
 </script>
 </body>

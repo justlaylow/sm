@@ -107,7 +107,7 @@
 							<td>${cal.calTotal}</td>
 							<td>${cal.calResult}</td>
 							<td>${cal.calAllowance}</td>
-							<td>${cal.calResult}</td>
+							<td><fmt:formatNumber type="number" value="${cal.calResult+cal.calAllowance}" pattern="0.00" maxFractionDigits="2"/></td>
 						</c:if>
 					</c:forEach>
 				</tr>
@@ -196,10 +196,11 @@
 					<td>${summing.withholdTotal}</td>
 					<td>${summing.reality}</td>
 					<td>${summing.mealAllowance}</td>
-					<td>${summing.reality}</td>
+					<td><fmt:formatNumber type="number" value="${summing.reality+summing.mealAllowance}" pattern="0.00" maxFractionDigits="2"/></td>
 				</tr>
 			</tbody>
 	</table>
+	<br>
 	<p align="center">
 		<input type="button" id="print" value="打印">
 		<button id="back">返回</button>

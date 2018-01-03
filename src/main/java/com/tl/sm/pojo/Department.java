@@ -2,13 +2,13 @@ package com.tl.sm.pojo;
 
 public class Department {
     private Integer id;
-
+    //工号
     private String depId;
-
+    //部门名称
     private String depName;
-
+    //成本类别
     private String depCostCategory;
-
+    //备注
     private String depRemark;
 
     public Integer getId() {

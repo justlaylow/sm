@@ -17,7 +17,9 @@ import com.tl.sm.service.AdminService;
 public class LoginController {
 	@Resource
 	private AdminService adminService;
-
+	/**
+	 * 登陆
+	 * */
 	//登陆
 	@RequestMapping(value = "login")
 	public String login(String loginname, String password, HttpServletRequest request) {

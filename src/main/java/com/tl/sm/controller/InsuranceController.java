@@ -24,7 +24,9 @@ import com.tl.sm.util.excelList;
 public class InsuranceController {
 	@Resource
 	private InsuranceService insuranceService;
-	
+	/**
+	 * 保险金维护
+	 * */
 	//查询所有员工的保险信息
 	@RequestMapping("/select/ins")
 	public String listIns(HttpServletRequest request){

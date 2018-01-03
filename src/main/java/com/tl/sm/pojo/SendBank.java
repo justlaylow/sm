@@ -1,8 +1,13 @@
 package com.tl.sm.pojo;
-
+/**
+ * 送银行文件
+ * */
 public class SendBank {
+	//银行账户
 	private String bankAccount;
+	//姓名
 	private String salName;
+	//实得工资
 	private Float calResult;
 	
 	public String getBankAccount() {

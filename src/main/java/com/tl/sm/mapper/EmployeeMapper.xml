@@ -98,8 +98,7 @@
 			<result column="insurance" jdbcType="VARCHAR" property="insurance" />
 			<result column="ins_unemp_id" jdbcType="VARCHAR" property="insUnempId" />
 			<result column="ins_unemp" jdbcType="VARCHAR" property="insUnemp" />
-			<result column="ins_unemp_address" jdbcType="VARCHAR"
-				property="insUnempAddress" />
+			<result column="ins_unemp_address" jdbcType="VARCHAR" property="insUnempAddress" />
 			<result column="ins_acc_fund" jdbcType="VARCHAR" property="insAccFund" />
 			<result column="ins_acc_address" jdbcType="VARCHAR" property="insAccAddress" />
 			<result column="ins_sign" jdbcType="VARCHAR" property="insSign" />

@@ -22,7 +22,9 @@ import com.tl.sm.util.Page;
 public class DepartmentController {
 	@Resource
 	private DepartmentService departmentService;
-
+	/**
+	 * 部门维护
+	 * */
 	// select * from department_查询所有部门
 	@RequestMapping("/list/dep")
 	public String listDep(HttpServletRequest request) {
@@ -59,13 +61,13 @@ public class DepartmentController {
 		request.setAttribute("listDep", listDep);
 		request.setAttribute("deleteDep", deleteDep);
 		/*
-		 * // 转发到/list/dep请求 mv.setView(new RedirectView("/list/dep"));
+		 * 转发到/list/dep请求 mv.setView(new RedirectView("/list/dep"));
 		 */
 		mv.setViewName("department");
 		return mv;
 	}
 
-	// mysql模糊查询like %xx%
+	//模糊查询
 	@RequestMapping("/blurryF/dep")
 	public String listByDep(Department department, HttpServletRequest request,String depId,String depName) {
 		List<Department> listDep = departmentService.listByDep(depId, depName);

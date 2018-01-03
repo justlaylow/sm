@@ -7,30 +7,30 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 public class Employee {
     private Integer id;
-
+    //技能等级工资
     private Float salSkillSalary;
-    
+    //银行账户
 	private String bankAccount;
-
+	//姓名
     private String salName;
-
+    //岗位类别
     private String postCategory;
-
+    //工号
     private String salId;
-
+    //部门
     private String salDep;
-
+    //岗位
     private String salPost;
-
+    //入职时间
     @DateTimeFormat(pattern="yyyy-MM-dd")
     private Date salDate;
-
+    //sap账号
     private String salOa;
-
+    //统计类别
     private String staCategory;
-
+    //备注
     private String salRemark;
-
+    //技能等级
     private String salSkilllevel;
     
     //员工保险信息
@@ -38,6 +38,7 @@ public class Employee {
     
     //员工工资信息
     private List<Salary> salSalaryList;
+    
 
     public Float getSalSkillSalary() {
 		return salSkillSalary;
@@ -46,7 +47,8 @@ public class Employee {
 	public void setSalSkillSalary(Float salSkillSalary) {
 		this.salSkillSalary = salSkillSalary;
 	}
-    public List<Salary> getSalSalaryList() {
+
+	public List<Salary> getSalSalaryList() {
 		return salSalaryList;
 	}
 

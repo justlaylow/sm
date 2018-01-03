@@ -162,7 +162,7 @@
 		<result column="bank_account" jdbcType="VARCHAR" property="bankAccount" />
 		<result column="sal_name" jdbcType="VARCHAR" property="salName" />
 	</resultMap>
-  
+	
   
   <sql id="Base_Column_List">
     Id, cal_hr, cal_id, cal_name, cal_basic, cal_post, cal_float, cal_coefficient, cal_secrecy, 
@@ -668,5 +668,191 @@
 		select c.*,e.* from employee_ e left join
 		calculate_ c on e.sal_id = c.cal_id
 	</select>
+	
+	<!-- 批量更新 -->
+  	<update id="updateBatchSalary" parameterType="java.util.List">
+        update calculate_
+        <trim prefix="set" suffixOverrides=",">
+            <trim prefix="cal_name =case" suffix="end,">
+     			<foreach collection="list" item="item" index="index">
+          			<if test="item.calName!=null">
+          			when Id=#{item.id} then #{item.calName}
+          			</if>
+     			</foreach>
+			</trim>
+			<trim prefix="cal_id =case" suffix="end,">
+     			<foreach collection="list" item="item" index="index">
+          			<if test="item.calId!=null">
+          			when Id=#{item.id} then #{item.calId}
+          			</if>
+     			</foreach>
+			</trim>
+			<trim prefix="cal_basic =case" suffix="end,">
+     			<foreach collection="list" item="item" index="index">
+          			<if test="item.calBasic!=null">
+          			when Id=#{item.id} then #{item.calBasic}
+          			</if>
+     			</foreach>
+			</trim>
+			<trim prefix="cal_post =case" suffix="end,">
+     			<foreach collection="list" item="item" index="index">
+          			<if test="item.calPost!=null">
+          			when Id=#{item.id} then #{item.calPost}
+          			</if>
+     			</foreach>
+			</trim>
+			<trim prefix="cal_comage =case" suffix="end,">
+     			<foreach collection="list" item="item" index="index">
+          			<if test="item.calComage!=null">
+          			when Id=#{item.id} then #{item.calComage}
+          			</if>
+     			</foreach>
+			</trim>
+			<trim prefix="cal_secrecy =case" suffix="end,">
+     			<foreach collection="list" item="item" index="index">
+          			<if test="item.calSecrecy!=null">
+          			when Id=#{item.id} then #{item.calSecrecy}
+          			</if>
+     			</foreach>
+			</trim>
+			<trim prefix="cal_skill_level =case" suffix="end,">
+     			<foreach collection="list" item="item" index="index">
+          			<if test="item.calSkillLevel!=null">
+          			when Id=#{item.id} then #{item.calSkillLevel}
+          			</if>
+     			</foreach>
+			</trim>
+			<trim prefix="cal_float =case" suffix="end,">
+     			<foreach collection="list" item="item" index="index">
+          			<if test="item.calFloat!=null">
+          			when Id=#{item.id} then #{item.calFloat}
+          			</if>
+     			</foreach>
+			</trim>
+			<trim prefix="cal_coefficient =case" suffix="end,">
+     			<foreach collection="list" item="item" index="index">
+          			<if test="item.calCoefficient!=null">
+          			when Id=#{item.id} then #{item.calCoefficient}
+          			</if>
+     			</foreach>
+			</trim>
+			<trim prefix="cal_bonus =case" suffix="end,">
+     			<foreach collection="list" item="item" index="index">
+          			<if test="item.calBonus!=null">
+          			when Id=#{item.id} then #{item.calBonus}
+          			</if>
+     			</foreach>
+			</trim>
+			<trim prefix="cal_overtime =case" suffix="end,">
+     			<foreach collection="list" item="item" index="index">
+          			<if test="item.calOvertime!=null">
+          			when Id=#{item.id} then #{item.calOvertime}
+          			</if>
+     			</foreach>
+			</trim>
+			<trim prefix="cal_benefit =case" suffix="end,">
+     			<foreach collection="list" item="item" index="index">
+          			<if test="item.calBenefit!=null">
+          			when Id=#{item.id} then #{item.calBenefit}
+          			</if>
+     			</foreach>
+			</trim>
+			<trim prefix="cal_check =case" suffix="end,">
+     			<foreach collection="list" item="item" index="index">
+          			<if test="item.calCheck!=null">
+          			when Id=#{item.id} then #{item.calCheck}
+          			</if>
+     			</foreach>
+			</trim>
+			<trim prefix="cal_injury =case" suffix="end,">
+     			<foreach collection="list" item="item" index="index">
+          			<if test="item.calInjury!=null">
+          			when Id=#{item.id} then #{item.calInjury}
+          			</if>
+     			</foreach>
+			</trim>
+			<trim prefix="cal_leave =case" suffix="end,">
+     			<foreach collection="list" item="item" index="index">
+          			<if test="item.calLeave!=null">
+          			when Id=#{item.id} then #{item.calLeave}
+          			</if>
+     			</foreach>
+			</trim>
+			<trim prefix="cal_other =case" suffix="end,">
+     			<foreach collection="list" item="item" index="index">
+          			<if test="item.calOther!=null">
+          			when Id=#{item.id} then #{item.calOther}
+          			</if>
+     			</foreach>
+			</trim>
+			<trim prefix="cal_penalty =case" suffix="end,">
+     			<foreach collection="list" item="item" index="index">
+          			<if test="item.calPenalty!=null">
+          			when Id=#{item.id} then #{item.calPenalty}
+          			</if>
+     			</foreach>
+			</trim>
+			<trim prefix="cal_withhold =case" suffix="end,">
+     			<foreach collection="list" item="item" index="index">
+          			<if test="item.calWithhold!=null">
+          			when Id=#{item.id} then #{item.calWithhold}
+          			</if>
+     			</foreach>
+			</trim>
+			<trim prefix="cal_waterandele =case" suffix="end,">
+     			<foreach collection="list" item="item" index="index">
+          			<if test="item.calWaterandele!=null">
+          			when Id=#{item.id} then #{item.calWaterandele}
+          			</if>
+     			</foreach>
+			</trim>
+			<trim prefix="cal_allowance =case" suffix="end,">
+     			<foreach collection="list" item="item" index="index">
+          			<if test="item.calAllowance!=null">
+          			when Id=#{item.id} then #{item.calAllowance}
+          			</if>
+     			</foreach>
+			</trim>
+			<trim prefix="cal_manhour_salary =case" suffix="end,">
+     			<foreach collection="list" item="item" index="index">
+          			<if test="item.calManhourSalary!=null">
+          			when Id=#{item.id} then #{item.calManhourSalary}
+          			</if>
+     			</foreach>
+			</trim>
+			<trim prefix="cal_dues =case" suffix="end,">
+     			<foreach collection="list" item="item" index="index">
+          			<if test="item.calDues!=null">
+          			when Id=#{item.id} then #{item.calDues}
+          			</if>
+     			</foreach>
+			</trim>
+			<trim prefix="cal_incometax =case" suffix="end,">
+     			<foreach collection="list" item="item" index="index">
+          			<if test="item.calIncometax!=null">
+          			when Id=#{item.id} then #{item.calIncometax}
+          			</if>
+     			</foreach>
+			</trim>
+			<trim prefix="cal_should =case" suffix="end,">
+     			<foreach collection="list" item="item" index="index">
+          			<if test="item.calShould!=null">
+          			when Id=#{item.id} then #{item.calShould}
+          			</if>
+     			</foreach>
+			</trim>
+			<trim prefix="cal_result =case" suffix="end,">
+     			<foreach collection="list" item="item" index="index">
+          			<if test="item.calResult!=null">
+          			when Id=#{item.id} then #{item.calResult}
+          			</if>
+     			</foreach>
+			</trim>
+        </trim>
+        where Id in
+        <foreach collection="list" index="index" item="item" separator="," open="(" close=")">
+            #{item.id}
+        </foreach>
+    </update>
   
 </mapper>

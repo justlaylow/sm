@@ -5,105 +5,106 @@ import java.util.Date;
 import org.springframework.format.annotation.DateTimeFormat;
 
 public class AllInfo {
+	//银行账户
 	private String bankAccount;
-
+	//姓名(工资表)
     private String calName;
-    
+    //工号
     private String calId;
-    
+    //姓名(员工表)
     private String salName;
-
+    //岗位类别
     private String postCategory;
-
+    //工号(员工表)
     private String salId;
-
+    //部门
     private String salDep;
-
+    //岗位
     private String salPost;
-
+    //sap账号
     private String salOa;
-
+    //岗位类别
     private String staCategory;
-
+    //备注
     private String salRemark;
-
+    //技能等级
     private String salSkilllevel;
-    
+    //技能等级工资
     private String salSkillSalary;
-    
+    //养老保险
     private String insOld;
-
+    //医疗保险
     private String insTreatments;
-
+    //工号(保险表)
     private String insId;
-    
+    //姓名(保险表)
     private String insName;
-    
+    //大病医疗
     private String insIll;
-
+    //失业保险
     private String insUnemp;
-
+    //公积金
     private String insAccFund;
-
+    //基本工资
     private Float calBasic;
-
+    //岗位工资
     private Float calPost;
-
+    //系数
     private Float calCoefficient;
-
+    //保密工资
     private Float calSecrecy;
-
+    //技能工资
     private Float calSkillLevel;
-
+    //司龄工资
     private Float calComage;
-
+    //奖金
     private Float calBonus;
-
+    //加班工资
     private Float calOvertime;
-
+    //津贴
     private Float calBenefit;
-
+    //考评工资
     private Float calCheck;
-
+    //工伤工资
     private Float calInjury;
-
+    //缺勤
     private Float calLeave;
-
+    //其他
     private Float calOther;
-
+    //罚款
     private Float calPenalty;
-
+    //扣款
     private Float calWithhold;
-
+    //水电
     private Float calWaterandele;
-
+    //餐补
     private Float calAllowance;
-
+    //实得工资
     private Float calResult;
-    
+    //工资日期
     @DateTimeFormat(pattern="yyyy-MM-dd")
     private Date calDate;
-
+    //会费
     private Float calDues;
-
+    //工时
     private Float calManhour;
-
+    //工价
     private Float labourCost;
-
+    //效益工资
     private Float calBenefitwage;
-
+    //工时奖
     private Float calManhourBonus;
-
+    //工时工资
     private Float calManhourSalary;
-
+    //福利
     private Float calWelfare;
-
+    //应得工资
     private Float calShould;
-
+    //工废
     private Float calWaste;
-
+    //下月扣款
     private Float calLastWithhold;
-
+    //所得税
     private Float calIncometax;
 
     

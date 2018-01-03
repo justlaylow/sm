@@ -28,4 +28,16 @@ public interface PrintService {
 	//Excel导出
 	public XSSFWorkbook exportExcelInfo() throws InvocationTargetException, ClassNotFoundException, IntrospectionException, ParseException, IllegalAccessException ;
 	
+	//汇总表excel导出(应发)
+	public XSSFWorkbook exportExcelDepInfo() throws InvocationTargetException, ClassNotFoundException, IntrospectionException, ParseException, IllegalAccessException;
+
+	//统计表excel导出(应发)
+		public XSSFWorkbook exportExcelCategoryShould() throws InvocationTargetException, ClassNotFoundException, IntrospectionException, ParseException, IllegalAccessException;
+		
+	//汇总表excel导出(实得)
+	public XSSFWorkbook exportExcelDepReality() throws InvocationTargetException, ClassNotFoundException, IntrospectionException, ParseException, IllegalAccessException;
+	
+	//统计表excel导出(实得)
+	public XSSFWorkbook exportExcelCategoryReality() throws InvocationTargetException, ClassNotFoundException, IntrospectionException, ParseException, IllegalAccessException;
+		
 }

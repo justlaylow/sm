@@ -6,48 +6,48 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 public class Insurance {
     private Integer id;
-
+    //姓名
     private String insName;
-
+    //工号
     private String insId;
-
+    //性别
     private String insSex;
-
+    //出生日期
     @DateTimeFormat(pattern="yyyy-MM-dd")
     private Date insBoth;
-
+    //身份证
     private String insIden;
-
+    //家庭住址
     private String insAddress;
-
+    //保险基数
     private String insCarNumber;
-
+    //养老编号(没有使用)
     private String insOldId;
-
+    //养老保险
     private String insOld;
-
+    //工伤投保地
     private String insTreatmentId;
-
+    //医疗保险
     private String insTreatments;
-
+    //大病编号(没有使用)
     private String insIllId;
-
+    //大病医疗
     private String insIll;
-
+    //养老投保地
     private String insurance;
-
+    //失业编号(没有使用)
     private String insUnempId;
-
+    //失业保险
     private String insUnemp;
-
+    //失业投保地
     private String insUnempAddress;
-
+    //公积金
     private String insAccFund;
-
+    //公积金投保地
     private String insAccAddress;
-
+    //医疗投保地
     private String insSign;
-
+    //备注
     private String insRemark;
 
     public Integer getId() {

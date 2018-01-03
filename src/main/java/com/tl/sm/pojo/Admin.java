@@ -1,8 +1,11 @@
 package com.tl.sm.pojo;
 
 public class Admin {
+	//id
 	private int id;
+	//账号
 	private String adm_count;
+	//密码
 	private String adm_pass;
 	
 	public int getId() {

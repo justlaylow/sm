@@ -1,7 +1,6 @@
 package com.tl.sm.serviceImpl;
 
 import java.io.InputStream;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -11,9 +10,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.tl.sm.mapper.InsuranceMapper;
-import com.tl.sm.pojo.Employee;
 import com.tl.sm.pojo.Insurance;
-import com.tl.sm.pojo.Salary;
 import com.tl.sm.service.InsuranceService;
 import com.tl.sm.util.ExcelUtil;
 
@@ -92,6 +89,7 @@ public class InsuranceServiceImpl implements InsuranceService{
 	        Insurance insurance = new Insurance();  
 	        //设置编号  String.valueOf(ob.get())
 	        //通过遍历实现把每一列封装成一个model中，再把所有的model用List集合装载 
+	        
 	        insurance.setInsId(ob.get(0).toString());
 	        insurance.setInsName(ob.get(1).toString());
 	        insurance.setInsCarNumber(ob.get(2).toString());
@@ -132,19 +130,16 @@ public class InsuranceServiceImpl implements InsuranceService{
 	        ins.setInsName(ob.get(1).toString());
 	        ins.setInsSex(ob.get(2).toString());
 	        ins.setInsCarNumber(ob.get(3).toString());
-	        ins.setInsOldId(ob.get(4).toString());
-	        ins.setInsOld(ob.get(5).toString());
-	        ins.setInsTreatmentId(ob.get(6).toString());
-	        ins.setInsTreatments(ob.get(7).toString());
-	        ins.setInsIllId(ob.get(8).toString());
-	        ins.setInsIll(ob.get(9).toString());
-	        ins.setInsUnempId(ob.get(10).toString());
-	        ins.setInsUnemp(ob.get(11).toString());
-	        ins.setInsAccFund(ob.get(12).toString());
-	        ins.setInsurance(ob.get(13).toString());
-	        ins.setInsSign(ob.get(14).toString());
-	        ins.setInsUnempAddress(ob.get(15).toString());
-	        ins.setInsAccAddress(ob.get(16).toString());
+	        ins.setInsOld(ob.get(4).toString());
+	        ins.setInsTreatments(ob.get(5).toString());
+	        ins.setInsIll(ob.get(6).toString());
+	        ins.setInsUnemp(ob.get(7).toString());
+	        ins.setInsAccFund(ob.get(8).toString());
+	        ins.setInsurance(ob.get(9).toString());
+	        ins.setInsSign(ob.get(10).toString());
+	        ins.setInsUnempAddress(ob.get(11).toString());
+	        ins.setInsAccAddress(ob.get(12).toString());
+	        ins.setInsTreatmentId(ob.get(13).toString());
 	        
 	        insuranceList.add(ins);
 	        

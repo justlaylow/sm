@@ -33,13 +33,14 @@ public class PrintController {
 	private PrintService printService;
 	@Resource
 	private AllInfoMapper allInfoMapper;//查询工资最大月份
-	
+	/**
+	 * 工资打印
+	 * */
 	//部门工资条
 	@RequestMapping("/departmentSalary")
 	public String departmentSalary(HttpServletRequest request,String salDep) {
 		//部门员工的工资信息
 		List<Employee> listByDepName = printService.departmentSalary(salDep);
-		System.out.println("listByDepName");
 		//部门工资合计
 		List<Summing> sumList = printService.department();
 		Summing sum = new Summing();
@@ -101,7 +102,7 @@ public class PrintController {
 		return "print/sendBank";
 	}
 	
-	//poi Excel导出
+	//poi Excel导出送银行文件
 	@RequestMapping("/exportBank")
     @ResponseBody
     public  void excelAvdImpot(HttpServletRequest request, HttpServletResponse response) throws ClassNotFoundException, IntrospectionException, IllegalAccessException, ParseException, InvocationTargetException {
@@ -127,4 +128,113 @@ public class PrintController {
             e.printStackTrace();
         }
     }
+	
+	//poi Excel导出工资汇总文件(应发)
+	@RequestMapping("/exportDepExcel")
+    @ResponseBody
+    public  void excelAvdImpot2(HttpServletRequest request, HttpServletResponse response) throws ClassNotFoundException, IntrospectionException, IllegalAccessException, ParseException, InvocationTargetException {
+        response.reset(); //清除buffer缓存
+        Map<String,Object> map=new HashMap<String,Object>();
+        // 指定下载的文件名
+        response.setHeader("Content-Disposition", "attachment;filename=printDep.xlsx");
+        response.setContentType("application/vnd.ms-excel;charset=UTF-8");
+        response.setHeader("Pragma", "no-cache");
+        response.setHeader("Cache-Control", "no-cache");
+        response.setDateHeader("Expires", 0);
+        XSSFWorkbook workbook=null;
+        //导出Excel对象
+        workbook = printService.exportExcelDepInfo();
+        OutputStream output;
+        try {
+            output = response.getOutputStream();
+            BufferedOutputStream bufferedOutPut = new BufferedOutputStream(output);
+            bufferedOutPut.flush();
+            workbook.write(bufferedOutPut);
+            bufferedOutPut.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+	
+	//poi Excel导出工资汇总文件(实得)
+	@RequestMapping("/exportDepReality")
+    @ResponseBody
+    public  void excelAvdImpot3(HttpServletRequest request, HttpServletResponse response) throws ClassNotFoundException, IntrospectionException, IllegalAccessException, ParseException, InvocationTargetException {
+        response.reset(); //清除buffer缓存
+        Map<String,Object> map=new HashMap<String,Object>();
+        // 指定下载的文件名
+        response.setHeader("Content-Disposition", "attachment;filename=printDepReality.xlsx");
+        response.setContentType("application/vnd.ms-excel;charset=UTF-8");
+        response.setHeader("Pragma", "no-cache");
+        response.setHeader("Cache-Control", "no-cache");
+        response.setDateHeader("Expires", 0);
+        XSSFWorkbook workbook=null;
+        //导出Excel对象
+        workbook = printService.exportExcelDepReality();
+        OutputStream output;
+        try {
+            output = response.getOutputStream();
+            BufferedOutputStream bufferedOutPut = new BufferedOutputStream(output);
+            bufferedOutPut.flush();
+            workbook.write(bufferedOutPut);
+            bufferedOutPut.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+		
+	//poi Excel导出工资统计文件(应发)
+	@RequestMapping("/exportCategoryShould")
+    @ResponseBody
+    public  void excelAvdImpot4(HttpServletRequest request, HttpServletResponse response) throws ClassNotFoundException, IntrospectionException, IllegalAccessException, ParseException, InvocationTargetException {
+        response.reset(); //清除buffer缓存
+        Map<String,Object> map=new HashMap<String,Object>();
+        // 指定下载的文件名
+        response.setHeader("Content-Disposition", "attachment;filename=categoryShould.xlsx");
+        response.setContentType("application/vnd.ms-excel;charset=UTF-8");
+        response.setHeader("Pragma", "no-cache");
+        response.setHeader("Cache-Control", "no-cache");
+        response.setDateHeader("Expires", 0);
+        XSSFWorkbook workbook=null;
+        //导出Excel对象
+        workbook = printService.exportExcelCategoryShould();
+        OutputStream output;
+        try {
+            output = response.getOutputStream();
+            BufferedOutputStream bufferedOutPut = new BufferedOutputStream(output);
+            bufferedOutPut.flush();
+            workbook.write(bufferedOutPut);
+            bufferedOutPut.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+		
+	//poi Excel导出工资统计文件(实得)
+	@RequestMapping("/exportCategoryReality")
+    @ResponseBody
+    public  void excelAvdImpot5(HttpServletRequest request, HttpServletResponse response) throws ClassNotFoundException, IntrospectionException, IllegalAccessException, ParseException, InvocationTargetException {
+        response.reset(); //清除buffer缓存
+        Map<String,Object> map=new HashMap<String,Object>();
+        // 指定下载的文件名
+        response.setHeader("Content-Disposition", "attachment;filename=categoryReality.xlsx");
+        response.setContentType("application/vnd.ms-excel;charset=UTF-8");
+        response.setHeader("Pragma", "no-cache");
+        response.setHeader("Cache-Control", "no-cache");
+        response.setDateHeader("Expires", 0);
+        XSSFWorkbook workbook=null;
+        //导出Excel对象
+        workbook = printService.exportExcelCategoryReality();
+        OutputStream output;
+        try {
+            output = response.getOutputStream();
+            BufferedOutputStream bufferedOutPut = new BufferedOutputStream(output);
+            bufferedOutPut.flush();
+            workbook.write(bufferedOutPut);
+            bufferedOutPut.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+	
 }

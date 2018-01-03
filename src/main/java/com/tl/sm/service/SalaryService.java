@@ -43,4 +43,7 @@ public interface SalaryService {
 	//新增
 	public String insertCal(Salary salary);
 	
+	//批量更新
+	public String updateBatch(List<Salary> list);
+	
 }

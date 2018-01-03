@@ -16,6 +16,7 @@ import org.springframework.stereotype.Service;
 import com.tl.sm.mapper.DepartmentMapper;
 import com.tl.sm.mapper.EmployeeMapper;
 import com.tl.sm.mapper.SalaryMapper;
+import com.tl.sm.pojo.AllInfo;
 import com.tl.sm.pojo.Department;
 import com.tl.sm.pojo.Employee;
 import com.tl.sm.pojo.ExcelBean;
@@ -146,39 +147,39 @@ public class PrintServiceImpl implements PrintService{
 					withholdTotal+=list.get(j).getSalSalaryList().get(0).getCalTotal();
 					reality+=list.get(j).getSalSalaryList().get(0).getCalResult();
 					mealAllowance+=list.get(j).getSalSalaryList().get(0).getCalAllowance();
-					sum.setBasic(basic);
-					sum.setPost(post);
-					sum.setComage(comage);
-					sum.setSecrecy(secrecy);
-					sum.setSkillSalary(skillSalary);
-					sum.setBenefit(benefit);
-					sum.setLabourCost(labourCost);
-					sum.setManhour(manhour);
-					sum.setManhourSalary(manhourSalary);
-					sum.setOvertime(overtime);
-					sum.setBonus(bonus);
-					sum.setCheck(check);
-					sum.setAllowance(allowance);
-					sum.setLeave(leave);
-					sum.setInjury(injury);
-					sum.setPenalty(penalty);
-					sum.setOther(other);
-					sum.setShould(should);
+					sum.setBasic(reserve(basic));
+					sum.setPost(reserve(post));
+					sum.setComage(reserve(comage));
+					sum.setSecrecy(reserve(secrecy));
+					sum.setSkillSalary(reserve(skillSalary));
+					sum.setBenefit(reserve(benefit));
+					sum.setLabourCost(reserve(labourCost));
+					sum.setManhour(reserve(manhour));
+					sum.setManhourSalary(reserve(manhourSalary));
+					sum.setOvertime(reserve(reserve(overtime)));
+					sum.setBonus(reserve(bonus));
+					sum.setCheck(reserve(check));
+					sum.setAllowance(reserve(allowance));
+					sum.setLeave(reserve(leave));
+					sum.setInjury(reserve(injury));
+					sum.setPenalty(reserve(penalty));
+					sum.setOther(reserve(other));
+					sum.setShould(reserve(should));
 					dues = (float)(Math.round(dues*100))/100;
 					sum.setDues(dues);
-					sum.setOld(old);
-					sum.setTreatments(treatments);
-					sum.setIll(ill);
-					sum.setUnemp(unemp);
-					sum.setAccFund(accFund);
-					sum.setWaterAndEle(waterAndEle);
-					sum.setWithhold(withhold);
-					sum.setLastMonthWithhold(lastMonthWithhold);
+					sum.setOld(reserve(old));
+					sum.setTreatments(reserve(treatments));
+					sum.setIll(reserve(ill));
+					sum.setUnemp(reserve(unemp));
+					sum.setAccFund(reserve(accFund));
+					sum.setWaterAndEle(reserve(waterAndEle));
+					sum.setWithhold(reserve(withhold));
+					sum.setLastMonthWithhold(reserve(lastMonthWithhold));
 					incomeTax = (float)(Math.round(incomeTax*100))/100;
 					sum.setIncomeTax(incomeTax);
-					sum.setWithholdTotal(withholdTotal);
-					sum.setReality(reality);
-					sum.setMealAllowance(mealAllowance);
+					sum.setWithholdTotal(reserve(withholdTotal));
+					sum.setReality(reserve(reality));
+					sum.setMealAllowance(reserve(mealAllowance));
 				}
 			}
 			sumList.add(sum);
@@ -254,39 +255,39 @@ public class PrintServiceImpl implements PrintService{
 			mealAllowance+=list.get(j).getSalSalaryList().get(0).getCalAllowance();
 			sum.setDepartment(department);
 			sum.setCount(count);
-			sum.setBasic(basic);
-			sum.setPost(post);
-			sum.setComage(comage);
-			sum.setSecrecy(secrecy);
-			sum.setSkillSalary(skillSalary);
-			sum.setBenefit(benefit);
-			sum.setLabourCost(labourCost);
-			sum.setManhour(manhour);
-			sum.setManhourSalary(manhourSalary);
-			sum.setOvertime(overtime);
-			sum.setBonus(bonus);
-			sum.setCheck(check);
-			sum.setAllowance(allowance);
-			sum.setLeave(leave);
-			sum.setInjury(injury);
-			sum.setPenalty(penalty);
-			sum.setOther(other);
-			sum.setShould(should);
+			sum.setBasic(reserve(basic));
+			sum.setPost(reserve(post));
+			sum.setComage(reserve(comage));
+			sum.setSecrecy(reserve(secrecy));
+			sum.setSkillSalary(reserve(skillSalary));
+			sum.setBenefit(reserve(benefit));
+			sum.setLabourCost(reserve(labourCost));
+			sum.setManhour(reserve(manhour));
+			sum.setManhourSalary(reserve(manhourSalary));
+			sum.setOvertime(reserve(overtime));
+			sum.setBonus(reserve(bonus));
+			sum.setCheck(reserve(check));
+			sum.setAllowance(reserve(allowance));
+			sum.setLeave(reserve(leave));
+			sum.setInjury(reserve(injury));
+			sum.setPenalty(reserve(penalty));
+			sum.setOther(reserve(other));
+			sum.setShould(reserve(should));
 			dues = (float)(Math.round(dues*100))/100;
 			sum.setDues(dues);
-			sum.setOld(old);
-			sum.setTreatments(treatments);
-			sum.setIll(ill);
-			sum.setUnemp(unemp);
-			sum.setAccFund(accFund);
-			sum.setWaterAndEle(waterAndEle);
-			sum.setWithhold(withhold);
-			sum.setLastMonthWithhold(lastMonthWithhold);
+			sum.setOld(reserve(old));
+			sum.setTreatments(reserve(treatments));
+			sum.setIll(reserve(ill));
+			sum.setUnemp(reserve(unemp));
+			sum.setAccFund(reserve(accFund));
+			sum.setWaterAndEle(reserve(waterAndEle));
+			sum.setWithhold(reserve(withhold));
+			sum.setLastMonthWithhold(reserve(lastMonthWithhold));
 			incomeTax = (float)(Math.round(incomeTax*100))/100;
 			sum.setIncomeTax(incomeTax);
-			sum.setWithholdTotal(withholdTotal);
-			sum.setReality(reality);
-			sum.setMealAllowance(mealAllowance);
+			sum.setWithholdTotal(reserve(withholdTotal));
+			sum.setReality(reserve(reality));
+			sum.setMealAllowance(reserve(mealAllowance));
 			
 		}
 		sumList.add(sum);
@@ -381,39 +382,39 @@ public class PrintServiceImpl implements PrintService{
 					reality+=list.get(j).getSalSalaryList().get(0).getCalResult();
 					mealAllowance+=list.get(j).getSalSalaryList().get(0).getCalAllowance();
 					sum.setCount(count);
-					sum.setBasic(basic);
-					sum.setPost(post);
-					sum.setComage(comage);
-					sum.setSecrecy(secrecy);
-					sum.setSkillSalary(skillSalary);
-					sum.setBenefit(benefit);
-					sum.setLabourCost(labourCost);
-					sum.setManhour(manhour);
-					sum.setManhourSalary(manhourSalary);
-					sum.setOvertime(overtime);
-					sum.setBonus(bonus);
-					sum.setCheck(check);
-					sum.setAllowance(allowance);
-					sum.setLeave(leave);
-					sum.setInjury(injury);
-					sum.setPenalty(penalty);
-					sum.setOther(other);
-					sum.setShould(should);
+					sum.setBasic(reserve(basic));
+					sum.setPost(reserve(post));
+					sum.setComage(reserve(comage));
+					sum.setSecrecy(reserve(secrecy));
+					sum.setSkillSalary(reserve(skillSalary));
+					sum.setBenefit(reserve(benefit));
+					sum.setLabourCost(reserve(labourCost));
+					sum.setManhour(reserve(manhour));
+					sum.setManhourSalary(reserve(manhourSalary));
+					sum.setOvertime(reserve(overtime));
+					sum.setBonus(reserve(bonus));
+					sum.setCheck(reserve(check));
+					sum.setAllowance(reserve(allowance));
+					sum.setLeave(reserve(leave));
+					sum.setInjury(reserve(injury));
+					sum.setPenalty(reserve(penalty));
+					sum.setOther(reserve(other));
+					sum.setShould(reserve(should));
 					dues = (float)(Math.round(dues*100))/100;
 					sum.setDues(dues);
-					sum.setOld(old);
-					sum.setTreatments(treatments);
-					sum.setIll(ill);
-					sum.setUnemp(unemp);
-					sum.setAccFund(accFund);
-					sum.setWaterAndEle(waterAndEle);
-					sum.setWithhold(withhold);
-					sum.setLastMonthWithhold(lastMonthWithhold);
+					sum.setOld(reserve(old));
+					sum.setTreatments(reserve(treatments));
+					sum.setIll(reserve(ill));
+					sum.setUnemp(reserve(unemp));
+					sum.setAccFund(reserve(accFund));
+					sum.setWaterAndEle(reserve(waterAndEle));
+					sum.setWithhold(reserve(withhold));
+					sum.setLastMonthWithhold(reserve(lastMonthWithhold));
 					incomeTax = (float)(Math.round(incomeTax*100))/100;
 					sum.setIncomeTax(incomeTax);
-					sum.setWithholdTotal(withholdTotal);
-					sum.setReality(reality);
-					sum.setMealAllowance(mealAllowance);
+					sum.setWithholdTotal(reserve(withholdTotal));
+					sum.setReality(reserve(reality));
+					sum.setMealAllowance(reserve(mealAllowance));
 				}
 			}
 			sumList.add(sum);
@@ -488,39 +489,39 @@ public class PrintServiceImpl implements PrintService{
 			mealAllowance+=list.get(j).getSalSalaryList().get(0).getCalAllowance();
 			sum.setCategory(category);
 			sum.setCount(count);
-			sum.setBasic(basic);
-			sum.setPost(post);
-			sum.setComage(comage);
-			sum.setSecrecy(secrecy);
-			sum.setSkillSalary(skillSalary);
-			sum.setBenefit(benefit);
-			sum.setLabourCost(labourCost);
-			sum.setManhour(manhour);
-			sum.setManhourSalary(manhourSalary);
-			sum.setOvertime(overtime);
-			sum.setBonus(bonus);
-			sum.setCheck(check);
-			sum.setAllowance(allowance);
-			sum.setLeave(leave);
-			sum.setInjury(injury);
-			sum.setPenalty(penalty);
-			sum.setOther(other);
-			sum.setShould(should);
+			sum.setBasic(reserve(basic));
+			sum.setPost(reserve(post));
+			sum.setComage(reserve(comage));
+			sum.setSecrecy(reserve(secrecy));
+			sum.setSkillSalary(reserve(skillSalary));
+			sum.setBenefit(reserve(benefit));
+			sum.setLabourCost(reserve(labourCost));
+			sum.setManhour(reserve(manhour));
+			sum.setManhourSalary(reserve(manhourSalary));
+			sum.setOvertime(reserve(overtime));
+			sum.setBonus(reserve(bonus));
+			sum.setCheck(reserve(check));
+			sum.setAllowance(reserve(allowance));
+			sum.setLeave(reserve(leave));
+			sum.setInjury(reserve(injury));
+			sum.setPenalty(reserve(penalty));
+			sum.setOther(reserve(other));
+			sum.setShould(reserve(should));
 			dues = (float)(Math.round(dues*100))/100;
 			sum.setDues(dues);
-			sum.setOld(old);
-			sum.setTreatments(treatments);
-			sum.setIll(ill);
-			sum.setUnemp(unemp);
-			sum.setAccFund(accFund);
-			sum.setWaterAndEle(waterAndEle);
-			sum.setWithhold(withhold);
-			sum.setLastMonthWithhold(lastMonthWithhold);
+			sum.setOld(reserve(old));
+			sum.setTreatments(reserve(treatments));
+			sum.setIll(reserve(ill));
+			sum.setUnemp(reserve(unemp));
+			sum.setAccFund(reserve(accFund));
+			sum.setWaterAndEle(reserve(waterAndEle));
+			sum.setWithhold(reserve(withhold));
+			sum.setLastMonthWithhold(reserve(lastMonthWithhold));
 			incomeTax = (float)(Math.round(incomeTax*100))/100;
 			sum.setIncomeTax(incomeTax);
-			sum.setWithholdTotal(withholdTotal);
-			sum.setReality(reality);
-			sum.setMealAllowance(mealAllowance);
+			sum.setWithholdTotal(reserve(withholdTotal));
+			sum.setReality(reserve(reality));
+			sum.setMealAllowance(reserve(mealAllowance));
 			
 		}
 		sumList.add(sum);
@@ -562,6 +563,155 @@ public class PrintServiceImpl implements PrintService{
         //调用ExcelUtil的方法
         xssfWorkbook = ExcelUtil.createExcelFile(SendBank.class, sendBank, map, sheetName);
         return xssfWorkbook;
+    }
+    
+    //保存为excel文件(汇总文件(应发))
+    public XSSFWorkbook exportExcelDepInfo() throws InvocationTargetException, ClassNotFoundException, IntrospectionException, ParseException, IllegalAccessException{
+        //根据条件查询数据，把数据装载到一个list中
+    	List<Summing> Summing = department();
+
+        List<ExcelBean> excel=new ArrayList<ExcelBean>();
+        Map<Integer,List<ExcelBean>> map=new LinkedHashMap<Integer,List<ExcelBean>>();
+        XSSFWorkbook xssfWorkbook=null;
+
+        //设置标题栏
+        excel.add(new ExcelBean("部门名称","department",0));
+        excel.add(new ExcelBean("基本工资","basic",0));
+        excel.add(new ExcelBean("岗位工资","post",0));
+        excel.add(new ExcelBean("司龄工资","comage",0));
+        excel.add(new ExcelBean("保密工资","secrecy",0));
+        excel.add(new ExcelBean("技能工资","skillSalary",0));
+        excel.add(new ExcelBean("效益工资","benefit",0));
+        excel.add(new ExcelBean("工时工资","manhourSalary",0));
+        excel.add(new ExcelBean("加班","overtime",0));
+        excel.add(new ExcelBean("奖金","bonus",0));
+        excel.add(new ExcelBean("考评工资","check",0));
+        excel.add(new ExcelBean("工时","manhour",0));
+        excel.add(new ExcelBean("津贴","allowance",0));
+        excel.add(new ExcelBean("考勤扣款","leave",0));
+        excel.add(new ExcelBean("工伤产假","injury",0));
+        excel.add(new ExcelBean("罚款","penalty",0));
+        excel.add(new ExcelBean("其他","other",0));
+        excel.add(new ExcelBean("应发工资","should",0));
+        
+        
+        map.put(0, excel);
+        String sheetName = "Summing";
+        //调用ExcelUtil的方法
+        xssfWorkbook = ExcelUtil.createExcelFile(Summing.class, Summing, map, sheetName);
+        return xssfWorkbook;
+    }
+    
+    //保存为excel文件(统计文件(应发))
+    public XSSFWorkbook exportExcelCategoryShould() throws InvocationTargetException, ClassNotFoundException, IntrospectionException, ParseException, IllegalAccessException{
+        //根据条件查询数据，把数据装载到一个list中
+    	List<Summing> Summing = category();
+
+        List<ExcelBean> excel=new ArrayList<ExcelBean>();
+        Map<Integer,List<ExcelBean>> map=new LinkedHashMap<Integer,List<ExcelBean>>();
+        XSSFWorkbook xssfWorkbook=null;
+
+        //设置标题栏
+        excel.add(new ExcelBean("统计类别","category",0));
+        excel.add(new ExcelBean("人数","count",0));
+        excel.add(new ExcelBean("基本工资","basic",0));
+        excel.add(new ExcelBean("岗位工资","post",0));
+        excel.add(new ExcelBean("司龄工资","comage",0));
+        excel.add(new ExcelBean("保密工资","secrecy",0));
+        excel.add(new ExcelBean("技能工资","skillSalary",0));
+        excel.add(new ExcelBean("效益工资","benefit",0));
+        excel.add(new ExcelBean("工时工资","manhourSalary",0));
+        excel.add(new ExcelBean("加班","overtime",0));
+        excel.add(new ExcelBean("奖金","bonus",0));
+        excel.add(new ExcelBean("考评工资","check",0));
+        excel.add(new ExcelBean("工时","manhour",0));
+        excel.add(new ExcelBean("津贴","allowance",0));
+        excel.add(new ExcelBean("考勤扣款","leave",0));
+        excel.add(new ExcelBean("工伤产假","injury",0));
+        excel.add(new ExcelBean("罚款","penalty",0));
+        excel.add(new ExcelBean("其他","other",0));
+        excel.add(new ExcelBean("应发工资","should",0));
+        
+        
+        map.put(0, excel);
+        String sheetName = "Summing";
+        //调用ExcelUtil的方法
+        xssfWorkbook = ExcelUtil.createExcelFile(Summing.class, Summing, map, sheetName);
+        return xssfWorkbook;
+    }
+    
+    //保存为excel文件(汇总文件(实得))
+    public XSSFWorkbook exportExcelDepReality() throws InvocationTargetException, ClassNotFoundException, IntrospectionException, ParseException, IllegalAccessException{
+        //根据条件查询数据，把数据装载到一个list中
+    	List<Summing> Summing = department();
+
+        List<ExcelBean> excel=new ArrayList<ExcelBean>();
+        Map<Integer,List<ExcelBean>> map=new LinkedHashMap<Integer,List<ExcelBean>>();
+        XSSFWorkbook xssfWorkbook=null;
+
+        //设置标题栏
+        excel.add(new ExcelBean("部门名称","department",0));
+        excel.add(new ExcelBean("会费","dues",0));
+        excel.add(new ExcelBean("养老保险","old",0));
+        excel.add(new ExcelBean("医保","treatments",0));
+        excel.add(new ExcelBean("大病","ill",0));
+        excel.add(new ExcelBean("失业","unemp",0));
+        excel.add(new ExcelBean("扣款","withhold",0));
+        excel.add(new ExcelBean("水电费","waterAndEle",0));
+        excel.add(new ExcelBean("公积金","accFund",0));
+        excel.add(new ExcelBean("所得税","incomeTax",0));
+        excel.add(new ExcelBean("扣款合计","withholdTotal",0));
+        excel.add(new ExcelBean("实得工资","reality",0));
+        excel.add(new ExcelBean("下月扣款","lastMonthWithhold",0));
+        excel.add(new ExcelBean("餐补","mealAllowance",0));
+        excel.add(new ExcelBean("合计","reality",0));
+        
+        
+        map.put(0, excel);
+        String sheetName = "Summing";
+        //调用ExcelUtil的方法
+        xssfWorkbook = ExcelUtil.createExcelFile(Summing.class, Summing, map, sheetName);
+        return xssfWorkbook;
+    }
+    
+    //保存为excel文件(统计文件(实得))
+    public XSSFWorkbook exportExcelCategoryReality() throws InvocationTargetException, ClassNotFoundException, IntrospectionException, ParseException, IllegalAccessException{
+        //根据条件查询数据，把数据装载到一个list中
+    	List<Summing> Summing = category();
+
+        List<ExcelBean> excel=new ArrayList<ExcelBean>();
+        Map<Integer,List<ExcelBean>> map=new LinkedHashMap<Integer,List<ExcelBean>>();
+        XSSFWorkbook xssfWorkbook=null;
+
+        //设置标题栏
+        excel.add(new ExcelBean("统计类别","category",0));
+        excel.add(new ExcelBean("人数","count",0));
+        excel.add(new ExcelBean("会费","dues",0));
+        excel.add(new ExcelBean("养老保险","old",0));
+        excel.add(new ExcelBean("医保","treatments",0));
+        excel.add(new ExcelBean("大病","ill",0));
+        excel.add(new ExcelBean("失业","unemp",0));
+        excel.add(new ExcelBean("扣款","withhold",0));
+        excel.add(new ExcelBean("水电费","waterAndEle",0));
+        excel.add(new ExcelBean("公积金","accFund",0));
+        excel.add(new ExcelBean("所得税","incomeTax",0));
+        excel.add(new ExcelBean("扣款合计","withholdTotal",0));
+        excel.add(new ExcelBean("实得工资","reality",0));
+        excel.add(new ExcelBean("下月扣款","lastMonthWithhold",0));
+        excel.add(new ExcelBean("餐补","mealAllowance",0));
+        excel.add(new ExcelBean("合计","reality",0));
+        
+        
+        map.put(0, excel);
+        String sheetName = "Summing";
+        //调用ExcelUtil的方法
+        xssfWorkbook = ExcelUtil.createExcelFile(Summing.class, Summing, map, sheetName);
+        return xssfWorkbook;
+    }
+    
+    //用folat存储数值会损失精度，reserve方法保留2位小数
+    public Float reserve(Float f) {
+    	return (float)(Math.round(f*100))/100;
     }
 
 }

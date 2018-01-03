@@ -31,7 +31,6 @@
 				<th>扣款</th>
 				<th>水电费</th>
 				<th>公积金</th>
-				<th>上月扣款</th>
 				<th>所得税</th>
 				<th>扣款合计</th>
 				<th>实得工资</th>
@@ -52,19 +51,20 @@
 					<td>${should.withhold}</td>
 					<td>${should.waterAndEle}</td>
 					<td>${should.accFund}</td>
-					<td></td>
 					<td>${should.incomeTax}</td>
 					<td>${should.withholdTotal}</td>
 					<td>${should.reality}</td>
 					<td>${should.lastMonthWithhold}</td>
 					<td>${should.mealAllowance}</td>
-					<td>${should.reality}</td>
+					<td><fmt:formatNumber type="number" value="${should.reality+should.mealAllowance}" pattern="0.00" maxFractionDigits="2"/></td>
 				</tr>
 			</tbody>
 		</c:forEach>
 	</table>
+	<br>
 	<p align="center">
 		<input type="button" id="print" value="打印">
+		<button id="depReality">导出</button>
 		<button id="back">返回</button>
 	</p>
 </div>
@@ -76,6 +76,10 @@
 	
 	$('#back').click(function(){
 		window.location = "/sm/print";
+	});
+	
+	$('#depReality').click(function(){
+		window.location = "/sm/exportDepReality"
 	});
 </script>
 </body>

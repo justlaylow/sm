@@ -390,6 +390,7 @@
 		var name = $('#checkName').val();
 		var account = $('#checkBank').val();
 		var id = $('#checkId').val();
+		var stacotegory = $('#staCategoryInput').val();
 		
 		if(name==""){
 			alert('姓名不能为空');
@@ -401,6 +402,10 @@
 		}
 		if(id==""){
 			alert('工号不能为空');
+			return false;
+		}
+		if(stacotegory==""){
+			alert('统计类别不能为空');
 			return false;
 		}
 	};

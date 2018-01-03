@@ -1,39 +1,75 @@
 package com.tl.sm.pojo;
-
+/**
+ * 工资汇总实体类
+ * */
 public class Summing {
+	//人数
 	private int count;
+	//部门名称
 	private String department;
+	//统计类别
 	private String category;
+	//基本工资
 	private Float basic;
+	//岗位工资
 	private Float post;
+	//司龄工资
 	private Float comage;
+	//保密工资
 	private Float secrecy;
+	//技能等级工资
 	private Float skillSalary;
+	//效益工资
 	private Float benefit;
+	//工价
 	private Float labourCost;
+	//工时
 	private Float manhour;
+	//工时工资
 	private Float manhourSalary;
+	//加班
 	private Float overtime;
+	//奖金
 	private Float bonus;
+	//考评工资
 	private Float check;
-	private Float allowance;//津贴
+	//津贴
+	private Float allowance;
+	//缺勤
 	private Float leave;
+	//工伤工资
 	private Float injury;
+	//罚款
 	private Float penalty;
+	//其他
 	private Float other;
+	//应发工资
 	private Float should;
+	//会费
 	private Float dues;
+	//养老保险
 	private Float old;
+	//医疗保险
 	private Float treatments;
+	//大病医疗
 	private Float ill;
+	//失业保险
 	private Float unemp;
+	//公积金
 	private Float accFund;
+	//水电
 	private Float waterAndEle;
+	//扣款
 	private Float withhold;
+	//所得税
 	private Float incomeTax;
+	//下月扣款
 	private Float lastMonthWithhold;
+	//总扣款合计
 	private Float withholdTotal;
+	//实得工资
 	private Float reality;
+	//餐补
 	private Float mealAllowance;
 	
 	public int getCount() {

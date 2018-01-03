@@ -196,7 +196,7 @@
 	
 	<!-- 查询最大月份 -->
 	<select id="selectMaxDate" resultType="string">
-	  select to_char(max(cal_date),'yyyy-mm-dd') from salary_manage.calculate_
+	  select to_char(max(cal_date),'yyyy-MM-dd') from salary_manage.calculate_
 	</select>
 
 </mapper>

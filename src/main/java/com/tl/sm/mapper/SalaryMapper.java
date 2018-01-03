@@ -7,6 +7,7 @@ import org.apache.ibatis.annotations.Param;
 import com.tl.sm.pojo.ExcelExport;
 import com.tl.sm.pojo.Salary;
 import com.tl.sm.pojo.SendBank;
+import com.tl.sm.pojo.Summing;
 
 public interface SalaryMapper {
     int deleteByPrimaryKey(Integer id);
@@ -38,4 +39,10 @@ public interface SalaryMapper {
     
     //导出送银行文件
     List<SendBank> exportSendBank();
+    
+    //导出部门工资文件
+    List<Summing> exportDepInfo();
+    
+    //批量更新工资
+    int updateBatchSalary(List<Salary> list);
 }

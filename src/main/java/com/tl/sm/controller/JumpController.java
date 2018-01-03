@@ -17,7 +17,9 @@ import com.tl.sm.pojo.Department;
 public class JumpController {
 	@Resource
 	private DepartmentMapper departmentMapper;
-	
+	/**
+	 * 控制页面的跳转
+	 * */
 	//跳转到部门页面
 	@RequestMapping("/dep")
 	public String dep(HttpServletRequest request,HttpServletResponse response) {
