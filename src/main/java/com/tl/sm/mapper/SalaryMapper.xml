@@ -80,6 +80,7 @@
 		<collection property="calEmployee" ofType="com.tl.sm.pojo.Employee">
 			<id column="e_Id" jdbcType="INTEGER" property="id" />
 			<result column="bank_account" jdbcType="VARCHAR" property="bankAccount" />
+			<result column="bank_address" jdbcType="VARCHAR" property="bankAddress" />
 			<result column="sal_name" jdbcType="VARCHAR" property="salName" />
 			<result column="post_category" jdbcType="VARCHAR" property="postCategory" />
 			<result column="sal_id" jdbcType="VARCHAR" property="salId" />
@@ -161,6 +162,7 @@
 	    <result column="cal_result" jdbcType="REAL" property="calResult" />
 		<result column="bank_account" jdbcType="VARCHAR" property="bankAccount" />
 		<result column="sal_name" jdbcType="VARCHAR" property="salName" />
+		<result column="bank_address" jdbcType="VARCHAR" property="bankAddress" />
 	</resultMap>
 	
   
@@ -667,6 +669,7 @@
 	<select id="exportSendBank" resultMap="sendBankMap">
 		select c.*,e.* from employee_ e left join
 		calculate_ c on e.sal_id = c.cal_id
+		where to_char(c.cal_date,'yyyy-MM-dd') = (select to_char(max(cal_date),'yyyy-MM-dd') from salary_manage.calculate_)
 	</select>
 	
 	<!-- 批量更新 -->

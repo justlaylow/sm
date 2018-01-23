@@ -2,14 +2,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ include file="/WEB-INF/jsp/include/header.jsp"%>
-<%@ include file="/WEB-INF/jsp/include/defaultback.jsp"%>
 <html>
 <head>
 <title>员工管理</title>
 <script type="text/javascript">
 	//刷新
 	function reload(){
-		window.location.href="/sm/list/emp"; 
+		window.location.href="/sm/list/emp?pageNum=1"; 
 	}
 	
 	//批量导入，选择文件
@@ -45,17 +44,15 @@
 				<h3 class="text-center text-info">员 工 管 理</h3>
 				<br /> <br />
 				<div class="input-group">
-					工号：<input type="text" placeholder="Search for..." name="salId"
-						id="salId" value="${param.salId}"> <span>
-					</span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 姓名：<input type="text"
-						placeholder="Search for..." name="salName" id="salName"
-						value="${param.salName}"> <span>
-					</span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; SAP账号：<input type="text"
-						placeholder="Search for..." name="salOa" id="salOa"
-						value="${param.salOa}"> <span>
-						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-						<button class="btn btn-sm btn-default" type="button"
-							onclick="blurrySeach()">搜索</button>
+					工号：<input type="text" name="salId" id="salId" value="${param.salId}">
+					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+					姓名：<input type="text" name="salName" id="salName" value="${param.salName}">
+					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+					SAP账号：<input type="text" name="salOa" id="salOa" value="${param.salOa}"> 
+					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					<span>
+						<button class="btn btn-sm btn-default" type="button" style="height: 25px;margin-top: -5px;width: 48px;font-size: 12px"
+							onclick="blurrySeach()">查询</button>
 					</span>
 				</div>
 				<br />
@@ -137,7 +134,8 @@
 										<option>7</option>
 										<option>8</option>
 									</select>
-									<label>&emsp;技能等级工资:</label> <input name="salSkillSalary" id="skillsalary">
+									<label>&emsp;技能等级工资:</label> <input name="salSkillSalary" id="skillsalary"> <br><br>
+									<label>账号所属省份:</label> <input name="bankAddress">
 
 
 									<div class="modal-footer">
@@ -164,14 +162,15 @@
 							<th>删除</th>
 							<th>修改</th>
 							<th>姓名</th>
+							<th>SAP账号</th>
 							<th>工号</th>
-							<th>银行账户</th>
+							<th>统计类别</th>
 							<th>岗位类别</th>
 							<th>部门</th>
 							<th>岗位</th>
+							<th>银行账户</th>
+							<th>账户所属省份</th>
 							<th>入职日期</th>
-							<th>SAP账号</th>
-							<th>统计类别</th>
 							<th>备注</th>
 							<th>技能等级</th>
 							<th>技能等级工资</th>
@@ -190,10 +189,10 @@
 							<c:if test="${emp.salName!=null }">
 								<tr>
 									<!-- 删除员工 -->
-									<td><button type="button" id="deleteDep" class="btn btn-warning" onclick="del('${emp.salId}')">删除</button></td>
+									<td><button type="button" id="deleteDep" class="btn btn-warning" onclick="del('${emp.salId}')" style="height: 25px;margin-top: -5px;width: 48px;font-size: 11px">删除</button></td>
 								
 									<!-- 修改信息 -->
-									<td><button type="button" id="updateDep"
+									<td><button type="button" id="updateDep" style="height: 25px;margin-top: -5px;width: 48px;font-size: 11px"
 											class="btn btn-default" data-toggle="modal"
 											data-target="#upd${emp.id}">修改</button>
 										<div class="modal fade" id="upd${emp.id}"
@@ -264,6 +263,9 @@
 																	</select></td>
 																	<td><label>技能工资:</label></td><td> <input type="text" name="salSkillSalary" value="${emp.salSkillSalary}" id="skillsalary${emp.id}"></td>
 																</tr>
+																<tr>
+																	<td><label>账号所属省份:</label></td><td> <input type="text" name="bankAddress" value="${emp.bankAddress}"></td>
+																</tr>
 															</table>
 															<div class="modal-footer">
 																<button id="modalclose2${emp.id}" class="btn btn-default"
@@ -330,14 +332,15 @@
 										</div></td>
 									
 									<td>${emp.salName}</td>
+									<td>${emp.salOa}</td>
 									<td>${emp.salId}</td>
-									<td>${emp.bankAccount}</td>
+									<td>${emp.staCategory}</td>
 									<td>${emp.postCategory}</td>
 									<td>${emp.salDep}</td>
 									<td>${emp.salPost}</td>
+									<td>${emp.bankAccount}</td>
+									<td>${emp.bankAddress}</td>
 									<td><fmt:formatDate value="${emp.salDate}" type="date"/></td>
-									<td>${emp.salOa}</td>
-									<td>${emp.staCategory}</td>
 									<td>${emp.salRemark}</td>
 									<td>${emp.salSkilllevel}</td>
 									<td>${emp.salSkillSalary}</td>
@@ -356,6 +359,49 @@
 						</c:forEach>
 					</tbody>
 				</table>
+				<div align="center" id="page">
+				共有${requestScope.pageBean.totalRecord }个员工,共${requestScope.pageBean.totalPage }页,当前为${requestScope.pageBean.pageNum}页
+				<br/>
+				<a href="/sm/list/emp?pageNum=1">首页</a>
+				<c:if test="${requestScope.pageBean.pageNum==1 }">
+					<c:forEach begin="${requestScope.pageBean.start }" end="${requestScope.pageBean.end }" step="1" var="i">
+						<c:if test="${ requestScope.pageBean.pageNum==i }">
+							${i }
+						</c:if>
+						<c:if test="${requestScope.pageBean.pageNum!=i }">
+							<a href="/sm/list/emp?pageNum=${i }">${i }</a>
+						</c:if>
+					</c:forEach>
+					<a href="/sm/list/emp?pageNum=${requestScope.pageBean.pageNum+1 }">下一页</a>
+				</c:if>
+				
+				<c:if test="${requestScope.pageBean.pageNum>1&&requestScope.pageBean.pageNum<requestScope.pageBean.totalPage}">
+					<a href="/sm/list/emp?pageNum=${requestScope.pageBean.pageNum-1 }">上一页</a>
+					<c:forEach begin="${requestScope.pageBean.start }" end="${requestScope.pageBean.end }" step="1" var="i">
+						<c:if test="${ requestScope.pageBean.pageNum==i }">
+							${i }
+						</c:if>
+						<c:if test="${requestScope.pageBean.pageNum!=i }">
+							<a href="/sm/list/emp?pageNum=${i }">${i }</a>
+						</c:if>
+					</c:forEach>
+					<a href="/sm/list/emp?pageNum=${requestScope.pageBean.pageNum+1 }">下一页</a>
+				</c:if>
+				
+				<c:if test="${requestScope.pageBean.pageNum==requestScope.pageBean.totalPage }">
+					<a href="/sm/list/emp?pageNum=${requestScope.pageBean.pageNum-1 }">上一页</a>
+					<c:forEach begin="${requestScope.pageBean.start }" end="${requestScope.pageBean.end }" step="1" var="i">
+						<c:if test="${ requestScope.pageBean.pageNum==i }">
+							${i }
+						</c:if>
+						<c:if test="${requestScope.pageBean.pageNum!=i }">
+							<a href="/sm/list/emp?pageNum=${i }">${i }</a>
+						</c:if>
+					</c:forEach>
+				</c:if>
+				<a href="/sm/list/emp?pageNum=${requestScope.pageBean.totalPage }">尾页</a>
+				</div>
+				
 			</div>
 		</div>
 	</div>
@@ -430,6 +476,14 @@
 		default:$('#skillsalary').val('0');
 		}
 	});
+	
+	//分页显示
+	$(function(){
+		if(${blurry==1}){
+			$("#page").hide();
+		}
+	});
+	
 </script>
 </body>
 </html>

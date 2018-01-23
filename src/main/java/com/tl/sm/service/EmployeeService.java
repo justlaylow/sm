@@ -2,14 +2,13 @@ package com.tl.sm.service;
 
 import java.io.InputStream;
 import java.sql.SQLIntegrityConstraintViolationException;
-import java.text.ParseException;
-import java.util.Date;
 import java.util.List;
 
 import org.springframework.web.multipart.MultipartFile;
 
 import com.tl.sm.pojo.Department;
 import com.tl.sm.pojo.Employee;
+import com.tl.sm.util.PageBean;
 
 public interface EmployeeService {
 	
@@ -42,5 +41,9 @@ public interface EmployeeService {
 	
 	//Excel数据插入数据库
 	public String importDB(List<Employee> list);
+	
+	//分页
+	public  PageBean<Employee> paging(int pageNum,int pageSize);
+	
 	
 }

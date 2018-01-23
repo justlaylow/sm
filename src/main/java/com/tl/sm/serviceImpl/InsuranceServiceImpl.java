@@ -79,7 +79,7 @@ public class InsuranceServiceImpl implements InsuranceService{
 		return message;
 	}
 	
-	//poi Excel导入
+	//poi Excel导入  保险更新
 	public List<Insurance> importExcelInfo(InputStream in, MultipartFile file,Integer adminId) throws Exception{  
 	    List<List<Object>> listob = ExcelUtil.getBankListByExcel(in,file.getOriginalFilename());  
 	    List<Insurance> insuranceList = new ArrayList<Insurance>();
@@ -128,18 +128,15 @@ public class InsuranceServiceImpl implements InsuranceService{
 	        //通过遍历实现把每一列封装成一个model中，再把所有的model用List集合装载 
 	        ins.setInsId(ob.get(0).toString());
 	        ins.setInsName(ob.get(1).toString());
-	        ins.setInsSex(ob.get(2).toString());
-	        ins.setInsCarNumber(ob.get(3).toString());
-	        ins.setInsOld(ob.get(4).toString());
-	        ins.setInsTreatments(ob.get(5).toString());
-	        ins.setInsIll(ob.get(6).toString());
-	        ins.setInsUnemp(ob.get(7).toString());
-	        ins.setInsAccFund(ob.get(8).toString());
-	        ins.setInsurance(ob.get(9).toString());
-	        ins.setInsSign(ob.get(10).toString());
-	        ins.setInsUnempAddress(ob.get(11).toString());
-	        ins.setInsAccAddress(ob.get(12).toString());
-	        ins.setInsTreatmentId(ob.get(13).toString());
+	        ins.setInsCarNumber(ob.get(2).toString());
+	        ins.setInsOld(ob.get(3).toString());
+	        ins.setInsTreatments(ob.get(4).toString());
+	        ins.setInsIll(ob.get(5).toString());
+	        ins.setInsUnemp(ob.get(6).toString());
+	        ins.setInsAccFund(ob.get(7).toString());
+	        ins.setInsurance(ob.get(8).toString());
+	        ins.setInsUnempAddress(ob.get(9).toString());
+	        ins.setInsAccAddress(ob.get(10).toString());
 	        
 	        insuranceList.add(ins);
 	        

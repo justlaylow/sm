@@ -46,4 +46,7 @@ public interface EmployeeMapper {
   	//批量导入
     int insertForeach(List<Employee> list);
     
+    //分页查询
+    List<Employee> paging(@Param("startIndex") int pageNum,@Param("pageSize") int pageSize);
+    
 }

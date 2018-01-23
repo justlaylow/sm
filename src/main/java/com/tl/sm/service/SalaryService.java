@@ -10,7 +10,6 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.tl.sm.pojo.Salary;
-import com.tl.sm.pojo.SendBank;
 
 
 public interface SalaryService {

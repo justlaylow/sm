@@ -25,18 +25,18 @@
 			<thead>
 				<tr>
 					<th>银行账号</th>
-					<th>姓名</th>
-					<th>实得</th>
+					<th>户名</th>
+					<th>金额</th>
+					<th>账号所属省份</th>
 				</tr>
 			</thead>
 			<c:forEach var="send" items="${sendBank }">
 				<tbody>
 					<tr>
-						<c:forEach var="emp" items="${send.calEmployee }">
-							<td>${emp.bankAccount}</td>
-						</c:forEach>
-						<td>${send.calName}</td>
+						<td>${send.bankAccount}</td>
+						<td>${send.salName}</td>
 						<td>${send.calResult}</td>
+						<td>${send.bankAddress }</td>
 					</tr>
 				</tbody>
 			</c:forEach>

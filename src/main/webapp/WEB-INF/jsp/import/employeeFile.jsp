@@ -29,7 +29,7 @@
 	<script type="text/javascript">
 		//返回
 		function back() {
-			window.location.href = "/sm/list/emp";
+			window.location.href = "/sm/list/emp?pageNum=1";
 		}
 
 		$('#import').click(function(){

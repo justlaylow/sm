@@ -9,13 +9,8 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.servlet.view.RedirectView;
-
-import com.github.pagehelper.PageHelper;
-import com.github.pagehelper.PageInfo;
 import com.tl.sm.pojo.Department;
 import com.tl.sm.service.DepartmentService;
-import com.tl.sm.util.Page;
 
 @Controller
 @Scope("prototype")

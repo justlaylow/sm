@@ -8,7 +8,7 @@ import java.util.List;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 import com.tl.sm.pojo.Employee;
-import com.tl.sm.pojo.Salary;
+import com.tl.sm.pojo.SendBank;
 import com.tl.sm.pojo.Summing;
 
 public interface PrintService {
@@ -22,7 +22,7 @@ public interface PrintService {
 	public List<Summing> category();
 	
 	//送银行文件
-	public List<Salary> sendBank();
+	public List<SendBank> sendBank();
 	
 	//送银行文件excel导出
 	//Excel导出

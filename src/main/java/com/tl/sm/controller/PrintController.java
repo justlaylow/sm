@@ -22,7 +22,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.tl.sm.mapper.AllInfoMapper;
 import com.tl.sm.pojo.Employee;
-import com.tl.sm.pojo.Salary;
+import com.tl.sm.pojo.SendBank;
 import com.tl.sm.pojo.Summing;
 import com.tl.sm.service.PrintService;
 
@@ -97,7 +97,7 @@ public class PrintController {
 	//送银行文件
 	@RequestMapping("/sendBank")
 	public String sendBank(HttpServletRequest request) {
-		List<Salary> sendBank = printService.sendBank();
+		List<SendBank> sendBank = printService.sendBank();
 		request.setAttribute("sendBank", sendBank);
 		return "print/sendBank";
 	}

@@ -8,4 +8,4 @@
 </script>
 
 <!-- 首页 -->
-<button type="button" class="btn btn-default" onclick="main()">首页</button>
+<button type="button" class="btn btn-default" onclick="main()">返回</button>

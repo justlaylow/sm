@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ include file="/WEB-INF/jsp/include/header.jsp"%>
-<%@ include file="/WEB-INF/jsp/include/background.jsp"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -10,6 +9,9 @@
 <style>
 tbody {
 overflow:scroll;
+}
+input {
+border-style:none;
 }
 </style>
 </head>
@@ -20,21 +22,19 @@ overflow:scroll;
 				<h3 class="text-center text-info">工 资 维 护</h3>
 				<br /> <br />
 				<div class="input-group">
-					工号：<input type="text" placeholder="Search for..." name="calId"
-						id="calId" value="${param.calId}"> <span></span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
-					姓名：<input type="text"
-						placeholder="Search for..." name="calName" id="calName"
-						value="${param.calName}"> <span></span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
-					工资时间：<input type="text"
-						placeholder="Search for..." name="calDate" id="calDate"> <span>
-						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-						<button class="btn btn-sm btn-default" type="button"
-							onclick="blurrySeach()">搜索</button>
+					工号：<input type="text" name="calId" id="calId" value="${param.calId}" style="border-style: solid;">
+					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+					姓名：<input type="text" name="calName" id="calName" value="${param.calName}" style="border-style: solid;">
+					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+					工资时间：<input type="text" name="calDate" id="calDate" style="border-style: solid;">
+					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					<span>
+						<button class="btn btn-sm btn-default" type="button" style="height: 25px;margin-top: -5px;width: 48px;" onclick="blurrySeach()">查询</button>
 					</span>
 				</div>
 				<br />
 
-				<!-- 首页 -->
+				<!-- 返回首页 -->
 				<%@ include file="/WEB-INF/jsp/include/main.jsp"%>
 
 				<!-- 刷新 -->
@@ -169,7 +169,7 @@ overflow:scroll;
 						</c:forEach>
 					</tbody>
 				</table>
-				<div style="position: fixed;bottom: 0;margin-left:550px;"><input type="submit" id="insId" class="btn btn-sm btn-success" value="修改"/></div>
+				<div style="margin-left:550px;"><input type="submit" id="insId" class="btn btn-sm btn-success" value="修改"/></div>
 				</form>
 			</div>
 		</div>

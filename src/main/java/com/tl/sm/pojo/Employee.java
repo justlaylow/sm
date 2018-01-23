@@ -11,6 +11,8 @@ public class Employee {
     private Float salSkillSalary;
     //银行账户
 	private String bankAccount;
+	//银行账号所属省份
+	private String bankAddress;
 	//姓名
     private String salName;
     //岗位类别
@@ -40,6 +42,14 @@ public class Employee {
     private List<Salary> salSalaryList;
     
 
+    
+    public String getBankAddress() {
+		return bankAddress;
+	}
+
+	public void setBankAddress(String bankAddress) {
+		this.bankAddress = bankAddress;
+	}
     public Float getSalSkillSalary() {
 		return salSkillSalary;
 	}

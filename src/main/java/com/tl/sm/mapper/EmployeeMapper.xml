@@ -4,6 +4,7 @@
 	<resultMap id="BaseResultMap" type="com.tl.sm.pojo.Employee">
 		<id column="Id" jdbcType="INTEGER" property="id" />
 		<result column="bank_account" jdbcType="VARCHAR" property="bankAccount" />
+		<result column="bank_address" jdbcType="VARCHAR" property="bankAddress"/>
 		<result column="sal_name" jdbcType="VARCHAR" property="salName" />
 		<result column="post_category" jdbcType="VARCHAR" property="postCategory" />
 		<result column="sal_id" jdbcType="VARCHAR" property="salId" />
@@ -27,7 +28,9 @@
 
 	<resultMap id="innerMap" type="com.tl.sm.pojo.Employee">
 		<id column="Id" jdbcType="INTEGER" property="id" />
+		<result column="rownum" jdbcType="INTEGER" property="rownum"/>
 		<result column="bank_account" jdbcType="VARCHAR" property="bankAccount" />
+		<result column="bank_address" jdbcType="VARCHAR" property="bankAddress"/>
 		<result column="sal_name" jdbcType="VARCHAR" property="salName" />
 		<result column="post_category" jdbcType="VARCHAR" property="postCategory" />
 		<result column="sal_id" jdbcType="VARCHAR" property="salId" />
@@ -149,7 +152,7 @@
 
 	<sql id="Base_Column_List">
 		Id, bank_account, sal_name, post_category, sal_id, sal_dep, sal_post,
-		sal_date, sal_oa,
+		sal_date, sal_oa,bank_address,
 		sta_category, sal_remark, sal_skilllevel,sal_skill_salary
 	</sql>
 	<select id="selectByPrimaryKey" parameterType="java.lang.Integer"
@@ -167,7 +170,7 @@
 		insert into employee_ (Id, bank_account, sal_name,
 		post_category, sal_id, sal_dep,
 		sal_post, sal_date, sal_oa,
-		sta_category, sal_remark, sal_skilllevel,sal_skill_salary
+		sta_category, sal_remark, sal_skilllevel,sal_skill_salary,bank_address
 		)
 		values (#{id,jdbcType=INTEGER}, #{bankAccount,jdbcType=VARCHAR},
 		#{salName,jdbcType=VARCHAR},
@@ -175,7 +178,7 @@
 		#{salPost,jdbcType=VARCHAR}, #{salDate,jdbcType=DATE},
 		#{salOa,jdbcType=VARCHAR},
 		#{staCategory,jdbcType=VARCHAR}, #{salRemark,jdbcType=VARCHAR}, #{salSkilllevel,jdbcType=VARCHAR},
-		#{salSkillSalary,jdbcType=REAL}
+		#{salSkillSalary,jdbcType=REAL},#{bankAddress,jdbcType=VARCHAR}
 		)
 	</insert>
 	<insert id="insertSelective" parameterType="com.tl.sm.pojo.Employee">
@@ -186,6 +189,9 @@
 			</if>
 			<if test="bankAccount != null">
 				bank_account,
+			</if>
+			<if test="bankAddress != null">
+				bank_address,
 			</if>
 			<if test="salName != null">
 				sal_name,
@@ -228,6 +234,9 @@
 			<if test="bankAccount != null">
 				#{bankAccount,jdbcType=VARCHAR},
 			</if>
+			<if test="bankAddress != null">
+				#{bankAddress,jdbcType=VARCHAR},
+			</if>
 			<if test="salName != null">
 				#{salName,jdbcType=VARCHAR},
 			</if>
@@ -269,6 +278,9 @@
 			<if test="bankAccount != null">
 				bank_account = #{bankAccount,jdbcType=VARCHAR},
 			</if>
+			<if test="bankAddress != null">
+				bank_address = #{bankAddress,jdbcType=VARCHAR},
+			</if>
 			<if test="salName != null">
 				sal_name = #{salName,jdbcType=VARCHAR},
 			</if>
@@ -308,6 +320,7 @@
 	<update id="updateByPrimaryKey" parameterType="com.tl.sm.pojo.Employee">
 		update employee_
 		set bank_account = #{bankAccount,jdbcType=VARCHAR},
+		bank_address = #{bankAddress,jdbcType=VARCHAR},
 		sal_name = #{salName,jdbcType=VARCHAR},
 		post_category = #{postCategory,jdbcType=VARCHAR},
 		sal_id = #{salId,jdbcType=VARCHAR},
@@ -419,7 +432,7 @@
     	insert into employee_ (bank_account, sal_name,
 		post_category, sal_id, sal_dep,
 		sal_post,  sal_oa,
-		sta_category, sal_remark, sal_skilllevel,sal_skill_salary
+		sta_category, sal_remark, sal_skilllevel,sal_skill_salary,bank_address
 		)
     ( 
     <foreach collection="list" item="item" index="index" separator="union all">
@@ -429,9 +442,15 @@
 		#{item.salPost,jdbcType=VARCHAR}, 
 		#{item.salOa,jdbcType=VARCHAR},
 		#{item.staCategory,jdbcType=VARCHAR}, #{item.salRemark,jdbcType=VARCHAR}, #{item.salSkilllevel,jdbcType=VARCHAR},
-		#{item.salSkillSalary,jdbcType=REAL} from dual)
+		#{item.salSkillSalary,jdbcType=REAL},#{item.bankAddress,jdbcType=VARCHAR} from dual)
       </foreach>
     )
   	</insert>
-	
+  	
+  	<!-- 分页查询 -->
+	<select id="paging" resultMap="innerMap">
+		select * from (select rownum as rowno,t.* from (select e.*,i.ins_sex,i.ins_car_number,i.ins_old,i.ins_treatments,i.ins_unemp,i.ins_ill,i.ins_acc_fund from salary_manage.employee_ e
+		left join salary_manage.insurance_ i on e.sal_id = i.ins_id union select a.*,b.ins_sex,b.ins_car_number,b.ins_old,b.ins_treatments,b.ins_unemp,b.ins_ill,b.ins_acc_fund
+		from salary_manage.employee_ a right join salary_manage.insurance_ b on a.sal_id = b.ins_id) t where rownum&lt;(#{startIndex}+#{pageSize})) a where a.rowno &gt;=#{startIndex}
+	</select>
 </mapper>

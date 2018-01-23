@@ -1,12 +1,16 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ include file="/WEB-INF/jsp/include/header.jsp"%>
-<%@ include file="/WEB-INF/jsp/include/background.jsp"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>查询</title>
+<style type="text/css">
+input{
+border-style: none;
+}
+</style>
 </head>
 <body>
 	<div class="container">
@@ -15,10 +19,10 @@
 				<h3>工 资 查 询</h3>
 				<!-- 添加保险 -->
 				<form action="/sm/list/all" method="post">
-					工号：<input name="calId" value="${param.calId}">
-					姓名：<input name="calName" value="${param.calName}"> 
-					工资日期：<input name="calDate" type="text" id="mydatepicker"> 
-					<input type="submit" value="查询" id="find">
+					工号：<input name="calId" value="${param.calId}" style="border-style: solid;">
+					姓名：<input name="calName" value="${param.calName}" style="border-style: solid;"> 
+					工资日期：<input name="calDate" type="text" id="mydatepicker" style="border-style: solid;"> 
+					<input type="submit" value="查询" id="find" style="border-style: solid;">
 					<input id="maxMonth" value="${maxMonth}" style="display: none;">
 					<input id="checkMonth" value="${param.calDate}" style="display: none;">
 					<button type="button" onclick="back()">返回</button>

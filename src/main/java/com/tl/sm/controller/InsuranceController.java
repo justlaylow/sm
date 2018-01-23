@@ -14,7 +14,6 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.tl.sm.pojo.Insurance;
-import com.tl.sm.pojo.Salary;
 import com.tl.sm.service.InsuranceService;
 import com.tl.sm.util.InsuranceList;
 import com.tl.sm.util.excelList;

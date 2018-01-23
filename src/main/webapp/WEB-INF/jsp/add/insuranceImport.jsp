@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ include file="/WEB-INF/jsp/include/header.jsp"%>
-<%@ include file="/WEB-INF/jsp/include/background.jsp"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -12,6 +11,15 @@
 		window.location.href="/sm/select/ins"; 
 	}
 </script>
+<style type="text/css">
+	input{
+		border-style: none;
+		text-align: center;
+	}
+	th,td{
+		text-align: center;
+	}
+</style>
 
 </head>
 <body>

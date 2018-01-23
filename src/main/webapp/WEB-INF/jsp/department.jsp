@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ include file="/WEB-INF/jsp/include/header.jsp"%>
-<%@ include file="/WEB-INF/jsp/include/background.jsp"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -40,13 +39,12 @@
 				<h3 class="text-center text-info">部 门 管 理</h3>
 				<br /> <br />
 				<div class="input-group">
-					部门代码：<input type="text" placeholder="Search for..." name="depId" id="depId" value="${param.depId}">
-					 <span>
-					</span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 部门名称：<input type="text"
-						placeholder="Search for..." name="depName" id="depName" value="${param.depName}"> 
+					部门代码：<input type="text" name="depId" id="depId" value="${param.depId}">
+					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+					部门名称：<input type="text" name="depName" id="depName" value="${param.depName}">
+					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
 					<span>
-						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-						<button class="btn btn-sm btn-default" type="button" onclick="blurrySeach()">搜索</button>
+						<button class="btn btn-sm btn-default" type="button" onclick="blurrySeach()" style="height: 25px;margin-top: -5px;width: 48px;font-size: 12px">搜索</button>
 					</span>
 				</div>
 				<br />
@@ -122,10 +120,10 @@
 								<td>${dep.depCostCategory}</td>
 								<td>${dep.depRemark}</td>
 								<!-- 删除部门 -->
-								<td><button type="button" id="deleteDep" class="btn btn-sm btn-warning" onclick="del(${dep.id})">删除</button></td>
+								<td><button type="button" id="deleteDep" class="btn btn-sm btn-warning" onclick="del(${dep.id})" style="height: 25px;margin-top: -5px;width: 48px;font-size: 11px;margin-top: 2px">删除</button></td>
 								
 								<!-- 修改部门信息 -->
-								<td><button type="button" id="updateDep" class="btn btn-sm btn-default" data-toggle="modal" data-target="#upd${dep.id}">修改</button>
+								<td><button type="button" id="updateDep" class="btn btn-sm btn-default" data-toggle="modal" data-target="#upd${dep.id}" style="height: 25px;margin-top: -5px;width: 48px;font-size: 11px;margin-top: 2px">修改</button>
 									<div class="modal fade" id="upd${dep.id}" data-backdrop="static"
 											tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
 										<div class="modal-dialog">

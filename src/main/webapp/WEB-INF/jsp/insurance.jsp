@@ -1,12 +1,16 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ include file="/WEB-INF/jsp/include/header.jsp"%>
-<%@ include file="/WEB-INF/jsp/include/background.jsp"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>保险金维护</title>
+<style type="text/css">
+input {
+border-style:none;
+}
+</style>
 <script type="text/javascript">
 	//刷新
 	function reload(){
@@ -55,14 +59,12 @@
 				<h3 class="text-center text-info">保 险 金 维 护</h3>
 				<br /> <br />
 				<div class="input-group">
-					工号：<input type="text" placeholder="Search for..." name="insId"
-						id="insId" value="${param.insId}"> <span>
-					</span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 姓名：<input type="text"
-						placeholder="Search for..." name="insName" id="insName"
-						value="${param.insName}"> <span>
-						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-						<button class="btn btn-sm btn-default" type="button"
-							onclick="blurrySeach()">搜索</button>
+					工号：<input type="text" name="insId" id="insId" value="${param.insId}" style="border-style: solid;">
+					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+					姓名：<input type="text" name="insName" id="insName" value="${param.insName}" style="border-style: solid;">
+					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					<span>
+						<button class="btn btn-sm btn-default" type="button" style="height: 25px;margin-top: -5px;width: 48px;" onclick="blurrySeach()">查询</button>
 					</span>
 				</div>
 				<br />
@@ -111,7 +113,7 @@
 							<tr>
 								<!-- 删除 -->
 								<td><button type="button" id="insId"
-										class="btn btn-sm btn-warning" onclick="del(${ins.id})">删除</button></td>
+										class="btn btn-sm btn-warning" onclick="del(${ins.id})" style="height: 25px;margin-top: -5px;width: 48px;font-size: 11px;margin-top: 1px">删除</button></td>
 								
 								<!-- 和po类里的属性名一样 -->
 									<td> <input style="display: none" name="insurance[${i.index}].id" id="Id" value="${ins.id}">
@@ -136,7 +138,7 @@
 						</c:forEach>
 					</tbody>
 				</table>
-				<div style="position: fixed;bottom: 0;margin-left:550px;"><input type="submit" id="insId" class="btn btn-sm btn-success" value="修改"/></div>
+				<div style="margin-left:550px;"><input type="submit" id="insId" class="btn btn-sm btn-success" value="修改"/></div>
 				</form>
 			</div>
 		</div>

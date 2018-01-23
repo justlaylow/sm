@@ -56,21 +56,21 @@
 
 				</nav>
 				<ul style="list-style-type: none;">
-					<a href="/sm/allInform" class="btn btn-primary"><li>进入查询</li></a>
-					<br><br>
-					<a href="/sm/list/emp" class="btn btn-primary"><li>员工维护</li></a>
-					<br><br>
-					<a href="/sm/list/dep" class="btn btn-primary"><li>部门类别</li></a>
-					<br><br>
-					<a href="/sm/print" class="btn btn-primary"><li>工资打印</li></a>
-					<br><br>
-					<a href="/sm/select/ins" class="btn btn-primary"><li>保险金维护</li></a>
-					<br><br>
-					<a href="/sm/list/sal" class="btn btn-primary"><li>工资维护</li></a>
-					<br><br>
-					<a href="/sm/salary" class="btn btn-primary"><li>工资表数据导入</li></a>
-					<br><br>
-					<a href="/sm/exportExcel" class="btn btn-primary"><li>工资表数据导出</li></a>
+					<li><a href="/sm/allInform" class="btn btn-primary">进入查询</a></li>
+					<br/>
+					<li><a href="/sm/list/emp?pageNum=1" class="btn btn-primary">员工维护</a></li>
+					<br>
+					<li><a href="/sm/list/dep" class="btn btn-primary">部门类别</a></li>
+					<br>
+					<li><a href="/sm/print" class="btn btn-primary">工资打印</a></li>
+					<br>
+					<li><a href="/sm/select/ins" class="btn btn-primary">保险金维护</a></li>
+					<br>
+					<li><a href="/sm/list/sal" class="btn btn-primary">工资维护</a></li>
+					<br>
+					<li><a href="/sm/salary" class="btn btn-primary">工资表数据导入</a></li>
+					<br>
+					<li><a href="/sm/exportExcel" class="btn btn-primary">工资表数据导出</a></li>
 					<br>
 				</ul>
 			</div>

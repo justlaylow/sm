@@ -11,14 +11,11 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.tl.sm.mapper.EmployeeMapper;
-import com.tl.sm.mapper.InsuranceMapper;
-import com.tl.sm.mapper.SalaryMapper;
 import com.tl.sm.pojo.Department;
 import com.tl.sm.pojo.Employee;
-import com.tl.sm.pojo.Insurance;
-import com.tl.sm.pojo.Salary;
 import com.tl.sm.service.EmployeeService;
 import com.tl.sm.util.ExcelUtil;
+import com.tl.sm.util.PageBean;
 
 @Service
 public class EmployeeServiceImpl implements EmployeeService {
@@ -101,26 +98,22 @@ public class EmployeeServiceImpl implements EmployeeService {
 	        Employee emp = new Employee();  
 	        //设置编号  String.valueOf(ob.get())
 	        //通过遍历实现把每一列封装成一个model中，再把所有的model用List集合装载 
-	        emp.setSalId(ob.get(0).toString());
-	        emp.setSalName(ob.get(1).toString());
-	        emp.setSalDep(ob.get(2).toString());
-	        emp.setPostCategory(ob.get(3).toString());
-	        emp.setSalPost(ob.get(4).toString());
-	        if("".equals(ob.get(5).toString())||ob.get(5).toString()==null) {
-	        	emp.setSalOa("");
-	        }else {
-	        	emp.setSalOa(ob.get(5).toString());
-	        }
-	        
+	        emp.setSalOa(ob.get(0).toString());
+	        emp.setSalId(ob.get(1).toString());
+	        emp.setSalName(ob.get(2).toString());
+	        emp.setSalDep(ob.get(3).toString());
+	        emp.setPostCategory(ob.get(4).toString());
+	        emp.setSalPost(ob.get(5).toString());
 	        emp.setStaCategory(ob.get(6).toString());
-	        emp.setSalRemark(ob.get(7).toString());
-	        emp.setSalSkilllevel(ob.get(8).toString());
-	        if("".equals(ob.get(9).toString())||ob.get(9).toString()==null) {
+	        emp.setSalSkilllevel(ob.get(7).toString());
+	        if("".equals(ob.get(8).toString())||ob.get(8).toString()==null) {
 	        	emp.setSalSkillSalary(0.0f);
 	        }else {
-	        	emp.setSalSkillSalary(Float.parseFloat(ob.get(9).toString()));
+	        	emp.setSalSkillSalary(Float.parseFloat(ob.get(8).toString()));
 	        }
-	        emp.setBankAccount(ob.get(10).toString());
+	        emp.setBankAccount(ob.get(9).toString());
+	        emp.setBankAddress(ob.get(10).toString());
+	        emp.setSalRemark(ob.get(11).toString());
 	        
 	        employeeList.add(emp);
 	        
@@ -139,6 +132,25 @@ public class EmployeeServiceImpl implements EmployeeService {
 			message = "导入失败";
 		}
 		return message;
+	}
+
+	@Override
+	public PageBean<Employee> paging(int pageNum, int pageSize) {
+		//在这里就要将pageBean中的数据创建好,然后将该对象传回去
+		//先要从数据库中获取所有用户的数据量有多少,获得totalRecord
+		List<Employee> list = employeeMapper.listInner();
+		int totalRecord = list.size();
+		
+		//有了三个初始数据,就能够创建pageBean对象了
+		PageBean<Employee> pb = new PageBean<Employee>(pageNum,pageSize,totalRecord);
+		
+		//获取pageBean对象中的startIndex
+		int startIndex  = pb.getStartIndex();
+		
+		//有startIndex和pageSize,就可以拿到每页的数据了
+		pb.setList(employeeMapper.paging(startIndex, pageSize));
+		
+		return pb;
 	}
 
 }

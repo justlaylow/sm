@@ -17,6 +17,7 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 import com.tl.sm.pojo.Department;
 import com.tl.sm.pojo.Employee;
 import com.tl.sm.service.EmployeeService;
+import com.tl.sm.util.PageBean;
 import com.tl.sm.util.excelList;
 
 @Controller
@@ -25,24 +26,20 @@ public class EmployeeController {
 	@Resource
 	private EmployeeService employeeService;
 
-	// 查询所有员工和员工保险,保险表联合员工表
-	@RequestMapping("/list/emp")
-	public String listEmp(HttpServletRequest request) {
-		List<Employee> empList = employeeService.listInner();
-		request.setAttribute("empList", empList);
-		List<Department> listDep = employeeService.listDep();
-		request.setAttribute("listDep", listDep);
-		return "employee";
-	}
-
 	// 新增员工
 	@RequestMapping("/insert/emp")
 	public String insertEmp(Employee employee, HttpServletRequest request) throws SQLIntegrityConstraintViolationException{
 		String insertEmp = employeeService.insertEmp(employee);
-		List<Employee> empList = employeeService.listInner();
+		int pageNum = 1;
+		
+		int pageSize = 9;
+		
+		PageBean<Employee> pb = employeeService.paging(pageNum, pageSize);
+		List<Employee> empList = pb.getList();
+		request.setAttribute("pageBean", pb);
+		request.setAttribute("empList", empList);
 		List<Department> listDep = employeeService.listDep();
 		request.setAttribute("listDep", listDep);
-		request.setAttribute("empList", empList);
 		request.setAttribute("insertEmp", insertEmp);
 		return "employee";
 	}
@@ -51,10 +48,16 @@ public class EmployeeController {
 	@RequestMapping("/update/emp")
 	public String updateEmp(Employee employee, HttpServletRequest request) {
 		String updateEmp = employeeService.updateEmp(employee);
-		List<Employee> empList = employeeService.listInner();
+		int pageNum = 1;
+		
+		int pageSize = 9;
+		
+		PageBean<Employee> pb = employeeService.paging(pageNum, pageSize);
+		List<Employee> empList = pb.getList();
+		request.setAttribute("pageBean", pb);
+		request.setAttribute("empList", empList);
 		List<Department> listDep = employeeService.listDep();
 		request.setAttribute("listDep", listDep);
-		request.setAttribute("empList", empList);
 		request.setAttribute("updateEmp", updateEmp);
 		return "employee";
 	}
@@ -63,10 +66,16 @@ public class EmployeeController {
 	@RequestMapping("/delete/emp")
 	public String deleteEmp(String salId,HttpServletRequest request) {
 		String deleteEmp = employeeService.deleteEmp(salId);
-		List<Employee> empList = employeeService.listInner();
+		int pageNum = 1;
+		
+		int pageSize = 9;
+		
+		PageBean<Employee> pb = employeeService.paging(pageNum, pageSize);
+		List<Employee> empList = pb.getList();
+		request.setAttribute("pageBean", pb);
+		request.setAttribute("empList", empList);
 		List<Department> listDep = employeeService.listDep();
 		request.setAttribute("listDep", listDep);
-		request.setAttribute("empList", empList);
 		request.setAttribute("deleteEmp", deleteEmp);
 		return "employee";
 	}
@@ -78,6 +87,7 @@ public class EmployeeController {
 		List<Department> listDep = employeeService.listDep();
 		request.setAttribute("listDep", listDep);
 		request.setAttribute("empList", empList);
+		request.setAttribute("blurry", 1);
 		return "employee";
 	}
 	
@@ -108,4 +118,21 @@ public class EmployeeController {
 		in.close();
 		return "import/employeeImport";
 	}
+	
+	// 查询所有员工和员工保险,保险表联合员工表
+	@RequestMapping("/list/emp")
+	public String paging(HttpServletRequest request) {
+		int pageNum = Integer.valueOf(request.getParameter("pageNum"));
+		
+		int pageSize = 9;
+		
+		PageBean<Employee> pb = employeeService.paging(pageNum, pageSize);
+		List<Employee> empList = pb.getList();
+		request.setAttribute("pageBean", pb);
+		request.setAttribute("empList", empList);
+		List<Department> listDep = employeeService.listDep();
+		request.setAttribute("listDep", listDep);
+		return "employee";
+	}
+	
 }

@@ -16,11 +16,9 @@ import org.springframework.stereotype.Service;
 import com.tl.sm.mapper.DepartmentMapper;
 import com.tl.sm.mapper.EmployeeMapper;
 import com.tl.sm.mapper.SalaryMapper;
-import com.tl.sm.pojo.AllInfo;
 import com.tl.sm.pojo.Department;
 import com.tl.sm.pojo.Employee;
 import com.tl.sm.pojo.ExcelBean;
-import com.tl.sm.pojo.Salary;
 import com.tl.sm.pojo.SendBank;
 import com.tl.sm.pojo.Summing;
 import com.tl.sm.service.PrintService;
@@ -71,8 +69,6 @@ public class PrintServiceImpl implements PrintService{
 			Float overtime=0f;
 			//奖金
 			Float bonus=0f;
-			//考评工资
-			Float check=0f;
 			//津贴
 			Float allowance=0f;
 			//缺勤
@@ -127,7 +123,6 @@ public class PrintServiceImpl implements PrintService{
 					manhourSalary+=list.get(j).getSalSalaryList().get(0).getCalManhourSalary();
 					overtime+=list.get(j).getSalSalaryList().get(0).getCalOvertime();
 					bonus+=list.get(j).getSalSalaryList().get(0).getCalBonus();
-					check+=list.get(j).getSalSalaryList().get(0).getCalCheck();
 					allowance+=list.get(j).getSalSalaryList().get(0).getCalBenefit();
 					leave+=list.get(j).getSalSalaryList().get(0).getCalLeave();
 					injury+=list.get(j).getSalSalaryList().get(0).getCalInjury();
@@ -158,7 +153,6 @@ public class PrintServiceImpl implements PrintService{
 					sum.setManhourSalary(reserve(manhourSalary));
 					sum.setOvertime(reserve(reserve(overtime)));
 					sum.setBonus(reserve(bonus));
-					sum.setCheck(reserve(check));
 					sum.setAllowance(reserve(allowance));
 					sum.setLeave(reserve(leave));
 					sum.setInjury(reserve(injury));
@@ -200,7 +194,6 @@ public class PrintServiceImpl implements PrintService{
 		Float manhourSalary=0f;
 		Float overtime=0f;
 		Float bonus=0f;
-		Float check=0f;
 		Float allowance=0f;//津贴
 		Float leave=0f;
 		Float injury=0f;
@@ -233,7 +226,6 @@ public class PrintServiceImpl implements PrintService{
 			manhourSalary+=list.get(j).getSalSalaryList().get(0).getCalManhourSalary();
 			overtime+=list.get(j).getSalSalaryList().get(0).getCalOvertime();
 			bonus+=list.get(j).getSalSalaryList().get(0).getCalBonus();
-			check+=list.get(j).getSalSalaryList().get(0).getCalCheck();
 			allowance+=list.get(j).getSalSalaryList().get(0).getCalBenefit();
 			leave+=list.get(j).getSalSalaryList().get(0).getCalLeave();
 			injury+=list.get(j).getSalSalaryList().get(0).getCalInjury();
@@ -266,7 +258,6 @@ public class PrintServiceImpl implements PrintService{
 			sum.setManhourSalary(reserve(manhourSalary));
 			sum.setOvertime(reserve(overtime));
 			sum.setBonus(reserve(bonus));
-			sum.setCheck(reserve(check));
 			sum.setAllowance(reserve(allowance));
 			sum.setLeave(reserve(leave));
 			sum.setInjury(reserve(injury));
@@ -325,7 +316,6 @@ public class PrintServiceImpl implements PrintService{
 			Float manhourSalary=0f;
 			Float overtime=0f;
 			Float bonus=0f;
-			Float check=0f;
 			Float allowance=0f;//津贴
 			Float leave=0f;
 			Float injury=0f;
@@ -361,7 +351,6 @@ public class PrintServiceImpl implements PrintService{
 					manhourSalary+=list.get(j).getSalSalaryList().get(0).getCalManhourSalary();
 					overtime+=list.get(j).getSalSalaryList().get(0).getCalOvertime();
 					bonus+=list.get(j).getSalSalaryList().get(0).getCalBonus();
-					check+=list.get(j).getSalSalaryList().get(0).getCalCheck();
 					allowance+=list.get(j).getSalSalaryList().get(0).getCalBenefit();
 					leave+=list.get(j).getSalSalaryList().get(0).getCalLeave();
 					injury+=list.get(j).getSalSalaryList().get(0).getCalInjury();
@@ -393,7 +382,6 @@ public class PrintServiceImpl implements PrintService{
 					sum.setManhourSalary(reserve(manhourSalary));
 					sum.setOvertime(reserve(overtime));
 					sum.setBonus(reserve(bonus));
-					sum.setCheck(reserve(check));
 					sum.setAllowance(reserve(allowance));
 					sum.setLeave(reserve(leave));
 					sum.setInjury(reserve(injury));
@@ -434,7 +422,6 @@ public class PrintServiceImpl implements PrintService{
 		Float manhourSalary=0f;
 		Float overtime=0f;
 		Float bonus=0f;
-		Float check=0f;
 		Float allowance=0f;//津贴
 		Float leave=0f;
 		Float injury=0f;
@@ -467,7 +454,6 @@ public class PrintServiceImpl implements PrintService{
 			manhourSalary+=list.get(j).getSalSalaryList().get(0).getCalManhourSalary();
 			overtime+=list.get(j).getSalSalaryList().get(0).getCalOvertime();
 			bonus+=list.get(j).getSalSalaryList().get(0).getCalBonus();
-			check+=list.get(j).getSalSalaryList().get(0).getCalCheck();
 			allowance+=list.get(j).getSalSalaryList().get(0).getCalBenefit();
 			leave+=list.get(j).getSalSalaryList().get(0).getCalLeave();
 			injury+=list.get(j).getSalSalaryList().get(0).getCalInjury();
@@ -500,7 +486,6 @@ public class PrintServiceImpl implements PrintService{
 			sum.setManhourSalary(reserve(manhourSalary));
 			sum.setOvertime(reserve(overtime));
 			sum.setBonus(reserve(bonus));
-			sum.setCheck(reserve(check));
 			sum.setAllowance(reserve(allowance));
 			sum.setLeave(reserve(leave));
 			sum.setInjury(reserve(injury));
@@ -529,8 +514,8 @@ public class PrintServiceImpl implements PrintService{
 	}
 
 	//送银行文件,(银行账号,姓名,实发工资)
-	public List<Salary> sendBank() {
-		List<Salary> sendBank = salaryMapper.listCal();
+	public List<SendBank> sendBank() {
+		List<SendBank> sendBank = salaryMapper.exportSendBank();
 		return sendBank;
 	}
 	
@@ -554,8 +539,9 @@ public class PrintServiceImpl implements PrintService{
 
         //设置标题栏
         excel.add(new ExcelBean("银行账号","bankAccount",0));
-        excel.add(new ExcelBean("姓名","salName",0));
-        excel.add(new ExcelBean("实得","calResult",0));
+        excel.add(new ExcelBean("户名","salName",0));
+        excel.add(new ExcelBean("金额","calResult",0));
+        excel.add(new ExcelBean("账户所属地","bankAddress",0));
         
         
         map.put(0, excel);
@@ -585,7 +571,6 @@ public class PrintServiceImpl implements PrintService{
         excel.add(new ExcelBean("工时工资","manhourSalary",0));
         excel.add(new ExcelBean("加班","overtime",0));
         excel.add(new ExcelBean("奖金","bonus",0));
-        excel.add(new ExcelBean("考评工资","check",0));
         excel.add(new ExcelBean("工时","manhour",0));
         excel.add(new ExcelBean("津贴","allowance",0));
         excel.add(new ExcelBean("考勤扣款","leave",0));
@@ -623,7 +608,6 @@ public class PrintServiceImpl implements PrintService{
         excel.add(new ExcelBean("工时工资","manhourSalary",0));
         excel.add(new ExcelBean("加班","overtime",0));
         excel.add(new ExcelBean("奖金","bonus",0));
-        excel.add(new ExcelBean("考评工资","check",0));
         excel.add(new ExcelBean("工时","manhour",0));
         excel.add(new ExcelBean("津贴","allowance",0));
         excel.add(new ExcelBean("考勤扣款","leave",0));

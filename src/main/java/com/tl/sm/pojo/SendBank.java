@@ -9,7 +9,15 @@ public class SendBank {
 	private String salName;
 	//实得工资
 	private Float calResult;
+	//银行账号所属省份
+	private String bankAddress;
 	
+	public String getBankAddress() {
+		return bankAddress;
+	}
+	public void setBankAddress(String bankAddress) {
+		this.bankAddress = bankAddress;
+	}
 	public String getBankAccount() {
 		return bankAccount;
 	}
